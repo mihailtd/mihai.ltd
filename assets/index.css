@@ -1,0 +1,27 @@
+html {
+  font-family: 'HelveticaNeue';
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+html, body, #__nuxt {
+  @apply text-gray-50;
+  height: 100vh;
+  background-color: #090025;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(0deg, rgba(25, 0, 74) 0%, rgba(168, 60, 255) 100%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  box-shadow: 0px 0px 0px 10000vh black;
+  border-radius: 10px;
+}
