@@ -11,13 +11,6 @@ export default defineNuxtConfig({
   turnstile: {
     siteKey: "0x4AAAAAAAUBxBNAPgRBo5hj",
   },
-  runtimeConfig: {
-    turnstile: {
-      // This can be overridden at runtime via the NUXT_TURNSTILE_SECRET_KEY
-      // environment variable.
-      secretKey: "",
-    },
-  },
   apollo: {
     clients: {
       default: {
