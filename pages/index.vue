@@ -55,7 +55,7 @@
         <div
           v-for="i in 3"
           :key="i"
-          class="flex items-center justify-center bg-black/30 p-3 hover:bg-black/50"
+          class="flex items-center justify-center bg-black/30 p-3 duration-500 hover:bg-black/50"
         >
           <img src="/images/logo.png" class="w-24" alt="Let's Talk Dev logo" />
           <div class="pl-6">
@@ -321,7 +321,7 @@
         <div
           v-for="book in topBooks"
           :key="book.title"
-          class="flex items-center justify-center bg-black/30 p-3 hover:bg-black/50"
+          class="flex items-center justify-center bg-black/30 p-3 duration-500 hover:bg-black/50"
         >
           <img
             class="w-36"
@@ -348,7 +348,7 @@
           </div>
         </div>
         <div
-          class="flex min-h-52 items-center justify-center bg-black/30 p-6 hover:bg-black/50"
+          class="flex min-h-52 items-center justify-center bg-black/30 p-6 duration-500 hover:bg-black/50"
         >
           <button
             role="link"
