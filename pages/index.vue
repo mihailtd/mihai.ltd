@@ -45,7 +45,7 @@
       </p>
     </section>
 
-    <section>
+    <section class="px-5">
       <h2
         class="px-5 py-12 text-4xl text-yellow-100 md:text-5xl lg:px-24 lg:text-6xl xl:px-36"
       >
@@ -55,10 +55,10 @@
         <div
           v-for="i in 3"
           :key="i"
-          class="flex items-center justify-center bg-black/30 p-6 hover:bg-black/50"
+          class="flex items-center justify-center bg-black/30 p-3 hover:bg-black/50"
         >
           <img src="/images/logo.png" class="w-24" alt="Let's Talk Dev logo" />
-          <div>
+          <div class="pl-6">
             <h3 class="pb-4 text-3xl text-yellow-100">
               Let's Talk Dev YouTube Channel
             </h3>
@@ -84,13 +84,13 @@
       </div>
     </section>
 
-    <section class="pb-12">
+    <section class="px-5 pb-12">
       <h2
-        class="px-5 py-12 text-4xl text-yellow-100 md:text-5xl lg:px-24 lg:text-6xl xl:px-36"
+        class="py-12 text-4xl text-yellow-100 md:text-5xl lg:px-24 lg:text-6xl xl:px-36"
       >
         Technical skills
       </h2>
-      <div class="grid gap-4 px-5 lg:grid-cols-2 xl:grid-cols-4">
+      <div class="grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
         <div
           class="rounded-lg border-2 border-dashed border-yellow-100 p-2 px-6"
         >
@@ -310,27 +310,25 @@
     </section>
 
     <section
-      class="bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px] pb-12"
+      class="bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px] px-5 pb-12 lg:px-8 xl:px-12"
     >
       <h2
-        class="px-5 py-12 text-4xl text-yellow-100 md:text-5xl lg:px-24 lg:text-6xl xl:px-36"
+        class="py-12 text-4xl text-yellow-100 md:text-5xl lg:px-24 lg:text-6xl xl:px-36"
       >
         Books that inspired me
       </h2>
-      <div
-        class="grid gap-4 md:grid-cols-2 md:px-2 lg:px-4 xl:grid-cols-3 xl:px-12"
-      >
+      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         <div
           v-for="book in topBooks"
           :key="book.title"
-          class="flex items-center justify-center bg-black/30 p-6 hover:bg-black/50"
+          class="flex items-center justify-center bg-black/30 p-3 hover:bg-black/50"
         >
           <img
             class="w-36"
             :src="book.cover"
             :alt="`${book.title} by ${book.author} cover image`"
           />
-          <div class="pl-12">
+          <div class="pl-6">
             <h3 class="text-3xl text-yellow-100">
               {{ book.title }}
             </h3>
