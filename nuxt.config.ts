@@ -1,11 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/apollo"],
   css: ["@/assets/index.css"],
   nitro: {
     prerender: {
       autoSubfolderIndex: false,
+    },
+  },
+  apollo: {
+    clients: {
+      default: {
+        httpEndpoint: "https://cms.mihai.ltd/graphql",
+      },
     },
   },
   app: {
