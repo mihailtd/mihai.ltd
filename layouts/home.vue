@@ -6,6 +6,13 @@
       <div class="pt-0 md:pt-2"></div>
       <TopNav />
       <h2
+        v-if="message"
+        class="mx-auto pt-24 text-center text-7xl font-bold tracking-wide text-yellow-100 md:text-8xl lg:max-w-[60%] lg:pt-32 lg:text-9xl"
+      >
+        {{ message }}
+      </h2>
+      <h2
+        v-else
         class="pt-24 text-center text-9xl font-bold tracking-wide text-yellow-100 md:text-[12em] lg:pt-32"
       >
         Hello.
@@ -17,6 +24,11 @@
     <MFooter />
   </div>
 </template>
+
+<script setup lang="ts">
+const layoutCustomProps = useAttrs();
+const message = layoutCustomProps.message;
+</script>
 
 <style scoped>
 .hero {

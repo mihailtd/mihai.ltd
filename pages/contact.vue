@@ -1,13 +1,7 @@
 <template>
-  <div class="py-12">
-    <h1
-      class="mt-12 text-balance text-center text-6xl font-bold text-yellow-100 lg:text-9xl"
-    >
-      Don't hesitate to reach out!
-    </h1>
-
+  <NuxtLayout name="home" message="Don't hesitate to reach out!" c>
     <div
-      class="mt-16 grid grid-cols-1 items-center justify-center gap-16 lg:grid-cols-2"
+      class="grid max-h-fit grid-cols-1 items-center gap-0 py-16 lg:grid-cols-2 xl:pt-0"
     >
       <form
         ref="contactForm"
@@ -55,15 +49,18 @@
         </button>
       </form>
       <img
-        class="mx-auto hidden lg:block"
+        class="mx-auto hidden h-2/3 lg:block"
         src="/images/Mail sent-amico.svg"
         alt=""
       />
     </div>
-  </div>
+  </NuxtLayout>
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  layout: false,
+});
 const contactForm = ref<HTMLFormElement | null>(null);
 const name = ref("");
 const email = ref("");
