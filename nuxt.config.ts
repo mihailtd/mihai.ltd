@@ -1,11 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/apollo"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/apollo", "@nuxtjs/turnstile"],
   css: ["@/assets/index.css"],
   nitro: {
     prerender: {
       autoSubfolderIndex: false,
+    },
+  },
+  turnstile: {
+    siteKey: "0x4AAAAAAAUBxBNAPgRBo5hj",
+  },
+  runtimeConfig: {
+    turnstile: {
+      // This can be overridden at runtime via the NUXT_TURNSTILE_SECRET_KEY
+      // environment variable.
+      secretKey: "",
     },
   },
   apollo: {

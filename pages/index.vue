@@ -1,7 +1,8 @@
 <template>
   <div>
-    <div class="md:pt-16 lg:pt-32"></div>
-    <section class="px-12 py-12 text-yellow-100 md:px-16 lg:px-48 xl:px-72">
+    <section
+      class="left-1/3 max-w-[50vw] px-12 py-12 text-yellow-100 md:px-16 lg:px-48 xl:px-72"
+    >
       <h2 class="text-4xl md:text-5xl">
         I'm Mihai <br />
         — <br />

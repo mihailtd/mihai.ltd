@@ -1,6 +1,8 @@
 <template>
   <div class="h-full">
-    <header class="hero min-h-1/4 bg-cover bg-top lg:bg-center">
+    <header
+      class="hero min-h-[30%] bg-cover bg-top md:min-h-[35%] lg:bg-center"
+    >
       <div class="pt-0 md:pt-2"></div>
       <TopNav />
       <h2
