@@ -424,28 +424,28 @@ definePageMeta({
 const topBooks = [
   {
     title: "Becoming a Technical Leader",
-    cover: "/images/Becoming a Technical Leader.webp",
+    cover: "/images/becoming-a-technical-leader.webp",
     author: "Gerald M. Weinberg",
     summary:
       "This book is a must-read for anyone who wants to become a technical leader. It's full of practical advice and real-world examples that will help you become a better leader.",
   },
   {
     title: "Barking Up the Wrong Tree",
-    cover: "/images/Barking Up the Wrong Tree.webp",
+    cover: "/images/barking-up-the-wrong-tree.webp",
     author: "Eric Barker",
     summary:
       "A thought-provoking book that challenges conventional wisdom about success. Rather than offering cookie-cutter advice, Barker delves into the surprising science behind achievement.",
   },
   {
     title: "Building Evolutionary Architectures",
-    cover: "/images/Building Evolutionary Architectures.webp",
+    cover: "/images/building-evolutionary-architectures.webp",
     author: "Neal Ford, Rebecca Parsons, Patrick Kua",
     summary:
       "This book provides a fresh perspective on software architecture. It's a must-read for anyone who wants to build systems that can evolve and adapt to changing requirements.",
   },
   {
     title: "Psychology of Money",
-    cover: "/images/The Psychology of Money.webp",
+    cover: "/images/the-psychology-of-money.webp",
     author: "Morgan Housel",
     summary:
       "A fascinating exploration of the complex relationship between money and human behavior. Housel's insights will change the way you think about wealth and financial decision-making.",

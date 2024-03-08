@@ -50,8 +50,8 @@
       </form>
       <img
         class="mx-auto hidden h-2/3 lg:block"
-        src="/images/Mail sent-amico.svg"
-        alt=""
+        src="/images/mail-sending-illustration.svg"
+        alt="Sendimg email illustration"
       />
     </div>
   </NuxtLayout>
