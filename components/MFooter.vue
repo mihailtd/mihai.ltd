@@ -16,18 +16,20 @@
         >@letstalkdev</a
       >
     </p>
-    <div class="ml-auto flex justify-center">
+
+    <div class="ml-auto flex items-center justify-center">
+      <a href="https://github.com/mihailtd" target="_blank">
+        <img
+          class="w-8 px-1"
+          src="/images/github-142-svgrepo-com.svg"
+          alt="GitHub icon"
+        />
+      </a>
       <a href="https://youtube.com/@letstalkdev" target="_blank">
         <img
           class="w-8 px-1"
           src="/images/youtube-168-svgrepo-com.svg"
           alt="YouTube icon"
-        /> </a
-      ><a href="https://github.com/mihailtd" target="_blank">
-        <img
-          class="w-8 px-1"
-          src="/images/github-142-svgrepo-com.svg"
-          alt="GitHub icon"
         /> </a
       ><a href="https://www.linkedin.com/in/mihai-farcas-ltd/" target="_blank"
         ><img

@@ -1,26 +1,28 @@
 <template>
   <div>
     <section
-      class="left-1/3 max-w-[50vw] px-12 py-12 text-yellow-100 md:px-16 lg:px-48 xl:px-72"
+      class="grid px-12 py-12 text-yellow-100 md:px-16 lg:grid-cols-3 lg:px-48 xl:px-72"
     >
-      <h2 class="text-4xl md:text-5xl">
-        I'm Mihai <br />
-        — <br />
-        Sr. Software Developer
-      </h2>
-      <h1 class="py-12 text-6xl md:text-[8rem] lg:text-[9rem]">
-        Crafting
-        <span
-          class="bg-gradient-to-r from-yellow-100 to-blue-900 bg-clip-text font-extrabold tracking-wide text-transparent"
-        >
-          digital
-        </span>
-        experiences that help
-        <span
-          class="bg-gradient-to-r from-blue-900 to-yellow-100 bg-clip-text font-extrabold tracking-wide text-transparent"
-          >people.</span
-        >
-      </h1>
+      <div class="col-span-2">
+        <h2 class="text-4xl md:text-5xl">
+          I'm Mihai <br />
+          — <br />
+          Sr. Software Developer
+        </h2>
+        <h1 class="py-12 text-6xl md:text-[8rem] lg:text-[9rem]">
+          Crafting
+          <span
+            class="bg-gradient-to-r from-yellow-100 to-blue-900 bg-clip-text font-extrabold tracking-wide text-transparent"
+          >
+            digital
+          </span>
+          experiences that help
+          <span
+            class="bg-gradient-to-r from-blue-900 to-yellow-100 bg-clip-text font-extrabold tracking-wide text-transparent"
+            >people.</span
+          >
+        </h1>
+      </div>
     </section>
 
     <section
