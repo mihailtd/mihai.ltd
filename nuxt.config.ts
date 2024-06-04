@@ -11,6 +11,17 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
   ],
   css: ['@/assets/index.css'],
+  nitro: {
+    prerender: {
+      autoSubfolderIndex: false,
+    },
+  },
+  turnstile: {
+    siteKey: "0x4AAAAAAAUBxBNAPgRBo5hj",
+  },
+  build: {
+    transpile: ["echarts", "zrender", "tslib"],
+  },
   app: {
     head: {
       title: "Mihai @ Let's Talk Dev - Portfolio",
@@ -41,20 +52,4 @@ export default defineNuxtConfig({
     groups: [{ userAgent: '*', allow: '/' }],
     sitemap: ['https://mihai.ltd/sitemap.xml'],
   },
-  nitro: {
-    prerender: { autoSubfolderIndex: false },
-    routeRules: {
-      '/**': { headers: { 'Cache-Control': 'public, max-age=600' } },
-      '/images/**': { headers: { 'Cache-Control': 'public, max-age=31536000, immutable' } },
-      // Basic, safe security headers
-      '/**': {
-        headers: {
-          'Referrer-Policy': 'strict-origin-when-cross-origin',
-          'Permissions-Policy': 'camera=(), microphone=(), geolocation=()'
-        }
-      }
-    },
-  },
-  turnstile: { siteKey: '0x4AAAAAAAUBxBNAPgRBo5hj' },
-  // apollo: { clients: { default: { httpEndpoint: 'https://cms.mihai.ltd/graphql' } } },
 });
