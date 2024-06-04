@@ -23,13 +23,9 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: "Mihai @ Let's Talk Dev - Portfolio Website",
+      title: "Portfolio Website - Mihai @ Let's Talk Dev",
       meta: [
         { charset: "utf-8" },
-        {
-          name: "viewport",
-          content: "width=device-width, initial-scale=1",
-        },
         {
           hid: "description",
           name: "description",
@@ -40,6 +36,11 @@ export default defineNuxtConfig({
           content: "portfolio, website, dev, developer, programmer, youtube",
         },
       ],
+      viewport: "width=device-width, initial-scale=1",
+      titleTemplate: (titleChunk) =>
+        titleChunk
+          ? `${titleChunk} - Let's Talk Dev`
+          : "Portfolio Website - Mihai @ Let's Talk Dev",
     },
   },
 });
