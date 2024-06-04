@@ -25,18 +25,45 @@
           alt="GitHub icon"
         />
       </a>
-      <a href="https://youtube.com/@letstalkdev" target="_blank">
-        <img
-          class="w-8 px-1"
-          src="/images/youtube-168-svgrepo-com.svg"
-          alt="YouTube icon"
-        /> </a
-      ><a href="https://www.linkedin.com/in/mihai-farcas-ltd/" target="_blank"
-        ><img
-          class="w-8 px-1"
-          src="/images/linkedin-svgrepo-com.svg"
-          alt="LinkedIn icon"
-      /></a>
+      <p
+        class="mt-4 text-sm text-gray-500 sm:ml-4 sm:mt-0 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:pl-4"
+      >
+        © 2024 Mihai —
+        <a
+          href="https://youtube.com/@letstalkdev"
+          class="text-blue-400"
+          target="_blank"
+          >@letstalkdev</a
+        >
+      </p>
+      <span
+        class="mt-4 inline-flex justify-center sm:ml-auto sm:mt-0 sm:justify-start"
+      >
+        <a class="text-gray-500">
+          <img
+            class="w-8 p-1 text-white"
+            src="/assets/images/youtube-168-svgrepo-com.svg"
+            alt=""
+            srcset=""
+          />
+        </a>
+        <a class="ml-3 text-gray-500">
+          <img
+            class="w-8 p-1 text-white"
+            src="/assets/images/github-142-svgrepo-com.svg"
+            alt=""
+            srcset=""
+          />
+        </a>
+        <a class="ml-3 text-gray-500">
+          <img
+            class="w-8 p-1 text-white"
+            src="/assets/images/linkedin-svgrepo-com.svg"
+            alt=""
+            srcset=""
+          />
+        </a>
+      </span>
     </div>
   </footer>
 </template>

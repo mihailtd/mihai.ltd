@@ -18,6 +18,9 @@ export default defineNuxtConfig({
       },
     },
   },
+  build: {
+    transpile: ["echarts", "zrender", "tslib"],
+  },
   app: {
     head: {
       title: "Mihai @ Let's Talk Dev - Portfolio Website",
