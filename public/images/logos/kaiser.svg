@@ -1,0 +1,11 @@
+<svg width="640" height="360" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="kaiserGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#kaiserGradient)" />
+  <text x="320" y="160" font-family="Arial, sans-serif" font-size="40" font-weight="bold" text-anchor="middle" fill="white">Kaiser</text>
+  <text x="320" y="200" font-family="Arial, sans-serif" font-size="40" font-weight="bold" text-anchor="middle" fill="white">Permanente</text>
+</svg>
