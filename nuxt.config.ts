@@ -1,8 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/apollo", "@nuxtjs/turnstile"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/apollo",
+    "@nuxtjs/turnstile",
+    "@nuxt/image",
+  ],
   css: ["@/assets/index.css"],
+  image: {
+    directus: {
+      baseURL: "https://cms.mihai.ltd/assets/",
+    },
+  },
   nitro: {
     prerender: {
       autoSubfolderIndex: false,
