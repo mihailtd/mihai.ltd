@@ -184,6 +184,104 @@
       </div>
     </section>
 
+    <!-- Featured Projects Section -->
+    <section class="px-5 pb-12">
+      <h2
+        class="px-5 py-12 text-4xl text-yellow-100 md:text-5xl lg:px-24 lg:text-6xl xl:px-36"
+      >
+        Featured Projects
+      </h2>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div
+          v-for="project in featuredProjects"
+          :key="project.title"
+          class="rounded-xl border border-white/10 bg-black/30 p-4 duration-500 hover:bg-black/50"
+        >
+          <div class="flex items-center justify-center">
+            <img
+              :src="project.logo"
+              class="h-12 w-20 object-contain"
+              :alt="`${project.title} logo`"
+            />
+            <div class="flex-1 pl-6">
+              <h3 class="pb-2 text-2xl text-yellow-100">
+                {{ project.title }}
+              </h3>
+              <p class="pb-2 text-sm text-gray-300">
+                {{ project.subtitle }}
+              </p>
+              <p class="text-xs text-gray-500">
+                {{ project.tech }}
+              </p>
+              <div class="flex gap-2 pt-2">
+                <a
+                  v-if="project.link"
+                  :href="project.link"
+                  target="_blank"
+                  class="text-sm text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
+                >
+                  Visit Site
+                </a>
+                <a
+                  v-if="project.secondaryLink"
+                  :href="project.secondaryLink"
+                  target="_blank"
+                  class="text-sm text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
+                >
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Companies & Clients Section -->
+    <section class="px-5 pb-12">
+      <h2
+        class="px-5 py-12 text-4xl text-yellow-100 md:text-5xl lg:px-24 lg:text-6xl xl:px-36"
+      >
+        Companies &amp; Clients
+      </h2>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div
+          v-for="client in clients"
+          :key="client.title"
+          class="rounded-xl border border-white/10 bg-black/30 p-4 duration-500 hover:bg-black/50"
+        >
+          <div class="flex items-center justify-center">
+            <img
+              :src="client.logo"
+              class="h-12 w-20 object-contain"
+              :alt="`${client.title} logo`"
+            />
+            <div class="flex-1 pl-6">
+              <h3 class="pb-2 text-2xl text-yellow-100">
+                {{ client.title }}
+              </h3>
+              <p class="pb-2 text-sm text-gray-300">
+                {{ client.subtitle }}
+              </p>
+              <p class="text-xs text-gray-500">
+                {{ client.tech }}
+              </p>
+              <div class="pt-2">
+                <a
+                  v-if="client.link"
+                  :href="client.link"
+                  target="_blank"
+                  class="text-sm text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
+                >
+                  Visit
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="px-5 pb-12">
       <h2
         class="py-12 text-4xl text-yellow-100 md:text-5xl lg:px-24 lg:text-6xl xl:px-36"
