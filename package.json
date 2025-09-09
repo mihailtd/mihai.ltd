@@ -17,21 +17,24 @@
     "vue-echarts": "^6.7.3"
   },
   "devDependencies": {
-    "@nuxt/eslint-config": "^0.2.0",
+    "@nuxt/devtools": "^1.3.3",
+    "@nuxt/eslint-config": "^0.3.13",
     "@nuxt/image": "^1.8.1",
+    "@nuxtjs/tailwindcss": "^6.12.0",
+    "@nuxtjs/turnstile": "^0.8.0",
+    "@tailwindcss/typography": "^0.5.13",
+    "@typescript-eslint/eslint-plugin": "^7.12.0",
+    "@typescript-eslint/parser": "^7.12.0",
+    "eslint": "^9.4.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "prettier": "^3.3.0",
+    "prettier-plugin-tailwindcss": "^0.6.1",
+    "typescript": "^5.4.5",
     "@nuxtjs/apollo": "5.0.0-alpha.12",
     "@nuxtjs/color-mode": "^3.5.1",
     "@nuxtjs/robots": "^4.1.7",
     "@nuxtjs/sitemap": "^6.1.1",
-    "@nuxtjs/tailwindcss": "^6.11.4",
-    "@nuxtjs/turnstile": "^0.6.3",
-    "@typescript-eslint/eslint-plugin": "^7.1.1",
-    "@typescript-eslint/parser": "^7.1.1",
-    "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.3",
-    "nuxt-site-config": "^2.2.18",
-    "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.11"
+    "nuxt-site-config": "^2.2.18"
   }
 }
