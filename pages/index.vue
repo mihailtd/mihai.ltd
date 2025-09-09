@@ -56,14 +56,12 @@
       </h2>
       <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
         <div
-          v-for="i in 3"
-          :key="i"
           class="flex items-center justify-center bg-black/30 p-3 duration-500 hover:bg-black/50"
         >
-          <img src="/images/logo.png" class="w-24" alt="Let's Talk Dev logo" />
+          <img src="/images/logos/youtube.svg" class="w-24" alt="Let's Talk Dev logo" />
           <div class="pl-6">
             <h3 class="pb-4 text-3xl text-yellow-100">
-              Let's Talk Dev YouTube Channel
+              YouTube Content Creator
             </h3>
             <p class="text-gray-500">
               I share my knowledge and experience in software development and
@@ -76,12 +74,13 @@
                 YouTube channel</a
               >.
             </p>
-            <button
-              role="link"
+            <a
+              href="https://youtube.com/@letstalkdev"
+              target="_blank"
               class="pt-2 text-lg text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
             >
-              More Info
-            </button>
+              Visit Channel
+            </a>
           </div>
         </div>
       </div>
