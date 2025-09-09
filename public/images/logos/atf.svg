@@ -1,0 +1,11 @@
+<svg width="640" height="360" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="atfGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#atfGradient)" />
+  <text x="320" y="170" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle" fill="white">ATF</text>
+  <text x="320" y="210" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="#e5e7eb">Aegis Trust Fabric</text>
+</svg>
