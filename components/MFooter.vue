@@ -18,25 +18,43 @@
     </p>
 
     <div class="ml-auto flex items-center justify-center">
-      <a href="https://github.com/mihailtd" target="_blank">
-        <img
-          class="w-8 px-1"
-          src="/images/github-142-svgrepo-com.svg"
-          alt="GitHub icon"
-        />
-      </a>
-      <a href="https://youtube.com/@letstalkdev" target="_blank">
-        <img
-          class="w-8 px-1"
-          src="/images/youtube-168-svgrepo-com.svg"
-          alt="YouTube icon"
-        /> </a
-      ><a href="https://www.linkedin.com/in/mihai-farcas-ltd/" target="_blank"
-        ><img
-          class="w-8 px-1"
-          src="/images/linkedin-svgrepo-com.svg"
-          alt="LinkedIn icon"
-      /></a>
+      <span
+        class="mt-4 inline-flex justify-center sm:ml-auto sm:mt-0 sm:justify-start"
+      >
+        <a
+          class="my-auto text-gray-500"
+          href="https://youtube.com/@letstalkdev"
+          target="_blank"
+        >
+          <img
+            class="w-8 p-1 text-white"
+            src="/public/images/youtube-168-svgrepo-com.svg"
+            alt="Let's Talk Dev YouTube channel"
+          />
+        </a>
+        <a
+          class="ml-3 text-gray-500"
+          href="https://github.com/mihailtd"
+          target="_blank"
+        >
+          <img
+            class="w-8 p-1 text-white"
+            src="/public/images/github-142-svgrepo-com.svg"
+            alt="Mihai's GitHub profile"
+          />
+        </a>
+        <a
+          class="ml-3 text-gray-500"
+          href="https://www.linkedin.com/in/mihai-farcas-ltd/"
+          target="_blank"
+        >
+          <img
+            class="w-8 p-1 text-white"
+            src="/public/images/linkedin-svgrepo-com.svg"
+            alt="Mihai's LinkedIn profile"
+          />
+        </a>
+      </span>
     </div>
   </footer>
 </template>
