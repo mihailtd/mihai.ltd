@@ -59,7 +59,7 @@
         <div
           class="flex items-center justify-center bg-black/30 p-3 duration-500 hover:bg-black/50"
         >
-          <img src="/images/logos/youtube.svg" class="w-24" alt="Let's Talk Dev logo" />
+          <img src="/images/logo.png" class="w-24" alt="Let's Talk Dev logo" />
           <div class="pl-6">
             <h3 class="pb-4 text-3xl text-yellow-100">
               YouTube Content Creator
