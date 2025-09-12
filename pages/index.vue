@@ -7,7 +7,7 @@
         <h2 class="text-4xl md:text-5xl">
           I'm Mihai <br />
           — <br />
-          Sr. Software Developer
+          Software Architect
         </h2>
         <h1 class="py-12 text-6xl md:text-[8rem] lg:text-[9rem]">
           Crafting
@@ -36,15 +36,16 @@
       <p
         class="px-5 text-lg text-gray-300 md:px-24 md:text-xl lg:px-48 lg:text-2xl xl:px-96"
       >
-        Experienced
+        With over 10 years in the industry, I've grown from a full-stack developer into a 
         <span class="font-extrabold text-yellow-100">
-          full-stack web developer
-        </span>
-        with a demonstrated history of working in health-tech, skilled in
-        NodeJS, VueJS, PostgreSQL, MongoDB, SQL Server, Kubernetes and many
-        others. Passionate about software engineering and architecture, with a
-        focus on creating secure, scalable, and user-friendly solutions for the
-        <span class="font-extrabold text-yellow-100">healthcare industry.</span>
+          Software Architect
+        </span> passionate about building robust and scalable solutions. While I have a strong history in demanding fields like the 
+        <span class="font-extrabold text-yellow-100">
+          healthcare industry
+        </span>, my passion is applying architectural principles to any complex domain. Today, I'm channeling that passion into Artificial Intelligence, specializing in the design and development of innovative 
+        <span class="font-extrabold text-yellow-100">
+          Agentic AI Applications
+        </span>.
       </p>
     </section>
 
@@ -58,28 +59,27 @@
         <div
           class="flex items-center justify-center bg-black/30 p-3 duration-500 hover:bg-black/50"
         >
-          <img src="/images/logos/youtube.svg" class="w-24" alt="Let's Talk Dev logo" />
+          <img src="/images/logo.png" class="w-24" alt="Let's Talk Dev logo" />
           <div class="pl-6">
             <h3 class="pb-4 text-3xl text-yellow-100">
               YouTube Content Creator
             </h3>
             <p class="text-gray-500">
-              I share my knowledge and experience in software development and
-              architecture through videos on my
+              On my channel, Let's Talk Dev, I share my knowledge and experience in modern
+              software development and system architecture. You'll find 
               <a
                 class="text-blue-500 underline"
                 target="_blank"
                 href="https://youtube.com/@letstalkdev"
-              >
-                YouTube channel</a
-              >.
+              >practical tutorials
+              and deep dives designed to help you build better software.</a>.
             </p>
             <a
               href="https://youtube.com/@letstalkdev"
               target="_blank"
               class="pt-2 text-lg text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
             >
-              Visit Channel
+              Visit Let's Talk Dev YouTube Channel
             </a>
           </div>
         </div>
