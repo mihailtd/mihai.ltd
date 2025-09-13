@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  compatibilityDate: "2024-09-19",
   devtools: { enabled: true },
   modules: [
     "@nuxtjs/tailwindcss",
@@ -17,6 +18,11 @@ export default defineNuxtConfig({
     prerender: {
       autoSubfolderIndex: false,
     },
+    preset: "cloudflare_module",
+    cloudflare: {
+      deployConfig: true,
+      nodeCompat: true
+    }
   },
   turnstile: {
     siteKey: "0x4AAAAAAAUBxBNAPgRBo5hj",
