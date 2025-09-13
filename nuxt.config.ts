@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     "@nuxtjs/tailwindcss",
-    "@nuxtjs/apollo",
+    // "@nuxtjs/apollo",
     "@nuxtjs/turnstile",
     "@nuxt/image",
   ],
@@ -21,13 +21,13 @@ export default defineNuxtConfig({
   turnstile: {
     siteKey: "0x4AAAAAAAUBxBNAPgRBo5hj",
   },
-  apollo: {
-    clients: {
-      default: {
-        httpEndpoint: "https://cms.mihai.ltd/graphql",
-      },
-    },
-  },
+  // apollo: {
+  //   clients: {
+  //     default: {
+  //       httpEndpoint: "https://cms.mihai.ltd/graphql",
+  //     },
+  //   },
+  // },
   build: {
     transpile: ["echarts", "zrender", "tslib"],
   },
