@@ -1,5 +1,9 @@
 <template>
-  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-yellow-100 focus:px-3 focus:py-2 focus:text-black">Skip to content</a>
+  <a
+    href="#main"
+    class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-yellow-100 focus:px-3 focus:py-2 focus:text-black"
+    >Skip to content</a
+  >
   <main id="main">
     <section
       class="grid px-12 py-12 text-yellow-100 md:px-16 lg:grid-cols-3 lg:px-48 xl:px-72"
@@ -59,9 +63,15 @@
         <div
           v-for="i in 3"
           :key="i"
-          class="flex items-center justify-center bg-black/30 p-3 duration-500 hover:bg-black/50"
+          class="group flex items-center justify-center rounded-xl border border-white/5 bg-black/30 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-white/5 hover:shadow-xl hover:shadow-blue-900/20"
         >
-          <NuxtImg src="/images/logo.png" class="w-24" alt="Let's Talk Dev logo" width="96" height="96" />
+          <NuxtImg
+            src="/images/logo.png"
+            class="w-24 transition-transform duration-500 group-hover:rotate-12"
+            alt="Let's Talk Dev logo"
+            width="96"
+            height="96"
+          />
           <div class="pl-6">
             <h3 class="pb-4 text-3xl text-yellow-100">
               Let's Talk Dev YouTube Channel
@@ -70,7 +80,7 @@
               I share my knowledge and experience in software development and
               architecture through videos on my
               <a
-                class="text-blue-500 underline"
+                class="text-blue-500 underline transition-colors hover:text-blue-400"
                 target="_blank"
                 href="https://youtube.com/@letstalkdev"
               >
@@ -81,7 +91,7 @@
               href="https://youtube.com/@letstalkdev"
               target="_blank"
               rel="noopener"
-              class="pt-2 text-lg text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
+              class="inline-block pt-2 text-lg text-blue-300 underline decoration-wavy underline-offset-4 transition-all duration-300 hover:text-blue-500 hover:decoration-blue-500"
             >
               More Info
             </a>
@@ -98,7 +108,7 @@
       </h2>
       <div class="grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
         <div
-          class="rounded-lg border-2 border-dashed border-yellow-100 p-2 px-6"
+          class="rounded-xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:border-yellow-100/30 hover:bg-white/10 hover:shadow-lg hover:shadow-yellow-900/10"
         >
           <div class="flex h-fit flex-row pb-6">
             <NuxtImg
@@ -115,9 +125,9 @@
             </h3>
           </div>
           <div class="grid grid-cols-4 gap-2">
-            <div class="flex flex-col items-center px-3 text-white">
+            <div class="group/icon flex flex-col items-center px-3 text-white">
               <NuxtImg
-                class="w-12"
+                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
                 src="/images/javascript-svgrepo-com.svg"
                 alt="JavaScript Logo"
                 width="48"
@@ -125,9 +135,9 @@
               />
               <span>JavaScript</span>
             </div>
-            <div class="flex flex-col items-center px-3 text-white">
+            <div class="group/icon flex flex-col items-center px-3 text-white">
               <NuxtImg
-                class="w-12"
+                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
                 src="/images/typescript-official-svgrepo-com.svg"
                 alt="TypeScript Logo"
                 width="48"
@@ -135,9 +145,9 @@
               />
               <span>TypeScript</span>
             </div>
-            <div class="flex flex-col items-center px-3 text-white">
+            <div class="group/icon flex flex-col items-center px-3 text-white">
               <NuxtImg
-                class="w-12"
+                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
                 src="/images/nodejs-icon-svgrepo-com.svg"
                 alt="NodeJS Logo"
                 width="48"
@@ -145,13 +155,19 @@
               />
               <span>NodeJS</span>
             </div>
-            <div class="flex flex-col items-center px-3 text-white">
-              <NuxtImg class="w-12" src="/images/bun-logo.svg" alt="Bun Logo" width="48" height="48" />
+            <div class="group/icon flex flex-col items-center px-3 text-white">
+              <NuxtImg
+                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
+                src="/images/bun-logo.svg"
+                alt="Bun Logo"
+                width="48"
+                height="48"
+              />
               <span>Bun</span>
             </div>
-            <div class="flex flex-col items-center px-3 text-white">
+            <div class="group/icon flex flex-col items-center px-3 text-white">
               <NuxtImg
-                class="w-12"
+                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
                 src="/images/vue-9-logo-svgrepo-com.svg"
                 alt="VueJS Logo"
                 width="48"
@@ -159,9 +175,9 @@
               />
               <span>VueJS</span>
             </div>
-            <div class="flex flex-col items-center px-3 text-white">
+            <div class="group/icon flex flex-col items-center px-3 text-white">
               <NuxtImg
-                class="w-12"
+                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
                 src="/images/nuxt-svgrepo-com.svg"
                 alt="Nuxt Logo"
                 width="48"
@@ -169,9 +185,9 @@
               />
               <span>Nuxt</span>
             </div>
-            <div class="flex flex-col items-center px-3 text-white">
+            <div class="group/icon flex flex-col items-center px-3 text-white">
               <NuxtImg
-                class="w-12"
+                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
                 src="/images/graphql-svgrepo-com.svg"
                 alt="GraphQL Logo"
                 width="48"
@@ -179,9 +195,9 @@
               />
               <span>GraphQL</span>
             </div>
-            <div class="flex flex-col items-center px-3 text-white">
+            <div class="group/icon flex flex-col items-center px-3 text-white">
               <NuxtImg
-                class="w-12"
+                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
                 src="/images/swagger-svgrepo-com.svg"
                 alt="OpenAPI Logo"
                 width="48"
@@ -193,7 +209,7 @@
         </div>
 
         <div
-          class="rounded-lg border-2 border-dashed border-yellow-100 p-2 px-6"
+          class="rounded-xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:border-yellow-100/30 hover:bg-white/10 hover:shadow-lg hover:shadow-yellow-900/10"
         >
           <div class="flex h-fit flex-row pb-6">
             <NuxtImg
@@ -210,9 +226,9 @@
             </h3>
           </div>
           <div class="flex flex-row flex-wrap justify-around">
-            <div class="flex flex-col items-center px-3 text-white">
+            <div class="group/icon flex flex-col items-center px-3 text-white">
               <NuxtImg
-                class="w-12"
+                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
                 src="/images/postgresql-svgrepo-com.svg"
                 alt="PostgreSQL Logo"
                 width="48"
@@ -220,9 +236,9 @@
               />
               <span>PostgreSQL</span>
             </div>
-            <div class="flex flex-col items-center px-3 text-white">
+            <div class="group/icon flex flex-col items-center px-3 text-white">
               <NuxtImg
-                class="w-12 bg-gray-50 p-1"
+                class="w-12 bg-gray-50 p-1 transition-transform duration-300 group-hover/icon:scale-110"
                 src="/images/microsoft-sql-server-logo-svgrepo-com.svg"
                 alt="SQL Server Logo"
                 width="48"
@@ -230,9 +246,9 @@
               />
               <span>SQL Server</span>
             </div>
-            <div class="flex flex-col items-center px-3 text-white">
+            <div class="group/icon flex flex-col items-center px-3 text-white">
               <NuxtImg
-                class="w-12"
+                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
                 src="/images/rabbitmq-icon-svgrepo-com.svg"
                 alt="RabbitMQ Logo"
                 width="48"
@@ -240,9 +256,9 @@
               />
               <span>RabbitMQ</span>
             </div>
-            <div class="flex flex-col items-center px-3 text-white">
+            <div class="group/icon flex flex-col items-center px-3 text-white">
               <NuxtImg
-                class="w-12"
+                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
                 src="/images/mongo-svgrepo-com.svg"
                 alt="MongoDB Logo"
                 width="48"
@@ -253,7 +269,7 @@
           </div>
         </div>
         <div
-          class="rounded-lg border-2 border-dashed border-yellow-100 p-2 px-6"
+          class="rounded-xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:border-yellow-100/30 hover:bg-white/10 hover:shadow-lg hover:shadow-yellow-900/10"
         >
           <div class="flex h-fit flex-row pb-6">
             <NuxtImg
@@ -270,9 +286,9 @@
             </h3>
           </div>
           <div class="flex flex-row flex-wrap justify-around">
-            <div class="flex flex-col items-center px-3 text-white">
+            <div class="group/icon flex flex-col items-center px-3 text-white">
               <NuxtImg
-                class="w-12"
+                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
                 src="/images/kubernetes-svgrepo-com.svg"
                 alt="Kubernetes Logo"
                 width="48"
@@ -280,9 +296,9 @@
               />
               <span>Kubernetes</span>
             </div>
-            <div class="flex flex-col items-center px-3 text-white">
+            <div class="group/icon flex flex-col items-center px-3 text-white">
               <NuxtImg
-                class="w-12"
+                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
                 src="/images/docker-svgrepo-com.svg"
                 alt="Docker Logo"
                 width="48"
@@ -290,9 +306,11 @@
               />
               <span>Docker</span>
             </div>
-            <div class="flex max-w-24 flex-col items-center px-3 text-white">
+            <div
+              class="group/icon flex max-w-24 flex-col items-center px-3 text-white"
+            >
               <NuxtImg
-                class="w-12"
+                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
                 src="/images/gitlab-svgrepo-com.svg"
                 alt="GitLab Logo"
                 width="48"
@@ -304,7 +322,7 @@
         </div>
 
         <div
-          class="rounded-lg border-2 border-dashed border-yellow-100 p-2 px-6"
+          class="rounded-xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:border-yellow-100/30 hover:bg-white/10 hover:shadow-lg hover:shadow-yellow-900/10"
         >
           <div class="flex h-fit flex-row pb-6">
             <NuxtImg
@@ -321,9 +339,11 @@
             </h3>
           </div>
           <div class="flex flex-row flex-wrap justify-around">
-            <div class="flex max-w-24 flex-col items-center px-3 text-white">
+            <div
+              class="group/icon flex max-w-24 flex-col items-center px-3 text-white"
+            >
               <NuxtImg
-                class="w-12 bg-gray-50 p-1"
+                class="w-12 bg-gray-50 p-1 transition-transform duration-300 group-hover/icon:scale-110"
                 src="/images/cypress-svgrepo-com.svg"
                 alt="Cypress Logo"
                 width="48"
@@ -331,9 +351,11 @@
               />
               <span>Cypress</span>
             </div>
-            <div class="flex max-w-24 flex-col items-center px-3 text-white">
+            <div
+              class="group/icon flex max-w-24 flex-col items-center px-3 text-white"
+            >
               <NuxtImg
-                class="w-12"
+                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
                 src="/images/grafana-svgrepo-com.svg"
                 alt="Grafana Logo"
                 width="48"
@@ -342,9 +364,11 @@
               <span>Grafana</span>
             </div>
 
-            <div class="flex max-w-24 flex-col items-center px-3 text-white">
+            <div
+              class="group/icon flex max-w-24 flex-col items-center px-3 text-white"
+            >
               <NuxtImg
-                class="h-12 w-12 bg-gray-50 p-1"
+                class="h-12 w-12 bg-gray-50 p-1 transition-transform duration-300 group-hover/icon:scale-110"
                 src="/images/NXGN.svg"
                 alt="Nextgen Connect Logo"
                 width="48"
@@ -369,10 +393,10 @@
         <div
           v-for="book in topBooks"
           :key="book.title"
-          class="flex items-center justify-center bg-black/30 p-3 duration-500 hover:bg-black/50"
+          class="group flex items-center justify-center rounded-xl border border-white/5 bg-black/30 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-white/5 hover:shadow-xl hover:shadow-blue-900/20"
         >
           <NuxtImg
-            class="w-36"
+            class="w-36 transition-transform duration-500 group-hover:rotate-2 group-hover:scale-105"
             :src="book.cover"
             :alt="`${book.title} by ${book.author} cover image`"
             width="144"
@@ -391,18 +415,18 @@
 
             <NuxtLink
               to="/books"
-              class="pt-2 text-lg text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
+              class="inline-block pt-2 text-lg text-blue-300 underline decoration-wavy underline-offset-4 transition-all duration-300 hover:text-blue-500 hover:decoration-blue-500"
             >
               Summary
             </NuxtLink>
           </div>
         </div>
         <div
-          class="flex min-h-52 items-center justify-center bg-black/30 p-6 duration-500 hover:bg-black/50"
+          class="group flex min-h-52 items-center justify-center rounded-xl border border-white/5 bg-black/30 p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white/5 hover:shadow-xl hover:shadow-blue-900/20"
         >
           <NuxtLink
             to="/books"
-            class="text-3xl text-yellow-100 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
+            class="text-3xl text-yellow-100 underline decoration-wavy underline-offset-4 transition-all duration-300 hover:text-blue-500 hover:decoration-blue-500"
           >
             Check out more books...
           </NuxtLink>
@@ -476,30 +500,30 @@ definePageMeta({
 useHead({
   script: [
     {
-      type: 'application/ld+json',
+      type: "application/ld+json",
       innerHTML: JSON.stringify([
         {
-          '@context': 'https://schema.org',
-          '@type': 'WebSite',
+          "@context": "https://schema.org",
+          "@type": "WebSite",
           name: "Mihai @ Let's Talk Dev",
-          url: 'https://mihai.ltd'
+          url: "https://mihai.ltd",
         },
         {
-          '@context': 'https://schema.org',
-          '@type': 'Person',
-          name: 'Mihai Farcaș',
-          url: 'https://mihai.ltd',
-          jobTitle: 'Senior Software Developer',
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Mihai Farcaș",
+          url: "https://mihai.ltd",
+          jobTitle: "Senior Software Developer",
           sameAs: [
-            'https://github.com/mihailtd',
-            'https://www.linkedin.com/in/mihai-farcas-ltd/',
-            'https://youtube.com/@letstalkdev',
+            "https://github.com/mihailtd",
+            "https://www.linkedin.com/in/mihai-farcas-ltd/",
+            "https://youtube.com/@letstalkdev",
           ],
-        }
-      ])
-    }
-  ]
-})
+        },
+      ]),
+    },
+  ],
+});
 
 const topBooks = [
   {

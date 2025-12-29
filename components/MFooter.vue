@@ -1,9 +1,9 @@
 <template>
   <footer
-    class="sticky top-full flex flex-row items-center border-t-2 border-gray-600 px-5 py-8 text-gray-500"
+    class="sticky top-full flex flex-row items-center border-t border-white/10 bg-primary/30 px-5 py-8 text-gray-500 backdrop-blur-sm"
   >
     <img
-      class="w-16"
+      class="w-16 transition-transform duration-500 hover:rotate-12"
       src="/images/logo.png"
       alt="Let's Talk Dev YouTube channel logo"
     />
@@ -11,7 +11,7 @@
       © 2025 Mihai —
       <a
         href="https://youtube.com/@letstalkdev"
-        class="text-blue-400"
+        class="text-blue-400 transition-colors duration-300 hover:text-blue-300 hover:underline"
         target="_blank"
         >@letstalkdev</a
       >
@@ -22,7 +22,7 @@
         class="mt-4 inline-flex justify-center sm:ml-auto sm:mt-0 sm:justify-start"
       >
         <a
-          class="my-auto text-gray-500"
+          class="my-auto text-gray-500 transition-transform duration-300 hover:scale-110"
           href="https://youtube.com/@letstalkdev"
           target="_blank"
         >
@@ -33,7 +33,7 @@
           />
         </a>
         <a
-          class="ml-3 text-gray-500"
+          class="ml-3 text-gray-500 transition-transform duration-300 hover:scale-110"
           href="https://github.com/mihailtd"
           target="_blank"
         >
@@ -44,7 +44,7 @@
           />
         </a>
         <a
-          class="ml-3 text-gray-500"
+          class="ml-3 text-gray-500 transition-transform duration-300 hover:scale-110"
           href="https://www.linkedin.com/in/mihai-farcas-ltd/"
           target="_blank"
         >
