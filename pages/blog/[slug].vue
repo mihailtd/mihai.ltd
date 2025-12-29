@@ -24,7 +24,7 @@
     </div>
     <div class="flex flex-col lg:flex-row">
       <h1
-        class="prose dark:prose-invert max-w-xl text-balance text-6xl font-bold tracking-tight"
+        class="prose max-w-xl text-balance text-6xl font-bold tracking-tight dark:prose-invert"
       >
         {{ article.title }}
       </h1>
@@ -52,7 +52,7 @@
       <div class="py-4"></div>
     </div>
     <article
-      class="prose prose-2xl dark:prose-invert prose-h2:text-3xl prose-a:text-blue-500 prose-a:underline pb-24 pt-6"
+      class="prose prose-2xl pb-24 pt-6 dark:prose-invert prose-h2:text-3xl prose-a:text-blue-500 prose-a:underline"
       v-html="article.content"
     ></article>
     <div class="flex flex-row items-center justify-center pb-16">
@@ -83,34 +83,7 @@ const route = useRoute();
 
 const slug = route.params.slug;
 
-const articleQuery = gql`
-  query getArticleBySlug($slug: String!) {
-    mihai_ltd_articles(filter: { slug: { _eq: $slug } }) {
-      id
-      slug
-      title
-      description
-      status
-      date_updated
-      cover_image {
-        id
-        title
-      }
-      type
-      is_featured
-      canonical_url
-      content
-      affiliate_link
-      disclaimer
-    }
-  }
-`;
-
-const { result, error, loading } = useQuery(articleQuery, {
-  slug,
-});
-
-const article = computed(() => result?.value?.mihai_ltd_articles[0]);
+const article = computed(() => null);
 
 const author = ref("Mihai Farcas");
 useSeoMeta({

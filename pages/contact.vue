@@ -70,24 +70,15 @@ const message = ref<string>("");
 const token = ref("");
 const turnstile = ref();
 
-const query = gql`
-  mutation createMessage($input: create_mihai_ltd_contact_messages_input!) {
-    create_mihai_ltd_contact_messages_item(data: $input)
-  }
-`;
-
-const { mutate: sendMessage } = useMutation(query);
-
 const submit = async () => {
   if (contactForm.value?.checkValidity()) {
     turnstile.value?.reset();
     try {
-      await sendMessage({
-        input: {
-          name: name.value,
-          email: email.value,
-          message: message.value,
-        },
+      // TODO: Implement message sending logic
+      console.log({
+        name: name.value,
+        email: email.value,
+        message: message.value,
       });
 
       name.value = "";

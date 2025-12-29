@@ -32,7 +32,6 @@
     "prettier": "^3.7.4",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "typescript": "^5.9.3",
-    "@nuxtjs/apollo": "5.0.0-alpha.12",
     "@nuxtjs/color-mode": "^4.0.0",
     "@nuxtjs/robots": "^5.6.7",
     "@nuxtjs/sitemap": "^7.5.0",

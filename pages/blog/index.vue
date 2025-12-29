@@ -46,32 +46,8 @@ const route = useRoute();
 
 const pageNumber = Number(route.query.page) || 1;
 
-const articlesQuery = gql`
-  query getArticles($pageNumber: Int!) {
-    mihai_ltd_articles(limit: 10, page: $pageNumber, sort: "date_updated") {
-      slug
-      title
-      description
-      status
-      date_updated
-      cover_image {
-        id
-        title
-      }
-      type
-      is_featured
-      content
-      tags
-    }
-  }
-`;
-
-const { result } = useQuery(articlesQuery, {
-  pageNumber,
-});
-
 const articles = computed(() => {
-  return result.value?.mihai_ltd_articles || [];
+  return [];
 });
 
 useSeoMeta({

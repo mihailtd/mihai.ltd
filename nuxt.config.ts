@@ -4,7 +4,6 @@ export default defineNuxtConfig({
   devtools: { enabled: process.env.NODE_ENV !== "production" },
   modules: [
     "@nuxtjs/tailwindcss",
-    // '@nuxtjs/apollo', // enable when CMS is ready
     "@nuxtjs/turnstile",
     "@nuxt/image",
     "@nuxtjs/sitemap",
