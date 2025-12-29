@@ -3,7 +3,7 @@
   "compatibility_date": "2024-04-03",
   "main": "./.output/server/index.mjs",
   "site": {
-    "bucket": "./.output/public",
+    "bucket": "./.output/public"
   },
   "observability": {
     "enabled": false,
@@ -12,12 +12,13 @@
       "enabled": true,
       "head_sampling_rate": 1,
       "persist": true,
-      "invocation_logs": true,
+      "invocation_logs": true
     },
     "traces": {
       "enabled": true,
       "persist": true,
-      "head_sampling_rate": 1,
-    },
-  },
+      "head_sampling_rate": 1
+    }
+  }
 }
+
