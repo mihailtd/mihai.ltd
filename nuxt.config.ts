@@ -11,11 +11,6 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
   ],
   css: ["@/assets/index.css"],
-  nitro: {
-    prerender: {
-      autoSubfolderIndex: false,
-    },
-  },
   turnstile: {
     siteKey: "0x4AAAAAAAUBxBNAPgRBo5hj",
   },
@@ -69,12 +64,5 @@ export default defineNuxtConfig({
         headers: { "Cache-Control": "public, max-age=31536000, immutable" },
       },
     },
-  },
-  site: { url: "https://mihai.ltd", name: "Mihai @ Let's Talk Dev" },
-  image: {},
-  sitemap: {},
-  robots: {
-    groups: [{ userAgent: "*", allow: "/" }],
-    sitemap: ["https://mihai.ltd/sitemap.xml"],
   },
 });
