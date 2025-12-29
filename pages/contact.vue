@@ -58,11 +58,40 @@
             Or send me a message directly:
           </h3>
 
+          <div
+            v-if="submitted"
+            class="flex flex-col items-center justify-center rounded-xl border border-green-500/30 bg-green-500/10 p-8 text-center"
+          >
+            <div
+              class="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-500/20 text-3xl"
+            >
+              ✅
+            </div>
+            <h3 class="mb-2 text-xl font-bold text-white">Message Sent!</h3>
+            <p class="text-gray-300">
+              Thanks for reaching out. I'll get back to you as soon as possible.
+            </p>
+            <button
+              class="mt-6 text-blue-400 hover:text-blue-300 hover:underline"
+              @click="submitted = false"
+            >
+              Send another message
+            </button>
+          </div>
+
           <form
+            v-else
             ref="contactForm"
             class="mx-auto flex w-full max-w-md flex-col items-center"
             @submit.prevent="submit"
           >
+            <div
+              v-if="error"
+              class="mb-4 w-full rounded-md border border-red-500/50 bg-red-500/10 p-3 text-sm text-red-200"
+            >
+              {{ error }}
+            </div>
+
             <label class="flex w-full flex-col py-2 text-left"
               ><span class="pb-1 text-sm text-gray-400">name *</span>
               <input
@@ -97,7 +126,8 @@
             <NuxtTurnstile ref="turnstile" v-model="token" class="pb-4" />
             <button
               type="submit"
-              class="rounded-full bg-orange-500 px-6 py-2 text-lg font-bold text-white transition-all duration-300 hover:bg-orange-600 hover:shadow-lg hover:shadow-orange-500/20"
+              :disabled="pending"
+              class="rounded-full bg-orange-500 px-6 py-2 text-lg font-bold text-white transition-all duration-300 hover:bg-orange-600 hover:shadow-lg hover:shadow-orange-500/20 disabled:cursor-not-allowed disabled:opacity-50"
             >
               Send message
             </button>
@@ -178,9 +208,15 @@ const email = ref<string>("");
 const message = ref<string>("");
 const token = ref("");
 const turnstile = ref();
+const submitted = ref(false);
+const error = ref("");
+const pending = ref(false);
 
 const submit = async () => {
   if (contactForm.value?.checkValidity()) {
+    pending.value = true;
+    error.value = "";
+
     try {
       await $fetch("/api/send-message", {
         method: "POST",
@@ -188,17 +224,19 @@ const submit = async () => {
           name: name.value,
           email: email.value,
           message: message.value,
+          source: window.location.origin,
         },
       });
 
       name.value = "";
       email.value = "";
       message.value = "";
-      alert("Message sent successfully!");
-    } catch (error) {
-      console.error(error);
-      alert("Failed to send message.");
+      submitted.value = true;
+    } catch (e) {
+      console.error(e);
+      error.value = "Failed to send message. Please try again later.";
     } finally {
+      pending.value = false;
       turnstile.value?.reset();
     }
   }
