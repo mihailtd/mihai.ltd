@@ -5,7 +5,7 @@
     >
       <div class="col-span-2">
         <h2 class="text-4xl md:text-5xl">
-          I'm Mihai <br />
+          I'm Mihai Farcas <br />
           — <br />
           Software Architect
         </h2>
@@ -79,6 +79,35 @@
                   class="text-sm text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
                 >
                   Visit Channel
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INNOVI PRO Consulting Company Card -->
+        <div
+          class="rounded-xl border border-white/10 bg-black/30 p-4 duration-500 hover:bg-black/50"
+        >
+          <div class="flex items-center justify-center">
+            <img src="/images/logos/innovi-pro.svg" class="h-12 w-20 object-contain" alt="INNOVI PRO logo" />
+            <div class="flex-1 pl-6">
+              <h3 class="pb-2 text-2xl text-yellow-100">
+                INNOVI PRO
+              </h3>
+              <p class="pb-2 text-sm text-gray-300">
+                Enterprise-Grade Architecture & Autonomous AI Agents
+              </p>
+              <p class="text-xs text-gray-500">
+                Fractional Architect, AI & Automation Solutions, n8n Partner
+              </p>
+              <div class="pt-2">
+                <a
+                  href="https://innovi.pro/"
+                  target="_blank"
+                  class="text-sm text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
+                >
+                  View Services
                 </a>
               </div>
             </div>
