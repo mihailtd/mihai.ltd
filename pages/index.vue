@@ -90,7 +90,7 @@
           class="rounded-xl border border-white/10 bg-black/30 p-4 duration-500 hover:bg-black/50"
         >
           <div class="flex items-center justify-center">
-            <img src="/images/logos/innovi-pro.svg" class="h-12 w-20 object-contain" alt="INNOVI PRO logo" />
+            <img src="/images/logos/innovi-pro.svg" class="h-12 w-20 object-contain" alt="INNOVI PRO consulting company logo" />
             <div class="flex-1 pl-6">
               <h3 class="pb-2 text-2xl text-yellow-100">
                 INNOVI PRO
