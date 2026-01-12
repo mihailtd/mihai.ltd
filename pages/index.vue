@@ -77,67 +77,6 @@
         My Work & Featured Projects
       </h2>
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <!-- YouTube Content Creator Card -->
-        <div
-          class="group flex items-center justify-center rounded-xl border border-white/5 bg-black/30 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-white/5 hover:shadow-xl hover:shadow-blue-900/20"
-        >
-          <NuxtImg
-            src="/images/logo.png"
-            class="h-12 w-20 object-contain transition-transform duration-500 group-hover:rotate-12"
-            alt="Let's Talk Dev logo"
-          />
-          <div class="flex-1 pl-6">
-            <h3 class="pb-2 text-2xl text-yellow-100">
-              YouTube Content Creator
-            </h3>
-            <p class="pb-2 text-sm text-gray-300">
-              Let's Talk Dev channel - Modern software development tutorials
-            </p>
-            <p class="text-xs text-gray-500">
-              Software architecture, tutorials, development best practices
-            </p>
-            <div class="pt-2">
-              <a
-                href="https://youtube.com/@letstalkdev"
-                target="_blank"
-                class="text-sm text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
-              >
-                Visit Channel
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- INNOVI PRO Consulting Company Card -->
-        <div
-          class="group flex items-center justify-center rounded-xl border border-white/5 bg-black/30 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-white/5 hover:shadow-xl hover:shadow-blue-900/20"
-        >
-          <NuxtImg
-            src="/innovi_pro_logo.png"
-            class="h-12 w-20 object-contain transition-transform duration-500 group-hover:scale-110"
-            alt="INNOVI PRO consulting company logo"
-          />
-          <div class="flex-1 pl-6">
-            <h3 class="pb-2 text-2xl text-yellow-100">INNOVI PRO</h3>
-            <p class="pb-2 text-sm text-gray-300">
-              Enterprise-Grade Architecture & Autonomous AI Agents
-            </p>
-            <p class="text-xs text-gray-500">
-              Software Architecture, AI & Automation Solutions, n8n Partner
-            </p>
-            <div class="pt-2">
-              <a
-                href="https://innovi.pro/"
-                target="_blank"
-                class="text-sm text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
-              >
-                View Services
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Featured Projects -->
         <div
           v-for="project in featuredProjects"
           :key="project.title"
@@ -145,35 +84,31 @@
         >
           <NuxtImg
             :src="project.logo"
-            class="h-12 w-20 object-contain transition-transform duration-500 group-hover:scale-110"
+            :class="[
+              'h-12 w-20 object-contain transition-transform duration-500',
+              project.logoClass || 'group-hover:scale-110',
+            ]"
             :alt="`${project.title} logo`"
           />
           <div class="flex-1 pl-6">
             <h3 class="pb-2 text-2xl text-yellow-100">
               {{ project.title }}
             </h3>
-            <p class="pb-2 text-sm text-gray-300">
-              {{ project.subtitle }}
+            <p class="text-pretty pb-2 text-sm text-gray-300">
+              {{ project.description }}
             </p>
             <p class="text-xs text-gray-500">
               {{ project.tech }}
             </p>
             <div class="flex gap-2 pt-2">
               <a
-                v-if="project.link"
-                :href="project.link"
+                v-for="link in project.links"
+                :key="link.text"
+                :href="link.url"
                 target="_blank"
                 class="text-sm text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
               >
-                Visit Site
-              </a>
-              <a
-                v-if="project.secondaryLink"
-                :href="project.secondaryLink"
-                target="_blank"
-                class="text-sm text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
-              >
-                GitHub
+                {{ link.text }}
               </a>
             </div>
           </div>
@@ -209,14 +144,15 @@
             <p class="text-xs text-gray-500">
               {{ client.tech }}
             </p>
-            <div class="pt-2">
+            <div class="flex gap-2 pt-2">
               <a
-                v-if="client.link"
-                :href="client.link"
+                v-for="link in client.links"
+                :key="link.text"
+                :href="link.url"
                 target="_blank"
                 class="text-sm text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
               >
-                Visit
+                {{ link.text }}
               </a>
             </div>
           </div>
@@ -651,12 +587,37 @@ useHead({
 
 const featuredProjects = [
   {
-    title: "eHealth.plus",
-    subtitle: "Agentic AI health assistant & patient advocate (FHIR)",
-    logo: "/images/logos/ehealth-plus.svg",
-    link: "https://ehealth.plus",
-    secondaryLink: "https://github.com/mihailtd/ai-fhir",
-    tech: "FHIR, HL7, Agentic AI, Python, LangGraph, RAG, Azure OpenAI / Gemini",
+    title: "YouTube Content Creator",
+    description:
+      "I firmly believe that knowledge grows when shared. On my YouTube channel 'Let's Talk Dev', I produce in-depth tutorials covering Software Development, Architecture, HomeLab, Self-Hosting, DevOps, and Platform Engineering. I take deep dives into the latest technologies and frameworks to help you build robust, scalable systems.",
+    logo: "/images/logo.png",
+    logoClass: "group-hover:rotate-12",
+    tech: "Software architecture, tutorials, development best practices",
+    links: [{ text: "Visit Channel", url: "https://youtube.com/@letstalkdev" }],
+  },
+  {
+    title: "INNOVI PRO",
+    description:
+      "Through INNOVI PRO, I offer specialized consulting in Enterprise-Grade Architecture and the development of Autonomous AI Agents. I help organizations navigate the complexities of modern software design, ensuring their systems are secure, scalable, and ready for the future of AI-driven automation.",
+    logo: "/innovi_pro_logo.png",
+    logoClass: "group-hover:scale-110",
+    tech: "Software Architecture, AI & Automation Solutions, n8n Partner",
+    links: [{ text: "View Services", url: "https://innovi.pro/" }],
+  },
+  {
+    title: "n8n",
+    description:
+      "I actively contribute to the n8n ecosystem as a Technical Writer and creator of Agentic AI templates. My work focuses on making advanced AI automation accessible, providing the community with production-ready workflows that leverage the full potential of low-code orchestration.",
+    logo: "/images/logos/N8n.io_idWtnk-fDo_1.png",
+    logoClass: "group-hover:scale-110",
+    tech: "Technical Writing, Automation, Agentic AI, Low-Code",
+    links: [
+      { text: "Read Articles", url: "https://blog.n8n.io/author/mihai/" },
+      {
+        text: "n8n Automation templates",
+        url: "https://n8n.io/creators/mihailtd/",
+      },
+    ],
   },
 ];
 
@@ -664,39 +625,42 @@ const clients = [
   {
     title: "Marsh McLennan",
     subtitle: "Software Architect (current) — Agentic AI apps and automations",
-    logo: "/mmc.png",
-    tech: "Python, LangGraph, SQL Server, PostgreSQL, RAG, Graph RAG",
+    logo: "/images/logos/mmc.png",
+    tech: "Microservices, Python, LangGraph, SQL Server, PostgreSQL, MongoDB, RAG, Graph RAG, Azure OpenAI, Kubernetes",
   },
   {
     title: "n8n",
     subtitle: "Technical Writer",
     logo: "/N8n.io_idWtnk-fDo_1.png",
-    link: "https://blog.n8n.io/author/mihai/",
+    links: [
+      { text: "Check Out My Work", url: "https://blog.n8n.io/author/mihai/" },
+    ],
     tech: "Technical Writing, Developer Documentation, Automation",
   },
   {
     title: "Kaiser Permanente",
     subtitle: "Patient portals, directories, patient resources (via Cognizant)",
-    logo: "/Kaiser Permanente_idiIJ5r2lQ_1.png",
+    logo: "/images/logos/Kaiser Permanente_idiIJ5r2lQ_1.png",
     tech: "Node.js, MongoDB, SQL Server, REST, OAuth, OpenAPI, GitLab CI/CD, Docker, Kubernetes, Splunk",
   },
   {
     title: "Cognizant",
     subtitle: "Technical interviews, workshops, presentations",
-    logo: "/Cognizant_id6O9Djecd_1.png",
+    logo: "/images/logos/Cognizant_id6O9Djecd_1.png",
     tech: "Consulting, Technical Leadership, Architecture",
   },
   {
     title: "Lyfegen",
     subtitle: "AI Engineer, freelancer — Agentic AI for pharma",
-    logo: "/lyfegen.png",
+    logo: "/images/logos/lyfegen.png",
     tech: "Azure, Azure OpenAI, Google Gemini, Python, LangGraph, RAG, Agentic RAG, PostgreSQL",
   },
   {
     title: "medQ",
-    subtitle: "Healthcare platform for radiologists (US)",
-    logo: "/medQ-Tagline-180px.png",
-    tech: "FHIR, HL7, SQL Server, JavaScript",
+    subtitle: "Healthcare application for radiologists (US)",
+    logo: "/images/logos/medQ-Tagline-180px.png",
+    tech: "FHIR, HL7, DICOM, SQL Server, JavaScript",
+    links: [],
   },
 ];
 
