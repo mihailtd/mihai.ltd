@@ -23,6 +23,13 @@
           >
         </h1>
       </div>
+      <div class="flex items-center justify-center lg:justify-end">
+        <img
+          src="/images/headshot-placeholder.svg"
+          alt="Mihai Farcas headshot"
+          class="h-48 w-48 rounded-full object-cover md:h-56 md:w-56 lg:h-64 lg:w-64"
+        />
+      </div>
     </section>
 
     <section
