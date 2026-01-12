@@ -631,7 +631,7 @@ const clients = [
   {
     title: "n8n",
     subtitle: "Technical Writer",
-    logo: "/N8n.io_idWtnk-fDo_1.png",
+    logo: "/images/logos/N8n.io_idWtnk-fDo_1.png",
     links: [
       { text: "Check Out My Work", url: "https://blog.n8n.io/author/mihai/" },
     ],
