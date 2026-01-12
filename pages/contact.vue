@@ -29,7 +29,7 @@
               rel="me"
               class="inline-block rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-lg font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50"
             >
-              Work with Innovi.pro
+              Work with INNOVI PRO
             </a>
           </div>
         </div>

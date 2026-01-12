@@ -10,11 +10,11 @@
     >
       <div class="col-span-2">
         <h1 class="text-4xl md:text-5xl">
-          I'm Mihai <br />
+          I'm Mihai Farcas<br />
           — <br />
-          Sr. Software Developer
+          Software Architect & YouTube Content Creator
         </h1>
-        <p class="py-12 text-6xl md:text-[8rem] lg:text-[9rem]">
+        <h2 class="py-12 text-6xl md:text-[8rem] lg:text-[9rem]">
           Crafting
           <span
             class="bg-gradient-to-r from-yellow-100 to-blue-900 bg-clip-text font-extrabold tracking-wide text-transparent"
@@ -26,7 +26,7 @@
             class="bg-gradient-to-r from-blue-900 to-yellow-100 bg-clip-text font-extrabold tracking-wide text-transparent"
             >people.</span
           >
-        </p>
+        </h2>
       </div>
     </section>
 
@@ -34,67 +34,191 @@
       class="bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px] py-12"
     >
       <h2
-        class="pb-6 text-center text-4xl text-yellow-100 md:text-5xl lg:text-6xl"
+        class="pb-12 text-center text-4xl text-yellow-100 md:text-5xl lg:text-6xl"
       >
         About Me
       </h2>
-      <p
-        class="px-5 text-lg text-gray-300 md:px-24 md:text-xl lg:px-48 lg:text-2xl xl:px-96"
+
+      <div
+        class="mx-auto flex max-w-7xl flex-col-reverse items-center justify-center gap-12 px-5 md:flex-row md:px-12 lg:px-24"
       >
-        Experienced
-        <span class="font-extrabold text-yellow-100">
-          full-stack web developer
-        </span>
-        with a demonstrated history of working in health-tech, skilled in
-        NodeJS, VueJS, PostgreSQL, MongoDB, SQL Server, Kubernetes and many
-        others. Passionate about software engineering and architecture, with a
-        focus on creating secure, scalable, and user-friendly solutions for the
-        <span class="font-extrabold text-yellow-100">healthcare industry.</span>
-      </p>
+        <p class="flex-1 text-lg text-gray-300 md:text-xl lg:text-2xl">
+          Experienced
+          <span class="font-extrabold text-yellow-100">
+            software architect
+          </span>
+          with a demonstrated history of working in health-tech, skilled in
+          NodeJS, VueJS, PostgreSQL, MongoDB, SQL Server, Kubernetes, Docker and
+          many others. Passionate about software engineering and architecture,
+          with a focus on creating secure, scalable, and user-friendly solutions
+          for the
+          <span class="font-extrabold text-yellow-100"
+            >healthcare industry.</span
+          >
+        </p>
+
+        <div class="group relative flex-shrink-0">
+          <div
+            class="absolute -inset-1 rounded-full bg-gradient-to-r from-yellow-100 to-blue-600 opacity-25 blur-xl transition duration-1000 group-hover:opacity-50 group-hover:duration-200"
+          ></div>
+          <img
+            src="/mihai_farcas.webp"
+            alt="Mihai Farcas - Software Architect"
+            class="relative size-48 rounded-full border-2 border-white/10 object-cover object-[center_30%] p-2 shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:border-yellow-100/30 group-hover:shadow-yellow-500/20 md:size-64 lg:size-80"
+          />
+        </div>
+      </div>
     </section>
 
-    <section class="px-5">
+    <section class="px-5 pb-12">
       <h2
         class="px-5 py-12 text-4xl text-yellow-100 md:text-5xl lg:px-24 lg:text-6xl xl:px-36"
       >
-        My work
+        My Work & Featured Projects
       </h2>
-      <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <!-- YouTube Content Creator Card -->
         <div
-          v-for="i in 3"
-          :key="i"
           class="group flex items-center justify-center rounded-xl border border-white/5 bg-black/30 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-white/5 hover:shadow-xl hover:shadow-blue-900/20"
         >
           <NuxtImg
             src="/images/logo.png"
-            class="w-24 transition-transform duration-500 group-hover:rotate-12"
+            class="h-12 w-20 object-contain transition-transform duration-500 group-hover:rotate-12"
             alt="Let's Talk Dev logo"
-            width="96"
-            height="96"
           />
-          <div class="pl-6">
-            <h3 class="pb-4 text-3xl text-yellow-100">
-              Let's Talk Dev YouTube Channel
+          <div class="flex-1 pl-6">
+            <h3 class="pb-2 text-2xl text-yellow-100">
+              YouTube Content Creator
             </h3>
-            <p class="text-gray-400">
-              I share my knowledge and experience in software development and
-              architecture through videos on my
-              <a
-                class="text-blue-500 underline transition-colors hover:text-blue-400"
-                target="_blank"
-                href="https://youtube.com/@letstalkdev"
-              >
-                YouTube channel</a
-              >.
+            <p class="pb-2 text-sm text-gray-300">
+              Let's Talk Dev channel - Modern software development tutorials
             </p>
-            <a
-              href="https://youtube.com/@letstalkdev"
-              target="_blank"
-              rel="noopener"
-              class="inline-block pt-2 text-lg text-blue-300 underline decoration-wavy underline-offset-4 transition-all duration-300 hover:text-blue-500 hover:decoration-blue-500"
-            >
-              More Info
-            </a>
+            <p class="text-xs text-gray-500">
+              Software architecture, tutorials, development best practices
+            </p>
+            <div class="pt-2">
+              <a
+                href="https://youtube.com/@letstalkdev"
+                target="_blank"
+                class="text-sm text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
+              >
+                Visit Channel
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- INNOVI PRO Consulting Company Card -->
+        <div
+          class="group flex items-center justify-center rounded-xl border border-white/5 bg-black/30 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-white/5 hover:shadow-xl hover:shadow-blue-900/20"
+        >
+          <NuxtImg
+            src="/innovi_pro_logo.png"
+            class="h-12 w-20 object-contain transition-transform duration-500 group-hover:scale-110"
+            alt="INNOVI PRO consulting company logo"
+          />
+          <div class="flex-1 pl-6">
+            <h3 class="pb-2 text-2xl text-yellow-100">INNOVI PRO</h3>
+            <p class="pb-2 text-sm text-gray-300">
+              Enterprise-Grade Architecture & Autonomous AI Agents
+            </p>
+            <p class="text-xs text-gray-500">
+              Software Architecture, AI & Automation Solutions, n8n Partner
+            </p>
+            <div class="pt-2">
+              <a
+                href="https://innovi.pro/"
+                target="_blank"
+                class="text-sm text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
+              >
+                View Services
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Featured Projects -->
+        <div
+          v-for="project in featuredProjects"
+          :key="project.title"
+          class="group flex items-center justify-center rounded-xl border border-white/5 bg-black/30 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-white/5 hover:shadow-xl hover:shadow-blue-900/20"
+        >
+          <NuxtImg
+            :src="project.logo"
+            class="h-12 w-20 object-contain transition-transform duration-500 group-hover:scale-110"
+            :alt="`${project.title} logo`"
+          />
+          <div class="flex-1 pl-6">
+            <h3 class="pb-2 text-2xl text-yellow-100">
+              {{ project.title }}
+            </h3>
+            <p class="pb-2 text-sm text-gray-300">
+              {{ project.subtitle }}
+            </p>
+            <p class="text-xs text-gray-500">
+              {{ project.tech }}
+            </p>
+            <div class="flex gap-2 pt-2">
+              <a
+                v-if="project.link"
+                :href="project.link"
+                target="_blank"
+                class="text-sm text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
+              >
+                Visit Site
+              </a>
+              <a
+                v-if="project.secondaryLink"
+                :href="project.secondaryLink"
+                target="_blank"
+                class="text-sm text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
+              >
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Companies & Clients Section -->
+    <section class="px-5 pb-12">
+      <h2
+        class="px-5 py-12 text-4xl text-yellow-100 md:text-5xl lg:px-24 lg:text-6xl xl:px-36"
+      >
+        Companies &amp; Clients
+      </h2>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div
+          v-for="client in clients"
+          :key="client.title"
+          class="group flex items-center justify-center rounded-xl border border-white/5 bg-black/30 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-white/5 hover:shadow-xl hover:shadow-blue-900/20"
+        >
+          <NuxtImg
+            :src="client.logo"
+            class="h-12 w-20 object-contain transition-transform duration-500 group-hover:scale-110"
+            :alt="`${client.title} logo`"
+          />
+          <div class="flex-1 pl-6">
+            <h3 class="pb-2 text-2xl text-yellow-100">
+              {{ client.title }}
+            </h3>
+            <p class="pb-2 text-sm text-gray-300">
+              {{ client.subtitle }}
+            </p>
+            <p class="text-xs text-gray-500">
+              {{ client.tech }}
+            </p>
+            <div class="pt-2">
+              <a
+                v-if="client.link"
+                :href="client.link"
+                target="_blank"
+                class="text-sm text-blue-300 underline decoration-wavy underline-offset-4 transition-colors duration-300 hover:text-blue-500"
+              >
+                Visit
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -524,6 +648,57 @@ useHead({
     },
   ],
 });
+
+const featuredProjects = [
+  {
+    title: "eHealth.plus",
+    subtitle: "Agentic AI health assistant & patient advocate (FHIR)",
+    logo: "/images/logos/ehealth-plus.svg",
+    link: "https://ehealth.plus",
+    secondaryLink: "https://github.com/mihailtd/ai-fhir",
+    tech: "FHIR, HL7, Agentic AI, Python, LangGraph, RAG, Azure OpenAI / Gemini",
+  },
+];
+
+const clients = [
+  {
+    title: "Marsh McLennan",
+    subtitle: "Software Architect (current) — Agentic AI apps and automations",
+    logo: "/mmc.png",
+    tech: "Python, LangGraph, SQL Server, PostgreSQL, RAG, Graph RAG",
+  },
+  {
+    title: "n8n",
+    subtitle: "Technical Writer",
+    logo: "/N8n.io_idWtnk-fDo_1.png",
+    link: "https://blog.n8n.io/author/mihai/",
+    tech: "Technical Writing, Developer Documentation, Automation",
+  },
+  {
+    title: "Kaiser Permanente",
+    subtitle: "Patient portals, directories, patient resources (via Cognizant)",
+    logo: "/Kaiser Permanente_idiIJ5r2lQ_1.png",
+    tech: "Node.js, MongoDB, SQL Server, REST, OAuth, OpenAPI, GitLab CI/CD, Docker, Kubernetes, Splunk",
+  },
+  {
+    title: "Cognizant",
+    subtitle: "Technical interviews, workshops, presentations",
+    logo: "/Cognizant_id6O9Djecd_1.png",
+    tech: "Consulting, Technical Leadership, Architecture",
+  },
+  {
+    title: "Lyfegen",
+    subtitle: "AI Engineer, freelancer — Agentic AI for pharma",
+    logo: "/lyfegen.png",
+    tech: "Azure, Azure OpenAI, Google Gemini, Python, LangGraph, RAG, Agentic RAG, PostgreSQL",
+  },
+  {
+    title: "medQ",
+    subtitle: "Healthcare platform for radiologists (US)",
+    logo: "/medQ-Tagline-180px.png",
+    tech: "FHIR, HL7, SQL Server, JavaScript",
+  },
+];
 
 const topBooks = [
   {

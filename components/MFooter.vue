@@ -8,7 +8,7 @@
       alt="Let's Talk Dev YouTube channel logo"
     />
     <p class="pl-8 text-sm">
-      © 2025 Mihai —
+      © {{ new Date().getFullYear() }} Mihai Farcas —
       <a
         href="https://youtube.com/@letstalkdev"
         class="text-blue-400 transition-colors duration-300 hover:text-blue-300 hover:underline"

@@ -11,12 +11,12 @@
       >
         {{ message }}
       </h2>
-      <h2
+      <p
         v-else
         class="pt-24 text-center text-9xl font-bold tracking-wide text-yellow-100 md:text-[12em] lg:pt-32"
       >
         Hello.
-      </h2>
+      </p>
     </header>
 
     <main><slot /></main>
@@ -32,7 +32,8 @@ const message = layoutCustomProps.message;
 
 <style scoped>
 .hero {
-  background-image: linear-gradient(rgba(0, 0, 0, 0) 10%, rgba(9, 0, 37, 1) 80%),
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0) 10%, rgba(9, 0, 37, 1) 80%),
     url("/images/hero.webp");
 }
 </style>
