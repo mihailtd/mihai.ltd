@@ -201,6 +201,20 @@ definePageMeta({
   layout: false,
 });
 
+// SEO metadata for contact page
+useSeoMeta({
+  title: "Contact Mihai Farcas - Software Architect & Agentic AI Consultant",
+  description:
+    "Get in touch with Mihai Farcas for Software Architecture consulting, Agentic AI solutions, n8n automation services, YouTube sponsorships, or technical writing opportunities.",
+  ogTitle: "Contact Mihai Farcas - Software Architect & Agentic AI Consultant",
+  ogDescription:
+    "Contact Mihai Farcas for consulting services, content collaboration, and technical expertise in AI automations and enterprise architecture.",
+  ogUrl: "https://mihai.ltd/contact",
+  twitterTitle: "Contact Mihai Farcas - Software Architect",
+  twitterDescription:
+    "Get in touch for consulting services, AI automation solutions, and content collaboration.",
+});
+
 const contactForm = ref<HTMLFormElement | null>(null);
 
 const name = ref<string>("");

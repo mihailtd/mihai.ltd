@@ -45,16 +45,22 @@
         <p class="flex-1 text-lg text-gray-300 md:text-xl lg:text-2xl">
           Experienced
           <span class="font-extrabold text-yellow-100">
-            software architect
+            software architect and consulting expert
           </span>
-          with a demonstrated history of working in health-tech, skilled in
-          NodeJS, VueJS, PostgreSQL, MongoDB, SQL Server, Kubernetes, Docker and
-          many others. Passionate about software engineering and architecture,
-          with a focus on creating secure, scalable, and user-friendly solutions
-          for the
-          <span class="font-extrabold text-yellow-100"
-            >healthcare industry.</span
-          >
+          specializing in
+          <span class="font-extrabold text-yellow-100">Agentic AI</span>
+          and
+          <span class="font-extrabold text-yellow-100">AI automations</span>.
+          Skilled in NodeJS, VueJS, PostgreSQL, MongoDB, SQL Server, Kubernetes,
+          Docker, LangGraph, and
+          <span class="font-extrabold text-yellow-100">n8n</span>.
+          As a
+          <span class="font-extrabold text-yellow-100">YouTube content creator</span>
+          at Let's Talk Dev, I share knowledge about software engineering and
+          architecture, with a focus on creating secure, scalable, and
+          user-friendly solutions for the
+          <span class="font-extrabold text-yellow-100">healthcare industry</span>
+          and enterprise systems.
         </p>
 
         <div class="group relative flex-shrink-0">
@@ -556,6 +562,23 @@ definePageMeta({
   layout: "home",
 });
 
+// Enhanced SEO metadata for homepage
+useSeoMeta({
+  title: "Mihai Farcas - Software Architect, Agentic AI Expert & Content Creator",
+  description:
+    "Mihai Farcas is an experienced Software Architect specializing in Agentic AI, AI automations, and n8n consulting. YouTube content creator at Let's Talk Dev with expertise in enterprise architecture, software engineering, and AI-driven automation solutions.",
+  ogTitle: "Mihai Farcas - Software Architect, Agentic AI Expert & Content Creator",
+  ogDescription:
+    "Expert Software Architect specializing in Agentic AI, AI automations, n8n consulting. Content creator helping developers build scalable enterprise systems.",
+  ogImage: "https://mihai.ltd/og-cover.jpg",
+  ogUrl: "https://mihai.ltd/",
+  twitterTitle: "Mihai Farcas - Software Architect & Agentic AI Expert",
+  twitterDescription:
+    "Software Architect specializing in Agentic AI, AI automations, n8n consulting. YouTube content creator at Let's Talk Dev.",
+  twitterImage: "https://mihai.ltd/og-cover.jpg",
+  twitterCard: "summary_large_image",
+});
+
 // Schema.org structured data for SEO
 useHead({
   script: [
@@ -565,20 +588,69 @@ useHead({
         {
           "@context": "https://schema.org",
           "@type": "WebSite",
-          name: "Mihai @ Let's Talk Dev",
+          name: "Mihai Farcas - Software Architect & Content Creator",
           url: "https://mihai.ltd",
+          description:
+            "Portfolio and professional website of Mihai Farcas, Software Architect specializing in Agentic AI and AI automations",
+          author: {
+            "@type": "Person",
+            name: "Mihai Farcas",
+          },
         },
         {
           "@context": "https://schema.org",
           "@type": "Person",
-          name: "Mihai Farcaș",
+          name: "Mihai Farcas",
+          alternateName: "Mihai Farcaș",
           url: "https://mihai.ltd",
-          jobTitle: "Senior Software Developer",
+          image: "https://mihai.ltd/mihai_farcas.webp",
+          jobTitle: "Software Architect",
+          worksFor: {
+            "@type": "Organization",
+            name: "INNOVI PRO",
+            url: "https://innovi.pro",
+          },
+          knowsAbout: [
+            "Software Architecture",
+            "Agentic AI",
+            "AI Automations",
+            "n8n",
+            "Enterprise Architecture",
+            "LangGraph",
+            "Microservices",
+            "Kubernetes",
+            "Node.js",
+            "Vue.js",
+            "Content Creation",
+            "Technical Consulting",
+          ],
           sameAs: [
             "https://github.com/mihailtd",
             "https://www.linkedin.com/in/mihai-farcas-ltd/",
             "https://youtube.com/@letstalkdev",
+            "https://dev.to/mihailtd",
+            "https://blog.n8n.io/author/mihai/",
           ],
+          alumniOf: {
+            "@type": "Organization",
+            name: "Software Engineering",
+          },
+          description:
+            "Experienced Software Architect specializing in Agentic AI, AI automations, and enterprise-grade architecture. YouTube content creator at Let's Talk Dev.",
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          name: "INNOVI PRO",
+          url: "https://innovi.pro",
+          description:
+            "Specialized consulting in Enterprise-Grade Architecture and Autonomous AI Agents",
+          provider: {
+            "@type": "Person",
+            name: "Mihai Farcas",
+          },
+          serviceType: ["Software Architecture Consulting", "AI Automation Solutions", "n8n Partner Services"],
+          areaServed: "Worldwide",
         },
       ]),
     },

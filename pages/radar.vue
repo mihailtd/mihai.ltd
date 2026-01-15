@@ -99,7 +99,20 @@ import { ref, computed } from "vue";
 import VChart from "vue-echarts";
 
 useHead({
-  title: "Tech Radar",
+  title: "Tech Radar - Mihai Farcas",
+});
+
+useSeoMeta({
+  title: "Tech Radar - Mihai Farcas Software Architecture Technologies",
+  description:
+    "Explore the technologies and tools used by Mihai Farcas for software architecture, Agentic AI development, and enterprise solutions. Including Kubernetes, Vue.js, Node.js, n8n, LangGraph, and more.",
+  ogTitle: "Tech Radar - Mihai Farcas Technologies & Tools",
+  ogDescription:
+    "Discover the technology stack and tools for modern software architecture and AI automation.",
+  ogUrl: "https://mihai.ltd/radar",
+  twitterTitle: "Tech Radar - Mihai Farcas",
+  twitterDescription:
+    "Technologies and tools for software architecture and AI automation by Mihai Farcas.",
 });
 
 useECharts([
