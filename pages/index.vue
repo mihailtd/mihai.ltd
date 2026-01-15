@@ -12,7 +12,7 @@
         <h1 class="text-4xl md:text-5xl">
           I'm Mihai Farcas<br />
           — <br />
-          Software Architect & YouTube Content Creator
+          Software Architect
         </h1>
         <h2 class="py-12 text-6xl md:text-[8rem] lg:text-[9rem]">
           Crafting
@@ -607,8 +607,8 @@ useHead({
           jobTitle: "Software Architect",
           worksFor: {
             "@type": "Organization",
-            name: "INNOVI PRO",
-            url: "https://innovi.pro",
+            name: "MARSH",
+            url: "https://www.corporate.marsh.com/global/home.html",
           },
           knowsAbout: [
             "Software Architecture",
