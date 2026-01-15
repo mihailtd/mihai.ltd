@@ -45,7 +45,7 @@
         <p class="flex-1 text-lg text-gray-300 md:text-xl lg:text-2xl">
           Experienced
           <span class="font-extrabold text-yellow-100">
-            software architect and consulting expert
+            software architect
           </span>
           specializing in
           <span class="font-extrabold text-yellow-100">Agentic AI</span>
