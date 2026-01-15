@@ -57,10 +57,7 @@
           As a
           <span class="font-extrabold text-yellow-100">YouTube content creator</span>
           at Let's Talk Dev, I share knowledge about software engineering and
-          architecture, with a focus on creating secure, scalable, and
-          user-friendly solutions for the
-          <span class="font-extrabold text-yellow-100">healthcare industry</span>
-          and enterprise systems.
+          architecture.
         </p>
 
         <div class="group relative flex-shrink-0">
