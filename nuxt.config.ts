@@ -2,14 +2,7 @@
 
 export default defineNuxtConfig({
   devtools: { enabled: process.env.NODE_ENV !== "production" },
-  modules: [
-    "@nuxtjs/tailwindcss",
-    "@nuxtjs/turnstile",
-    "@nuxt/image",
-    "@nuxtjs/sitemap",
-    "@nuxtjs/robots",
-    "@nuxtjs/color-mode",
-  ],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/turnstile", "@nuxt/image", "@nuxtjs/sitemap", "@nuxtjs/robots", "@nuxtjs/color-mode", "@nuxt/content"],
   css: ["@/assets/index.css"],
   turnstile: {
     siteKey: "0x4AAAAAAAUBxBNAPgRBo5hj",
@@ -63,12 +56,17 @@ export default defineNuxtConfig({
     sitemap: ["https://mihai.ltd/sitemap.xml"],
   },
   nitro: {
-    prerender: { autoSubfolderIndex: false },
+    prerender: {
+      autoSubfolderIndex: false,
+      crawlLinks: true,
+      routes: ["/sitemap.xml"],
+    },
     routeRules: {
       "/**": { headers: { "Cache-Control": "public, max-age=600" } },
       "/images/**": {
         headers: { "Cache-Control": "public, max-age=31536000, immutable" },
       },
+      "/blog/**": { prerender: true },
     },
   },
 });

@@ -1,99 +1,174 @@
 <template>
-  <div v-if="article" class="mx-auto max-w-4xl px-6 pt-16">
-    <div>
-      <button
-        class="flex items-center py-8 text-gray-200 hover:text-gray-400"
-        @click="$router.go(-1)"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M10 19l-7-7m0 0l7-7m-7 7h18"
-          />
-        </svg>
-        <span class="pl-2 text-2xl">Back</span>
-      </button>
+  <main class="relative min-h-screen pb-24">
+    <!-- Background Gradient -->
+    <div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <div
+        class="absolute left-1/2 top-0 h-[600px] w-full max-w-7xl -translate-x-1/2 rounded-full bg-blue-900/10 blur-[120px]"
+      ></div>
     </div>
-    <div class="flex flex-col lg:flex-row">
-      <h1
-        class="prose max-w-xl text-balance text-6xl font-bold tracking-tight dark:prose-invert"
+
+    <div v-if="article">
+      <!-- Hero Section -->
+      <div
+        class="relative border-b border-white/5 bg-gradient-to-b from-transparent to-black/20 px-6 pb-16 pt-32"
       >
-        {{ article.title }}
-      </h1>
-      <div class="py-8"></div>
-      <div class="flex flex-row items-center justify-center pl-8 lg:flex-col">
-        <NuxtImg
-          provider="directus"
-          :src="article.cover_image?.id"
-          :alt="article.cover_image?.title || 'Cover image'"
-          class="h-48 w-48 object-cover object-top"
-        />
-        <div class="flex flex-col items-center justify-center">
-          <a :href="article.affiliate_link" target="_blank" class="py-4">
-            <img
-              src="@/public/amazon_logo.png"
-              alt="Amazon logo"
-              class="h-20 w-36 rounded-2xl bg-gray-200 px-6 py-4"
-            />
-          </a>
-          <p class="w-48 text-balance text-center text-xs text-gray-500">
-            {{ article.disclaimer }}
+        <div class="mx-auto max-w-4xl text-center">
+          <!-- Back Button -->
+          <div class="mb-8 flex justify-center">
+            <NuxtLink
+              to="/blog"
+              class="group flex items-center gap-2 rounded-full border border-transparent px-4 py-2 text-sm font-medium text-gray-400 transition-colors hover:border-white/10 hover:bg-white/5 hover:text-white"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 transition-transform group-hover:-translate-x-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
+              </svg>
+              Back to Blog
+            </NuxtLink>
+          </div>
+
+          <!-- Meta info -->
+          <div
+            class="mb-6 flex flex-wrap items-center justify-center gap-4 text-sm"
+          >
+            <span
+              class="rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-blue-300"
+            >
+              {{ formatType(article.type) }}
+            </span>
+            <span class="flex items-center gap-2 text-gray-400">
+              <span class="h-1 w-1 rounded-full bg-gray-500"></span>
+              {{ formatDate(article.date) }}
+            </span>
+          </div>
+
+          <h1
+            class="mb-8 text-balance text-4xl font-extrabold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl"
+          >
+            {{ article.title }}
+          </h1>
+
+          <p
+            class="mx-auto max-w-2xl text-balance text-xl font-light leading-relaxed text-gray-300"
+          >
+            {{ article.description }}
           </p>
         </div>
       </div>
-      <div class="py-4"></div>
-    </div>
-    <article
-      class="prose prose-2xl pb-24 pt-6 dark:prose-invert prose-h2:text-3xl prose-a:text-blue-500 prose-a:underline"
-      v-html="article.content"
-    ></article>
-    <div class="flex flex-row items-center justify-center pb-16">
-      <NuxtImg
-        provider="directus"
-        :src="article.cover_image?.id"
-        :alt="article.cover_image?.title || 'Cover image'"
-        class="w-48 object-cover"
-      />
-      <div class="flex flex-col items-center justify-center">
-        <a :href="article.affiliate_link" target="_blank" class="py-4">
-          <img
-            src="@/public/amazon_logo.png"
-            alt="Amazon logo"
-            class="h-20 w-36 rounded-2xl bg-gray-200 px-6 py-4"
+
+      <!-- Main Content Area -->
+      <div class="relative z-10 mx-auto -mt-12 max-w-4xl px-6">
+        <!-- Cover Image -->
+        <div
+          v-if="article.cover_image"
+          class="mb-16 overflow-hidden rounded-3xl border border-white/10 bg-gray-800 shadow-2xl ring-1 ring-white/5"
+        >
+          <NuxtImg
+            :src="article.cover_image"
+            :alt="article.title"
+            class="h-auto w-full object-cover"
+            loading="eager"
           />
-        </a>
-        <p class="w-48 text-balance text-center text-xs text-gray-500">
-          {{ article.disclaimer }}
-        </p>
+        </div>
+
+        <!-- Content -->
+        <article
+          class="prose prose-lg prose-invert mx-auto max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-white prose-p:leading-relaxed prose-p:text-gray-300 prose-a:text-blue-400 prose-a:no-underline hover:prose-a:text-blue-300 hover:prose-a:underline prose-blockquote:rounded-r-lg prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-900/10 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:not-italic prose-blockquote:text-blue-200 prose-code:rounded prose-code:bg-blue-900/20 prose-code:px-1.5 prose-code:py-0.5 prose-code:text-blue-300 prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-xl prose-pre:border prose-pre:border-white/10 prose-pre:bg-gray-900/50 prose-li:text-gray-300 prose-li:marker:text-blue-500 prose-img:rounded-xl prose-img:border prose-img:border-white/10 prose-img:shadow-lg"
+        >
+          <ContentRenderer :value="article">
+            <template #empty>
+              <p>No content found.</p>
+            </template>
+          </ContentRenderer>
+        </article>
+
+        <!-- Tags Footer -->
+        <div class="mt-20 border-t border-white/10 pt-10">
+          <div
+            class="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center"
+          >
+            <h3
+              class="text-sm font-semibold uppercase tracking-wider text-gray-400"
+            >
+              Related Topics
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <NuxtLink
+                v-for="tag in article.tags"
+                :key="tag"
+                :to="`/blog?topic=${tag}`"
+                class="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm text-gray-300 transition-all hover:border-blue-500/50 hover:bg-blue-500/10 hover:text-blue-300"
+              >
+                #{{ tag }}
+              </NuxtLink>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">
 const route = useRoute();
 
-const slug = route.params.slug;
+// Get the current path without the trailing slash if present
+// Path construction handled inside useAsyncData based on collection
 
-const article = computed(() => null);
+const { data: article } = await useAsyncData(
+  `blog-${route.params.slug}`,
+  async () => {
+    const slug = route.params.slug;
+    try {
+      const blogPost = await queryCollection("blog")
+        .path(`/blog/${slug}`)
+        .first();
+      if (blogPost) return blogPost;
+    } catch (e) {
+      // Ignore error if not found in blog
+    }
 
-const author = ref("Mihai Farcas");
+    try {
+      const bookSummary = await queryCollection("books")
+        .path(`/books/${slug}`)
+        .first();
+      if (bookSummary) return bookSummary;
+    } catch (e) {
+      // Ignore error if not found in books
+    }
+
+    return null;
+  },
+);
+
+const formatType = (type: string) => {
+  return type === "book_summary" ? "Book Summary" : "Blog Post";
+};
+
+const formatDate = (date: string) => {
+  return new Date(date).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+};
+
 useSeoMeta({
-  title: article.value?.title,
-  author: "Mihai Farcas",
-  description: article.value?.description,
-  articleModifiedTime: article.value?.date_updated,
-  articlePublishedTime: article.value?.date_updated,
-  ogImage: article.value?.cover_image,
-  ogType: "article",
-  ogDescription: article.value?.description,
+  title: () => article.value?.title || "Blog Post",
+  description: () => article.value?.description,
+  ogTitle: () => article.value?.title,
+  ogDescription: () => article.value?.description,
+  ogImage: () => article.value?.cover_image,
+  twitterCard: "summary_large_image",
 });
 </script>

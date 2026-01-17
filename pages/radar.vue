@@ -133,7 +133,7 @@ const languagesAndFrameworks = [
     status: "adopt",
     evaluatedScore: "4",
     link: "https://vuejs.org/",
-    blogTopic: "vuejs",
+    blogTopic: "vue",
     target: "_blank",
   },
   {
