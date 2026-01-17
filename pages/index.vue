@@ -33,11 +33,11 @@
     <section
       class="bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px] py-12"
     >
-      <h2
-        class="pb-12 text-center text-4xl text-yellow-100 md:text-5xl lg:text-6xl"
-      >
-        About Me
-      </h2>
+      <div class="mx-auto max-w-7xl px-5 md:px-12 lg:px-24">
+        <h2 class="pb-2 text-4xl text-yellow-100 md:text-5xl lg:text-6xl">
+          About Me
+        </h2>
+      </div>
 
       <div
         class="mx-auto flex max-w-7xl flex-col-reverse items-center justify-center gap-12 px-5 md:flex-row md:px-12 lg:px-24"
@@ -53,9 +53,10 @@
           <span class="font-extrabold text-yellow-100">AI automations</span>.
           Skilled in NodeJS, VueJS, PostgreSQL, MongoDB, SQL Server, Kubernetes,
           Docker, LangGraph, and
-          <span class="font-extrabold text-yellow-100">n8n</span>.
-          As a
-          <span class="font-extrabold text-yellow-100">YouTube content creator</span>
+          <span class="font-extrabold text-yellow-100">n8n</span>. As a
+          <span class="font-extrabold text-yellow-100"
+            >YouTube content creator</span
+          >
           at Let's Talk Dev, I share knowledge about software engineering and
           architecture.
         </p>
@@ -561,10 +562,12 @@ definePageMeta({
 
 // Enhanced SEO metadata for homepage
 useSeoMeta({
-  title: "Mihai Farcas - Software Architect, Agentic AI Expert & Content Creator",
+  title:
+    "Mihai Farcas - Software Architect, Agentic AI Expert & Content Creator",
   description:
     "Mihai Farcas is an experienced Software Architect specializing in Agentic AI, AI automations, and n8n consulting. YouTube content creator at Let's Talk Dev with expertise in enterprise architecture, software engineering, and AI-driven automation solutions.",
-  ogTitle: "Mihai Farcas - Software Architect, Agentic AI Expert & Content Creator",
+  ogTitle:
+    "Mihai Farcas - Software Architect, Agentic AI Expert & Content Creator",
   ogDescription:
     "Expert Software Architect specializing in Agentic AI, AI automations, n8n consulting. Content creator helping developers build scalable enterprise systems.",
   ogImage: "https://mihai.ltd/og-cover.jpg",
@@ -646,7 +649,11 @@ useHead({
             "@type": "Person",
             name: "Mihai Farcas",
           },
-          serviceType: ["Software Architecture Consulting", "AI Automation Solutions", "n8n Partner Services"],
+          serviceType: [
+            "Software Architecture Consulting",
+            "AI Automation Solutions",
+            "n8n Partner Services",
+          ],
           areaServed: "Worldwide",
         },
       ]),
