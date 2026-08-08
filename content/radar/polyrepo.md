@@ -1,18 +1,18 @@
 ---
-title: 'Polyrepo'
-description: 'Splitting services across multiple repositories, rejected in favor of a monorepo.'
-date: '2026-08-08'
-type: 'tech_report'
-tags: ['polyrepo', 'multi-repo', 'architecture', 'cicd']
+title: "Polyrepo"
+description: "Splitting services across multiple repositories, rejected in favor of a monorepo."
+date: "2026-08-08"
+type: "tech_report"
+tags: ["polyrepo", "multi-repo", "architecture", "cicd"]
 placements:
-  - category: 'techniques'
-    subCategory: 'architecture'
-stage: 'trial'
-decision: 'reject'
+  - category: "techniques"
+    subCategory: "architecture"
+stage: "trial"
+decision: "reject"
 evaluatedScore: 3
-decisionInFavorOf: 'monorepo'
-decisionReason: 'Splitting related services and UI across repositories turns a single feature into multiple coordinated PRs, and forces ordering releases across repositories. A monorepo avoids that overhead entirely, since independent deployment is a CI/CD concern, not a repository-boundary concern.'
-decidedDate: '2026-08-08'
+decisionInFavorOf: "monorepo"
+decisionReason: "Splitting related services and UI across repositories turns a single feature into multiple coordinated PRs, and forces ordering releases across repositories. A monorepo avoids that overhead entirely, since independent deployment is a CI/CD concern, not a repository-boundary concern."
+decidedDate: "2026-08-08"
 ---
 
 # Polyrepo

@@ -1,18 +1,18 @@
 ---
-title: 'npm'
-description: 'Default Node.js package manager, rejected in favor of pnpm.'
-date: '2026-08-08'
-type: 'tech_report'
-tags: ['npm', 'nodejs', 'packaging']
+title: "npm"
+description: "Default Node.js package manager, rejected in favor of pnpm."
+date: "2026-08-08"
+type: "tech_report"
+tags: ["npm", "nodejs", "packaging"]
 placements:
-  - category: 'tools'
-    subCategory: 'js_tooling'
-stage: 'trial'
-decision: 'reject'
+  - category: "tools"
+    subCategory: "js_tooling"
+stage: "trial"
+decision: "reject"
 evaluatedScore: 3
-decisionInFavorOf: 'pnpm'
-decisionReason: 'Rejected in favor of pnpm for Node and TypeScript projects. Never used as the primary package manager anymore.'
-decidedDate: '2026-08-08'
+decisionInFavorOf: "pnpm"
+decisionReason: "Rejected in favor of pnpm for Node and TypeScript projects. Never used as the primary package manager anymore."
+decidedDate: "2026-08-08"
 ---
 
 # npm

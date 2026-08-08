@@ -121,11 +121,15 @@
             "
             :style="
               selectedStatus === segment.status
-                ? { backgroundColor: segment.color + '26', borderColor: segment.color }
+                ? {
+                    backgroundColor: segment.color + '26',
+                    borderColor: segment.color,
+                  }
                 : {}
             "
             @click="
-              selectedStatus = selectedStatus === segment.status ? 'all' : segment.status
+              selectedStatus =
+                selectedStatus === segment.status ? 'all' : segment.status
             "
           >
             <span
@@ -135,7 +139,11 @@
             {{ segment.label }}
             <span
               class="font-semibold"
-              :class="selectedStatus === segment.status ? 'text-white' : 'text-gray-300'"
+              :class="
+                selectedStatus === segment.status
+                  ? 'text-white'
+                  : 'text-gray-300'
+              "
               >{{ segment.count }}</span
             >
           </button>
@@ -247,6 +255,12 @@ type RadarGroup = {
   children: RadarLeaf[];
 };
 
+// echarts' formatter callbacks type `param.data` as a generic union that
+// knows nothing about our custom leaf fields — narrow it explicitly here
+// instead of leaving `stage`/`decision` access as implicit `any`.
+const asRadarLeaf = (data: unknown): Partial<RadarLeaf> | undefined =>
+  data && typeof data === "object" ? (data as Partial<RadarLeaf>) : undefined;
+
 const { data: radarContent } = await useAsyncData("radar-items", () =>
   queryCollection("radar").all(),
 );
@@ -275,7 +289,10 @@ const itemsBySlug = computed(
   () => new Map(allItems.value.map((item) => [item.slug, item])),
 );
 
-const categoryMeta: Record<string, { label: string; color: string }> = {
+type CategoryKey =
+  "languages_and_frameworks" | "platforms" | "tools" | "techniques";
+
+const categoryMeta: Record<CategoryKey, { label: string; color: string }> = {
   languages_and_frameworks: {
     label: "Languages & Frameworks",
     color: "#3b82f6", // blue-500
@@ -284,7 +301,10 @@ const categoryMeta: Record<string, { label: string; color: string }> = {
   tools: { label: "Tools", color: "#f59e0b" }, // amber-500
   techniques: { label: "Techniques", color: "#10b981" }, // emerald-500
 };
-const categoryOrder = Object.keys(categoryMeta);
+// Object.keys always widens to string[], even for a Record with a literal
+// key union — the cast is safe here since categoryOrder is derived directly
+// from categoryMeta's own keys.
+const categoryOrder = Object.keys(categoryMeta) as CategoryKey[];
 
 const selectedStatus = ref<StatusKey | "all">("all");
 
@@ -292,7 +312,9 @@ const filteredItems = computed(() =>
   selectedStatus.value === "all"
     ? allItems.value
     : allItems.value.filter(
-        (item) => getEffectiveStatus(item.stage, item.decision) === selectedStatus.value,
+        (item) =>
+          getEffectiveStatus(item.stage, item.decision) ===
+          selectedStatus.value,
       ),
 );
 
@@ -302,7 +324,9 @@ const toLeaf = (item: RadarItem): RadarLeaf => ({
   // Border color is the at-a-glance adoption-status indicator,
   // independent of the fill color which encodes the top-level category.
   itemStyle: {
-    borderColor: getRadarStatusMeta(getEffectiveStatus(item.stage, item.decision)).color,
+    borderColor: getRadarStatusMeta(
+      getEffectiveStatus(item.stage, item.decision),
+    ).color,
     borderWidth: 3,
     // Rejected tech fades back instead of competing for attention
     // with what's actually adopted, trialing, or on hold.
@@ -364,26 +388,6 @@ const progressSegments = computed(() => {
     .filter((segment) => segment.count > 0);
 });
 
-interface RadarTooltipData {
-  slug?: string;
-  stage?: StageKey;
-  decision?: DecisionKey;
-  evaluatedScore?: number;
-  satisfaction?: number;
-  decisionReason?: string;
-  decisionInFavorOf?: string;
-  reviewTrigger?: string;
-  decidedDate?: string;
-  logoPath?: string;
-  link?: string;
-  target?: string;
-}
-
-interface RadarTooltipInfo {
-  name?: string;
-  data?: RadarTooltipData;
-}
-
 const scoreBarHtml = (score: number, color: string) => {
   const segments = Array.from({ length: 4 }, (_, i) => {
     const filled = i < score;
@@ -406,22 +410,30 @@ const formatDecidedDate = (date: string) =>
     year: "numeric",
   });
 
-const tooltipFormatter = (info: RadarTooltipInfo) => {
-  if (!info.data || !info.data.stage) return ""; // Only show for leaf nodes
+// echarts' tooltip formatter signature accepts a single param object or an
+// array of them (multi-series), typed far too loosely/broadly to line up
+// with our own data shape — accept `unknown` and narrow explicitly, same
+// approach as the label formatters below.
+const tooltipFormatter = (rawParams: unknown): string => {
+  const params = Array.isArray(rawParams) ? rawParams[0] : rawParams;
+  const name = (params as { name?: string } | undefined)?.name;
+  const leaf = asRadarLeaf((params as { data?: unknown } | undefined)?.data);
 
-  const effectiveStatus = getEffectiveStatus(info.data.stage, info.data.decision);
+  if (!leaf?.stage) return ""; // Only show for leaf nodes
+
+  const effectiveStatus = getEffectiveStatus(leaf.stage, leaf.decision);
   const meta = getRadarStatusMeta(effectiveStatus);
-  const stageLabel = getRadarStatusMeta(info.data.stage).label;
-  const score = Number(info.data.evaluatedScore) || 0;
-  const slug = info.data.slug;
+  const stageLabel = getRadarStatusMeta(leaf.stage).label;
+  const score = Number(leaf.evaluatedScore) || 0;
+  const slug = leaf.slug;
 
-  const logoImage = info.data.logoPath
-    ? `<img class="h-8 w-8 object-contain" src="${info.data.logoPath}"/>`
+  const logoImage = leaf.logoPath
+    ? `<img class="h-8 w-8 object-contain" src="${leaf.logoPath}"/>`
     : "";
 
-  const externalLink = info.data.link
+  const externalLink = leaf.link
     ? `
-      <a href="${info.data.link}" target="${info.data.target ?? "_blank"}" rel="noopener noreferrer" class="mt-2 flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors">
+      <a href="${leaf.link}" target="${leaf.target ?? "_blank"}" rel="noopener noreferrer" class="mt-2 flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
         </svg>
@@ -433,8 +445,8 @@ const tooltipFormatter = (info: RadarTooltipInfo) => {
     ? `<a class="mt-1 text-sm text-blue-400 hover:text-blue-300 underline decoration-wavy underline-offset-4 transition-colors" href="/blog/${slug}">Read Tech Report</a>`
     : "";
 
-  const favorOfTarget = info.data.decisionInFavorOf
-    ? itemsBySlug.value.get(info.data.decisionInFavorOf)
+  const favorOfTarget = leaf.decisionInFavorOf
+    ? itemsBySlug.value.get(leaf.decisionInFavorOf)
     : undefined;
   const favorOfRow = favorOfTarget
     ? `
@@ -445,40 +457,40 @@ const tooltipFormatter = (info: RadarTooltipInfo) => {
     : "";
 
   const reviewTriggerRow =
-    info.data.decision === "hold" && info.data.reviewTrigger
+    leaf.decision === "hold" && leaf.reviewTrigger
       ? `
       <div>
         <span class="text-gray-400">Revisit when:</span>
-        <p class="mt-0.5 line-clamp-2 font-medium text-white">${info.data.reviewTrigger}</p>
+        <p class="mt-0.5 line-clamp-2 font-medium text-white">${leaf.reviewTrigger}</p>
       </div>`
       : "";
 
   const satisfactionRow =
-    info.data.satisfaction != null
+    leaf.satisfaction != null
       ? `
       <div class="flex items-center justify-between gap-4">
         <span class="text-gray-400">Satisfaction:</span>
         <div class="flex items-center gap-2">
-          ${satisfactionStarsHtml(info.data.satisfaction)}
-          <span class="text-xs font-medium text-white">${info.data.satisfaction}/5</span>
+          ${satisfactionStarsHtml(leaf.satisfaction)}
+          <span class="text-xs font-medium text-white">${leaf.satisfaction}/5</span>
         </div>
       </div>`
       : "";
 
-  const decisionReasonParagraph = info.data.decisionReason
-    ? `<p class="line-clamp-3 text-xs italic leading-relaxed text-gray-400">&ldquo;${info.data.decisionReason}&rdquo;</p>`
+  const decisionReasonParagraph = leaf.decisionReason
+    ? `<p class="line-clamp-3 text-xs italic leading-relaxed text-gray-400">&ldquo;${leaf.decisionReason}&rdquo;</p>`
     : "";
 
   const decidedCaption =
-    info.data.decision && info.data.decidedDate
-      ? `<span class="ml-1.5 text-[10px] font-normal normal-case text-gray-500">· ${formatDecidedDate(info.data.decidedDate)}</span>`
+    leaf.decision && leaf.decidedDate
+      ? `<span class="ml-1.5 text-[10px] font-normal normal-case text-gray-500">· ${formatDecidedDate(leaf.decidedDate)}</span>`
       : "";
 
   return `
     <div class="bg-slate-900/90 p-4 rounded-lg border border-slate-700 shadow-xl backdrop-blur-md w-80 max-w-full break-words">
       <div class="flex items-center gap-3 mb-2">
         ${logoImage}
-        <span class="font-bold text-lg text-white">${info.name}</span>
+        <span class="font-bold text-lg text-white">${name}</span>
       </div>
       <div class="space-y-2 text-sm text-gray-300">
         <div class="flex items-center justify-between gap-4">
@@ -520,7 +532,8 @@ const treemapOption = computed<EChartsOption>(() => ({
     // forces a horizontal scrollbar on the whole page.
     confine: true,
     transitionDuration: 0.2,
-    extraCssText: "width: 320px; max-width: 85vw; white-space: normal; overflow: hidden;",
+    extraCssText:
+      "width: 320px; max-width: 85vw; white-space: normal; overflow: hidden;",
     formatter: tooltipFormatter,
   },
   series: [
@@ -538,7 +551,7 @@ const treemapOption = computed<EChartsOption>(() => ({
       label: {
         show: true,
         formatter: (param) => {
-          const isRejected = param.data?.decision === "reject";
+          const isRejected = asRadarLeaf(param.data)?.decision === "reject";
           return `${isRejected ? "⊘ " : ""}${param.name}`;
         },
         color: "#fff",
@@ -623,7 +636,8 @@ const sunburstOption = computed<EChartsOption>(() => ({
     // forces a horizontal scrollbar on the whole page.
     confine: true,
     transitionDuration: 0.2,
-    extraCssText: "width: 320px; max-width: 85vw; white-space: normal; overflow: hidden;",
+    extraCssText:
+      "width: 320px; max-width: 85vw; white-space: normal; overflow: hidden;",
     formatter: tooltipFormatter,
   },
   series: [
@@ -646,7 +660,12 @@ const sunburstOption = computed<EChartsOption>(() => ({
         color: "#fff",
         fontSize: 10,
         formatter: (param) => {
-          const isRejected = param.data?.decision === "reject";
+          // Only leaf nodes (individual technologies) carry a `stage` —
+          // category and subcategory rings should always show their full
+          // name, they have plenty of arc length for it.
+          const leaf = asRadarLeaf(param.data);
+          if (leaf?.stage == null) return param.name;
+          const isRejected = leaf.decision === "reject";
           const label = `${isRejected ? "⊘ " : ""}${param.name}`;
           return label.length > 10 ? label.slice(0, 10) + "..." : label;
         },

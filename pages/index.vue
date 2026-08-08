@@ -456,12 +456,12 @@
       <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         <div
           v-for="book in topBooks"
-          :key="book.title"
+          :key="book.path"
           class="group flex items-center justify-center rounded-xl border border-white/5 bg-black/30 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-white/5 hover:shadow-xl hover:shadow-blue-900/20"
         >
           <NuxtImg
             class="w-36 transition-transform duration-500 group-hover:rotate-2 group-hover:scale-105"
-            :src="book.cover"
+            :src="book.cover_image"
             :alt="`${book.title} by ${book.author} cover image`"
             width="144"
             height="216"
@@ -474,11 +474,11 @@
             <p class="pt-4 text-gray-400">{{ book.author }}</p>
 
             <p class="line-clamp-5 text-balance pt-4 text-yellow-100">
-              {{ book.summary }}
+              {{ book.description }}
             </p>
 
             <NuxtLink
-              to="/books"
+              :to="`/blog/${book.path?.split('/').pop()}`"
               class="inline-block pt-2 text-lg text-blue-300 underline decoration-wavy underline-offset-4 transition-all duration-300 hover:text-blue-500 hover:decoration-blue-500"
             >
               Summary
@@ -489,7 +489,7 @@
           class="group flex min-h-52 items-center justify-center rounded-xl border border-white/5 bg-black/30 p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white/5 hover:shadow-xl hover:shadow-blue-900/20"
         >
           <NuxtLink
-            to="/books"
+            to="/blog?type=book_summary"
             class="text-3xl text-yellow-100 underline decoration-wavy underline-offset-4 transition-all duration-300 hover:text-blue-500 hover:decoration-blue-500"
           >
             Check out more books...
@@ -740,34 +740,41 @@ const clients = [
   },
 ];
 
-const topBooks = [
-  {
-    title: "Becoming a Technical Leader",
-    cover: "/images/becoming-a-technical-leader.webp",
-    author: "Gerald M. Weinberg",
-    summary:
-      "This book is a must-read for anyone who wants to become a technical leader. It's full of practical advice and real-world examples that will help you become a better leader.",
-  },
-  {
-    title: "Barking Up the Wrong Tree",
-    cover: "/images/barking-up-the-wrong-tree.webp",
-    author: "Eric Barker",
-    summary:
-      "A thought-provoking book that challenges conventional wisdom about success. Rather than offering cookie-cutter advice, Barker delves into the surprising science behind achievement.",
-  },
-  {
-    title: "Building Evolutionary Architectures",
-    cover: "/images/building-evolutionary-architectures.webp",
-    author: "Neal Ford, Rebecca Parsons, Patrick Kua",
-    summary:
-      "This book provides a fresh perspective on software architecture. It's a must-read for anyone who wants to build systems that can evolve and adapt to changing requirements.",
-  },
-  {
-    title: "Psychology of Money",
-    cover: "/images/the-psychology-of-money.webp",
-    author: "Morgan Housel",
-    summary:
-      "A fascinating exploration of the complex relationship between money and human behavior. Housel's insights will change the way you think about wealth and financial decision-making.",
-  },
+// Curated for the homepage — content/books/*.md is the source of truth for
+// each book's actual title/author/cover/summary, this list just controls
+// which ones appear here and in what order (newest read first).
+const featuredBookSlugs = [
+  "verb-your-enthusiasm",
+  "becoming-a-technical-leader",
+  "barking-up-the-wrong-tree",
+  "building-evolutionary-architectures",
+  "the-psychology-of-money",
 ];
+
+type FeaturedBook = {
+  path?: string;
+  title?: string;
+  author?: string;
+  cover_image?: string;
+  description?: string;
+};
+
+const { data: topBooks } = await useAsyncData("home-top-books", async () => {
+  const books = (await queryCollection(
+    "books",
+  ).all()) as unknown as FeaturedBook[];
+  const bySlug = new Map(
+    books.map(
+      (book) =>
+        [book.path?.split("/").pop(), book] as [
+          string | undefined,
+          FeaturedBook,
+        ],
+    ),
+  );
+
+  return featuredBookSlugs
+    .map((slug) => bySlug.get(slug))
+    .filter((book): book is FeaturedBook => book != null);
+});
 </script>

@@ -78,10 +78,13 @@ const defaultRadarStatusMeta: StatusMeta = {
   ring: "ring-slate-500/30",
 };
 
-const isStatusKey = (value: string): value is StatusKey => value in radarStatusMeta;
+const isStatusKey = (value: string): value is StatusKey =>
+  value in radarStatusMeta;
 
 export const getRadarStatusMeta = (status?: string): StatusMeta =>
-  status && isStatusKey(status) ? radarStatusMeta[status] : defaultRadarStatusMeta;
+  status && isStatusKey(status)
+    ? radarStatusMeta[status]
+    : defaultRadarStatusMeta;
 
 export const useRadarStatus = () => ({
   radarStatusOrder,

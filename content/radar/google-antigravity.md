@@ -1,15 +1,15 @@
 ---
-title: 'Google Antigravity'
-description: 'Agentic AI coding platform from Google, currently in trial.'
-date: '2026-08-08'
-type: 'tech_report'
-tags: ['ai', 'google', 'developer-tools']
+title: "Google Antigravity"
+description: "Agentic AI coding platform from Google, currently in trial."
+date: "2026-08-08"
+type: "tech_report"
+tags: ["ai", "google", "developer-tools"]
 placements:
-  - category: 'tools'
-    subCategory: 'ai_assistants'
-  - category: 'tools'
-    subCategory: 'development'
-stage: 'trial'
+  - category: "tools"
+    subCategory: "ai_assistants"
+  - category: "tools"
+    subCategory: "development"
+stage: "trial"
 evaluatedScore: 2
 ---
 

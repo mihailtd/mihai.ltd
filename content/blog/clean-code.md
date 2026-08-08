@@ -1,10 +1,10 @@
 ---
-title: 'Clean Code: A Handbook of Agile Software Craftsmanship'
-description: 'Summary and key takeaways from the classic book by Robert C. Martin.'
-date: '2023-11-15'
-type: 'book_summary'
-tags: ['books', 'clean-code', 'software-engineering']
-cover_image: 'https://placehold.co/600x400?text=Clean+Code'
+title: "Clean Code: A Handbook of Agile Software Craftsmanship"
+description: "Summary and key takeaways from the classic book by Robert C. Martin."
+date: "2023-11-15"
+type: "book_summary"
+tags: ["books", "clean-code", "software-engineering"]
+cover_image: "https://placehold.co/600x400?text=Clean+Code"
 ---
 
 # Clean Code Summary

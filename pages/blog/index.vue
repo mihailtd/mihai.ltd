@@ -136,10 +136,14 @@
                 <span
                   class="h-1.5 w-1.5 rounded-full"
                   :style="{
-                    backgroundColor: getRadarStatusMeta(article.decision ?? article.stage).color,
+                    backgroundColor: getRadarStatusMeta(
+                      article.decision ?? article.stage,
+                    ).color,
                   }"
                 />
-                {{ getRadarStatusMeta(article.decision ?? article.stage).label }}
+                {{
+                  getRadarStatusMeta(article.decision ?? article.stage).label
+                }}
               </span>
             </div>
           </div>
@@ -200,11 +204,15 @@ const router = useRouter();
 
 // Filter States
 type ContentItem = {
+  title?: string;
+  description?: string;
+  path?: string;
+  cover_image?: string;
+  type?: string;
   date?: string;
   tags?: string[];
   stage?: string;
   decision?: string;
-  [key: string]: unknown;
 };
 
 const contentTypes = [
@@ -214,12 +222,22 @@ const contentTypes = [
   { label: "Tech Reports", value: "tech_report" },
 ];
 
-const selectedType = ref("all");
+// Both filters live in the URL (?type=&topic=) so links like the homepage's
+// "Check out more books..." can deep-link straight into a pre-filtered view.
+const selectedType = computed(
+  () => (route.query.type as string | undefined) ?? "all",
+);
 const selectedTopic = computed(() => route.query.topic as string | undefined);
 
 // Handle Type Filter Click
 const setTypeFilter = (type: string) => {
-  selectedType.value = type;
+  const query = { ...route.query };
+  if (type === "all") {
+    delete query.type;
+  } else {
+    query.type = type;
+  }
+  router.push({ query });
 };
 
 const clearTopic = () => {
@@ -229,41 +247,52 @@ const clearTopic = () => {
 };
 
 const resetFilters = () => {
-  selectedType.value = "all";
-  clearTopic();
+  router.push({ query: {} });
 };
 
 // Data Fetching
+// `/blog` is prerendered with no query string, so its baked-in payload for
+// key "articles" always reflects the unfiltered list. Folding the filter
+// state into the key means a request that actually has ?type=/?topic= is a
+// cache miss against that payload and correctly triggers a real client-side
+// fetch instead of silently reusing the unfiltered snapshot.
 const { data: articles, pending } = await useAsyncData(
-  "articles",
+  `articles-${selectedType.value}-${selectedTopic.value ?? ""}`,
   async () => {
     let blogPosts: ContentItem[] = [];
     let bookSummaries: ContentItem[] = [];
     let techReports: ContentItem[] = [];
 
     if (selectedType.value === "all" || selectedType.value === "blog_post") {
-      blogPosts = (await queryCollection("blog").all()) as ContentItem[];
+      blogPosts = (await queryCollection(
+        "blog",
+      ).all()) as unknown as ContentItem[];
     }
     if (selectedType.value === "all" || selectedType.value === "book_summary") {
-      bookSummaries = (await queryCollection("books").all()) as ContentItem[];
+      bookSummaries = (await queryCollection(
+        "books",
+      ).all()) as unknown as ContentItem[];
     }
     if (selectedType.value === "all" || selectedType.value === "tech_report") {
-      techReports = (await queryCollection("radar").all()) as ContentItem[];
+      techReports = (await queryCollection(
+        "radar",
+      ).all()) as unknown as ContentItem[];
     }
 
     let allContent = [...blogPosts, ...bookSummaries, ...techReports];
 
     // Filter by topic
-    if (selectedTopic.value) {
+    const topic = selectedTopic.value;
+    if (topic) {
       allContent = allContent.filter((article) =>
-        article.tags?.includes(selectedTopic.value),
+        article.tags?.includes(topic),
       );
     }
 
     // Sort by date
     allContent.sort((a, b) => {
-      const dateA = new Date(a.date).getTime();
-      const dateB = new Date(b.date).getTime();
+      const dateA = a.date ? new Date(a.date).getTime() : 0;
+      const dateB = b.date ? new Date(b.date).getTime() : 0;
       return dateB - dateA;
     });
 
@@ -275,13 +304,14 @@ const { data: articles, pending } = await useAsyncData(
 );
 
 // Helpers
-const formatType = (type: string) => {
+const formatType = (type?: string) => {
   if (type === "book_summary") return "Book Summary";
   if (type === "tech_report") return "Tech Report";
   return "Blog Post";
 };
 
-const formatDate = (date: string) => {
+const formatDate = (date?: string) => {
+  if (!date) return "";
   return new Date(date).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",

@@ -1,17 +1,17 @@
 ---
-title: 'Vue.js'
-description: 'Primary front-end framework for client and personal projects.'
-date: '2025-01-10'
-type: 'tech_report'
-tags: ['vue', 'frontend', 'javascript']
+title: "Vue.js"
+description: "Primary front-end framework for client and personal projects."
+date: "2025-01-10"
+type: "tech_report"
+tags: ["vue", "frontend", "javascript"]
 placements:
-  - category: 'languages_and_frameworks'
-    subCategory: 'front_end'
-stage: 'trial'
-decision: 'adopt'
+  - category: "languages_and_frameworks"
+    subCategory: "front_end"
+stage: "trial"
+decision: "adopt"
 evaluatedScore: 4
-link: 'https://vuejs.org/'
-target: '_blank'
+link: "https://vuejs.org/"
+target: "_blank"
 ---
 
 # Vue.js

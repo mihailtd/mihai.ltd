@@ -1,17 +1,17 @@
 ---
-title: 'Rancher Desktop'
-description: 'Local Kubernetes and container runtime for development, adopted in favor of Docker Desktop.'
-date: '2026-08-08'
-type: 'tech_report'
-tags: ['rancher', 'kubernetes', 'development', 'containers']
+title: "Rancher Desktop"
+description: "Local Kubernetes and container runtime for development, adopted in favor of Docker Desktop."
+date: "2026-08-08"
+type: "tech_report"
+tags: ["rancher", "kubernetes", "development", "containers"]
 placements:
-  - category: 'tools'
-    subCategory: 'development'
-stage: 'trial'
-decision: 'adopt'
+  - category: "tools"
+    subCategory: "development"
+stage: "trial"
+decision: "adopt"
 evaluatedScore: 4
-decisionReason: 'Adopted in favor of Docker Desktop. Rock solid and simple, with no update-related breakage or need to nuke and rebuild the local environment. It also focuses primarily on Kubernetes, which matters since Kubernetes is already an adopted technology here.'
-decidedDate: '2026-08-08'
+decisionReason: "Adopted in favor of Docker Desktop. Rock solid and simple, with no update-related breakage or need to nuke and rebuild the local environment. It also focuses primarily on Kubernetes, which matters since Kubernetes is already an adopted technology here."
+decidedDate: "2026-08-08"
 ---
 
 # Rancher Desktop

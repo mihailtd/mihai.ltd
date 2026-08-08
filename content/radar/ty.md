@@ -1,16 +1,16 @@
 ---
-title: 'ty'
-description: 'Fast Python type checker from Astral, currently in trial and close to adoption.'
-date: '2026-08-08'
-type: 'tech_report'
-tags: ['ty', 'python', 'typechecking', 'astral']
+title: "ty"
+description: "Fast Python type checker from Astral, currently in trial and close to adoption."
+date: "2026-08-08"
+type: "tech_report"
+tags: ["ty", "python", "typechecking", "astral"]
 placements:
-  - category: 'tools'
-    subCategory: 'python_tooling'
-stage: 'trial'
+  - category: "tools"
+    subCategory: "python_tooling"
+stage: "trial"
 evaluatedScore: 3
-link: 'https://docs.astral.sh/ty/'
-target: '_blank'
+link: "https://docs.astral.sh/ty/"
+target: "_blank"
 ---
 
 # ty

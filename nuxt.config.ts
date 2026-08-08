@@ -1,7 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
-const isDev =
-  (process as { env: { NODE_ENV?: string } }).env.NODE_ENV !== "production";
+const isDev = process.env.NODE_ENV !== "production";
 
 export default defineNuxtConfig({
   compatibilityDate: "2026-08-08",

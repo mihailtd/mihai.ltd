@@ -1,17 +1,17 @@
 ---
-title: 'Docker Compose'
-description: 'Low-complexity local development setup, adopted for simple multi-container workflows.'
-date: '2026-08-08'
-type: 'tech_report'
-tags: ['docker', 'compose', 'development']
+title: "Docker Compose"
+description: "Low-complexity local development setup, adopted for simple multi-container workflows."
+date: "2026-08-08"
+type: "tech_report"
+tags: ["docker", "compose", "development"]
 placements:
-  - category: 'tools'
-    subCategory: 'development'
-stage: 'trial'
-decision: 'adopt'
+  - category: "tools"
+    subCategory: "development"
+stage: "trial"
+decision: "adopt"
 evaluatedScore: 4
-decisionReason: 'Adopted as the low-complexity entry point for local development: fast to set up for simple multi-container workflows, without reaching for a full local Kubernetes toolkit.'
-decidedDate: '2026-08-08'
+decisionReason: "Adopted as the low-complexity entry point for local development: fast to set up for simple multi-container workflows, without reaching for a full local Kubernetes toolkit."
+decidedDate: "2026-08-08"
 ---
 
 # Docker Compose

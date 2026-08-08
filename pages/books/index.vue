@@ -1,7 +1,10 @@
 <template>
   <section class="px-5 py-12 text-yellow-100">
     <h1 class="text-4xl md:text-5xl">Books That Inspired Me</h1>
-    <p class="pt-6 text-gray-300">Curated books on software architecture, leadership, and and other topics that influence my work and my life. Notes and summaries coming soon.</p>
+    <p class="pt-6 text-gray-300">
+      Curated books on software architecture, leadership, and and other topics
+      that influence my work and my life. Notes and summaries coming soon.
+    </p>
   </section>
 </template>
 

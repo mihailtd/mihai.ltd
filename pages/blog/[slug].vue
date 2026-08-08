@@ -88,7 +88,9 @@
                   getRadarStatusMeta(article.decision ?? article.stage).ring,
                 ]"
               >
-                {{ getRadarStatusMeta(article.decision ?? article.stage).label }}
+                {{
+                  getRadarStatusMeta(article.decision ?? article.stage).label
+                }}
               </span>
               <span
                 v-if="article.decision && article.decidedDate"
@@ -110,7 +112,9 @@
                     v-for="i in 4"
                     :key="i"
                     class="h-1.5 flex-1 rounded-full"
-                    :class="i > (article.evaluatedScore || 0) ? 'bg-white/10' : ''"
+                    :class="
+                      i > (article.evaluatedScore || 0) ? 'bg-white/10' : ''
+                    "
                     :style="
                       i <= (article.evaluatedScore || 0)
                         ? {
@@ -237,6 +241,21 @@ const route = useRoute();
 // Get the current path without the trailing slash if present
 // Path construction handled inside useAsyncData based on collection
 
+// The blog/books collections don't declare these — only radar (tech_report)
+// entries have them. Intersecting (rather than replacing the real collection
+// type) keeps `article` fully compatible with ContentRenderer below, while
+// letting the template read the radar-specific fields on any branch.
+type RadarFields = {
+  stage?: string;
+  decision?: string;
+  decisionReason?: string;
+  decisionInFavorOf?: string;
+  reviewTrigger?: string;
+  decidedDate?: string;
+  evaluatedScore?: number;
+  satisfaction?: number;
+};
+
 const { data: article } = await useAsyncData(
   `blog-${route.params.slug}`,
   async () => {
@@ -245,7 +264,7 @@ const { data: article } = await useAsyncData(
       const blogPost = await queryCollection("blog")
         .path(`/blog/${slug}`)
         .first();
-      if (blogPost) return blogPost;
+      if (blogPost) return blogPost as typeof blogPost & RadarFields;
     } catch {
       // Ignore error if not found in blog
     }
@@ -254,7 +273,7 @@ const { data: article } = await useAsyncData(
       const bookSummary = await queryCollection("books")
         .path(`/books/${slug}`)
         .first();
-      if (bookSummary) return bookSummary;
+      if (bookSummary) return bookSummary as typeof bookSummary & RadarFields;
     } catch {
       // Ignore error if not found in books
     }
@@ -263,7 +282,7 @@ const { data: article } = await useAsyncData(
       const techReport = await queryCollection("radar")
         .path(`/radar/${slug}`)
         .first();
-      if (techReport) return techReport;
+      if (techReport) return techReport as typeof techReport & RadarFields;
     } catch {
       // Ignore error if not found in radar
     }
@@ -277,10 +296,12 @@ const { data: article } = await useAsyncData(
 const { data: favorOfTarget } = await useAsyncData(
   `blog-${route.params.slug}-favor-of`,
   async () => {
-    const targetSlug = article.value?.decisionInFavorOf as string | undefined;
+    const targetSlug = article.value?.decisionInFavorOf;
     if (!targetSlug) return null;
     try {
-      return await queryCollection("radar").path(`/radar/${targetSlug}`).first();
+      return await queryCollection("radar")
+        .path(`/radar/${targetSlug}`)
+        .first();
     } catch {
       return null;
     }
@@ -288,13 +309,14 @@ const { data: favorOfTarget } = await useAsyncData(
   { watch: [article] },
 );
 
-const formatType = (type: string) => {
+const formatType = (type?: string) => {
   if (type === "book_summary") return "Book Summary";
   if (type === "tech_report") return "Tech Report";
   return "Blog Post";
 };
 
-const formatDate = (date: string) => {
+const formatDate = (date?: string) => {
+  if (!date) return "";
   return new Date(date).toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",

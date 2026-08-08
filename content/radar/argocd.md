@@ -1,18 +1,18 @@
 ---
-title: 'ArgoCD'
-description: 'GitOps continuous delivery tool for Kubernetes, adopted over Flux.'
-date: '2026-08-08'
-type: 'tech_report'
-tags: ['argocd', 'gitops', 'kubernetes', 'cicd']
+title: "ArgoCD"
+description: "GitOps continuous delivery tool for Kubernetes, adopted over Flux."
+date: "2026-08-08"
+type: "tech_report"
+tags: ["argocd", "gitops", "kubernetes", "cicd"]
 placements:
-  - category: 'tools'
-    subCategory: 'CI/CD'
-stage: 'trial'
-decision: 'adopt'
+  - category: "tools"
+    subCategory: "CI/CD"
+stage: "trial"
+decision: "adopt"
 evaluatedScore: 4
 satisfaction: 5
-decisionReason: 'Adopted over Flux for GitOps delivery to Kubernetes. Full confidence after extended use, no reservations.'
-decidedDate: '2026-08-08'
+decisionReason: "Adopted over Flux for GitOps delivery to Kubernetes. Full confidence after extended use, no reservations."
+decidedDate: "2026-08-08"
 ---
 
 # ArgoCD

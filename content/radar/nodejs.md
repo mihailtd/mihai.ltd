@@ -1,17 +1,17 @@
 ---
-title: 'NodeJS'
-description: 'Default back-end JavaScript/TypeScript runtime.'
-date: '2025-01-10'
-type: 'tech_report'
-tags: ['nodejs', 'javascript', 'backend']
+title: "NodeJS"
+description: "Default back-end JavaScript/TypeScript runtime."
+date: "2025-01-10"
+type: "tech_report"
+tags: ["nodejs", "javascript", "backend"]
 placements:
-  - category: 'languages_and_frameworks'
-    subCategory: 'back_end'
-stage: 'trial'
-decision: 'adopt'
+  - category: "languages_and_frameworks"
+    subCategory: "back_end"
+stage: "trial"
+decision: "adopt"
 evaluatedScore: 4
-link: 'https://nodejs.org/'
-target: '_blank'
+link: "https://nodejs.org/"
+target: "_blank"
 ---
 
 # NodeJS

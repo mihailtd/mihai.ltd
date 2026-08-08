@@ -1,13 +1,13 @@
 ---
-title: 'Next.js'
-description: 'React meta-framework, currently in trial.'
-date: '2026-08-08'
-type: 'tech_report'
-tags: ['nextjs', 'react', 'frontend']
+title: "Next.js"
+description: "React meta-framework, currently in trial."
+date: "2026-08-08"
+type: "tech_report"
+tags: ["nextjs", "react", "frontend"]
 placements:
-  - category: 'languages_and_frameworks'
-    subCategory: 'front_end'
-stage: 'trial'
+  - category: "languages_and_frameworks"
+    subCategory: "front_end"
+stage: "trial"
 evaluatedScore: 2
 ---
 

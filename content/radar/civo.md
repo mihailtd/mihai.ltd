@@ -1,13 +1,13 @@
 ---
-title: 'Civo'
-description: 'Developer-friendly, lower-cost managed Kubernetes cloud provider.'
-date: '2025-01-10'
-type: 'tech_report'
-tags: ['civo', 'cloud', 'kubernetes']
+title: "Civo"
+description: "Developer-friendly, lower-cost managed Kubernetes cloud provider."
+date: "2025-01-10"
+type: "tech_report"
+tags: ["civo", "cloud", "kubernetes"]
 placements:
-  - category: 'platforms'
-    subCategory: 'cloud'
-stage: 'trial'
+  - category: "platforms"
+    subCategory: "cloud"
+stage: "trial"
 evaluatedScore: 0
 ---
 
