@@ -224,12 +224,12 @@
       <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         <div
           v-for="book in topBooks"
-          :key="book.path"
+          :key="book.slug"
           class="group flex items-center justify-center rounded-xl border border-white/5 bg-black/30 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-white/5 hover:shadow-xl hover:shadow-blue-900/20"
         >
           <NuxtImg
             class="w-36 transition-transform duration-500 group-hover:rotate-2 group-hover:scale-105"
-            :src="book.cover_image"
+            :src="book.cover"
             :alt="`${book.title} by ${book.author} cover image`"
             width="144"
             height="216"
@@ -242,11 +242,11 @@
             <p class="pt-4 text-gray-400">{{ book.author }}</p>
 
             <p class="line-clamp-5 text-balance pt-4 text-yellow-100">
-              {{ book.description }}
+              {{ book.summary }}
             </p>
 
             <NuxtLink
-              :to="`/blog/${book.path?.split('/').pop()}`"
+              :to="`/blog/${book.slug}`"
               class="inline-block pt-2 text-lg text-blue-300 underline decoration-wavy underline-offset-4 transition-all duration-300 hover:text-blue-500 hover:decoration-blue-500"
             >
               Summary
@@ -587,41 +587,52 @@ const clients = [
   },
 ];
 
-// Curated for the homepage — content/books/*.md is the source of truth for
-// each book's actual title/author/cover/summary, this list just controls
-// which ones appear here and in what order (newest read first).
-const featuredBookSlugs = [
-  "verb-your-enthusiasm",
-  "becoming-a-technical-leader",
-  "barking-up-the-wrong-tree",
-  "building-evolutionary-architectures",
-  "the-psychology-of-money",
+// Hardcoded rather than pulled from queryCollection at request time: Nuxt
+// Content's runtime database sync is flaky enough (in dev, and worse on
+// Cloudflare Workers without a D1 binding) that it's not worth the homepage
+// depending on it. `slug` still points at the real content/books/<slug>.md
+// report for "Summary" — only the card's display copy is duplicated here.
+// If a book's blurb changes, update it in both places.
+const topBooks = [
+  {
+    slug: "verb-your-enthusiasm",
+    title: "Verb Your Enthusiasm",
+    cover: "/images/book_covers/verb-your-enthusiasm-cover.jpg",
+    author: "Sarah L. Kaufman",
+    summary:
+      "Sarah L. Kaufman's guide to writing with sharper, more intentional verbs — and why they're the real engine of good prose.",
+  },
+  {
+    slug: "becoming-a-technical-leader",
+    title: "Becoming a Technical Leader",
+    cover: "/images/book_covers/becoming-a-technical-leader.webp",
+    author: "Gerald M. Weinberg",
+    summary:
+      "This book is a must-read for anyone who wants to become a technical leader. It's full of practical advice and real-world examples that will help you become a better leader.",
+  },
+  {
+    slug: "barking-up-the-wrong-tree",
+    title: "Barking Up the Wrong Tree",
+    cover: "/images/book_covers/barking-up-the-wrong-tree.webp",
+    author: "Eric Barker",
+    summary:
+      "A thought-provoking book that challenges conventional wisdom about success. Rather than offering cookie-cutter advice, Barker delves into the surprising science behind achievement.",
+  },
+  {
+    slug: "building-evolutionary-architectures",
+    title: "Building Evolutionary Architectures",
+    cover: "/images/book_covers/building-evolutionary-architectures.webp",
+    author: "Neal Ford, Rebecca Parsons, Patrick Kua",
+    summary:
+      "This book provides a fresh perspective on software architecture. It's a must-read for anyone who wants to build systems that can evolve and adapt to changing requirements.",
+  },
+  {
+    slug: "the-psychology-of-money",
+    title: "Psychology of Money",
+    cover: "/images/book_covers/the-psychology-of-money.webp",
+    author: "Morgan Housel",
+    summary:
+      "A fascinating exploration of the complex relationship between money and human behavior. Housel's insights will change the way you think about wealth and financial decision-making.",
+  },
 ];
-
-type FeaturedBook = {
-  path?: string;
-  title?: string;
-  author?: string;
-  cover_image?: string;
-  description?: string;
-};
-
-const { data: topBooks } = await useAsyncData("home-top-books", async () => {
-  const books = (await queryCollection(
-    "books",
-  ).all()) as unknown as FeaturedBook[];
-  const bySlug = new Map(
-    books.map(
-      (book) =>
-        [book.path?.split("/").pop(), book] as [
-          string | undefined,
-          FeaturedBook,
-        ],
-    ),
-  );
-
-  return featuredBookSlugs
-    .map((slug) => bySlug.get(slug))
-    .filter((book): book is FeaturedBook => book != null);
-});
 </script>
