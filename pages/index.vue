@@ -170,275 +170,43 @@
       >
         Technical skills
       </h2>
-      <div class="grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         <div
+          v-for="group in skillGroups"
+          :key="group.title"
           class="rounded-xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:border-yellow-100/30 hover:bg-white/10 hover:shadow-lg hover:shadow-yellow-900/10"
         >
-          <div class="flex h-fit flex-row pb-6">
+          <div class="flex h-fit flex-row items-center pb-6">
             <NuxtImg
               class="w-8"
-              src="/images/programming-monitor-svgrepo-com.svg"
-              alt="Programming monitor icon"
+              :src="group.icon"
+              :alt="`${group.title} icon`"
               width="32"
               height="32"
             />
             <h3
               class="text-balance pl-6 text-xl font-extrabold text-yellow-100"
             >
-              Languages and Frameworks
+              {{ group.title }}
             </h3>
           </div>
-          <div class="grid grid-cols-4 gap-2">
-            <div class="group/icon flex flex-col items-center px-3 text-white">
-              <NuxtImg
-                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
-                src="/images/javascript-svgrepo-com.svg"
-                alt="JavaScript Logo"
-                width="48"
-                height="48"
-              />
-              <span>JavaScript</span>
-            </div>
-            <div class="group/icon flex flex-col items-center px-3 text-white">
-              <NuxtImg
-                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
-                src="/images/typescript-official-svgrepo-com.svg"
-                alt="TypeScript Logo"
-                width="48"
-                height="48"
-              />
-              <span>TypeScript</span>
-            </div>
-            <div class="group/icon flex flex-col items-center px-3 text-white">
-              <NuxtImg
-                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
-                src="/images/nodejs-icon-svgrepo-com.svg"
-                alt="NodeJS Logo"
-                width="48"
-                height="48"
-              />
-              <span>NodeJS</span>
-            </div>
-            <div class="group/icon flex flex-col items-center px-3 text-white">
-              <NuxtImg
-                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
-                src="/images/bun-logo.svg"
-                alt="Bun Logo"
-                width="48"
-                height="48"
-              />
-              <span>Bun</span>
-            </div>
-            <div class="group/icon flex flex-col items-center px-3 text-white">
-              <NuxtImg
-                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
-                src="/images/vue-9-logo-svgrepo-com.svg"
-                alt="VueJS Logo"
-                width="48"
-                height="48"
-              />
-              <span>VueJS</span>
-            </div>
-            <div class="group/icon flex flex-col items-center px-3 text-white">
-              <NuxtImg
-                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
-                src="/images/nuxt-svgrepo-com.svg"
-                alt="Nuxt Logo"
-                width="48"
-                height="48"
-              />
-              <span>Nuxt</span>
-            </div>
-            <div class="group/icon flex flex-col items-center px-3 text-white">
-              <NuxtImg
-                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
-                src="/images/graphql-svgrepo-com.svg"
-                alt="GraphQL Logo"
-                width="48"
-                height="48"
-              />
-              <span>GraphQL</span>
-            </div>
-            <div class="group/icon flex flex-col items-center px-3 text-white">
-              <NuxtImg
-                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
-                src="/images/swagger-svgrepo-com.svg"
-                alt="OpenAPI Logo"
-                width="48"
-                height="48"
-              />
-              <span>OpenAPI</span>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="rounded-xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:border-yellow-100/30 hover:bg-white/10 hover:shadow-lg hover:shadow-yellow-900/10"
-        >
-          <div class="flex h-fit flex-row pb-6">
-            <NuxtImg
-              class="w-8"
-              src="/images/database-svgrepo-com.svg"
-              alt="Database icon"
-              width="32"
-              height="32"
-            />
-            <h3
-              class="text-balance pl-6 text-xl font-extrabold text-yellow-100"
-            >
-              Databases and Analytics
-            </h3>
-          </div>
-          <div class="flex flex-row flex-wrap justify-around">
-            <div class="group/icon flex flex-col items-center px-3 text-white">
-              <NuxtImg
-                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
-                src="/images/postgresql-svgrepo-com.svg"
-                alt="PostgreSQL Logo"
-                width="48"
-                height="48"
-              />
-              <span>PostgreSQL</span>
-            </div>
-            <div class="group/icon flex flex-col items-center px-3 text-white">
-              <NuxtImg
-                class="w-12 bg-gray-50 p-1 transition-transform duration-300 group-hover/icon:scale-110"
-                src="/images/microsoft-sql-server-logo-svgrepo-com.svg"
-                alt="SQL Server Logo"
-                width="48"
-                height="48"
-              />
-              <span>SQL Server</span>
-            </div>
-            <div class="group/icon flex flex-col items-center px-3 text-white">
-              <NuxtImg
-                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
-                src="/images/rabbitmq-icon-svgrepo-com.svg"
-                alt="RabbitMQ Logo"
-                width="48"
-                height="48"
-              />
-              <span>RabbitMQ</span>
-            </div>
-            <div class="group/icon flex flex-col items-center px-3 text-white">
-              <NuxtImg
-                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
-                src="/images/mongo-svgrepo-com.svg"
-                alt="MongoDB Logo"
-                width="48"
-                height="48"
-              />
-              <span>MongoDB</span>
-            </div>
-          </div>
-        </div>
-        <div
-          class="rounded-xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:border-yellow-100/30 hover:bg-white/10 hover:shadow-lg hover:shadow-yellow-900/10"
-        >
-          <div class="flex h-fit flex-row pb-6">
-            <NuxtImg
-              class="w-8"
-              src="/images/infinity-svgrepo-com.svg"
-              alt="DevOps logo"
-              width="32"
-              height="32"
-            />
-            <h3
-              class="text-balance pl-6 text-xl font-extrabold text-yellow-100"
-            >
-              Cloud and DevOps
-            </h3>
-          </div>
-          <div class="flex flex-row flex-wrap justify-around">
-            <div class="group/icon flex flex-col items-center px-3 text-white">
-              <NuxtImg
-                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
-                src="/images/kubernetes-svgrepo-com.svg"
-                alt="Kubernetes Logo"
-                width="48"
-                height="48"
-              />
-              <span>Kubernetes</span>
-            </div>
-            <div class="group/icon flex flex-col items-center px-3 text-white">
-              <NuxtImg
-                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
-                src="/images/docker-svgrepo-com.svg"
-                alt="Docker Logo"
-                width="48"
-                height="48"
-              />
-              <span>Docker</span>
-            </div>
+          <div class="flex flex-wrap justify-center gap-x-2 gap-y-4">
             <div
-              class="group/icon flex max-w-24 flex-col items-center px-3 text-white"
+              v-for="skill in group.skills"
+              :key="skill.name"
+              class="group/icon flex w-20 flex-col items-center gap-1 text-white"
             >
               <NuxtImg
                 class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
-                src="/images/gitlab-svgrepo-com.svg"
-                alt="GitLab Logo"
+                :class="skill.plate ? 'bg-gray-50 p-1' : ''"
+                :src="skill.logo"
+                :alt="`${skill.name} Logo`"
                 width="48"
                 height="48"
               />
-              <span class="text-balance text-center">GitLab CI/CD</span>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="rounded-xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:border-yellow-100/30 hover:bg-white/10 hover:shadow-lg hover:shadow-yellow-900/10"
-        >
-          <div class="flex h-fit flex-row pb-6">
-            <NuxtImg
-              class="w-8"
-              src="/images/toolbox-svgrepo-com.svg"
-              alt="Toolbox icon"
-              width="32"
-              height="32"
-            />
-            <h3
-              class="text-balance pl-6 text-xl font-extrabold text-yellow-100"
-            >
-              Tools and Software
-            </h3>
-          </div>
-          <div class="flex flex-row flex-wrap justify-around">
-            <div
-              class="group/icon flex max-w-24 flex-col items-center px-3 text-white"
-            >
-              <NuxtImg
-                class="w-12 bg-gray-50 p-1 transition-transform duration-300 group-hover/icon:scale-110"
-                src="/images/cypress-svgrepo-com.svg"
-                alt="Cypress Logo"
-                width="48"
-                height="48"
-              />
-              <span>Cypress</span>
-            </div>
-            <div
-              class="group/icon flex max-w-24 flex-col items-center px-3 text-white"
-            >
-              <NuxtImg
-                class="w-12 transition-transform duration-300 group-hover/icon:scale-110"
-                src="/images/grafana-svgrepo-com.svg"
-                alt="Grafana Logo"
-                width="48"
-                height="48"
-              />
-              <span>Grafana</span>
-            </div>
-
-            <div
-              class="group/icon flex max-w-24 flex-col items-center px-3 text-white"
-            >
-              <NuxtImg
-                class="h-12 w-12 bg-gray-50 p-1 transition-transform duration-300 group-hover/icon:scale-110"
-                src="/images/NXGN.svg"
-                alt="Nextgen Connect Logo"
-                width="48"
-                height="48"
-              />
-              <span class="text-balance text-center">Nextgen Connect</span>
+              <span class="text-balance text-center text-sm">{{
+                skill.name
+              }}</span>
             </div>
           </div>
         </div>
@@ -660,6 +428,85 @@ useHead({
     },
   ],
 });
+
+// Data-driven so a new logo is just one more entry in the right group,
+// instead of copy-pasting markup — the icon grid itself wraps and balances
+// regardless of how many are in a given group.
+type Skill = { name: string; logo: string; plate?: boolean };
+type SkillGroup = { title: string; icon: string; skills: Skill[] };
+
+const skillGroups: SkillGroup[] = [
+  {
+    title: "Languages and Frameworks",
+    icon: "/images/programming-monitor-svgrepo-com.svg",
+    skills: [
+      { name: "JavaScript", logo: "/images/javascript-svgrepo-com.svg" },
+      {
+        name: "TypeScript",
+        logo: "/images/typescript-official-svgrepo-com.svg",
+      },
+      { name: "Python", logo: "/images/python-svgrepo-com.svg" },
+      { name: "NodeJS", logo: "/images/nodejs-icon-svgrepo-com.svg" },
+      { name: "Bun", logo: "/images/bun-logo.svg" },
+      { name: "VueJS", logo: "/images/vue-9-logo-svgrepo-com.svg" },
+      { name: "Nuxt", logo: "/images/nuxt-svgrepo-com.svg" },
+      { name: "FastAPI", logo: "/images/fastapi.svg" },
+      { name: "GraphQL", logo: "/images/graphql-svgrepo-com.svg" },
+      { name: "OpenAPI", logo: "/images/swagger-svgrepo-com.svg" },
+    ],
+  },
+  {
+    title: "Databases and Analytics",
+    icon: "/images/database-svgrepo-com.svg",
+    skills: [
+      { name: "PostgreSQL", logo: "/images/postgresql-svgrepo-com.svg" },
+      { name: "DuckDB", logo: "/images/DuckDB_icon-darkmode.svg" },
+      {
+        name: "SQL Server",
+        logo: "/images/microsoft-sql-server-logo-svgrepo-com.svg",
+        plate: true,
+      },
+      { name: "MongoDB", logo: "/images/mongo-svgrepo-com.svg" },
+      { name: "Redis", logo: "/images/redis-logo-svgrepo-com.svg" },
+      { name: "RabbitMQ", logo: "/images/rabbitmq-icon-svgrepo-com.svg" },
+    ],
+  },
+  {
+    title: "Cloud and DevOps",
+    icon: "/images/infinity-svgrepo-com.svg",
+    skills: [
+      { name: "Kubernetes", logo: "/images/kubernetes-svgrepo-com.svg" },
+      { name: "Docker", logo: "/images/docker-svgrepo-com.svg" },
+      { name: "ArgoCD", logo: "/images/argo-cd.svg" },
+      { name: "GitLab CI/CD", logo: "/images/gitlab-svgrepo-com.svg" },
+      { name: "Google Cloud", logo: "/images/google-cloud.svg" },
+      { name: "AWS", logo: "/images/aws-light.svg" },
+      { name: "Azure", logo: "/images/azure.svg" },
+    ],
+  },
+  {
+    title: "AI & Agentic Tooling",
+    icon: "/images/Claude_AI_symbol.svg.webp",
+    skills: [
+      { name: "Claude", logo: "/images/Claude_AI_symbol.svg.webp" },
+      { name: "OpenAI", logo: "/images/openai-light.svg" },
+      { name: "MCP", logo: "/images/mcp.png" },
+    ],
+  },
+  {
+    title: "Tools and Software",
+    icon: "/images/toolbox-svgrepo-com.svg",
+    skills: [
+      {
+        name: "Cypress",
+        logo: "/images/cypress-svgrepo-com.svg",
+        plate: true,
+      },
+      { name: "Grafana", logo: "/images/grafana-svgrepo-com.svg" },
+      { name: "Nextgen Connect", logo: "/images/NXGN.svg", plate: true },
+    ],
+  },
+];
 
 const featuredProjects = [
   {

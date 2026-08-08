@@ -92,10 +92,18 @@ export default defineNuxtConfig({
       routes: ["/sitemap.xml"],
     },
     routeRules: {
-      "/**": { headers: { "Cache-Control": "public, max-age=600" } },
+      // Content-hashed build assets are safe to cache forever — a filename
+      // change invalidates the cache automatically.
+      "/_nuxt/**": {
+        headers: { "Cache-Control": "public, max-age=31536000, immutable" },
+      },
       "/images/**": {
         headers: { "Cache-Control": "public, max-age=31536000, immutable" },
       },
+      // Deliberately no blanket "/**" cache-control: these pages are
+      // content-driven (queryCollection at request time) and edited often,
+      // so a 10-minute browser cache on the HTML document itself was
+      // serving stale pages after content changes until a hard refresh.
       "/blog/**": { prerender: true },
     },
   },
