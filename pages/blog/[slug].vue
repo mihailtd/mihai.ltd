@@ -68,6 +68,118 @@
 
       <!-- Main Content Area -->
       <div class="relative z-10 mx-auto -mt-12 max-w-4xl px-6">
+        <!-- Radar Snapshot (tech_report entries only) -->
+        <div
+          v-if="article.stage"
+          class="mb-16 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
+        >
+          <div class="mb-4 flex items-center justify-between">
+            <h3
+              class="text-sm font-semibold uppercase tracking-wider text-gray-400"
+            >
+              Radar Snapshot
+            </h3>
+            <div class="flex items-center gap-2">
+              <span
+                class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1 ring-inset"
+                :class="[
+                  getRadarStatusMeta(article.decision ?? article.stage).bg,
+                  getRadarStatusMeta(article.decision ?? article.stage).text,
+                  getRadarStatusMeta(article.decision ?? article.stage).ring,
+                ]"
+              >
+                {{ getRadarStatusMeta(article.decision ?? article.stage).label }}
+              </span>
+              <span
+                v-if="article.decision && article.decidedDate"
+                class="text-xs text-gray-500"
+              >
+                {{ formatDate(article.decidedDate) }}
+              </span>
+            </div>
+          </div>
+
+          <div class="space-y-3 text-sm">
+            <div class="flex items-center justify-between gap-4">
+              <span class="text-gray-400"
+                >Progress ({{ getRadarStatusMeta(article.stage).label }})</span
+              >
+              <div class="flex items-center gap-2">
+                <div class="flex w-24 items-center gap-1">
+                  <span
+                    v-for="i in 4"
+                    :key="i"
+                    class="h-1.5 flex-1 rounded-full"
+                    :class="i > (article.evaluatedScore || 0) ? 'bg-white/10' : ''"
+                    :style="
+                      i <= (article.evaluatedScore || 0)
+                        ? {
+                            backgroundColor: getRadarStatusMeta(
+                              article.decision ?? article.stage,
+                            ).color,
+                          }
+                        : {}
+                    "
+                  />
+                </div>
+                <span class="font-medium text-white"
+                  >{{ article.evaluatedScore || 0 }}/4</span
+                >
+              </div>
+            </div>
+
+            <div
+              v-if="article.satisfaction != null"
+              class="flex items-center justify-between gap-4"
+            >
+              <span class="text-gray-400">Satisfaction</span>
+              <div class="flex items-center gap-2">
+                <span class="tracking-wider">
+                  <span class="text-amber-400">{{
+                    "★".repeat(article.satisfaction)
+                  }}</span>
+                  <span class="text-slate-600">{{
+                    "☆".repeat(5 - article.satisfaction)
+                  }}</span>
+                </span>
+                <span class="font-medium text-white"
+                  >{{ article.satisfaction }}/5</span
+                >
+              </div>
+            </div>
+
+            <div
+              v-if="favorOfTarget"
+              class="flex items-center justify-between gap-4"
+            >
+              <span class="text-gray-400">In favor of</span>
+              <NuxtLink
+                :to="`/blog/${favorOfTarget.path?.split('/').pop()}`"
+                class="font-medium text-blue-400 hover:text-blue-300"
+              >
+                {{ favorOfTarget.title }} →
+              </NuxtLink>
+            </div>
+
+            <div
+              v-if="article.decision === 'hold' && article.reviewTrigger"
+              class="flex items-start justify-between gap-4"
+            >
+              <span class="shrink-0 text-gray-400">Revisit when</span>
+              <span class="text-right font-medium text-white">{{
+                article.reviewTrigger
+              }}</span>
+            </div>
+
+            <p
+              v-if="article.decisionReason"
+              class="border-t border-white/10 pt-3 text-xs italic leading-relaxed text-gray-400"
+            >
+              &ldquo;{{ article.decisionReason }}&rdquo;
+            </p>
+          </div>
+        </div>
+
         <!-- Cover Image -->
         <div
           v-if="article.cover_image"
@@ -134,7 +246,7 @@ const { data: article } = await useAsyncData(
         .path(`/blog/${slug}`)
         .first();
       if (blogPost) return blogPost;
-    } catch (e) {
+    } catch {
       // Ignore error if not found in blog
     }
 
@@ -143,16 +255,43 @@ const { data: article } = await useAsyncData(
         .path(`/books/${slug}`)
         .first();
       if (bookSummary) return bookSummary;
-    } catch (e) {
+    } catch {
       // Ignore error if not found in books
+    }
+
+    try {
+      const techReport = await queryCollection("radar")
+        .path(`/radar/${slug}`)
+        .first();
+      if (techReport) return techReport;
+    } catch {
+      // Ignore error if not found in radar
     }
 
     return null;
   },
 );
 
+// Radar snapshot panel — only relevant for tech_report entries. Resolves the
+// "rejected/on hold in favor of" link by looking up that item's own report.
+const { data: favorOfTarget } = await useAsyncData(
+  `blog-${route.params.slug}-favor-of`,
+  async () => {
+    const targetSlug = article.value?.decisionInFavorOf as string | undefined;
+    if (!targetSlug) return null;
+    try {
+      return await queryCollection("radar").path(`/radar/${targetSlug}`).first();
+    } catch {
+      return null;
+    }
+  },
+  { watch: [article] },
+);
+
 const formatType = (type: string) => {
-  return type === "book_summary" ? "Book Summary" : "Blog Post";
+  if (type === "book_summary") return "Book Summary";
+  if (type === "tech_report") return "Tech Report";
+  return "Blog Post";
 };
 
 const formatDate = (date: string) => {

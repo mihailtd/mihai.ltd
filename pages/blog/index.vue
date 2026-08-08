@@ -35,13 +35,13 @@
           <button
             v-for="type in contentTypes"
             :key="type.value"
-            @click="setTypeFilter(type.value)"
             class="rounded-full border px-5 py-2.5 text-sm font-medium backdrop-blur-sm transition-all duration-300"
             :class="
               selectedType === type.value
                 ? 'border-blue-500/50 bg-blue-600/20 text-blue-300 shadow-[0_0_20px_rgba(37,99,235,0.2)]'
                 : 'border-white/10 bg-white/5 text-gray-400 hover:border-white/20 hover:bg-white/10 hover:text-white'
             "
+            @click="setTypeFilter(type.value)"
           >
             {{ type.label }}
           </button>
@@ -57,9 +57,9 @@
         <span class="flex items-center gap-2 font-bold text-white">
           #{{ selectedTopic }}
           <button
-            @click="clearTopic"
             class="rounded-full p-0.5 text-blue-300 transition-colors hover:bg-blue-500/20"
             title="Clear filter"
+            @click="clearTopic"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -123,11 +123,23 @@
             </div>
 
             <!-- Floating Type Badge -->
-            <div class="absolute left-4 top-4 z-20">
+            <div class="absolute left-4 top-4 z-20 flex items-center gap-2">
               <span
                 class="rounded-full border border-white/10 bg-black/30 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white backdrop-blur-md"
               >
                 {{ formatType(article.type) }}
+              </span>
+              <span
+                v-if="article.stage"
+                class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/30 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md"
+              >
+                <span
+                  class="h-1.5 w-1.5 rounded-full"
+                  :style="{
+                    backgroundColor: getRadarStatusMeta(article.decision ?? article.stage).color,
+                  }"
+                />
+                {{ getRadarStatusMeta(article.decision ?? article.stage).label }}
               </span>
             </div>
           </div>
@@ -172,8 +184,8 @@
           No content found matching your criteria.
         </p>
         <button
-          @click="resetFilters"
           class="mt-4 text-blue-400 hover:text-blue-300 hover:underline"
+          @click="resetFilters"
         >
           Clear all filters
         </button>
@@ -187,10 +199,19 @@ const route = useRoute();
 const router = useRouter();
 
 // Filter States
+type ContentItem = {
+  date?: string;
+  tags?: string[];
+  stage?: string;
+  decision?: string;
+  [key: string]: unknown;
+};
+
 const contentTypes = [
   { label: "All", value: "all" },
   { label: "Blog Posts", value: "blog_post" },
   { label: "Book Summaries", value: "book_summary" },
+  { label: "Tech Reports", value: "tech_report" },
 ];
 
 const selectedType = ref("all");
@@ -216,17 +237,21 @@ const resetFilters = () => {
 const { data: articles, pending } = await useAsyncData(
   "articles",
   async () => {
-    let blogPosts: any[] = [];
-    let bookSummaries: any[] = [];
+    let blogPosts: ContentItem[] = [];
+    let bookSummaries: ContentItem[] = [];
+    let techReports: ContentItem[] = [];
 
     if (selectedType.value === "all" || selectedType.value === "blog_post") {
-      blogPosts = await queryCollection("blog").all();
+      blogPosts = (await queryCollection("blog").all()) as ContentItem[];
     }
     if (selectedType.value === "all" || selectedType.value === "book_summary") {
-      bookSummaries = await queryCollection("books").all();
+      bookSummaries = (await queryCollection("books").all()) as ContentItem[];
+    }
+    if (selectedType.value === "all" || selectedType.value === "tech_report") {
+      techReports = (await queryCollection("radar").all()) as ContentItem[];
     }
 
-    let allContent = [...blogPosts, ...bookSummaries];
+    let allContent = [...blogPosts, ...bookSummaries, ...techReports];
 
     // Filter by topic
     if (selectedTopic.value) {
@@ -251,7 +276,9 @@ const { data: articles, pending } = await useAsyncData(
 
 // Helpers
 const formatType = (type: string) => {
-  return type === "book_summary" ? "Book Summary" : "Blog Post";
+  if (type === "book_summary") return "Book Summary";
+  if (type === "tech_report") return "Tech Report";
+  return "Blog Post";
 };
 
 const formatDate = (date: string) => {
