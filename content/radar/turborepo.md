@@ -8,7 +8,7 @@ tags:
 placements:
   - category: "tools"
     subCategory: "monorepo_tooling"
-stage: "adopt"
+stage: "trial"
 decision: "adopt"
 evaluatedScore: 3
 decisionReason: "The premier build system and computation cache for pure JavaScript and TypeScript monorepos. Zero-friction pipeline configuration, local daemon, and instant remote caching with pnpm workspaces make it unbeatable for pure TS stacks, though limited for polyglot setups compared to Moon."

@@ -30,24 +30,65 @@
           </p>
         </div>
 
-        <!-- Type Filter Buttons -->
-        <div class="flex flex-wrap gap-2">
+        <!-- Type Filter Toggles -->
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- All Insights Pill -->
           <button
-            v-for="type in contentTypes"
-            :key="type.value"
+            type="button"
             class="rounded-full border px-4 py-2 text-xs font-medium backdrop-blur-sm transition-all duration-300 sm:px-5 sm:py-2.5 sm:text-sm"
             :class="
-              selectedType === type.value
+              isAllTypesActive
                 ? 'border-blue-500/50 bg-blue-600/25 text-blue-200 shadow-[0_0_20px_rgba(37,99,235,0.25)] ring-1 ring-blue-500/30'
                 : 'border-white/10 bg-white/5 text-gray-400 hover:border-white/20 hover:bg-white/10 hover:text-white'
             "
-            @click="setTypeFilter(type.value)"
+            @click="clearTypeFilters"
           >
-            {{ type.label }}
+            All Insights
             <span
               class="ml-1.5 rounded-full px-1.5 py-0.5 text-xs font-bold"
               :class="
-                selectedType === type.value
+                isAllTypesActive
+                  ? 'bg-blue-500/30 text-white'
+                  : 'bg-white/10 text-gray-400'
+              "
+            >
+              {{ typeCounts.all ?? 0 }}
+            </span>
+          </button>
+
+          <!-- Individual Type Toggles -->
+          <button
+            v-for="type in individualTypes"
+            :key="type.value"
+            type="button"
+            class="group inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-medium backdrop-blur-sm transition-all duration-300 sm:px-5 sm:py-2.5 sm:text-sm"
+            :class="
+              isTypeSelected(type.value)
+                ? 'border-blue-500/50 bg-blue-600/25 text-blue-200 shadow-[0_0_20px_rgba(37,99,235,0.25)] ring-1 ring-blue-500/30'
+                : 'border-white/10 bg-white/5 text-gray-400 hover:border-white/20 hover:bg-white/10 hover:text-white'
+            "
+            :title="
+              isTypeSelected(type.value)
+                ? `Toggle off ${type.label}`
+                : `Filter by ${type.label}`
+            "
+            @click="toggleTypeFilter(type.value)"
+          >
+            <span
+              class="flex h-3.5 w-3.5 items-center justify-center rounded-full border text-[9px] transition-colors"
+              :class="
+                isTypeSelected(type.value)
+                  ? 'border-blue-400 bg-blue-500 text-white'
+                  : 'border-white/20 bg-white/5 text-transparent group-hover:border-white/40'
+              "
+            >
+              ✓
+            </span>
+            <span>{{ type.label }}</span>
+            <span
+              class="ml-0.5 rounded-full px-1.5 py-0.5 text-xs font-bold"
+              :class="
+                isTypeSelected(type.value)
                   ? 'bg-blue-500/30 text-white'
                   : 'bg-white/10 text-gray-400'
               "
@@ -129,18 +170,20 @@
         <!-- Topics & Active Filter Details -->
         <div class="flex flex-wrap items-center justify-between gap-4 pt-1">
           <div class="flex flex-wrap items-center gap-2 text-xs text-gray-400">
-            <span class="font-medium text-gray-400">Popular:</span>
+            <span class="font-medium text-gray-400">Filter by Topic:</span>
 
-            <!-- Active Topic Tag -->
+            <!-- Active Selected Topic Tags (With X to dismiss) -->
             <div
-              v-if="selectedTopic"
-              class="inline-flex items-center gap-1.5 rounded-full border border-blue-500/40 bg-blue-500/20 px-3 py-1 font-semibold text-blue-200 shadow-sm"
+              v-for="topic in selectedTopics"
+              :key="`active-${topic}`"
+              class="inline-flex items-center gap-1.5 rounded-full border border-blue-500/40 bg-blue-500/25 px-3 py-1 font-semibold text-blue-200 shadow-sm transition-all"
             >
-              <span>#{{ selectedTopic }}</span>
+              <span>#{{ topic }}</span>
               <button
-                class="rounded-full p-0.5 text-blue-300 transition-colors hover:bg-blue-500/30"
-                title="Remove topic filter"
-                @click="clearTopic"
+                type="button"
+                class="rounded-full p-0.5 text-blue-300 transition-colors hover:bg-blue-500/40 hover:text-white"
+                :title="`Remove #${topic} filter`"
+                @click="toggleTopic(topic)"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -159,23 +202,37 @@
               </button>
             </div>
 
-            <!-- Suggested popular topic tags -->
+            <!-- Suggested popular topic tags (Clicking toggles on/off) -->
             <button
               v-for="topic in popularTopics"
               :key="topic"
-              class="rounded-full border border-white/5 bg-white/5 px-2.5 py-1 text-gray-400 transition-all hover:border-white/15 hover:bg-white/10 hover:text-white"
-              :class="{
-                hidden: selectedTopic?.toLowerCase() === topic.toLowerCase(),
-              }"
-              @click="setTopic(topic)"
+              type="button"
+              class="inline-flex items-center gap-1 rounded-full border px-2.5 py-1 transition-all"
+              :class="
+                isTopicSelected(topic)
+                  ? 'border-blue-500/40 bg-blue-500/20 text-blue-200 ring-1 ring-blue-500/30'
+                  : 'border-white/5 bg-white/5 text-gray-400 hover:border-white/15 hover:bg-white/10 hover:text-white'
+              "
+              :title="
+                isTopicSelected(topic)
+                  ? `Toggle off #${topic}`
+                  : `Filter by #${topic}`
+              "
+              @click="toggleTopic(topic)"
             >
-              #{{ topic }}
+              <span
+                v-if="isTopicSelected(topic)"
+                class="text-[10px] text-blue-300"
+                >✓</span
+              >
+              <span>#{{ topic }}</span>
             </button>
           </div>
 
           <!-- Reset Filters Shortcut -->
           <button
             v-if="hasActiveFilters"
+            type="button"
             class="inline-flex items-center gap-1.5 text-xs font-medium text-blue-400 transition-colors hover:text-blue-300 hover:underline"
             @click="resetFilters"
           >
@@ -299,7 +356,7 @@
               {{ article.description }}
             </p>
 
-            <!-- Tags (Clickable for quick topic filter) -->
+            <!-- Tags (Clickable for quick topic toggle) -->
             <div
               class="mt-auto flex flex-wrap gap-2 border-t border-white/5 pt-6"
             >
@@ -307,10 +364,21 @@
                 v-for="tag in article.tags?.slice(0, 3)"
                 :key="tag"
                 type="button"
-                class="rounded bg-blue-500/10 px-2 py-1 text-xs font-medium text-blue-400/90 transition-colors hover:bg-blue-500/20 hover:text-blue-300"
-                @click.prevent.stop="setTopic(tag)"
+                class="inline-flex items-center gap-1 rounded px-2 py-1 text-xs font-medium transition-colors"
+                :class="
+                  isTopicSelected(tag)
+                    ? 'bg-blue-500/30 text-blue-200 ring-1 ring-blue-500/40'
+                    : 'bg-blue-500/10 text-blue-400/90 hover:bg-blue-500/20 hover:text-blue-300'
+                "
+                :title="
+                  isTopicSelected(tag)
+                    ? `Remove #${tag} filter`
+                    : `Filter by #${tag}`
+                "
+                @click.prevent.stop="toggleTopic(tag)"
               >
-                #{{ tag }}
+                <span v-if="isTopicSelected(tag)" class="text-[10px]">✓</span>
+                <span>#{{ tag }}</span>
               </button>
             </div>
           </div>
@@ -454,10 +522,9 @@ type ContentItem = {
   rating?: number;
 };
 
-const contentTypes = [
-  { label: "All", value: "all" },
-  { label: "Blog Posts", value: "blog_post" },
-  { label: "Book Summaries", value: "book_summary" },
+const individualTypes = [
+  { label: "Articles", value: "blog_post" },
+  { label: "Book Notes", value: "book_summary" },
   { label: "Tech Reports", value: "tech_report" },
 ];
 
@@ -577,15 +644,50 @@ watch(
   },
 );
 
-// URL Filter States
-const selectedType = computed(
-  () => (route.query.type as string | undefined) ?? "all",
-);
-const selectedTopic = computed(
-  () =>
-    (route.query.topic as string | undefined) ||
-    (route.query.tag as string | undefined),
-);
+// URL Filter States (Multi-select toggles)
+const selectedTypes = computed<string[]>(() => {
+  const raw = route.query.type || route.query.types;
+  if (!raw) return [];
+  const list = Array.isArray(raw)
+    ? raw.flatMap((r) => (r ? String(r).split(",") : []))
+    : String(raw).split(",");
+  return list
+    .map((s) => s.trim())
+    .filter(
+      (s) => s && s !== "all" && individualTypes.some((t) => t.value === s),
+    );
+});
+
+const isTypeSelected = (typeVal: string) => {
+  return selectedTypes.value.includes(typeVal);
+};
+
+const isAllTypesActive = computed(() => {
+  return (
+    selectedTypes.value.length === 0 ||
+    selectedTypes.value.length === individualTypes.length
+  );
+});
+
+const selectedTopics = computed<string[]>(() => {
+  const raw =
+    route.query.topic ||
+    route.query.topics ||
+    route.query.tag ||
+    route.query.tags;
+  if (!raw) return [];
+  const list = Array.isArray(raw)
+    ? raw.flatMap((r) => (r ? String(r).split(",") : []))
+    : String(raw).split(",");
+  return Array.from(
+    new Set(list.map((s) => s.trim().toLowerCase()).filter(Boolean)),
+  );
+});
+
+const isTopicSelected = (topicVal: string) => {
+  return selectedTopics.value.includes(topicVal.toLowerCase().trim());
+};
+
 const currentPageParam = computed(() => {
   const p = parseInt(route.query.page as string, 10);
   return isNaN(p) || p < 1 ? 1 : p;
@@ -613,46 +715,82 @@ const popularTopics = computed(() => {
   const freq: Record<string, number> = {};
   for (const item of allArticles.value || []) {
     for (const tag of item.tags || []) {
-      freq[tag] = (freq[tag] || 0) + 1;
+      const clean = tag.toLowerCase().trim();
+      if (clean) {
+        freq[clean] = (freq[clean] || 0) + 1;
+      }
     }
   }
   return Object.entries(freq)
     .sort((a, b) => b[1] - a[1])
-    .slice(0, 8)
+    .slice(0, 10)
     .map(([tag]) => tag);
 });
 
 const hasActiveFilters = computed(
   () =>
-    selectedType.value !== "all" ||
-    Boolean(selectedTopic.value) ||
+    !isAllTypesActive.value ||
+    selectedTopics.value.length > 0 ||
     Boolean(searchInput.value.trim()),
 );
 
-// Filter Actions
-const setTypeFilter = (type: string) => {
+// Toggle a content type on/off
+const toggleTypeFilter = (typeVal: string) => {
   const query = { ...route.query };
-  if (type === "all") {
-    delete query.type;
+  const current = [...selectedTypes.value];
+  const idx = current.indexOf(typeVal);
+  if (idx >= 0) {
+    current.splice(idx, 1);
   } else {
-    query.type = type;
+    current.push(typeVal);
+  }
+
+  // If none or all selected, clear query param for clean URLs
+  if (current.length === 0 || current.length === individualTypes.length) {
+    delete query.type;
+    delete query.types;
+  } else {
+    query.type = current.join(",");
+    delete query.types;
   }
   delete query.page;
   router.push({ query });
 };
 
-const setTopic = (topic: string) => {
+// Clear type filters (Select all)
+const clearTypeFilters = () => {
   const query = { ...route.query };
-  query.topic = topic;
-  delete query.tag;
+  delete query.type;
+  delete query.types;
   delete query.page;
   router.push({ query });
 };
 
-const clearTopic = () => {
+// Toggle a topic tag on/off
+const toggleTopic = (topic: string) => {
   const query = { ...route.query };
-  delete query.topic;
-  delete query.tag;
+  const clean = topic.trim().toLowerCase();
+  if (!clean) return;
+
+  const current = [...selectedTopics.value];
+  const idx = current.indexOf(clean);
+  if (idx >= 0) {
+    current.splice(idx, 1);
+  } else {
+    current.push(clean);
+  }
+
+  if (current.length === 0) {
+    delete query.topic;
+    delete query.topics;
+    delete query.tag;
+    delete query.tags;
+  } else {
+    query.topic = current.join(",");
+    delete query.topics;
+    delete query.tag;
+    delete query.tags;
+  }
   delete query.page;
   router.push({ query });
 };
@@ -675,16 +813,17 @@ const filteredArticles = computed(() => {
   const items = allArticles.value || [];
   let result = [...items];
 
-  // 1. Filter by content type
-  if (selectedType.value !== "all") {
-    result = result.filter((item) => item.type === selectedType.value);
+  // 1. Filter by content types (multi-select toggle)
+  if (!isAllTypesActive.value) {
+    result = result.filter((item) => selectedTypes.value.includes(item.type));
   }
 
-  // 2. Filter by topic / tag
-  if (selectedTopic.value) {
-    const topicLower = selectedTopic.value.toLowerCase();
+  // 2. Filter by topics / tags (multi-select toggle: matches any of selected topics)
+  if (selectedTopics.value.length > 0) {
     result = result.filter((item) =>
-      item.tags?.some((t) => t.toLowerCase() === topicLower),
+      item.tags?.some((t) =>
+        selectedTopics.value.includes(t.toLowerCase().trim()),
+      ),
     );
   }
 
@@ -800,8 +939,15 @@ useSeoMeta({
     if (searchInput.value.trim()) {
       return `Search: ${searchInput.value.trim()} - Blog - Mihai Farcas`;
     }
-    if (selectedTopic.value) {
-      return `#${selectedTopic.value} Articles - Blog - Mihai Farcas`;
+    if (selectedTopics.value.length > 0) {
+      const topicTags = selectedTopics.value.map((t) => `#${t}`).join(", ");
+      return `${topicTags} Articles - Blog - Mihai Farcas`;
+    }
+    if (!isAllTypesActive.value) {
+      const typeLabels = selectedTypes.value
+        .map((t) => individualTypes.find((it) => it.value === t)?.label || t)
+        .join(" & ");
+      return `${typeLabels} - Blog - Mihai Farcas`;
     }
     return "Blog - Mihai Farcas";
   }),

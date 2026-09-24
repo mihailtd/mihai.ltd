@@ -7,7 +7,7 @@ tags: ["uv", "python", "packaging", "astral", "tooling", "monorepo"]
 placements:
   - category: "tools"
     subCategory: "python_tooling"
-stage: "adopt"
+stage: "trial"
 decision: "adopt"
 evaluatedScore: 4
 satisfaction: 5

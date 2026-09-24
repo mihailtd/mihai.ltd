@@ -99,11 +99,11 @@
 
         <!-- Feature Bullets (if provided) -->
         <ul
-          v-if="features && features.length > 0"
+          v-if="parsedFeatures.length > 0"
           class="mt-4 grid grid-cols-1 gap-2 text-xs text-gray-300 sm:grid-cols-2"
         >
           <li
-            v-for="(feature, idx) in features"
+            v-for="(feature, idx) in parsedFeatures"
             :key="idx"
             class="flex items-center gap-2"
           >
@@ -194,7 +194,9 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(
+import { computed } from "vue";
+
+const props = withDefaults(
   defineProps<{
     name: string;
     tagline?: string;
@@ -209,7 +211,7 @@ withDefaults(
     bannerImage?: string;
     bannerCaption?: string;
     rating?: string | number;
-    features?: string[];
+    features?: string[] | string;
     disclosure?: string;
     featured?: boolean;
     compact?: boolean;
@@ -232,4 +234,24 @@ withDefaults(
     compact: false,
   },
 );
+
+const parsedFeatures = computed<string[]>(() => {
+  if (!props.features) return [];
+  if (Array.isArray(props.features)) return props.features;
+  if (typeof props.features === "string") {
+    const trimmed = (props.features as string).trim();
+    if (trimmed.startsWith("[") && trimmed.endsWith("]")) {
+      try {
+        return JSON.parse(trimmed);
+      } catch {
+        // Fallback to comma separation
+      }
+    }
+    return trimmed
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
+  }
+  return [];
+});
 </script>

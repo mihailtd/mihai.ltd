@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 628" width="1200" height="628" fill="none">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="n8n-bg" x1="0" y1="0" x2="1200" y2="628" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0F0C1B"/>
+      <stop offset="50%" stop-color="#0B0F19"/>
+      <stop offset="100%" stop-color="#180B14"/>
+    </linearGradient>
+
+    <linearGradient id="n8n-text-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EA4B71"/>
+      <stop offset="50%" stop-color="#FF758C"/>
+      <stop offset="100%" stop-color="#FFA07A"/>
+    </linearGradient>
+
+    <linearGradient id="n8n-btn-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EA4B71"/>
+      <stop offset="100%" stop-color="#991B1B"/>
+    </linearGradient>
+
+    <linearGradient id="node-accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EA4B71" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.1"/>
+    </linearGradient>
+
+    <!-- Filters for Glows -->
+    <filter id="glow-coral" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="80" result="blur"/>
+    </filter>
+    <filter id="glow-blue" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="90" result="blur"/>
+    </filter>
+  </defs>
+
+  <!-- Dark Background -->
+  <rect width="1200" height="628" fill="url(#n8n-bg)"/>
+
+  <!-- Ambient Glow Orbs -->
+  <circle cx="1000" cy="180" r="320" fill="#EA4B71" opacity="0.16" filter="url(#glow-coral)"/>
+  <circle cx="280" cy="480" r="300" fill="#3B82F6" opacity="0.12" filter="url(#glow-blue)"/>
+
+  <!-- Subtle Blueprint Tech Grid Lines -->
+  <path d="M0 120H1200M0 240H1200M0 360H1200M0 480H1200" stroke="#FFFFFF" stroke-opacity="0.025" stroke-width="1"/>
+  <path d="M200 0V628M400 0V628M600 0V628M800 0V628M1000 0V628" stroke="#FFFFFF" stroke-opacity="0.025" stroke-width="1"/>
+
+  <!-- LEFT CONTENT COLUMN -->
+  <g transform="translate(80, 95)">
+    <!-- Partner Badge -->
+    <rect x="0" y="0" width="235" height="36" rx="18" fill="#1E1424" stroke="#EA4B71" stroke-width="1.5" stroke-opacity="0.6"/>
+    <circle cx="20" cy="18" r="5" fill="#EA4B71"/>
+    <text x="36" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="12" fill="#FCA5A5" letter-spacing="0.8">OFFICIAL PARTNER PERK</text>
+
+    <!-- Main Title -->
+    <text x="0" y="95" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="52" fill="#FFFFFF" letter-spacing="-1.5">
+      Automate without limits.
+    </text>
+    <text x="0" y="150" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="32" fill="url(#n8n-text-gradient)">
+      Workflow Automation &amp; Agentic AI
+    </text>
+
+    <!-- Subtitle / Value Proposition -->
+    <text x="0" y="200" font-family="system-ui, -apple-system, sans-serif" font-weight="400" font-size="18" fill="#94A3B8">
+      Fair-code orchestration with zero per-task execution fees.
+    </text>
+    <text x="0" y="228" font-family="system-ui, -apple-system, sans-serif" font-weight="400" font-size="18" fill="#94A3B8">
+      Native LangChain AI agents, Model Context Protocol (MCP), and 400+ nodes.
+    </text>
+
+    <!-- Feature Pills -->
+    <g transform="translate(0, 268)">
+      <!-- Pill 1 -->
+      <rect x="0" y="0" width="168" height="34" rx="8" fill="#1E1B2E" stroke="#332B45" stroke-width="1"/>
+      <text x="14" y="22" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#E2E8F0">⚡ Zero Task Fees</text>
+
+      <!-- Pill 2 -->
+      <rect x="180" y="0" width="176" height="34" rx="8" fill="#1E1B2E" stroke="#332B45" stroke-width="1"/>
+      <text x="194" y="22" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#E2E8F0">🤖 Agentic AI &amp; MCP</text>
+
+      <!-- Pill 3 -->
+      <rect x="368" y="0" width="174" height="34" rx="8" fill="#1E1B2E" stroke="#332B45" stroke-width="1"/>
+      <text x="382" y="22" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#E2E8F0">🔒 100% Self-Hostable</text>
+    </g>
+
+    <!-- Call to Action Button Mockup -->
+    <g transform="translate(0, 335)">
+      <rect x="0" y="0" width="290" height="48" rx="24" fill="url(#n8n-btn-gradient)"/>
+      <text x="30" y="30" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">Start Free Trial or Self-Host →</text>
+    </g>
+  </g>
+
+  <!-- RIGHT VISUAL MOCKUP: Stylized n8n Workflow Graph -->
+  <g transform="translate(680, 85)">
+    <!-- Container Card / Canvas -->
+    <rect x="0" y="0" width="450" height="450" rx="28" fill="#0E121E" stroke="#2D1C2E" stroke-width="2"/>
+    <rect x="1" y="1" width="448" height="52" rx="27" fill="#161828" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="1"/>
+    
+    <!-- Canvas Window Controls -->
+    <circle cx="28" cy="26" r="6" fill="#EF4444" opacity="0.8"/>
+    <circle cx="48" cy="26" r="6" fill="#F59E0B" opacity="0.8"/>
+    <circle cx="68" cy="26" r="6" fill="#10B981" opacity="0.8"/>
+    <text x="100" y="31" font-family="system-ui, monospace" font-size="12" fill="#64748B">workflow-agentic-mcp.n8n</text>
+
+    <!-- Grid Dots on Canvas -->
+    <g fill="#334155" opacity="0.3">
+      <circle cx="80" cy="100" r="1.5"/><circle cx="160" cy="100" r="1.5"/><circle cx="240" cy="100" r="1.5"/><circle cx="320" cy="100" r="1.5"/><circle cx="400" cy="100" r="1.5"/>
+      <circle cx="80" cy="170" r="1.5"/><circle cx="160" cy="170" r="1.5"/><circle cx="240" cy="170" r="1.5"/><circle cx="320" cy="170" r="1.5"/><circle cx="400" cy="170" r="1.5"/>
+      <circle cx="80" cy="240" r="1.5"/><circle cx="160" cy="240" r="1.5"/><circle cx="240" cy="240" r="1.5"/><circle cx="320" cy="240" r="1.5"/><circle cx="400" cy="240" r="1.5"/>
+      <circle cx="80" cy="310" r="1.5"/><circle cx="160" cy="310" r="1.5"/><circle cx="240" cy="310" r="1.5"/><circle cx="320" cy="310" r="1.5"/><circle cx="400" cy="310" r="1.5"/>
+      <circle cx="80" cy="380" r="1.5"/><circle cx="160" cy="380" r="1.5"/><circle cx="240" cy="380" r="1.5"/><circle cx="320" cy="380" r="1.5"/><circle cx="400" cy="380" r="1.5"/>
+    </g>
+
+    <!-- Connection Paths between nodes -->
+    <path d="M125 155 C 160 155, 175 155, 205 155" stroke="#EA4B71" stroke-width="3" stroke-linecap="round"/>
+    <path d="M305 155 C 335 155, 335 240, 360 240" stroke="#38BDF8" stroke-width="3" stroke-linecap="round"/>
+    <path d="M305 155 C 335 155, 335 340, 360 340" stroke="#10B981" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Pulse Dots on Connections -->
+    <circle cx="165" cy="155" r="4" fill="#EA4B71"/>
+    <circle cx="335" cy="200" r="4" fill="#38BDF8"/>
+    <circle cx="335" cy="250" r="4" fill="#10B981"/>
+
+    <!-- Node 1: Webhook Trigger -->
+    <g transform="translate(35, 125)">
+      <rect width="90" height="60" rx="14" fill="#1A1E2E" stroke="#EA4B71" stroke-width="1.5"/>
+      <circle cx="24" cy="30" r="12" fill="#EA4B71" opacity="0.2"/>
+      <text x="18" y="35" font-family="system-ui" font-size="14" fill="#EA4B71">⚡</text>
+      <text x="44" y="27" font-family="system-ui, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF">Webhook</text>
+      <text x="44" y="42" font-family="system-ui, sans-serif" font-size="9" fill="#94A3B8">POST event</text>
+    </g>
+
+    <!-- Node 2: AI Agent (LangChain / MCP) -->
+    <g transform="translate(205, 125)">
+      <rect width="100" height="60" rx="14" fill="#23192C" stroke="#A855F7" stroke-width="2"/>
+      <circle cx="24" cy="30" r="12" fill="#A855F7" opacity="0.3"/>
+      <text x="17" y="35" font-family="system-ui" font-size="14" fill="#C084FC">🤖</text>
+      <text x="44" y="27" font-family="system-ui, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF">AI Agent</text>
+      <text x="44" y="42" font-family="system-ui, sans-serif" font-size="9" fill="#D8B4FE">MCP Tool</text>
+    </g>
+
+    <!-- Node 3: PostgreSQL Database Tool -->
+    <g transform="translate(325, 210)">
+      <rect width="95" height="60" rx="14" fill="#132338" stroke="#38BDF8" stroke-width="1.5"/>
+      <circle cx="22" cy="30" r="12" fill="#38BDF8" opacity="0.2"/>
+      <text x="16" y="35" font-family="system-ui" font-size="13" fill="#38BDF8">🗄️</text>
+      <text x="40" y="27" font-family="system-ui, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF">Postgres</text>
+      <text x="40" y="42" font-family="system-ui, sans-serif" font-size="9" fill="#7DD3FC">Query Tool</text>
+    </g>
+
+    <!-- Node 4: Slack / Notification Tool -->
+    <g transform="translate(325, 310)">
+      <rect width="95" height="60" rx="14" fill="#132822" stroke="#10B981" stroke-width="1.5"/>
+      <circle cx="22" cy="30" r="12" fill="#10B981" opacity="0.2"/>
+      <text x="16" y="35" font-family="system-ui" font-size="13" fill="#10B981">💬</text>
+      <text x="40" y="27" font-family="system-ui, sans-serif" font-weight="700" font-size="11" fill="#FFFFFF">Slack</text>
+      <text x="40" y="42" font-family="system-ui, sans-serif" font-size="9" fill="#6EE7B7">Notify Team</text>
+    </g>
+
+    <!-- Status Badge overlay -->
+    <g transform="translate(35, 385)">
+      <rect width="180" height="32" rx="16" fill="#1E293B" stroke="#10B981" stroke-width="1"/>
+      <circle cx="16" cy="16" r="4" fill="#10B981"/>
+      <text x="28" y="20" font-family="system-ui, monospace" font-size="11" font-weight="600" fill="#10B981">EXECUTION: SUCCESS (0ms fee)</text>
+    </g>
+  </g>
+</svg>

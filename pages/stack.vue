@@ -47,43 +47,76 @@
         </div>
       </div>
 
-      <!-- Featured Partner Showcase (LearnWorlds & Key Perks) -->
+      <!-- Featured Partner Showcase (n8n & LearnWorlds) -->
       <section class="mb-16">
         <div class="mb-6 flex items-center justify-between">
           <h2 class="text-2xl font-bold tracking-tight text-white">
-            Featured Partner Perk
+            Featured Partner Perks
           </h2>
-          <span class="text-xs text-gray-400">Exclusive community offer</span>
+          <span class="text-xs text-gray-400">Exclusive community offers</span>
         </div>
 
-        <!-- LearnWorlds Affiliate Card -->
-        <AffiliateCard
-          name="LearnWorlds"
-          tagline="All-in-One AI-Powered Course Platform & LMS"
-          badge="Featured Partner Perk"
-          perk="30-Day Extended Free Trial"
-          href="https://www.learnworlds.com/?ref=mihailtd"
-          cta-text="Claim 30-Day Free Trial"
-          logo="/images/partners/learnworlds-logo.svg"
-          banner-image="/images/partners/learnworlds-banner.svg"
-          banner-caption="Interactive Academy Builder • Built-in AI • White-label Mobile Apps"
-          rating="4.9/5"
-          :features="[
-            'AI Assistant for course outlines, quizzes & assessments',
-            'Interactive video editor with in-video questions & notes',
-            '100% white-label academy with custom domain & mobile apps',
-            'SCORM & xAPI compliance with flexible payment gateways',
-          ]"
-          :featured="true"
-        >
-          <p>
-            If you're an engineer, educator, or founder looking to package your
-            knowledge into high-end online courses or a corporate training
-            academy, LearnWorlds is my top recommendation. Unlike basic course
-            plugins, it provides a comprehensive, scalable LMS with built-in AI
-            authoring and interactive video learning.
-          </p>
-        </AffiliateCard>
+        <div class="space-y-8">
+          <!-- n8n Affiliate Card -->
+          <AffiliateCard
+            name="n8n"
+            tagline="Fair-Code Workflow Automation & Agentic AI Platform"
+            badge="Featured Partner Perk"
+            perk="Start Free Trial or Deploy 100% Free Self-Hosted"
+            href="https://n8n.partnerlinks.io/ltd"
+            cta-text="Claim Free n8n Trial"
+            secondary-href="/blog/n8n"
+            secondary-text="Read Full Tech Report"
+            logo="/images/tech/n8n.svg"
+            banner-image="/images/partners/n8n-banner.svg"
+            banner-caption="Visual Workflow Canvas • Native LangChain Agents • Model Context Protocol (MCP)"
+            rating="5.0/5"
+            :features="[
+              'Zero per-task execution fees (unlimited self-hosted runs)',
+              'Native LangChain AI Agent nodes & Model Context Protocol (MCP)',
+              'Full JavaScript, TypeScript & Python code execution with npm/pip',
+              'Self-host on Docker Compose / Kubernetes or deploy on n8n Cloud',
+            ]"
+            :featured="true"
+          >
+            <p>
+              My primary daily-driver engine for enterprise workflow automation
+              and Agentic AI. Unlike Zapier or Make, n8n has zero per-task
+              execution taxes, full data sovereignty, and native tools for
+              turning workflows into custom AI tools for Claude, GitHub Copilot,
+              and Cursor.
+            </p>
+          </AffiliateCard>
+
+          <!-- LearnWorlds Affiliate Card -->
+          <AffiliateCard
+            name="LearnWorlds"
+            tagline="All-in-One AI-Powered Course Platform & LMS"
+            badge="Featured Partner Perk"
+            perk="30-Day Extended Free Trial"
+            href="https://get.learnworlds.com/evbr2ynlzr52"
+            cta-text="Claim 30-Day Free Trial"
+            logo="/images/partners/learnworlds-logo.svg"
+            banner-image="/images/partners/learnworlds-banner.svg"
+            banner-caption="Interactive Academy Builder • Built-in AI • White-label Mobile Apps"
+            rating="4.9/5"
+            :features="[
+              'AI Assistant for course outlines, quizzes & assessments',
+              'Interactive video editor with in-video questions & notes',
+              '100% white-label academy with custom domain & mobile apps',
+              'SCORM & xAPI compliance with flexible payment gateways',
+            ]"
+            :featured="true"
+          >
+            <p>
+              If you're an engineer, educator, or founder looking to package
+              your knowledge into high-end online courses or a corporate
+              training academy, LearnWorlds is my top recommendation. Unlike
+              basic course plugins, it provides a comprehensive, scalable LMS
+              with built-in AI authoring and interactive video learning.
+            </p>
+          </AffiliateCard>
+        </div>
       </section>
 
       <!-- Category Filter & Search Bar -->
@@ -311,12 +344,24 @@ interface ToolItem {
 
 const tools: ToolItem[] = [
   {
+    name: "n8n",
+    category: "ai",
+    categoryLabel: "Workflow Automation & AI",
+    description:
+      "Fair-code workflow automation and Agentic AI engine. Unlimited self-hosted executions or managed high-availability cloud, featuring native LangChain and MCP integration.",
+    url: "https://n8n.partnerlinks.io/ltd",
+    logo: "/images/tech/n8n.svg",
+    perk: "Partner Perk • Free Trial",
+    cta: "Start Free Trial",
+    isAffiliate: true,
+  },
+  {
     name: "LearnWorlds",
     category: "creator",
     categoryLabel: "Course Platform & LMS",
     description:
       "All-in-one platform for creating and selling online courses with built-in AI course generator, interactive video quizzes, and white-label branding.",
-    url: "https://www.learnworlds.com/?ref=mihailtd",
+    url: "https://get.learnworlds.com/evbr2ynlzr52",
     logo: "/images/partners/learnworlds-logo.svg",
     perk: "30-Day Free Trial",
     cta: "Start 30-Day Trial",
@@ -331,16 +376,6 @@ const tools: ToolItem[] = [
     url: "https://www.cloudflare.com",
     logo: "/images/cloudflare.svg",
     cta: "Explore Cloudflare",
-  },
-  {
-    name: "n8n",
-    category: "ai",
-    categoryLabel: "Workflow Automation & AI",
-    description:
-      "Self-hostable, source-available workflow automation tool. My go-to engine for orchestrating LLM chains, agentic automations, and enterprise APIs.",
-    url: "https://n8n.io",
-    logo: "/images/logos/N8n.io_idWtnk-fDo_1.png",
-    cta: "Check out n8n",
   },
   {
     name: "Claude Code & Anthropic",
@@ -389,7 +424,7 @@ const tools: ToolItem[] = [
     description:
       "Extremely fast Python package installer and resolver written in Rust. Completely replaced pip, poetry, and virtualenv for my Python projects.",
     url: "https://docs.astral.sh/uv/",
-    logo: "/images/python-svgrepo-com.svg",
+    logo: "/images/tech/uv.svg",
     cta: "View uv Docs",
   },
   {

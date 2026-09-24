@@ -7,7 +7,7 @@ tags: ["pnpm", "nodejs", "typescript", "packaging", "monorepo", "workspaces"]
 placements:
   - category: "tools"
     subCategory: "js_tooling"
-stage: "adopt"
+stage: "trial"
 decision: "adopt"
 evaluatedScore: 4
 satisfaction: 5

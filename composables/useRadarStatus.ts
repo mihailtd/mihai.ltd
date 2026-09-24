@@ -9,11 +9,6 @@ export type DecisionKey = "adopt" | "hold" | "reject";
 // every filter pill, progress-bar segment, and treemap border color keys off.
 export type StatusKey = "adopt" | "trial" | "assess" | "hold" | "reject";
 
-export const getEffectiveStatus = (
-  stage: StageKey,
-  decision?: DecisionKey,
-): StatusKey => decision ?? stage;
-
 export interface StatusMeta {
   label: string;
   color: string;
@@ -81,14 +76,38 @@ const defaultRadarStatusMeta: StatusMeta = {
 const isStatusKey = (value: string): value is StatusKey =>
   value in radarStatusMeta;
 
-export const getRadarStatusMeta = (status?: string): StatusMeta =>
-  status && isStatusKey(status)
-    ? radarStatusMeta[status]
-    : defaultRadarStatusMeta;
+export const normalizeStatusKey = (
+  value?: string | null,
+): StatusKey | undefined => {
+  if (!value) return undefined;
+  const normalized = value.trim().toLowerCase();
+  if (normalized === "rejected") return "reject";
+  if (normalized === "adopted") return "adopt";
+  if (normalized === "on_hold" || normalized === "on-hold") return "hold";
+  if (isStatusKey(normalized)) return normalized;
+  return undefined;
+};
+
+export const getEffectiveStatus = (
+  stage: string,
+  decision?: string | null,
+): StatusKey => {
+  const normDecision = normalizeStatusKey(decision);
+  if (normDecision) return normDecision;
+  const normStage = normalizeStatusKey(stage);
+  if (normStage) return normStage;
+  return "assess";
+};
+
+export const getRadarStatusMeta = (status?: string | null): StatusMeta => {
+  const key = normalizeStatusKey(status);
+  return key ? radarStatusMeta[key] : defaultRadarStatusMeta;
+};
 
 export const useRadarStatus = () => ({
   radarStatusOrder,
   radarStatusMeta,
+  normalizeStatusKey,
   getRadarStatusMeta,
   getEffectiveStatus,
 });

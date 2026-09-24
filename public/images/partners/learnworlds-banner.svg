@@ -1,101 +1,172 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 628" width="1200" height="628" fill="none">
-  <!-- Dark Gradient Background -->
-  <rect width="1200" height="628" fill="#0B0F19"/>
-  <rect width="1200" height="628" fill="url(#bg-gradient)"/>
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="lw-bg-gradient" x1="0" y1="0" x2="1200" y2="628" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#080E1F"/>
+      <stop offset="50%" stop-color="#050914"/>
+      <stop offset="100%" stop-color="#0A1633"/>
+    </linearGradient>
+
+    <!-- Text Shimmer Gradients -->
+    <linearGradient id="lw-heading-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="40%" stop-color="#60A5FA"/>
+      <stop offset="80%" stop-color="#A78BFA"/>
+      <stop offset="100%" stop-color="#00D2BA"/>
+    </linearGradient>
+
+    <linearGradient id="lw-btn-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0D52FE"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+
+    <!-- Glass & Card Gradients -->
+    <linearGradient id="glass-card" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.9"/>
+    </linearGradient>
+
+    <linearGradient id="accent-cyan-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D2BA"/>
+      <stop offset="100%" stop-color="#0D52FE"/>
+    </linearGradient>
+
+    <!-- Ambient Glow Filters -->
+    <filter id="glow-blue" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="90" result="blur"/>
+    </filter>
+    <filter id="glow-teal" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="80" result="blur"/>
+    </filter>
+  </defs>
+
+  <!-- Deep Obsidian Navy Background -->
+  <rect width="1200" height="628" fill="url(#lw-bg-gradient)"/>
 
   <!-- Ambient Glow Orbs -->
-  <circle cx="950" cy="220" r="320" fill="#2563EB" opacity="0.18" filter="blur(90px)"/>
-  <circle cx="300" cy="480" r="280" fill="#7C3AED" opacity="0.15" filter="blur(90px)"/>
+  <circle cx="1020" cy="180" r="320" fill="#0D52FE" opacity="0.18" filter="url(#glow-blue)"/>
+  <circle cx="260" cy="500" r="280" fill="#00D2BA" opacity="0.14" filter="url(#glow-teal)"/>
 
-  <!-- Decorative Grid Lines -->
-  <path d="M0 120H1200M0 240H1200M0 360H1200M0 480H1200" stroke="#FFFFFF" stroke-opacity="0.03" stroke-width="1"/>
-  <path d="M200 0V628M400 0V628M600 0V628M800 0V628M1000 0V628" stroke="#FFFFFF" stroke-opacity="0.03" stroke-width="1"/>
+  <!-- Architectural Background Grid -->
+  <path d="M0 120H1200M0 240H1200M0 360H1200M0 480H1200" stroke="#FFFFFF" stroke-opacity="0.025" stroke-width="1"/>
+  <path d="M200 0V628M400 0V628M600 0V628M800 0V628M1000 0V628" stroke="#FFFFFF" stroke-opacity="0.025" stroke-width="1"/>
 
-  <!-- Left Content Column -->
-  <g transform="translate(80, 110)">
+  <!-- LEFT CONTENT COLUMN -->
+  <g transform="translate(80, 95)">
     <!-- Partner Badge -->
-    <rect x="0" y="0" width="220" height="36" rx="18" fill="#1E293B" stroke="#3B82F6" stroke-width="1.5" stroke-opacity="0.5"/>
-    <circle cx="20" cy="18" r="5" fill="#60A5FA"/>
-    <text x="36" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="13" fill="#93C5FD" letter-spacing="0.5">EXCLUSIVE PARTNER PERK</text>
+    <rect x="0" y="0" width="235" height="36" rx="18" fill="#132347" stroke="#2563EB" stroke-width="1.5" stroke-opacity="0.6"/>
+    <circle cx="20" cy="18" r="5" fill="#38BDF8"/>
+    <text x="36" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="12" fill="#93C5FD" letter-spacing="0.8">EXCLUSIVE PARTNER PERK</text>
 
-    <!-- Main Heading -->
-    <text x="0" y="95" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="52" fill="#FFFFFF" letter-spacing="-1">
-      Unleash your expertise.
+    <!-- Main Title -->
+    <text x="0" y="95" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="52" fill="#FFFFFF" letter-spacing="-1.5">
+      Teach without limits.
     </text>
-    <text x="0" y="150" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="34" fill="url(#text-gradient)">
-      The All-in-One AI Course Platform
+    <text x="0" y="150" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="32" fill="url(#lw-heading-gradient)">
+      The AI-Powered Course Platform &amp; LMS
     </text>
 
-    <!-- Subtitle -->
+    <!-- Subtitle / Value Proposition -->
     <text x="0" y="200" font-family="system-ui, -apple-system, sans-serif" font-weight="400" font-size="18" fill="#94A3B8">
-      Create, market, and sell interactive online academies with built-in AI,
+      Build, market, and sell world-class online academies with built-in AI,
     </text>
     <text x="0" y="228" font-family="system-ui, -apple-system, sans-serif" font-weight="400" font-size="18" fill="#94A3B8">
-      white-label mobile apps, and interactive video assessments.
+      interactive video assessments, and 100% white-label mobile apps.
     </text>
 
     <!-- Feature Pills -->
-    <g transform="translate(0, 270)">
-      <rect x="0" y="0" width="165" height="34" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
-      <text x="16" y="22" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#E2E8F0">✨ AI Course Assistant</text>
+    <g transform="translate(0, 268)">
+      <!-- Pill 1 -->
+      <rect x="0" y="0" width="170" height="34" rx="8" fill="#132347" stroke="#1E3A8A" stroke-width="1"/>
+      <text x="14" y="22" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#E2E8F0">🤖 AI Course Creator</text>
 
-      <rect x="180" y="0" width="165" height="34" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <!-- Pill 2 -->
+      <rect x="182" y="0" width="168" height="34" rx="8" fill="#132347" stroke="#1E3A8A" stroke-width="1"/>
       <text x="196" y="22" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#E2E8F0">🎥 Interactive Video</text>
 
-      <rect x="360" y="0" width="165" height="34" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <!-- Pill 3 -->
+      <rect x="362" y="0" width="175" height="34" rx="8" fill="#132347" stroke="#1E3A8A" stroke-width="1"/>
       <text x="376" y="22" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#E2E8F0">📱 Branded Mobile App</text>
     </g>
 
-    <!-- Offer Pill -->
-    <g transform="translate(0, 340)">
-      <rect x="0" y="0" width="280" height="48" rx="24" fill="url(#btn-gradient)"/>
-      <text x="28" y="30" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">Start 30-Day Free Trial →</text>
+    <!-- Call to Action Button Mockup -->
+    <g transform="translate(0, 335)">
+      <rect x="0" y="0" width="295" height="48" rx="24" fill="url(#lw-btn-gradient)"/>
+      <text x="28" y="30" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">Start 30-Day Extended Trial →</text>
     </g>
   </g>
 
-  <!-- Right Visual Mockup (Laptop / Academy UI) -->
-  <g transform="translate(710, 110)">
-    <!-- Card Frame -->
-    <rect x="0" y="0" width="410" height="410" rx="24" fill="#0F172A" stroke="#334155" stroke-width="1.5"/>
-    <rect x="1" y="1" width="408" height="50" rx="23" fill="#1E293B" stroke="#334155" stroke-width="0.5"/>
-    <!-- Window buttons -->
-    <circle cx="30" cy="26" r="6" fill="#EF4444"/>
-    <circle cx="50" cy="26" r="6" fill="#F59E0B"/>
-    <circle cx="70" cy="26" r="6" fill="#10B981"/>
-    <text x="96" y="31" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#94A3B8">academy.innovi.pro / learnworlds</text>
+  <!-- RIGHT VISUAL MOCKUP: Modern Academy Dashboard UI -->
+  <g transform="translate(680, 85)">
+    <!-- Container Card Frame -->
+    <rect x="0" y="0" width="450" height="450" rx="28" fill="#0C1527" stroke="#1E293B" stroke-width="2"/>
+    <rect x="1" y="1" width="448" height="52" rx="27" fill="#111C35" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="1"/>
+    
+    <!-- Window Controls -->
+    <circle cx="28" cy="26" r="6" fill="#EF4444" opacity="0.8"/>
+    <circle cx="48" cy="26" r="6" fill="#F59E0B" opacity="0.8"/>
+    <circle cx="68" cy="26" r="6" fill="#10B981" opacity="0.8"/>
+    <text x="96" y="31" font-family="system-ui, monospace" font-size="12" fill="#94A3B8">academy.mihai.ltd / learnworlds</text>
 
-    <!-- Inside Card Preview -->
-    <rect x="25" y="75" width="360" height="150" rx="12" fill="#1E293B"/>
-    <rect x="40" y="95" width="140" height="18" rx="4" fill="#3B82F6"/>
-    <rect x="40" y="125" width="220" height="12" rx="3" fill="#475569"/>
-    <rect x="40" y="145" width="180" height="12" rx="3" fill="#334155"/>
-    <rect x="40" y="180" width="100" height="26" rx="6" fill="#10B981"/>
+    <!-- Main Course Hero Video Player Banner -->
+    <g transform="translate(25, 75)">
+      <rect width="400" height="150" rx="14" fill="#16233E" stroke="#1E3A8A" stroke-width="1"/>
+      
+      <!-- Video Thumbnail Gradient -->
+      <rect x="15" y="15" width="160" height="120" rx="10" fill="url(#accent-cyan-blue)" opacity="0.85"/>
+      <circle cx="95" cy="75" r="20" fill="#FFFFFF" fill-opacity="0.9"/>
+      <polygon points="90,67 105,75 90,83" fill="#0D52FE"/>
 
-    <!-- Course Modules Mini Grid -->
-    <rect x="25" y="245" width="170" height="135" rx="12" fill="#1E293B"/>
-    <rect x="40" y="265" width="120" height="50" rx="8" fill="#334155"/>
-    <rect x="40" y="330" width="100" height="10" rx="3" fill="#94A3B8"/>
+      <!-- Video Details & Interactive Quiz Badge -->
+      <text x="190" y="42" font-family="system-ui, sans-serif" font-weight="700" font-size="14" fill="#FFFFFF">Agentic AI Architecture</text>
+      <text x="190" y="62" font-family="system-ui, sans-serif" font-size="11" fill="#94A3B8">Lesson 04 • Interactive Video</text>
+      
+      <!-- Synchronized Quiz Prompt Chip -->
+      <rect x="190" y="80" width="190" height="26" rx="6" fill="#00D2BA" fill-opacity="0.15" stroke="#00D2BA" stroke-opacity="0.4"/>
+      <text x="202" y="97" font-family="system-ui, sans-serif" font-weight="600" font-size="10" fill="#00D2BA">⚡ In-Video Quiz Triggered (04:12)</text>
 
-    <rect x="215" y="245" width="170" height="135" rx="12" fill="#1E293B"/>
-    <rect x="230" y="265" width="120" height="50" rx="8" fill="#334155"/>
-    <rect x="230" y="330" width="100" height="10" rx="3" fill="#94A3B8"/>
+      <!-- Progress Bar -->
+      <rect x="190" y="120" width="190" height="6" rx="3" fill="#334155"/>
+      <rect x="190" y="120" width="135" height="6" rx="3" fill="#0D52FE"/>
+    </g>
+
+    <!-- Bottom Two Course Modules / Student Engagement Cards -->
+    <g transform="translate(25, 245)">
+      <!-- Left Card: AI Course Assistant -->
+      <rect width="190" height="135" rx="14" fill="#141E34" stroke="#1E293B" stroke-width="1"/>
+      <circle cx="30" cy="30" r="14" fill="#0D52FE" fill-opacity="0.25"/>
+      <text x="23" y="36" font-family="system-ui" font-size="14">✨</text>
+      <text x="54" y="32" font-family="system-ui, sans-serif" font-weight="700" font-size="12" fill="#FFFFFF">AI Assistant</text>
+      <text x="54" y="46" font-family="system-ui, sans-serif" font-size="10" fill="#60A5FA">Auto-Generated</text>
+      
+      <rect x="18" y="65" width="154" height="8" rx="4" fill="#334155"/>
+      <rect x="18" y="80" width="120" height="8" rx="4" fill="#334155"/>
+      <rect x="18" y="95" width="140" height="8" rx="4" fill="#1E293B"/>
+
+      <rect x="18" y="110" width="90" height="16" rx="4" fill="#10B981" fill-opacity="0.2"/>
+      <text x="25" y="122" font-family="system-ui, sans-serif" font-weight="600" font-size="9" fill="#34D399">100% Complete</text>
+    </g>
+
+    <g transform="translate(235, 245)">
+      <!-- Right Card: White-Label Mobile App -->
+      <rect width="190" height="135" rx="14" fill="#141E34" stroke="#1E293B" stroke-width="1"/>
+      <circle cx="30" cy="30" r="14" fill="#00D2BA" fill-opacity="0.2"/>
+      <text x="23" y="36" font-family="system-ui" font-size="14">📱</text>
+      <text x="54" y="32" font-family="system-ui, sans-serif" font-weight="700" font-size="12" fill="#FFFFFF">Custom App</text>
+      <text x="54" y="46" font-family="system-ui, sans-serif" font-size="10" fill="#00D2BA">iOS &amp; Android</text>
+
+      <rect x="18" y="65" width="154" height="24" rx="6" fill="#0F172A" stroke="#1E3A8A" stroke-width="0.5"/>
+      <text x="28" y="81" font-family="system-ui, sans-serif" font-size="10" fill="#93C5FD">⭐ 4.9 App Rating</text>
+
+      <rect x="18" y="100" width="154" height="22" rx="6" fill="#0D52FE" fill-opacity="0.2"/>
+      <text x="32" y="115" font-family="system-ui, sans-serif" font-weight="600" font-size="9" fill="#93C5FD">Push Notifications On</text>
+    </g>
+
+    <!-- Bottom Status Pill -->
+    <g transform="translate(25, 395)">
+      <rect width="210" height="30" rx="15" fill="#132347" stroke="#00D2BA" stroke-width="1"/>
+      <circle cx="16" cy="15" r="4" fill="#00D2BA"/>
+      <text x="28" y="19" font-family="system-ui, monospace" font-size="11" font-weight="600" fill="#00D2BA">ACADEMY STATUS: LIVE &amp; ACTIVE</text>
+    </g>
   </g>
-
-  <!-- Gradients -->
-  <defs>
-    <linearGradient id="bg-gradient" x1="0" y1="0" x2="1200" y2="628" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#0F172A" stop-opacity="0.8"/>
-      <stop offset="50%" stop-color="#020617" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#1E1B4B" stop-opacity="0.85"/>
-    </linearGradient>
-    <linearGradient id="text-gradient" x1="0" y1="0" x2="600" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#60A5FA"/>
-      <stop offset="50%" stop-color="#A78BFA"/>
-      <stop offset="100%" stop-color="#F472B6"/>
-    </linearGradient>
-    <linearGradient id="btn-gradient" x1="0" y1="0" x2="280" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#2563EB"/>
-      <stop offset="100%" stop-color="#7C3AED"/>
-    </linearGradient>
-  </defs>
 </svg>

@@ -13,7 +13,7 @@ stage: "trial"
 evaluatedScore: 2
 decisionReason: "Trialing Bun for standalone microservices, high-speed scripts, and rapid test execution. While extraordinarily fast, Node.js remains our enterprise production standard for runtime maturity, with pnpm anchoring our multi-package monorepos."
 decidedDate: "2025-01-10"
-logoPath: "/bun-logo.svg"
+logoPath: "/images/bun-logo.svg"
 link: "https://bun.sh/"
 target: "_blank"
 ---

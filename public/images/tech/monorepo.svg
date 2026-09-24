@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="mono-root" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="mono-pkg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Outer container boundary -->
+  <rect x="36" y="36" width="440" height="440" rx="48" fill="#0c1222" stroke="url(#mono-root)" stroke-width="8" stroke-dasharray="12 8" opacity="0.85"/>
+
+  <!-- Connecting Tree DAG Lines -->
+  <path d="M 256 160 L 256 260" stroke="#60a5fa" stroke-width="10" stroke-linecap="round"/>
+  <path d="M 256 260 L 128 340" stroke="#60a5fa" stroke-width="10" stroke-linecap="round"/>
+  <path d="M 256 260 L 256 340" stroke="#60a5fa" stroke-width="10" stroke-linecap="round"/>
+  <path d="M 256 260 L 384 340" stroke="#60a5fa" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- Root Repository Node -->
+  <g filter="url(#glow)">
+    <rect x="186" y="80" width="140" height="80" rx="20" fill="url(#mono-root)"/>
+    <text x="256" y="128" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="28" text-anchor="middle">ROOT</text>
+  </g>
+
+  <!-- Child Packages -->
+  <!-- Package 1: apps/web -->
+  <g>
+    <rect x="78" y="340" width="100" height="70" rx="16" fill="url(#mono-pkg)"/>
+    <text x="128" y="382" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="20" text-anchor="middle">apps</text>
+  </g>
+
+  <!-- Package 2: packages/ui -->
+  <g>
+    <rect x="206" y="340" width="100" height="70" rx="16" fill="url(#mono-pkg)"/>
+    <text x="256" y="382" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="20" text-anchor="middle">core</text>
+  </g>
+
+  <!-- Package 3: packages/api -->
+  <g>
+    <rect x="334" y="340" width="100" height="70" rx="16" fill="url(#mono-pkg)"/>
+    <text x="384" y="382" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="20" text-anchor="middle">pkg</text>
+  </g>
+</svg>

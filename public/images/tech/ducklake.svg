@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="ducklake-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="50%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="duck-yellow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff100"/>
+      <stop offset="100%" stop-color="#facc15"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Badge -->
+  <circle cx="250" cy="250" r="235" fill="#0f172a" stroke="url(#ducklake-grad)" stroke-width="14"/>
+  
+  <!-- Duck Head / Body from DuckDB -->
+  <g transform="translate(100, 70) scale(0.6)">
+    <circle cx="250" cy="220" r="160" fill="url(#duck-yellow)"/>
+    <!-- Sunglasses / Beak silhouette -->
+    <path fill="#090025" d="M190 120 c-56 0 -103 46 -103 103 0 57 46 103 103 103 56 0 103 -46 103 -103 s-46 -103 -103 -103 Z"/>
+    <path fill="#090025" d="M376 186 h-50 v74 h50 c20 0 37 -16 37 -37 s-16 -37 -37 -37 Z"/>
+  </g>
+  
+  <!-- Lakehouse Data Tiers (Iceberg / Delta lake layers) -->
+  <g transform="translate(70, 310)">
+    <!-- Layer 1: Gold / Aggregated -->
+    <path d="M 40 25 Q 180 5 320 25 Q 180 45 40 25" fill="#38bdf8" opacity="0.95"/>
+    <!-- Layer 2: Silver / Cleansed -->
+    <path d="M 30 65 Q 180 40 330 65 Q 180 88 30 65" fill="#06b6d4" opacity="0.85"/>
+    <!-- Layer 3: Bronze / Raw Storage -->
+    <path d="M 20 105 Q 180 75 340 105 Q 180 130 20 105" fill="#0284c7" opacity="0.75"/>
+  </g>
+</svg>
