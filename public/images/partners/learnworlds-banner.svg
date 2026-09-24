@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 628" width="1200" height="628" fill="none">
+  <!-- Dark Gradient Background -->
+  <rect width="1200" height="628" fill="#0B0F19"/>
+  <rect width="1200" height="628" fill="url(#bg-gradient)"/>
+
+  <!-- Ambient Glow Orbs -->
+  <circle cx="950" cy="220" r="320" fill="#2563EB" opacity="0.18" filter="blur(90px)"/>
+  <circle cx="300" cy="480" r="280" fill="#7C3AED" opacity="0.15" filter="blur(90px)"/>
+
+  <!-- Decorative Grid Lines -->
+  <path d="M0 120H1200M0 240H1200M0 360H1200M0 480H1200" stroke="#FFFFFF" stroke-opacity="0.03" stroke-width="1"/>
+  <path d="M200 0V628M400 0V628M600 0V628M800 0V628M1000 0V628" stroke="#FFFFFF" stroke-opacity="0.03" stroke-width="1"/>
+
+  <!-- Left Content Column -->
+  <g transform="translate(80, 110)">
+    <!-- Partner Badge -->
+    <rect x="0" y="0" width="220" height="36" rx="18" fill="#1E293B" stroke="#3B82F6" stroke-width="1.5" stroke-opacity="0.5"/>
+    <circle cx="20" cy="18" r="5" fill="#60A5FA"/>
+    <text x="36" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="13" fill="#93C5FD" letter-spacing="0.5">EXCLUSIVE PARTNER PERK</text>
+
+    <!-- Main Heading -->
+    <text x="0" y="95" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="52" fill="#FFFFFF" letter-spacing="-1">
+      Unleash your expertise.
+    </text>
+    <text x="0" y="150" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="34" fill="url(#text-gradient)">
+      The All-in-One AI Course Platform
+    </text>
+
+    <!-- Subtitle -->
+    <text x="0" y="200" font-family="system-ui, -apple-system, sans-serif" font-weight="400" font-size="18" fill="#94A3B8">
+      Create, market, and sell interactive online academies with built-in AI,
+    </text>
+    <text x="0" y="228" font-family="system-ui, -apple-system, sans-serif" font-weight="400" font-size="18" fill="#94A3B8">
+      white-label mobile apps, and interactive video assessments.
+    </text>
+
+    <!-- Feature Pills -->
+    <g transform="translate(0, 270)">
+      <rect x="0" y="0" width="165" height="34" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="16" y="22" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#E2E8F0">✨ AI Course Assistant</text>
+
+      <rect x="180" y="0" width="165" height="34" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="196" y="22" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#E2E8F0">🎥 Interactive Video</text>
+
+      <rect x="360" y="0" width="165" height="34" rx="8" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+      <text x="376" y="22" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#E2E8F0">📱 Branded Mobile App</text>
+    </g>
+
+    <!-- Offer Pill -->
+    <g transform="translate(0, 340)">
+      <rect x="0" y="0" width="280" height="48" rx="24" fill="url(#btn-gradient)"/>
+      <text x="28" y="30" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF">Start 30-Day Free Trial →</text>
+    </g>
+  </g>
+
+  <!-- Right Visual Mockup (Laptop / Academy UI) -->
+  <g transform="translate(710, 110)">
+    <!-- Card Frame -->
+    <rect x="0" y="0" width="410" height="410" rx="24" fill="#0F172A" stroke="#334155" stroke-width="1.5"/>
+    <rect x="1" y="1" width="408" height="50" rx="23" fill="#1E293B" stroke="#334155" stroke-width="0.5"/>
+    <!-- Window buttons -->
+    <circle cx="30" cy="26" r="6" fill="#EF4444"/>
+    <circle cx="50" cy="26" r="6" fill="#F59E0B"/>
+    <circle cx="70" cy="26" r="6" fill="#10B981"/>
+    <text x="96" y="31" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#94A3B8">academy.innovi.pro / learnworlds</text>
+
+    <!-- Inside Card Preview -->
+    <rect x="25" y="75" width="360" height="150" rx="12" fill="#1E293B"/>
+    <rect x="40" y="95" width="140" height="18" rx="4" fill="#3B82F6"/>
+    <rect x="40" y="125" width="220" height="12" rx="3" fill="#475569"/>
+    <rect x="40" y="145" width="180" height="12" rx="3" fill="#334155"/>
+    <rect x="40" y="180" width="100" height="26" rx="6" fill="#10B981"/>
+
+    <!-- Course Modules Mini Grid -->
+    <rect x="25" y="245" width="170" height="135" rx="12" fill="#1E293B"/>
+    <rect x="40" y="265" width="120" height="50" rx="8" fill="#334155"/>
+    <rect x="40" y="330" width="100" height="10" rx="3" fill="#94A3B8"/>
+
+    <rect x="215" y="245" width="170" height="135" rx="12" fill="#1E293B"/>
+    <rect x="230" y="265" width="120" height="50" rx="8" fill="#334155"/>
+    <rect x="230" y="330" width="100" height="10" rx="3" fill="#94A3B8"/>
+  </g>
+
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="bg-gradient" x1="0" y1="0" x2="1200" y2="628" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0F172A" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#020617" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#1E1B4B" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="text-gradient" x1="0" y1="0" x2="600" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="50%" stop-color="#A78BFA"/>
+      <stop offset="100%" stop-color="#F472B6"/>
+    </linearGradient>
+    <linearGradient id="btn-gradient" x1="0" y1="0" x2="280" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+  </defs>
+</svg>

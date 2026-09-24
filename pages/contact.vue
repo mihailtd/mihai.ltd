@@ -1,5 +1,16 @@
 <template>
-  <NuxtLayout name="home" message="How can I help?">
+  <main class="relative min-h-screen">
+    <!-- Hero Section -->
+    <section
+      class="hero-bg min-h-[30vh] bg-cover bg-top pb-8 pt-28 md:min-h-[35vh] lg:bg-center"
+    >
+      <h1
+        class="mx-auto text-center text-7xl font-bold tracking-wide text-yellow-100 md:text-8xl lg:max-w-[60%] lg:text-9xl"
+      >
+        How can I help?
+      </h1>
+    </section>
+
     <div class="mx-auto max-w-2xl px-6 pb-24 pt-8 text-center">
       <p class="mb-12 text-xl text-gray-300">
         Choose the option that best fits your needs so I can route you to the
@@ -193,14 +204,10 @@
         </div>
       </div>
     </div>
-  </NuxtLayout>
+  </main>
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  layout: false,
-});
-
 // SEO metadata for contact page
 useSeoMeta({
   title: "Contact Mihai Farcas - Software Architect & Agentic AI Consultant",
@@ -256,3 +263,11 @@ const submit = async () => {
   }
 };
 </script>
+
+<style scoped>
+.hero-bg {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0) 10%, rgba(9, 0, 37, 1) 80%),
+    url("/images/hero.webp");
+}
+</style>

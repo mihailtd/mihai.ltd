@@ -14,14 +14,15 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
     "@nuxt/content",
   ],
-  css: ["@/assets/index.css"],
+  css: ["@/assets/index.css", "vue-echarts/style.css"],
   turnstile: {
     siteKey: "0x4AAAAAAAUBxBNAPgRBo5hj",
   },
   build: {
-    transpile: ["echarts", "zrender", "tslib"],
+    transpile: ["echarts", "zrender", "tslib", "vue-echarts"],
   },
   app: {
+    pageTransition: { name: "page", mode: "out-in" },
     head: {
       title:
         "Mihai Farcas - Software Architect, Agentic AI Expert & Content Creator",
@@ -80,7 +81,9 @@ export default defineNuxtConfig({
     name: "Mihai Farcas - Software Architect & Content Creator",
   },
   image: {},
-  sitemap: {},
+  sitemap: {
+    sources: ["/api/_sitemap-urls"],
+  },
   robots: {
     groups: [{ userAgent: "*", allow: "/" }],
     sitemap: ["https://mihai.ltd/sitemap.xml"],
@@ -89,7 +92,7 @@ export default defineNuxtConfig({
     prerender: {
       autoSubfolderIndex: false,
       crawlLinks: true,
-      routes: ["/sitemap.xml"],
+      routes: ["/", "/blog", "/radar", "/stack", "/contact", "/sitemap.xml"],
     },
     routeRules: {
       // Content-hashed build assets are safe to cache forever — a filename
@@ -100,11 +103,17 @@ export default defineNuxtConfig({
       "/images/**": {
         headers: { "Cache-Control": "public, max-age=31536000, immutable" },
       },
-      // Deliberately no blanket "/**" cache-control: these pages are
-      // content-driven (queryCollection at request time) and edited often,
-      // so a 10-minute browser cache on the HTML document itself was
-      // serving stale pages after content changes until a hard refresh.
+      // Explicitly prerender blog list, articles, and stack for static Cloudflare Workers serving
+      "/blog": { prerender: true },
       "/blog/**": { prerender: true },
+      "/stack": { prerender: true },
+      // Backward compatibility redirects for legacy /books URLs
+      "/books": {
+        redirect: { to: "/blog?type=book_summary", statusCode: 301 },
+      },
+      "/books/**": {
+        redirect: { to: "/blog/**", statusCode: 301 },
+      },
     },
   },
 });

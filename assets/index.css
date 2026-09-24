@@ -31,3 +31,43 @@ body,
   box-shadow: 0px 0px 0px 10000vh black;
   border-radius: 10px;
 }
+
+/* Subtle, snappy page navigation transition */
+.page-enter-active,
+.page-leave-active {
+  transition:
+    opacity 0.16s ease-out,
+    transform 0.16s ease-out;
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+
+/* vue-echarts custom element styles */
+x-vue-echarts,
+.echarts {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+}
+
+x-vue-echarts > .echarts-host,
+.echarts > .echarts-host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+}
+
+x-vue-echarts > .echarts-host > :first-child,
+x-vue-echarts > .echarts-host > :first-child > canvas {
+  border-radius: inherit;
+}

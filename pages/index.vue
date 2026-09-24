@@ -5,6 +5,17 @@
       class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-yellow-100 focus:px-3 focus:py-2 focus:text-black"
       >Skip to content</a
     >
+
+    <!-- Hero Header with "Hello." and background image -->
+    <section
+      class="hero-bg min-h-[30vh] bg-cover bg-top pb-12 pt-28 md:min-h-[35vh] lg:bg-center"
+    >
+      <p
+        class="text-center text-9xl font-bold tracking-wide text-yellow-100 md:text-[12em]"
+      >
+        Hello.
+      </p>
+    </section>
     <section
       class="grid px-12 py-12 text-yellow-100 md:px-16 lg:grid-cols-3 lg:px-48 xl:px-72"
     >
@@ -260,7 +271,7 @@
             to="/blog?type=book_summary"
             class="text-3xl text-yellow-100 underline decoration-wavy underline-offset-4 transition-all duration-300 hover:text-blue-500 hover:decoration-blue-500"
           >
-            Check out more books...
+            Explore all book summaries →
           </NuxtLink>
         </div>
       </div>
@@ -324,10 +335,6 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  layout: "home",
-});
-
 // Enhanced SEO metadata for homepage
 useSeoMeta({
   title:
@@ -636,3 +643,11 @@ const topBooks = [
   },
 ];
 </script>
+
+<style scoped>
+.hero-bg {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0) 10%, rgba(9, 0, 37, 1) 80%),
+    url("/images/hero.webp");
+}
+</style>
