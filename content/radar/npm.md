@@ -1,7 +1,10 @@
 ---
 title: "npm"
+seoTitle: "npm vs pnpm: Why I Rejected npm as a Package Manager | Mihai Farcas"
+headline: "npm: Why the Default Package Manager Was Rejected"
 description: "Why npm was rejected for enterprise Node.js and TypeScript projects in favor of pnpm's content-addressable architecture and workspace isolation."
 date: "2026-08-08"
+updated: "2026-09-30"
 type: "tech_report"
 tags: ["npm", "pnpm", "nodejs", "typescript", "packaging", "tooling"]
 placements:
@@ -15,15 +18,15 @@ decisionReason: "Rejected in favor of pnpm for Node and TypeScript projects. Fla
 decidedDate: "2026-08-08"
 ---
 
-# npm: Why the Default Package Manager Was Rejected
-
 As the default package manager distributed with Node.js, `npm` is universally known and ubiquitous across the JavaScript ecosystem. It established the registry standards that power the entire web ecosystem.
 
-However, as applications scale in complexity—particularly in multi-package repositories and enterprise TypeScript codebases—`npm`'s architectural decisions create critical liabilities. On our Tech Radar, **`npm` is officially rejected in favor of [pnpm](/blog/pnpm)** (with **[Bun](/blog/bun)** evaluated for dedicated high-speed standalone services).
+However, as applications scale in complexity—particularly in multi-package repositories and enterprise TypeScript codebases—`npm`'s architectural decisions create critical liabilities. **Short answer: use [pnpm](/blog/pnpm) instead of the npm CLI.** On my Tech Radar, **`npm` is rejected in favor of pnpm** (with **[Bun](/blog/bun)** evaluated for dedicated high-speed standalone services).
 
 ---
 
 ## 1. The Core Architectural Problem: Flat `node_modules` & Phantom Dependencies
+
+npm hoists every dependency into one flat `node_modules` folder, so your code can import packages it never declared ("phantom dependencies") — and it breaks when a transitive dependency changes or disappears.
 
 To solve the nested directory length limits historically present in Windows, `npm v3` introduced **dependency hoisting**. Instead of nesting dependencies under each package, `npm` flattens dependencies into the top-level `node_modules/` directory.
 
@@ -58,6 +61,8 @@ In contrast, **[pnpm](/blog/pnpm)** uses a **strict symlink layout**. Only packa
 
 ## 2. Disk Space Explosion: No Content-Addressable Storage
 
+npm copies every dependency into every project, so ten projects using the same library store it ten times; pnpm instead keeps one copy in a global content-addressable store and hard-links it.
+
 When you work on multiple projects or services using `npm`:
 
 - If 15 projects each depend on `typescript`, `@types/node`, and `next` or `nuxt`, `npm` downloads and writes **15 identical physical copies** of those dependencies to your drive.
@@ -73,6 +78,8 @@ When you work on multiple projects or services using `npm`:
 
 ## 3. Subpar Monorepo & Workspace Ergonomics
 
+npm workspaces work for simple cases, but they lack the strict isolation, filtering (`--filter`) and workspace protocol that make pnpm the standard foundation for monorepos.
+
 While `npm` added basic `workspaces` support in npm v7, it lacks the rigor required for enterprise **[Monorepos](/blog/monorepo)**:
 
 1. **No `workspace:*` Protocol:** With `npm`, declaring internal package dependencies often requires manual version synchronization or confusing symlink behavior. [pnpm](/blog/pnpm) provides the explicit `workspace:*` or `workspace:^` protocol, ensuring internal packages resolve to local source code during development and transform to exact semantic versions during publish.
@@ -86,6 +93,8 @@ While `npm` added basic `workspaces` support in npm v7, it lacks the rigor requi
 ---
 
 ## 4. Head-to-Head Comparison: npm vs. pnpm vs. Bun
+
+pnpm beats npm on install speed, disk usage and dependency strictness; Bun is faster still but less mature for production monorepos.
 
 | Feature                                | npm (Default)             | pnpm (Adopted Standard)                      | Bun (Alternative Runtime)     |
 | :------------------------------------- | :------------------------ | :------------------------------------------- | :---------------------------- |
@@ -101,6 +110,8 @@ While `npm` added basic `workspaces` support in npm v7, it lacks the rigor requi
 ---
 
 ## 5. Migration: Moving from npm to pnpm
+
+Migrating takes a few commands: install pnpm, run `pnpm import` to convert `package-lock.json` into `pnpm-lock.yaml`, delete `node_modules`, and reinstall — then fix any phantom dependencies pnpm surfaces.
 
 Transitioning an existing repository from `npm` to `pnpm` is straightforward and deterministic:
 
@@ -125,11 +136,13 @@ If your project relied on hidden phantom dependencies, `pnpm install` or your Ty
 
 ## 6. Radar Verdict & Related Articles
 
+**Verdict: Rejected in favor of pnpm.** npm the registry is essential; npm the CLI is no longer the best client for it.
+
 `npm` remains essential as the public registry protocol and package registry backend. However, as an active CLI client and package manager, it has been completely superseded by superior tooling.
 
-Explore our connected toolchain reports:
+Explore the connected toolchain reports:
 
-- **[pnpm (Adopted Standard)](/blog/pnpm):** How pnpm anchors our TypeScript and monorepo workflows.
+- **[pnpm (Adopted Standard)](/blog/pnpm):** How pnpm anchors my TypeScript and monorepo workflows.
 - **[Bun (Trial)](/blog/bun):** Fast JavaScript runtime and high-speed package manager for edge services.
 - **[Monorepo Architecture (Adopted)](/blog/monorepo):** Scalable code organization using native package workspaces.
 - **[Turborepo](/blog/turborepo):** Task runner and computation cache built on top of pnpm workspaces.

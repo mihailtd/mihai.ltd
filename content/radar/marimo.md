@@ -16,6 +16,4 @@ link: "https://marimo.io/"
 target: "_blank"
 ---
 
-# Marimo
-
 Python notebook environment, adopted in favor of [Jupyter](/blog/jupyter).

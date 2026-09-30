@@ -14,6 +14,4 @@ decisionReason: "Adopted as the low-complexity entry point for local development
 decidedDate: "2026-08-08"
 ---
 
-# Docker Compose
-
 The easy on-ramp for local development — define a few services in a YAML file and go. For more advanced local setups that need to mirror production more closely, [Rancher Desktop](/blog/rancher-desktop) and a local Kubernetes cluster take over.

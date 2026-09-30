@@ -11,6 +11,4 @@ stage: "trial"
 evaluatedScore: 2
 ---
 
-# React
-
 Trialing as a front-end option alongside [Vue.js](/blog/vuejs). Still in progress — no decision yet.

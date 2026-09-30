@@ -1,7 +1,10 @@
 ---
 title: "pnpm"
+seoTitle: "pnpm Review: Why pnpm Is My Standard Package Manager for Node.js & TypeScript | Mihai Farcas"
+headline: "pnpm: The Foundation of Modern Node & TypeScript Workspaces"
 description: "Fast, disk-efficient package manager and workspace engine adopted in favor of npm for all Node.js and TypeScript projects."
 date: "2026-08-08"
+updated: "2026-09-30"
 type: "tech_report"
 tags: ["pnpm", "nodejs", "typescript", "packaging", "monorepo", "workspaces"]
 placements:
@@ -11,21 +14,21 @@ stage: "trial"
 decision: "adopt"
 evaluatedScore: 4
 satisfaction: 5
-decisionReason: "Adopted in favor of plain npm for all Node and TypeScript projects. Content-addressable hardlink store eliminates duplicated node_modules across projects, strict symlink topology prevents phantom dependencies, and first-class workspace protocol powers our monorepo architecture."
+decisionReason: "Adopted in favor of plain npm for all Node and TypeScript projects. Content-addressable hardlink store eliminates duplicated node_modules across projects, strict symlink topology prevents phantom dependencies, and first-class workspace protocol powers my monorepo architecture."
 decidedDate: "2026-08-08"
 link: "https://pnpm.io/"
 target: "_blank"
 ---
 
-# pnpm: The Foundation of Modern Node & TypeScript Workspaces
-
-In the modern TypeScript ecosystem, efficient package management is the bedrock of engineering velocity. After extensive evaluation against legacy **[npm](/blog/npm)** and alternative runtimes like **[Bun](/blog/bun)**, **`pnpm` is our firmly adopted standard** for all Node.js and TypeScript projects and multi-package repositories.
+In the modern TypeScript ecosystem, efficient package management is the bedrock of engineering velocity. After extensive evaluation against legacy **[npm](/blog/npm)** and alternative runtimes like **[Bun](/blog/bun)**, **`pnpm` is my adopted standard** for all Node.js and TypeScript projects and multi-package repositories. **Short answer: use pnpm** — it installs faster than npm, stores each package once on disk, blocks phantom dependencies and has the best workspace support for monorepos.
 
 `pnpm` (performant npm) delivers three non-negotiable architectural advantages: a global content-addressable storage model that saves tens of gigabytes of disk space, a strict symlink topology that eliminates phantom dependencies, and an industry-leading workspace protocol designed for **[Monorepos](/blog/monorepo)**.
 
 ---
 
 ## 1. Architectural Superpower #1: Content-Addressable Storage (CAS)
+
+pnpm stores every package version once in a global content-addressable store and hard-links it into each project, so installs are fast and disk usage stays flat no matter how many projects you have.
 
 Traditional package managers like **[npm](/blog/npm)** download and extract complete dependency trees into a local `node_modules` folder inside every project. If ten repositories or services use the same framework version, you have ten physical duplicates consuming disk I/O and storage.
 
@@ -49,7 +52,9 @@ Global Content-Addressable Store (~/.local/share/pnpm/store)
 
 ## 2. Architectural Superpower #2: Strict Symlinks & Phantom Dependency Immunity
 
-As detailed in our **[npm evaluation report](/blog/npm)**, flat `node_modules` hoisting allows code to import undeclared transitive dependencies ("phantom dependencies"). When those sub-dependencies change or shift, builds fail unpredictably in production.
+pnpm only exposes the dependencies a package actually declares, using a symlinked `node_modules` layout, so undeclared "phantom" imports fail immediately in development instead of breaking later in production.
+
+As detailed in my **[npm evaluation report](/blog/npm)**, flat `node_modules` hoisting allows code to import undeclared transitive dependencies ("phantom dependencies"). When those sub-dependencies change or shift, builds fail unpredictably in production.
 
 `pnpm` solves this by constructing an isolated, symlinked dependency graph:
 
@@ -71,6 +76,8 @@ node_modules/
 ---
 
 ## 3. Workspaces & Monorepo Foundation
+
+pnpm workspaces link local packages through the `workspace:` protocol, share one lockfile and let you run commands on selected packages with `--filter` — the foundation every TypeScript monorepo should start from.
 
 `pnpm` is the undisputed premier package manager for **[Monorepo Architecture](/blog/monorepo)**. It introduces a lightweight yet powerful workspace configuration via `pnpm-workspace.yaml`:
 
@@ -114,18 +121,22 @@ pnpm --filter ...[origin/main] test
 
 ## 4. Symbiosis with Monorepo Build Engines
 
+pnpm manages dependencies; a build engine manages tasks. Use pnpm workspaces alone for small repos, add Turborepo for caching in TypeScript monorepos, or Moon when Python and Rust are involved.
+
 A frequent architectural question is: _“If we use pnpm workspaces, do we also need [Turborepo](/blog/turborepo) or [Moon](/blog/moon)?”_
 
 The answer depends on repository scale and language diversity:
 
 - **Level 1 (Workspaces Only):** For repositories with under 5–8 packages, `pnpm -r run build` or `pnpm --filter` is completely sufficient. It links packages, generates unified lockfiles (`pnpm-lock.yaml`), and executes scripts.
 - **Level 2 (Orchestration Engine Added):** As the repository scales to 15+ packages, native `pnpm` lacks distributed computation caching and cross-language task graphs.
-  - In **pure TypeScript monorepos**, we layer **[Turborepo](/blog/turborepo)** on top of `pnpm workspaces` to gain sub-millisecond remote caching.
-  - In **polyglot monorepos** (mixing Python, TypeScript, and Rust), we layer **[Moon](/blog/moon)** on top of `pnpm` and **[uv](/blog/uv)** to coordinate unified cross-language pipelines.
+  - In **pure TypeScript monorepos**, I layer **[Turborepo](/blog/turborepo)** on top of `pnpm workspaces` to gain sub-millisecond remote caching.
+  - In **polyglot monorepos** (mixing Python, TypeScript, and Rust), I layer **[Moon](/blog/moon)** on top of `pnpm` and **[uv](/blog/uv)** to coordinate unified cross-language pipelines.
 
 ---
 
 ## 5. Comparison: pnpm vs. npm vs. Bun
+
+pnpm offers the best balance: faster and stricter than npm, and more mature for production monorepos than Bun.
 
 | Dimension                 | pnpm (Adopted)               | npm (Rejected)                          | Bun (Alternative)                       |
 | :------------------------ | :--------------------------- | :-------------------------------------- | :-------------------------------------- |
@@ -140,7 +151,9 @@ The answer depends on repository scale and language diversity:
 
 ## 6. Radar Verdict & Related Articles
 
-`pnpm` is our unequivocal recommendation and universal standard for JavaScript and TypeScript projects. It solves the operational flaws of **[npm](/blog/npm)** while serving as the reliable package foundation for modern monorepo build tools.
+**Verdict: Adopted over npm.**
+
+`pnpm` is my unequivocal recommendation and universal standard for JavaScript and TypeScript projects. It solves the operational flaws of **[npm](/blog/npm)** while serving as the reliable package foundation for modern monorepo build tools.
 
 Explore the connected ecosystem:
 

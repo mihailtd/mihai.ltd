@@ -17,6 +17,4 @@ decisionReason: "Rejected as the language actually written by hand, in favor of 
 decidedDate: "2026-08-08"
 ---
 
-# JavaScript
-
 Still what everything ultimately runs as (Node, browsers, and bundlers all speak JavaScript), but no longer what gets written by hand. [TypeScript](/blog/typescript) is the authoring language now, front-end and back-end alike.

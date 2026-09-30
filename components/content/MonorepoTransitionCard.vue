@@ -11,9 +11,9 @@
           <span
             class="flex h-2 w-2 animate-pulse rounded-full bg-indigo-400"
           ></span>
-          <h4 class="text-base font-bold text-white sm:text-xl">
+          <p class="text-base font-bold text-white sm:text-xl">
             When to Transition: Workspaces vs. Monorepo Engines
-          </h4>
+          </p>
         </div>
         <p class="mt-1 text-xs text-gray-400">
           Comparing threshold criteria and the impact of distributed computation
@@ -82,9 +82,9 @@
             <span class="font-mono text-xs text-emerald-400/80">pnpm / uv</span>
           </div>
 
-          <h5 class="mb-2 text-lg font-bold text-white">
+          <p class="mb-2 text-lg font-bold text-white">
             Native Workspaces Are Sufficient When:
-          </h5>
+          </p>
           <p class="mb-5 text-xs text-gray-400">
             Keep your architecture lightweight. No extra build abstraction
             needed.
@@ -159,9 +159,9 @@
             >
           </div>
 
-          <h5 class="mb-2 text-lg font-bold text-white">
+          <p class="mb-2 text-lg font-bold text-white">
             Graduate to Monorepo Engines When:
-          </h5>
+          </p>
           <p class="mb-5 text-xs text-gray-400">
             Computation caching and affected analysis become business-critical.
           </p>
@@ -227,10 +227,10 @@
       :class="activeView === 'all' ? 'border-t border-white/10 pt-6' : ''"
     >
       <div class="flex items-center justify-between">
-        <h5 class="text-sm font-bold text-white">
+        <p class="text-sm font-bold text-white">
           CI Pipeline Run Time: Native Workspaces vs. Monorepo with Remote
           Caching
-        </h5>
+        </p>
         <span class="text-xs text-gray-400"
           >Time in Seconds (Lower is better)</span
         >
@@ -259,6 +259,52 @@
         remote caching restore unaffected outputs in
         <strong>under 35 seconds</strong>.
       </p>
+
+      <!-- Same numbers as the client-only chart, as server-rendered text -->
+      <table class="mx-auto mt-3 text-left text-xs text-gray-300">
+        <caption class="sr-only">
+          CI pipeline run time by monorepo size
+        </caption>
+        <thead class="text-gray-400">
+          <tr>
+            <th scope="col" class="py-1 pr-4">Repository size</th>
+            <th scope="col" class="py-1 pr-4">Native workspaces (no cache)</th>
+            <th scope="col" class="py-1">
+              Moon / Turborepo (remote cache hit)
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" class="py-1 pr-4 font-medium text-gray-200">
+              1 package
+            </th>
+            <td class="py-1 pr-4 font-mono">15 s</td>
+            <td class="py-1 font-mono">12 s</td>
+          </tr>
+          <tr>
+            <th scope="row" class="py-1 pr-4 font-medium text-gray-200">
+              5 packages
+            </th>
+            <td class="py-1 pr-4 font-mono">130 s</td>
+            <td class="py-1 font-mono">16 s</td>
+          </tr>
+          <tr>
+            <th scope="row" class="py-1 pr-4 font-medium text-gray-200">
+              15 packages
+            </th>
+            <td class="py-1 pr-4 font-mono">580 s</td>
+            <td class="py-1 font-mono">22 s</td>
+          </tr>
+          <tr>
+            <th scope="row" class="py-1 pr-4 font-medium text-gray-200">
+              30 packages
+            </th>
+            <td class="py-1 pr-4 font-mono">1,440 s</td>
+            <td class="py-1 font-mono">32 s</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>

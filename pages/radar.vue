@@ -613,6 +613,68 @@
           </button>
         </div>
       </div>
+
+      <!-- Static, crawlable radar index. The treemap / sunburst above are
+           canvas charts that only render in the browser; this section puts
+           every report link and verdict in the server-rendered HTML. -->
+      <section
+        aria-labelledby="radar-index-heading"
+        class="mt-20 border-t border-white/10 pt-12"
+      >
+        <h2
+          id="radar-index-heading"
+          class="text-2xl font-bold tracking-tight text-white sm:text-3xl"
+        >
+          How the Tech Radar works
+        </h2>
+        <p class="mt-4 max-w-3xl text-base leading-relaxed text-gray-300">
+          This radar is Mihai Farcas's record of hands-on technology
+          evaluations. Each entry is tested in real projects, moves from
+          <strong class="text-white">Assess</strong> to
+          <strong class="text-white">Trial</strong>, and ends with a decision:
+          <strong class="text-emerald-300">Adopt</strong>,
+          <strong class="text-amber-300">Hold</strong> or
+          <strong class="text-rose-300">Reject</strong>. Every decision links to
+          a written report explaining why, and what it was chosen over.
+        </p>
+        <p class="mt-3 max-w-3xl text-sm leading-relaxed text-gray-400">
+          Entries are grouped into four quadrants — Languages &amp; Frameworks,
+          Platforms, Tools and Techniques — and each report is dated so you can
+          see when the decision was last reviewed.
+        </p>
+
+        <h2 class="mt-12 text-xl font-bold text-white sm:text-2xl">
+          All {{ allItems.length }} radar reports
+        </h2>
+        <div class="mt-6 grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+          <section
+            v-for="group in radarIndex"
+            :key="group.status"
+            :aria-labelledby="`radar-index-${group.status}`"
+          >
+            <h3
+              :id="`radar-index-${group.status}`"
+              class="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider"
+              :class="getRadarStatusMeta(group.status).text"
+            >
+              {{ getRadarStatusMeta(group.status).label }}
+              <span class="text-gray-500">({{ group.items.length }})</span>
+            </h3>
+            <ul class="space-y-2 text-sm">
+              <li v-for="item in group.items" :key="item.slug">
+                <NuxtLink
+                  :to="`/blog/${item.slug}`"
+                  class="font-semibold text-blue-300 hover:text-blue-200 hover:underline"
+                  >{{ item.name }}</NuxtLink
+                >
+                <span v-if="item.description" class="text-gray-400">
+                  — {{ item.description }}</span
+                >
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
     </div>
 
     <!-- Quick View Detail Modal / Slide-Over -->
@@ -881,7 +943,7 @@
 </template>
 
 <script setup lang="ts">
-import { useHead, useSeoMeta } from "#app";
+import { useSeoMeta } from "#app";
 import type { EChartsOption } from "echarts";
 import { SunburstChart, TreemapChart } from "echarts/charts";
 import {
@@ -895,21 +957,18 @@ import { CanvasRenderer } from "echarts/renderers";
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import VChart from "vue-echarts";
 
-useHead({
-  title: "Tech Radar - Mihai Farcas",
-});
+const radarTitle =
+  "Tech Radar: Hands-On Adopt / Hold / Reject Decisions | Mihai Farcas";
+const radarDescription =
+  "Mihai Farcas's tech radar: hands-on evaluations of languages, platforms, tools and techniques — n8n, Kubernetes, K3s, monorepo tooling, uv, Ruff, pnpm, cloud providers and more — each with a dated adopt, hold or reject decision and a written report.";
 
 useSeoMeta({
-  title: "Tech Radar - Mihai Farcas Software Architecture Technologies",
-  description:
-    "Explore the technologies and tools used by Mihai Farcas for software architecture, Agentic AI development, and enterprise solutions. Including Kubernetes, Vue.js, Node.js, n8n, LangGraph, and more.",
-  ogTitle: "Tech Radar - Mihai Farcas Technologies & Tools",
-  ogDescription:
-    "Discover the technology stack and tools for modern software architecture and AI automation.",
-  ogUrl: "https://mihai.ltd/radar",
-  twitterTitle: "Tech Radar - Mihai Farcas",
-  twitterDescription:
-    "Technologies and tools for software architecture and AI automation by Mihai Farcas.",
+  title: radarTitle,
+  description: radarDescription,
+  ogTitle: radarTitle,
+  ogDescription: radarDescription,
+  twitterTitle: radarTitle,
+  twitterDescription: radarDescription,
 });
 
 useECharts([
@@ -1072,6 +1131,41 @@ const allItems = computed<RadarItem[]>(() =>
     target: raw.target,
   })),
 );
+
+// Every report grouped by its effective status, for the static index.
+const radarIndex = computed(() =>
+  radarStatusOrder
+    .map((status) => ({
+      status,
+      items: allItems.value
+        .filter((i) => (i.decision ?? i.stage) === status)
+        .sort((a, b) => a.name.localeCompare(b.name)),
+    }))
+    .filter((g) => g.items.length > 0),
+);
+
+useJsonLd("radar", () => [
+  {
+    "@type": "CollectionPage",
+    "@id": `${SITE_URL}/radar#webpage`,
+    url: `${SITE_URL}/radar`,
+    name: radarTitle,
+    description: radarDescription,
+    isPartOf: { "@id": WEBSITE_ID },
+    author: { "@id": PERSON_ID },
+    inLanguage: "en",
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: allItems.value.length,
+      itemListElement: allItems.value.map((item, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: item.name,
+        url: `${SITE_URL}/blog/${item.slug}`,
+      })),
+    },
+  },
+]);
 
 const itemsBySlug = computed(
   () => new Map(allItems.value.map((item) => [item.slug, item])),

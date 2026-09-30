@@ -12,6 +12,4 @@ decision: "adopt"
 evaluatedScore: 4
 ---
 
-# Cloudflare
-
 DNS, CDN, and edge compute for this site and client projects. Generous free tier and a platform that keeps expanding into hosting and storage.

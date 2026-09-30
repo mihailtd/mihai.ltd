@@ -15,6 +15,4 @@ decisionReason: "On hold in favor of GCP, which is the go-to among the Big 3 clo
 decidedDate: "2026-08-08"
 ---
 
-# AWS
-
 Evaluated alongside [GCP](/blog/gcp) and [Azure](/blog/azure). On hold — GCP is currently the go-to among the "Big 3".

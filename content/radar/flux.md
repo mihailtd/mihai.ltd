@@ -15,6 +15,4 @@ decisionReason: "Considered as a GitOps delivery tool alongside ArgoCD. Not bad 
 decidedDate: "2026-08-08"
 ---
 
-# Flux
-
 Considered as a GitOps continuous delivery tool for Kubernetes, alongside [ArgoCD](/blog/argocd). ArgoCD won out, but Flux held up well in the comparison — this is a hold, not a rejection.

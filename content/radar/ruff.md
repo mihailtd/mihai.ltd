@@ -1,7 +1,10 @@
 ---
 title: "Ruff"
+seoTitle: "Ruff Review: The Fast Python Linter & Formatter Replacing Black, Flake8 and isort | Mihai Farcas"
+headline: "Ruff: The High-Speed Rust Engine Consolidating Python Tooling"
 description: "Extremely fast Python linter and code formatter written in Rust, adopted to replace Black, Flake8, and isort into a unified zero-dependency binary."
 date: "2026-08-08"
+updated: "2026-09-30"
 type: "tech_report"
 tags:
   [
@@ -21,13 +24,11 @@ stage: "trial"
 decision: "adopt"
 evaluatedScore: 4
 satisfaction: 5
-decisionReason: "Adopted as company-wide standard for Python code quality. Replaced Black, Flake8, isort, and pyupgrade with 30-100x faster execution in CI and sub-100ms local pre-commit hooks, completely eliminating Python developer latency."
+decisionReason: "Adopted as my standard for Python code quality across every project. Replaced Black, Flake8, isort, and pyupgrade with 30-100x faster execution in CI and sub-100ms local pre-commit hooks, completely eliminating Python developer latency."
 decidedDate: "2026-08-08"
 link: "https://docs.astral.sh/ruff/"
 target: "_blank"
 ---
-
-# Ruff: The High-Speed Rust Engine Consolidating Python Tooling
 
 For nearly a decade, establishing code quality and formatting discipline in enterprise Python required stitching together an increasingly fragile assembly of standalone tools:
 
@@ -44,9 +45,13 @@ In a codebase of 100,000+ lines of Python, running this legacy pipeline through 
 
 Enter **Ruff**, created by Charlie Marsh and developed by **Astral** (the engineering team behind **[uv](/blog/uv)** and **[ty](/blog/ty)**). Written from scratch in Rust, Ruff replaces Black, Flake8, isort, pyupgrade, and dozens of Flake8 plugins with a single, standalone binary capable of linting and formatting massive codebases in tens of milliseconds.
 
+**Short answer: Ruff is the Python linter and formatter I recommend for every project.** It is an unconditional **Adopt** on my Tech Radar.
+
 ---
 
 ## Performance Benchmark: 50x–100x Faster
+
+Ruff is 50–100x faster than the tools it replaces: on a 150,000-line codebase it lints and formats in about 48 ms, versus about 4.3 seconds for Black + Flake8 + isort.
 
 Ruff's performance profile fundamentally changes developer ergonomics. By parsing Python code directly in compiled Rust with zero Python runtime startup overhead, Ruff operates at memory-bus speeds.
 
@@ -63,6 +68,8 @@ The interactive benchmark below demonstrates real-world execution latency measur
 ---
 
 ## The Great Toolchain Consolidation
+
+One Ruff binary replaces six tools — Black, isort, Flake8 and its plugins, pyupgrade and autoflake — configured in a single `[tool.ruff]` block in `pyproject.toml`.
 
 Beyond raw velocity, Ruff's greatest architectural triumph is **toolchain unification**. Rather than maintaining five separate configuration blocks across `.flake8`, `setup.cfg`, `.isort.cfg`, and `pyproject.toml`, Ruff unifies formatting, import organization, static analysis, and syntax modernization under a cohesive `[tool.ruff]` schema in `pyproject.toml`.
 
@@ -91,7 +98,9 @@ Ruff natively implements rules from over 50 popular Flake8 plugins without requi
 
 ## Production-Grade `pyproject.toml` Configuration
 
-Below is our standardized enterprise configuration adopted across all Python microservices, data pipelines, and shared packages:
+A production Ruff setup needs one `[tool.ruff]` section: target Python version and line length, the rule families to enable (pycodestyle, Pyflakes, isort, bugbear, pyupgrade and more), and formatter options.
+
+Below is the standardized configuration I use adopted across all Python microservices, data pipelines, and shared packages:
 
 ```toml
 [tool.ruff]
@@ -157,6 +166,8 @@ docstring-code-format = true
 
 ## CI/CD and Pre-Commit Integration
 
+Run Ruff twice in both pre-commit and CI — `ruff check --fix` for linting and `ruff format` for formatting — using the official `ruff-pre-commit` hooks locally and `uvx ruff` in CI.
+
 To integrate Ruff into local development workflows with zero friction, configure `.pre-commit-config.yaml`:
 
 ```yaml
@@ -199,6 +210,8 @@ jobs:
 
 ## The Astral Ecosystem: The Future of Python Tooling
 
+Ruff is part of Astral's Rust-based Python toolchain: uv for packaging and environments, Ruff for linting and formatting, and ty for type checking.
+
 Ruff is not an isolated experiment—it is the flagship cornerstone of Astral's broader architectural mission to modernize the entire Python developer ecosystem:
 
 1. **Packaging & Environments**: **[uv](/blog/uv)** replaces **[pip](/blog/pip)**, poetry, virtualenv, and pipx with an ultra-fast Rust-based package installer and workspace resolver.
@@ -208,6 +221,8 @@ Ruff is not an isolated experiment—it is the flagship cornerstone of Astral's 
 ---
 
 ## Radar Evaluation Summary
+
+**Verdict: Adopted.** Ruff replaces Black, Flake8 and isort with one faster tool and no loss in formatting consistency.
 
 | Criterion                | Evaluation | Architectural Impact                                                                |
 | :----------------------- | :--------- | :---------------------------------------------------------------------------------- |
@@ -219,4 +234,4 @@ Ruff is not an isolated experiment—it is the flagship cornerstone of Astral's 
 
 ### Verdict & Final Decision
 
-**Ruff is an unconditional Adopt.** By replacing **[Black](/blog/black)**, Flake8, and isort, Ruff has eliminated code-quality latency from our developer loop. It proves that native systems programming (Rust) can transform developer productivity in dynamic languages (Python) without sacrificing ecosystem compatibility.
+**Ruff is an unconditional Adopt.** By replacing **[Black](/blog/black)**, Flake8, and isort, Ruff has eliminated code-quality latency from my developer loop. It proves that native systems programming (Rust) can transform developer productivity in dynamic languages (Python) without sacrificing ecosystem compatibility.

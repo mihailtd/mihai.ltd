@@ -15,6 +15,4 @@ link: "https://claude.com/product/claude-code"
 target: "_blank"
 ---
 
-# Claude Code
-
 Adopted alongside GitHub Copilot for more agentic, multi-file tasks. Still settling on the right workflow and tuning expectations, hence the same current satisfaction as Copilot.

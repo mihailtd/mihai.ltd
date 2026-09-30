@@ -1,7 +1,10 @@
 ---
 title: "n8n"
-description: "Why n8n was adopted as our standard enterprise workflow automation and Agentic AI orchestration platform over Zapier and Make."
+headline: "n8n: The Open-Source Workflow Automation & Agentic AI Platform"
+seoTitle: "n8n Review: Why I Adopted n8n over Zapier & Make for Agentic AI | Mihai Farcas"
+description: "Why Mihai Farcas adopted n8n as his standard enterprise workflow automation and Agentic AI orchestration platform over Zapier and Make."
 date: "2026-08-08"
+updated: "2026-09-30"
 type: "tech_report"
 tags:
   [
@@ -23,20 +26,23 @@ stage: "trial"
 decision: "adopt"
 evaluatedScore: 4
 satisfaction: 5
-decisionReason: "Adopted as our primary enterprise workflow automation and Agentic AI orchestration engine. Fair-code architecture eliminates the exponential per-task execution fees of Zapier and Make, native LangChain/MCP nodes empower autonomous agent tool-calling, and first-class Docker/Kubernetes deployment enables complete data sovereignty."
+decisionReason: "Adopted as my primary enterprise workflow automation and Agentic AI orchestration engine. Fair-code architecture eliminates the exponential per-task execution fees of Zapier and Make, native LangChain/MCP nodes empower autonomous agent tool-calling, and first-class Docker/Kubernetes deployment enables complete data sovereignty."
 decidedDate: "2026-08-08"
 link: "https://n8n.partnerlinks.io/ltd"
 logoPath: "/images/tech/n8n.svg"
 target: "_blank"
+videos:
+  - id: "6AKXBCZH0pU"
+    title: "n8n + MCP: Turn Your Automation Workflows into Custom AI Tools for GitHub Copilot!"
+    description: "Mihai Farcas shows how to configure n8n as a Model Context Protocol (MCP) server so existing automation workflows become AI tools that GitHub Copilot, Claude and VS Code can call."
+    uploadDate: "2025-05-13"
 ---
-
-# n8n: The Open-Source Workflow Automation & Agentic AI Platform
 
 In the modern enterprise tech stack, automation is no longer just about syncing leads between a CRM and an email marketing tool. As software architectures shift toward distributed microservices, event-driven pipelines, and autonomous AI agents, organizations face a critical dilemma: **how to orchestrate complex business logic, third-party APIs, and LLM reasoning without drowning in proprietary per-task subscription fees or maintenance-heavy custom boilerplate.**
 
 For years, commercial SaaS integration platforms like **Zapier** and **Make (formerly Integromat)** dominated the no-code integration landscape. However, as automation volume reaches tens or hundreds of thousands of executions per month, their rigid pricing models turn automation into an escalating financial liability.
 
-On our Tech Radar, **n8n has earned an unconditional Adopt**. By combining a fair-code, self-hostable core with enterprise queue scalability, native JavaScript/Python code execution, and cutting-edge **Agentic AI and Model Context Protocol (MCP)** integration, n8n has become our foundational platform for both internal operations and production AI agent orchestration.
+**Short answer: n8n is the workflow automation platform I recommend for enterprise automation and Agentic AI.** On my Tech Radar it has earned an unconditional **Adopt**: it combines a fair-code, self-hostable core with queue-mode scalability, native JavaScript/Python code execution, and first-class **Agentic AI and Model Context Protocol (MCP)** integration — which is why it is now my foundational platform for both internal operations and production AI agent orchestration.
 
 ::affiliate-card{name="n8n" tagline="Fair-Code Workflow Automation & Agentic AI Platform" badge="Official Partner" perk="Start Free Trial or Deploy 100% Free Self-Hosted" href="https://n8n.partnerlinks.io/ltd" ctaText="Try n8n Cloud (Free Trial)" secondaryHref="https://docs.n8n.io/" secondaryText="Documentation" logo="/images/tech/n8n.svg" bannerImage="/images/partners/n8n-banner.svg" bannerCaption="Visual Workflow Canvas • Native LangChain Agents • Model Context Protocol (MCP)" rating="5.0" features="Zero per-task execution tax,Native LangChain & Agentic AI nodes,Full JavaScript & Python code execution,100% self-hostable on Docker & K8s,400+ pre-built integrations" :featured="true"}
 Empower your engineering workflows and autonomous AI agents with n8n. Run it completely free on your own infrastructure or deploy in seconds with managed n8n Cloud. Unlimited executions, complete data privacy, and direct Model Context Protocol (MCP) tool integration.
@@ -45,6 +51,8 @@ Empower your engineering workflows and autonomous AI agents with n8n. Run it com
 ---
 
 ## The Four Core Architectural Advantages of n8n
+
+n8n wins on four fronts: no per-task pricing when self-hosted, real JavaScript and Python instead of a proprietary formula language, native AI agent and MCP support, and a horizontally scalable queue-mode architecture. Each is covered below.
 
 ### 1. The Death of the "Per-Task Tax" (Data Sovereignty & Economics)
 
@@ -90,19 +98,29 @@ return rawPayloads.map((item) => {
 
 ### 3. Native Agentic AI, LangChain & Model Context Protocol (MCP)
 
+n8n treats AI agents as first-class workflow nodes: an agent node reasons with the LLM of your choice, and any workflow can be exposed to it as a callable tool.
+
 While competing platforms scrambled to paste superficial "Ask AI" chat widgets onto their dashboards, n8n re-architected its core canvas to become a **visual LangChain orchestrator**:
 
 1. **AI Agent Node**: Acts as the central reasoning engine powered by your choice of LLM provider (OpenAI GPT-4o, Anthropic Claude 3.5 Sonnet, Google Gemini, or local models via Ollama).
 2. **Dynamic Tool Calling**: Any standard n8n workflow or sub-workflow can be exposed directly to an AI agent as a callable tool. The agent autonomously inspects OpenAPI schemas, decides which tool to invoke, executes queries against production systems, and evaluates the result.
 3. **Managed Memory & Vector Stores**: Native nodes for Window Buffer Memory, Redis Chat Memory, and Vector Stores (Pinecone, Qdrant, Supabase pgvector) allow long-term conversational recall and Retrieval-Augmented Generation (RAG).
 
-::you-tube-embed{id="6AKXBCZH0pU" title="n8n + MCP: Turn Your Automation Workflows into Custom AI Tools for GitHub Copilot!" channel="Let's Talk Dev" channelUrl="https://youtube.com/@letstalkdev"}
+::you-tube-embed{id="6AKXBCZH0pU" title="n8n + MCP: Turn Your Automation Workflows into Custom AI Tools for GitHub Copilot!" channel="Let's Talk Dev" channelUrl="https://www.youtube.com/@letstalkdev"}
 In this in-depth tutorial on **Let's Talk Dev**, software architect Mihai Farcas demonstrates how to configure n8n as a Model Context Protocol (MCP) server, turning your existing automation workflows into dynamic, executable AI tools inside your IDE (VS Code, GitHub Copilot, and Claude).
+
+#summary
+
+- n8n can act as an **MCP server**: an MCP Server Trigger node publishes selected workflows as tools.
+- Any AI client that speaks MCP — **GitHub Copilot in VS Code, Claude** — connects to that n8n URL and can call those workflows.
+- Existing automations (deployments, knowledge-base lookups, admin tasks) become AI tools **without writing a custom server**.
+- Sensitive operations can stay behind **human-in-the-loop approval** steps inside n8n.
+
 ::
 
 #### The MCP Revolution with n8n
 
-As showcased in our YouTube deep dive above, the **Model Context Protocol (MCP)** bridges AI assistants with external system tools. By configuring n8n as an MCP Server, developers can:
+As shown in my Let's Talk Dev deep dive above, the **Model Context Protocol (MCP)** bridges AI assistants with external system tools. By configuring n8n as an MCP Server, developers can:
 
 - Allow **[GitHub Copilot](/blog/github-copilot)** or **[Claude Code](/blog/claude-code)** to trigger internal deployment workflows directly from the IDE terminal.
 - Query production knowledge bases (Notion, Jira, PostgreSQL) using natural language prompts without switching windows.
@@ -111,6 +129,8 @@ As showcased in our YouTube deep dive above, the **Model Context Protocol (MCP)*
 ---
 
 ### 4. Enterprise Production Topology: Queue Mode with Redis & PostgreSQL
+
+In production, run n8n in **queue mode**: a main instance receives webhooks and serves the UI, Redis queues the jobs, PostgreSQL stores state and credentials, and a pool of workers executes the workflows and scales horizontally.
 
 For enterprise-grade reliability, n8n moves beyond single-container installations to support a distributed **Queue Mode** architecture:
 
@@ -149,6 +169,8 @@ For enterprise-grade reliability, n8n moves beyond single-container installation
 
 ## Feature Comparison Matrix: n8n vs. Zapier vs. Make
 
+Compared with Zapier and Make, n8n is the only one of the three you can self-host, it prices by workflow execution instead of per task, and it has native AI agent and MCP nodes. Custom Python scripts give you the same control, but you have to build scheduling, retries, queues and a UI yourself.
+
 | Capability                      | n8n                                           | Zapier                             | Make (Integromat)           | Custom Python Scripts               |
 | :------------------------------ | :-------------------------------------------- | :--------------------------------- | :-------------------------- | :---------------------------------- |
 | **Hosting Model**               | **Self-Hosted or Cloud**                      | Proprietary Cloud Only             | Proprietary Cloud Only      | VPS / Serverless                    |
@@ -163,6 +185,8 @@ For enterprise-grade reliability, n8n moves beyond single-container installation
 ---
 
 ## Production Deployment: Running n8n with Docker Compose
+
+The quickest production-ready n8n setup is two containers: n8n and PostgreSQL, wired together with Docker Compose and exposed through a tunnel or reverse proxy rather than an open port.
 
 For single-node staging environments, Homelabs, and small businesses, running n8n alongside PostgreSQL with [Docker Compose](/blog/docker-compose) is the fastest path to production:
 
@@ -232,7 +256,7 @@ services:
 
 ## When to Choose n8n Cloud vs. Self-Hosting
 
-One of n8n's greatest strengths is that **you are never vendor-locked**:
+Self-host n8n when you need data sovereignty, very high execution volumes or deployment inside your own VPC; choose n8n Cloud when you want zero infrastructure maintenance. Because workflows are portable JSON, **you are never vendor-locked** and can move between the two later.
 
 ### Choose Self-Hosting When:
 
@@ -247,18 +271,18 @@ One of n8n's greatest strengths is that **you are never vendor-locked**:
 - You want dedicated customer support, early access to new AI features, and managed email delivery infrastructure.
 
 ::affiliate-card{name="n8n Cloud" tagline="Production-Ready Managed Workflow Engine" badge="Special Offer" perk="Free 14-Day Trial • Zero Server Setup" href="https://n8n.partnerlinks.io/ltd" ctaText="Start Your Free n8n Trial" secondaryHref="https://n8n.partnerlinks.io/ltd" secondaryText="Explore Enterprise Features" logo="/images/tech/n8n.svg" rating="5.0" features="Instant setup with zero server maintenance,Automated upgrades & nightly backups,Managed high availability infrastructure,Native AI Agent nodes with hosted models" :featured="true"}
-Ready to automate your business processes and deploy agentic AI tools? Sign up through our official partner link to start your free trial with full access to all enterprise features.
+Ready to automate your business processes and deploy agentic AI tools? Sign up through my official partner link to start your free trial with full access to all enterprise features.
 ::
 
 ---
 
 ## Architectural Verdict
 
-**n8n is an unconditional Adopt.**
+**n8n is an unconditional Adopt.** It is the platform I use and recommend for enterprise workflow automation and Agentic AI orchestration, self-hosted or on n8n Cloud.
 
 By bridging the gap between visual low-code accessibility and rigorous software engineering principles, n8n has eliminated the false trade-off between developer velocity and data sovereignty. Whether you are running a single self-hosted node to orchestrate Homelab cron jobs or deploying a clustered queue architecture executing mission-critical enterprise AI workflows, n8n delivers the flexibility, financial sanity, and architectural rigor demanded by modern engineering teams.
 
-- **Explore n8n Cloud**: **[Start your free trial via our partner link](https://n8n.partnerlinks.io/ltd)**
+- **Explore n8n Cloud**: **[Start your free trial via my partner link](https://n8n.partnerlinks.io/ltd)**
 - **Watch the MCP Tutorial**: **[n8n + MCP on Let's Talk Dev](https://www.youtube.com/watch?v=6AKXBCZH0pU)**
 - **Related Tech Radar Reports**:
   - **[Docker Compose (Adopt)](/blog/docker-compose)**: Local service isolation and database orchestration

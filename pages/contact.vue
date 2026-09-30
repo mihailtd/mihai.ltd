@@ -203,24 +203,190 @@
           </p>
         </div>
       </div>
+
+      <!-- Engagement models: what each type of work looks like -->
+      <section
+        aria-labelledby="engagements-heading"
+        class="mt-20 border-t border-white/10 pt-12 text-left"
+      >
+        <h2
+          id="engagements-heading"
+          class="text-2xl font-bold text-yellow-100 md:text-3xl"
+        >
+          Services &amp; engagement models
+        </h2>
+        <p class="mt-4 text-gray-300">
+          I help companies design and ship production Agentic AI systems, n8n
+          automations and MCP servers, and I review or own the architecture
+          around them. Consulting engagements run through my company,
+          <a
+            href="https://innovi.pro/"
+            target="_blank"
+            rel="noopener"
+            class="text-blue-300 underline underline-offset-4 hover:text-blue-400"
+            >INNOVI PRO</a
+          >.
+        </p>
+        <div class="mt-6 overflow-x-auto rounded-2xl border border-white/10">
+          <table class="w-full text-left text-sm">
+            <caption class="sr-only">
+              Engagement models offered by Mihai Farcas
+            </caption>
+            <thead
+              class="bg-white/5 text-xs uppercase tracking-wider text-gray-400"
+            >
+              <tr>
+                <th scope="col" class="px-4 py-3">Engagement</th>
+                <th scope="col" class="px-4 py-3">What you get</th>
+                <th scope="col" class="px-4 py-3">Best for</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 text-gray-300">
+              <tr v-for="e in engagements" :key="e.name">
+                <th scope="row" class="px-4 py-3 font-semibold text-white">
+                  {{ e.name }}
+                </th>
+                <td class="px-4 py-3">{{ e.deliverables }}</td>
+                <td class="px-4 py-3 text-gray-400">{{ e.bestFor }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- FAQ: direct answers to typical procurement questions -->
+      <section aria-labelledby="faq-heading" class="mt-16 text-left">
+        <h2
+          id="faq-heading"
+          class="text-2xl font-bold text-yellow-100 md:text-3xl"
+        >
+          Frequently asked questions
+        </h2>
+        <div class="mt-6 space-y-3">
+          <details
+            v-for="(f, i) in faqs"
+            :key="f.q"
+            class="group rounded-2xl border border-white/10 bg-white/5 p-5 open:bg-white/[0.07]"
+            :open="i === 0"
+          >
+            <summary
+              class="cursor-pointer list-none font-semibold text-white marker:hidden"
+            >
+              <h3 class="inline text-base">{{ f.q }}</h3>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-gray-300">
+              {{ f.a }}
+            </p>
+          </details>
+        </div>
+      </section>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
-// SEO metadata for contact page
+const contactTitle =
+  "Hire Mihai Farcas — Agentic AI, n8n & Software Architecture Consulting";
+const contactDescription =
+  "Work with Mihai Farcas, Software Architect: Agentic AI system design, n8n workflow automation, MCP server development and fractional architecture reviews. Engagement models, supported stacks and FAQ.";
+
 useSeoMeta({
-  title: "Contact Mihai Farcas - Software Architect & Agentic AI Consultant",
-  description:
-    "Get in touch with Mihai Farcas for Software Architecture consulting, Agentic AI solutions, n8n automation services, YouTube sponsorships, or technical writing opportunities.",
-  ogTitle: "Contact Mihai Farcas - Software Architect & Agentic AI Consultant",
-  ogDescription:
-    "Contact Mihai Farcas for consulting services, content collaboration, and technical expertise in AI automations and enterprise architecture.",
-  ogUrl: "https://mihai.ltd/contact",
-  twitterTitle: "Contact Mihai Farcas - Software Architect",
-  twitterDescription:
-    "Get in touch for consulting services, AI automation solutions, and content collaboration.",
+  title: contactTitle,
+  description: contactDescription,
+  ogTitle: contactTitle,
+  ogDescription: contactDescription,
+  twitterTitle: contactTitle,
+  twitterDescription: contactDescription,
 });
+
+const engagements = [
+  {
+    name: "Fractional architect / CTO",
+    deliverables:
+      "Ongoing architecture ownership: technology choices, system design, reviews, and hands-on guidance for your engineers.",
+    bestFor:
+      "Founders and teams without a senior architect, or scaling a product into AI.",
+  },
+  {
+    name: "AI system design review",
+    deliverables:
+      "A review of your agentic AI / RAG design — orchestration, data flow, evaluation, cost, security — with a written list of prioritized recommendations.",
+    bestFor:
+      "Teams about to build, or struggling to productionize, an AI feature.",
+  },
+  {
+    name: "Agentic AI implementation",
+    deliverables:
+      "Design and delivery of production AI agents with LangGraph, RAG / Graph RAG, tool calling and guardrails on Azure OpenAI, OpenAI, Claude or Gemini.",
+    bestFor:
+      "Companies that want a working, maintainable AI system — not a demo.",
+  },
+  {
+    name: "n8n automation & MCP servers",
+    deliverables:
+      "Custom n8n workflows and AI agents, self-hosted n8n on Docker or Kubernetes, and MCP servers that connect your internal tools to Claude, ChatGPT and Copilot.",
+    bestFor:
+      "Operations and engineering teams automating manual processes or replacing Zapier / Make.",
+  },
+];
+
+const faqs = [
+  {
+    q: "What does Mihai Farcas help companies with?",
+    a: "Mihai Farcas is a Software Architect who designs and ships production Agentic AI systems, n8n workflow automations and MCP servers, and provides fractional architecture and AI design reviews. Consulting engagements are delivered through his company, INNOVI PRO.",
+  },
+  {
+    q: "Which tech stacks do you work with?",
+    a: "TypeScript and Node.js, Python and FastAPI, Vue.js and Nuxt on the application side; PostgreSQL, MongoDB, SQL Server, Redis and RabbitMQ for data and messaging; Docker, Kubernetes, ArgoCD and GitLab CI/CD on GCP, Azure or AWS. For AI: LangGraph, RAG and Graph RAG, MCP, and models from Azure OpenAI, OpenAI, Anthropic Claude and Google Gemini — plus n8n for workflow automation.",
+  },
+  {
+    q: "Do you work remotely, and in which time zone?",
+    a: "Yes — all engagements are remote. I'm based in Cluj-Napoca, Romania (UTC+2, UTC+3 in summer), which overlaps with European business hours and US East Coast mornings, and I have delivered projects for US healthcare organizations.",
+  },
+  {
+    q: "How long does a typical engagement take?",
+    a: "It depends on scope. A design review or a single n8n automation is a short, fixed-scope engagement; an agentic AI build or a fractional architect role usually runs over several weeks or months. Scope, timeline and deliverables are agreed up front after an introductory call.",
+  },
+  {
+    q: "Can you work with sensitive or regulated data?",
+    a: "Yes. I have built healthcare systems using FHIR, HL7 and DICOM (including patient-facing portals for Kaiser Permanente via Cognizant) and work on insurance systems at Marsh. For sensitive data I design self-hosted deployments — for example self-hosted n8n and private model endpoints such as Azure OpenAI — so data stays inside your infrastructure.",
+  },
+  {
+    q: "Should we self-host n8n or use n8n Cloud?",
+    a: "Self-host n8n when you need data sovereignty, custom nodes, high execution volumes or deployment inside your own VPC or Kubernetes cluster; choose n8n Cloud when you want zero infrastructure maintenance and fast onboarding. My n8n tech report on this site covers the trade-offs and a production Docker Compose setup.",
+  },
+  {
+    q: "Do you take on sponsorships or technical writing?",
+    a: "Yes. For Let's Talk Dev YouTube sponsorships or technical writing (I write for the official n8n blog and Dev.to), email contact@mihai.ltd.",
+  },
+  {
+    q: "Can you help debug my code for free?",
+    a: "Due to volume I can't offer free debugging over email. The best place for questions about a video or article is the comment section of that YouTube video or article.",
+  },
+];
+
+useJsonLd("contact", [
+  {
+    "@type": "ContactPage",
+    "@id": `${SITE_URL}/contact#webpage`,
+    url: `${SITE_URL}/contact`,
+    name: contactTitle,
+    description: contactDescription,
+    isPartOf: { "@id": WEBSITE_ID },
+    about: { "@id": PERSON_ID },
+    mainEntity: { "@id": PERSON_ID },
+    inLanguage: "en",
+  },
+  {
+    "@type": "FAQPage",
+    "@id": `${SITE_URL}/contact#faq`,
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  },
+]);
 
 const contactForm = ref<HTMLFormElement | null>(null);
 

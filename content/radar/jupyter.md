@@ -15,6 +15,4 @@ decisionReason: "Rejected in favor of Marimo for Python notebooks."
 decidedDate: "2026-08-08"
 ---
 
-# Jupyter
-
 Python notebook environment, rejected in favor of [Marimo](/blog/marimo).

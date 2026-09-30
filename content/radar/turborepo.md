@@ -1,7 +1,10 @@
 ---
 title: "Turborepo"
+seoTitle: "Turborepo Review: Best Build Tool for TypeScript Monorepos (vs Moon & Nx) | Mihai Farcas"
+headline: "Turborepo: High-Velocity Task Orchestration for TypeScript Monorepos"
 description: "High-performance monorepo build system and task orchestrator with remote caching, evaluated for pure JavaScript and TypeScript architectures."
 date: "2026-08-08"
+updated: "2026-09-30"
 type: "tech_report"
 tags:
   ["turborepo", "monorepo", "build-tools", "javascript", "typescript", "cicd"]
@@ -17,15 +20,15 @@ link: "https://turbo.build/"
 target: "_blank"
 ---
 
-# Turborepo: High-Velocity Task Orchestration for TypeScript Monorepos
-
 As a codebase expands from a handful of packages into an enterprise **[Monorepo Architecture](/blog/monorepo)**, native package manager scripts (`pnpm -r run build`) quickly run into a wall: they re-run tasks sequentially, test unchanged code, and waste minutes on redundant computation.
 
-Acquired and heavily developed by Vercel, **Turborepo** is the gold standard for high-performance task orchestration in pure JavaScript and TypeScript monorepos. On our Tech Radar, **Turborepo is adopted as the primary task orchestrator for pure TS/JS codebases**, while being evaluated against **[Moon](/blog/moon)** for polyglot architectures.
+Acquired and heavily developed by Vercel, **Turborepo** is the gold standard for high-performance task orchestration in pure JavaScript and TypeScript monorepos. **Short answer: use Turborepo for TypeScript/JavaScript-only monorepos, and [Moon](/blog/moon) when other languages are involved.** On my Tech Radar, **Turborepo is adopted as the primary task orchestrator for pure TS/JS codebases**.
 
 ---
 
 ## 1. What Turborepo Does Best: Zero-Friction Caching
+
+Turborepo sits on top of pnpm workspaces and caches every task by its inputs, so builds, tests and lints only re-run for packages that actually changed — with a single small `turbo.json` as configuration.
 
 Turborepo does not replace your package manager. Instead, it sits cleanly on top of **[pnpm](/blog/pnpm) workspaces** (or npm/yarn), acting as an intelligent task execution scheduler and computation cache.
 
@@ -71,6 +74,8 @@ Turborepo replaces messy shell scripts with a declarative pipeline defined in a 
 
 ## 2. Remote Caching: The CI Game-Changer
 
+Remote caching shares task outputs between developers and CI runners, so a change to one package does not rebuild and retest the whole monorepo — CI time drops from minutes to seconds on cache hits.
+
 In traditional CI pipelines, every commit re-runs linting, unit tests, and builds from scratch. In a 20-package monorepo, a developer changing a single button in `packages/ui-kit` might wait 15 minutes for CI to finish.
 
 With Turborepo's **Remote Cache**:
@@ -90,6 +95,8 @@ With Turborepo's **Remote Cache**:
 
 ## 3. Pruned Docker Builds: The `turbo prune` Advantage
 
+`turbo prune <app> --docker` produces a minimal slice of the monorepo containing only one app and its dependencies, which keeps Docker build contexts small and layer caching effective.
+
 One major historical complaint against monorepos is bloated Docker images: copying the entire repository into a container build context destroys caching and produces 2GB images.
 
 Turborepo solves this with `turbo prune`:
@@ -106,6 +113,8 @@ turbo prune web --docker
 ---
 
 ## 4. The Polyglot Limitation: Where Turborepo Hits a Wall
+
+Turborepo models tasks through `package.json` scripts, so Python, Rust or Go packages have to be wrapped in JavaScript scripts and their toolchains are not managed — the point where Moon becomes the better fit.
 
 While Turborepo is unmatched for pure JavaScript and TypeScript applications, its architecture reveals sharp constraints when applied to multi-language stacks:
 
@@ -125,6 +134,8 @@ For true polyglot architectures that mix Python, TypeScript, and Rust, **[Moon](
 
 ## 5. Head-to-Head Comparison: Turborepo vs. Moon vs. Nx
 
+Turborepo is the easiest to adopt for TypeScript, Moon handles multiple languages best, and Nx offers the most features at the highest configuration cost.
+
 | Dimension                    | Turborepo (Adopted for TS)              | Moon (Front-Runner for Polyglot)              | Nx (Enterprise Heavyweight)             |
 | :--------------------------- | :-------------------------------------- | :-------------------------------------------- | :-------------------------------------- |
 | **Primary Scope**            | JS/TS Task Orchestrator                 | Polyglot Repository Orchestrator              | Enterprise JS/TS Ecosystem              |
@@ -138,12 +149,16 @@ For true polyglot architectures that mix Python, TypeScript, and Rust, **[Moon](
 
 ## 6. Architectural Decision Matrix
 
+Choose based on your stack: Turborepo for pure TypeScript, Moon for polyglot repositories, Nx for very large JavaScript enterprises that want generators.
+
 - **Choose Turborepo if:** Your repository consists entirely of TypeScript and JavaScript applications (Next.js, Nuxt, Remix, Node backends) and you prioritize zero-friction configuration and ultra-fast remote caching.
 - **Graduate to [Moon](/blog/moon) if:** Your repository combines a Python backend (managed with **[uv](/blog/uv)**), a TypeScript frontend (managed with **[pnpm](/blog/pnpm)**), or Rust/Go microservices, and you require unified toolchain management and cross-language task graphs.
 
 ---
 
 ## 7. Related Architecture Reports & Toolchains
+
+These reports cover the tools Turborepo builds on and competes with.
 
 - **[Monorepo Architecture (Adopted)](/blog/monorepo):** Complete strategy guide from native workspaces to distributed build engines.
 - **[pnpm (Adopted)](/blog/pnpm):** The disk-efficient package manager underpinning Turborepo's workspace linking.

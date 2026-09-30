@@ -12,6 +12,4 @@ decision: "adopt"
 evaluatedScore: 4
 ---
 
-# GitOps
-
 Declarative infrastructure and deployments, driven entirely from Git, reviewed and applied through pull requests.

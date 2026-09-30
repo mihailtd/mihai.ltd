@@ -13,6 +13,4 @@ link: "https://docs.getdbt.com/"
 target: "_blank"
 ---
 
-# dbt-core
-
 Evaluating for SQL-based data transformation, alongside [DuckDB](/blog/duckdb) for the analytical backend. No decision yet.

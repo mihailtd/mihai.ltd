@@ -16,6 +16,4 @@ link: "https://pola.rs/"
 target: "_blank"
 ---
 
-# Polars
-
 Adopted for dataframe work, replacing [Pandas](/blog/pandas).

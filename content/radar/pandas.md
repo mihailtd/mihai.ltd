@@ -15,6 +15,4 @@ decisionReason: "Dropped in favor of Polars for dataframe work."
 decidedDate: "2026-08-08"
 ---
 
-# Pandas
-
 Rejected in favor of [Polars](/blog/polars) for dataframe work.

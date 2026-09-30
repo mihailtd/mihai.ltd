@@ -12,6 +12,4 @@ decision: "adopt"
 evaluatedScore: 4
 ---
 
-# Kubernetes
-
 Standard for running and scaling containerized workloads. The operational overhead pays off once a system needs real resilience and scaling characteristics.

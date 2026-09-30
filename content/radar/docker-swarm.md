@@ -15,6 +15,4 @@ decisionReason: "By the time a workload actually needs Swarm-level clustering, i
 decidedDate: "2026-08-08"
 ---
 
-# Docker Swarm
-
 Considered as a lighter alternative to [Kubernetes](/blog/kubernetes) for container orchestration. Rejected — by the time the need for real clustering shows up, the extra investment in Kubernetes tends to pay off anyway, rather than settling for something in between.

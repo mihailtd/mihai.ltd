@@ -25,7 +25,31 @@
           — <br />
           Software Architect
         </h1>
-        <h2 class="py-12 text-6xl md:text-[8rem] lg:text-[9rem]">
+        <!-- Direct, quotable answer to "who is Mihai Farcas / who can build
+             production agentic AI and n8n automations" -->
+        <p
+          class="max-w-3xl pt-8 text-lg leading-relaxed text-gray-300 md:text-xl"
+        >
+          I design and ship production
+          <strong class="text-yellow-100">Agentic AI systems</strong>,
+          <strong class="text-yellow-100">n8n automations</strong> and
+          <strong class="text-yellow-100">MCP servers</strong> for enterprise
+          teams. I bring 10+ years of building enterprise systems in healthcare,
+          fintech and insurance, and I'm currently a Software Architect at
+          Marsh. I write for the official n8n blog, publish tutorials on Let's
+          Talk Dev, and consult through
+          <a
+            href="https://innovi.pro/"
+            target="_blank"
+            rel="noopener"
+            class="text-blue-300 underline decoration-wavy underline-offset-4 hover:text-blue-400"
+            >INNOVI PRO</a
+          >.
+        </p>
+        <p
+          class="py-12 text-6xl md:text-[8rem] lg:text-[9rem]"
+          aria-hidden="true"
+        >
           Crafting
           <span
             class="bg-gradient-to-r from-yellow-100 to-blue-900 bg-clip-text font-extrabold tracking-wide text-transparent"
@@ -37,15 +61,20 @@
             class="bg-gradient-to-r from-blue-900 to-yellow-100 bg-clip-text font-extrabold tracking-wide text-transparent"
             >people.</span
           >
-        </h2>
+        </p>
       </div>
     </section>
 
     <section
+      id="about"
+      aria-labelledby="about-heading"
       class="bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px] py-12"
     >
       <div class="mx-auto max-w-7xl px-5 md:px-12 lg:px-24">
-        <h2 class="pb-2 text-4xl text-yellow-100 md:text-5xl lg:text-6xl">
+        <h2
+          id="about-heading"
+          class="pb-2 text-4xl text-yellow-100 md:text-5xl lg:text-6xl"
+        >
           About Me
         </h2>
       </div>
@@ -286,29 +315,50 @@
       <div
         class="mx-auto grid w-fit justify-center gap-x-24 gap-y-8 px-5 md:grid-cols-2 lg:grid-cols-3"
       >
-        <a target="_blank" href="https://youtube.com/@letstalkdev"
+        <a
+          target="_blank"
+          rel="me noopener"
+          href="https://www.youtube.com/@letstalkdev"
           ><img
             class="h-14 w-48"
             src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white"
             alt="YouTube logo"
         /></a>
-        <a target="_blank" href="https://dev.to/mihailtd"
+        <a target="_blank" rel="me noopener" href="https://dev.to/mihailtd"
           ><img
             class="h-14 w-48"
             src="https://img.shields.io/badge/dev.to-0A0A0A?style=for-the-badge&logo=devdotto&logoColor=white"
             alt="Dev.to logo"
         /></a>
-        <a target="_blank" href="https://www.linkedin.com/in/mihai-farcas-ltd/"
+        <a
+          target="_blank"
+          rel="me noopener"
+          href="https://www.linkedin.com/in/mihai-farcas-ltd/"
           ><img
             class="h-14 w-48"
             src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"
             alt="LinkedIn logo"
         /></a>
-        <a target="_blank" href="https://github.com/mihailtd"
+        <a target="_blank" rel="me noopener" href="https://github.com/mihailtd"
           ><img
             class="h-14 w-48"
             src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"
             alt="GitHub logo"
+        /></a>
+        <a target="_blank" rel="me noopener" href="https://medium.com/@mihailtd"
+          ><img
+            class="h-14 w-48"
+            src="https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white"
+            alt="Medium logo"
+        /></a>
+        <a
+          target="_blank"
+          rel="me noopener"
+          href="https://n8n.io/creators/mihailtd/"
+          ><img
+            class="h-14 w-48"
+            src="https://img.shields.io/badge/n8n_templates-EA4B71?style=for-the-badge&logo=n8n&logoColor=white"
+            alt="n8n creator profile logo"
         /></a>
         <a
           target="_blank"
@@ -335,106 +385,40 @@
 </template>
 
 <script setup lang="ts">
-// Enhanced SEO metadata for homepage
+const homeTitle = "Mihai Farcas — Software Architect · Agentic AI, n8n & MCP";
+const homeDescription =
+  "Mihai Farcas is a Software Architect who designs and ships production Agentic AI systems, n8n automations and MCP servers, with 10+ years in enterprise healthcare, fintech and insurance. Creator of the Let's Talk Dev YouTube channel.";
+
 useSeoMeta({
-  title:
-    "Mihai Farcas - Software Architect, Agentic AI Expert & Content Creator",
-  description:
-    "Mihai Farcas is an experienced Software Architect specializing in Agentic AI, AI automations, and n8n consulting. YouTube content creator at Let's Talk Dev with expertise in enterprise architecture, software engineering, and AI-driven automation solutions.",
-  ogTitle:
-    "Mihai Farcas - Software Architect, Agentic AI Expert & Content Creator",
-  ogDescription:
-    "Expert Software Architect specializing in Agentic AI, AI automations, n8n consulting. Content creator helping developers build scalable enterprise systems.",
-  ogImage: "https://mihai.ltd/og-cover.jpg",
-  ogUrl: "https://mihai.ltd/",
-  twitterTitle: "Mihai Farcas - Software Architect & Agentic AI Expert",
-  twitterDescription:
-    "Software Architect specializing in Agentic AI, AI automations, n8n consulting. YouTube content creator at Let's Talk Dev.",
-  twitterImage: "https://mihai.ltd/og-cover.jpg",
-  twitterCard: "summary_large_image",
+  title: homeTitle,
+  description: homeDescription,
+  ogTitle: homeTitle,
+  ogDescription: homeDescription,
+  ogType: "profile",
+  twitterTitle: homeTitle,
+  twitterDescription: homeDescription,
 });
 
-// Schema.org structured data for SEO
-useHead({
-  script: [
-    {
-      type: "application/ld+json",
-      innerHTML: JSON.stringify([
-        {
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: "Mihai Farcas - Software Architect & Content Creator",
-          url: "https://mihai.ltd",
-          description:
-            "Portfolio and professional website of Mihai Farcas, Software Architect specializing in Agentic AI and AI automations",
-          author: {
-            "@type": "Person",
-            name: "Mihai Farcas",
-          },
-        },
-        {
-          "@context": "https://schema.org",
-          "@type": "Person",
-          name: "Mihai Farcas",
-          alternateName: "Mihai Farcaș",
-          url: "https://mihai.ltd",
-          image: "https://mihai.ltd/mihai_farcas.webp",
-          jobTitle: "Software Architect",
-          worksFor: {
-            "@type": "Organization",
-            name: "MARSH",
-            url: "https://www.corporate.marsh.com/global/home.html",
-          },
-          knowsAbout: [
-            "Software Architecture",
-            "Agentic AI",
-            "AI Automations",
-            "n8n",
-            "Enterprise Architecture",
-            "LangGraph",
-            "Microservices",
-            "Kubernetes",
-            "Node.js",
-            "Vue.js",
-            "Content Creation",
-            "Technical Consulting",
-          ],
-          sameAs: [
-            "https://github.com/mihailtd",
-            "https://www.linkedin.com/in/mihai-farcas-ltd/",
-            "https://youtube.com/@letstalkdev",
-            "https://dev.to/mihailtd",
-            "https://blog.n8n.io/author/mihai/",
-          ],
-          alumniOf: {
-            "@type": "Organization",
-            name: "Software Engineering",
-          },
-          description:
-            "Experienced Software Architect specializing in Agentic AI, AI automations, and enterprise-grade architecture. YouTube content creator at Let's Talk Dev.",
-        },
-        {
-          "@context": "https://schema.org",
-          "@type": "ProfessionalService",
-          name: "INNOVI PRO",
-          url: "https://innovi.pro",
-          description:
-            "Specialized consulting in Enterprise-Grade Architecture and Autonomous AI Agents",
-          provider: {
-            "@type": "Person",
-            name: "Mihai Farcas",
-          },
-          serviceType: [
-            "Software Architecture Consulting",
-            "AI Automation Solutions",
-            "n8n Partner Services",
-          ],
-          areaServed: "Worldwide",
-        },
-      ]),
+// The site-wide Person / WebSite / Organization graph comes from
+// plugins/seo.ts; the homepage declares itself the profile page about him.
+useJsonLd("home", [
+  {
+    "@type": "ProfilePage",
+    "@id": `${SITE_URL}/#profilepage`,
+    url: `${SITE_URL}/`,
+    name: homeTitle,
+    description: homeDescription,
+    mainEntity: { "@id": PERSON_ID },
+    about: { "@id": PERSON_ID },
+    isPartOf: { "@id": WEBSITE_ID },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/mihai_farcas.webp`,
     },
-  ],
-});
+    dateModified: "2026-09-30",
+    inLanguage: "en",
+  },
+]);
 
 // Data-driven so a new logo is just one more entry in the right group,
 // instead of copy-pasting markup — the icon grid itself wraps and balances
@@ -553,7 +537,7 @@ const featuredProjects = [
 
 const clients = [
   {
-    title: "Marsh McLennan",
+    title: "Marsh",
     subtitle: "Software Architect (current) — Agentic AI apps and automations",
     logo: "/images/logos/mmc.png",
     tech: "Microservices, Python, LangGraph, SQL Server, PostgreSQL, MongoDB, RAG, Graph RAG, Azure OpenAI, Kubernetes",

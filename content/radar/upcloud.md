@@ -14,6 +14,4 @@ link: "https://upcloud.com/"
 target: "_blank"
 ---
 
-# UpCloud
-
 Trialing as a cloud infrastructure provider. Loving it so far — fast and straightforward, and a strong alternative to the bigger, more complex providers.

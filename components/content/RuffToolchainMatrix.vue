@@ -5,9 +5,9 @@
     <div class="mb-5 border-b border-white/10 pb-4">
       <div class="flex items-center gap-2">
         <span class="flex h-2 w-2 rounded-full bg-purple-400"></span>
-        <h4 class="text-base font-bold text-white sm:text-lg">
+        <p class="text-base font-bold text-white sm:text-lg">
           The Astral Toolchain Consolidation
-        </h4>
+        </p>
       </div>
       <p class="mt-0.5 text-xs text-gray-400">
         How 6 disjointed Python tools and virtual environment overhead collapse

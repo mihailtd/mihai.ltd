@@ -12,6 +12,4 @@ publisher: ""
 publishedDate: ""
 ---
 
-# Psychology of Money
-
 A fascinating exploration of the complex relationship between money and human behavior. Housel's insights will change the way you think about wealth and financial decision-making.

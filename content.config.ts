@@ -1,5 +1,28 @@
 import { defineContentConfig, defineCollection, z } from "@nuxt/content";
 
+// Fields shared by every article-like collection, used for SEO and schema.org.
+const articleSeoFields = {
+  // Last substantive revision (ISO date). Shown as "Updated" next to the
+  // publish date and emitted as dateModified. Falls back to `date`.
+  updated: z.string().optional(),
+  // Descriptive on-page H1. Falls back to `title` (the short name used in
+  // cards, the radar and breadcrumbs).
+  headline: z.string().optional(),
+  // Full <title> override. When absent a descriptive title is generated.
+  seoTitle: z.string().optional(),
+  // YouTube videos embedded in the article, for VideoObject schema.
+  videos: z
+    .array(
+      z.object({
+        id: z.string(),
+        title: z.string(),
+        description: z.string(),
+        uploadDate: z.string().optional(),
+      }),
+    )
+    .default([]),
+};
+
 export default defineContentConfig({
   collections: {
     blog: defineCollection({
@@ -10,6 +33,7 @@ export default defineContentConfig({
         tags: z.array(z.string()).default([]),
         type: z.string().default("blog_post"),
         cover_image: z.string().optional(),
+        ...articleSeoFields,
       }),
     }),
     books: defineCollection({
@@ -29,6 +53,7 @@ export default defineContentConfig({
         publisher: z.string().optional(),
         // The book's own publication date, as opposed to `date` (when read).
         publishedDate: z.string().optional(),
+        ...articleSeoFields,
       }),
     }),
     radar: defineCollection({
@@ -76,6 +101,7 @@ export default defineContentConfig({
         link: z.string().optional(),
         logoPath: z.string().optional(),
         target: z.string().optional(),
+        ...articleSeoFields,
       }),
     }),
   },

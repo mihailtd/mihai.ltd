@@ -1,5 +1,5 @@
 <template>
-  <div
+  <figure
     class="my-8 overflow-hidden rounded-3xl border border-white/10 bg-slate-950/70 p-4 shadow-2xl backdrop-blur-xl sm:p-6"
   >
     <!-- Header with metric selector -->
@@ -11,9 +11,9 @@
           <span
             class="flex h-2 w-2 animate-pulse rounded-full bg-fuchsia-400"
           ></span>
-          <h4 class="text-base font-bold text-white sm:text-lg">
+          <p class="text-base font-bold text-white sm:text-lg">
             Python Code Quality Performance & Consolidation
-          </h4>
+          </p>
         </div>
         <p class="mt-0.5 text-xs text-gray-400">
           Comparing Astral Ruff against the legacy Python linting & formatting
@@ -120,7 +120,107 @@
         >Astral Ruff &bull; Apache ECharts</span
       >
     </div>
-  </div>
+
+    <!-- The chart is a client-only canvas; the same numbers as plain text
+         for crawlers, screen readers and AI search. -->
+    <figcaption
+      class="mt-4 rounded-2xl border border-white/5 bg-white/[0.02] p-4 text-sm leading-relaxed text-gray-300"
+    >
+      <p>
+        <strong class="text-white">Summary:</strong> on a 150,000-line Python
+        codebase, Ruff lints and formats in about 48 ms (cold cache) versus
+        4,280 ms for the legacy Black + Flake8 + isort suite — roughly 89×
+        faster — and cuts a CI lint job from 28.4 s to 0.6 s.
+      </p>
+      <table class="mt-3 w-full text-left text-xs">
+        <caption class="pb-1 text-left font-semibold text-white">
+          Local execution time (lower is better)
+        </caption>
+        <thead class="text-gray-400">
+          <tr>
+            <th scope="col" class="py-1 pr-4">Tool</th>
+            <th scope="col" class="py-1 pr-4">Cold cache</th>
+            <th scope="col" class="py-1">Warm cache</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" class="py-1 pr-4 font-medium text-gray-200">
+              Ruff check + format
+            </th>
+            <td class="py-1 pr-4 font-mono">48 ms</td>
+            <td class="py-1 font-mono">12 ms</td>
+          </tr>
+          <tr>
+            <th scope="row" class="py-1 pr-4 font-medium text-gray-200">
+              Ruff format (standalone)
+            </th>
+            <td class="py-1 pr-4 font-mono">29 ms</td>
+            <td class="py-1 font-mono">8 ms</td>
+          </tr>
+          <tr>
+            <th scope="row" class="py-1 pr-4 font-medium text-gray-200">
+              isort (standalone)
+            </th>
+            <td class="py-1 pr-4 font-mono">780 ms</td>
+            <td class="py-1 font-mono">420 ms</td>
+          </tr>
+          <tr>
+            <th scope="row" class="py-1 pr-4 font-medium text-gray-200">
+              Flake8 (standalone)
+            </th>
+            <td class="py-1 pr-4 font-mono">1250 ms</td>
+            <td class="py-1 font-mono">850 ms</td>
+          </tr>
+          <tr>
+            <th scope="row" class="py-1 pr-4 font-medium text-gray-200">
+              Black (standalone)
+            </th>
+            <td class="py-1 pr-4 font-mono">2250 ms</td>
+            <td class="py-1 font-mono">1100 ms</td>
+          </tr>
+          <tr>
+            <th scope="row" class="py-1 pr-4 font-medium text-gray-200">
+              Legacy suite: Black + Flake8 + isort
+            </th>
+            <td class="py-1 pr-4 font-mono">4280 ms</td>
+            <td class="py-1 font-mono">2370 ms</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="mt-3 w-full text-left text-xs">
+        <caption class="pb-1 text-left font-semibold text-white">
+          CI lint-job wall-clock time
+        </caption>
+        <tbody>
+          <tr>
+            <th scope="row" class="py-1 pr-4 font-medium text-gray-200">
+              Legacy pipeline (pip install + 4 tools)
+            </th>
+            <td class="py-1 font-mono">28.4 s</td>
+          </tr>
+          <tr>
+            <th scope="row" class="py-1 pr-4 font-medium text-gray-200">
+              Pre-cached Python (Black + Flake8 + isort)
+            </th>
+            <td class="py-1 font-mono">14.2 s</td>
+          </tr>
+          <tr>
+            <th scope="row" class="py-1 pr-4 font-medium text-gray-200">
+              uv pip + Ruff (install + lint + format)
+            </th>
+            <td class="py-1 font-mono">1.8 s</td>
+          </tr>
+          <tr>
+            <th scope="row" class="py-1 pr-4 font-medium text-gray-200">
+              uvx ruff check & format (zero-install cache)
+            </th>
+            <td class="py-1 font-mono">0.6 s</td>
+          </tr>
+        </tbody>
+      </table>
+    </figcaption>
+  </figure>
 </template>
 
 <script setup lang="ts">

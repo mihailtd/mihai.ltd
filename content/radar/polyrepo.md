@@ -1,7 +1,10 @@
 ---
 title: "Polyrepo"
+seoTitle: "Polyrepo vs Monorepo: Why I Rejected the Multi-Repository Pattern | Mihai Farcas"
+headline: "Polyrepo Architecture: Why I Rejected the Multi-Repository Pattern"
 description: "Splitting microservices across independent repositories: why multi-repo architecture was rejected in favor of an orchestrated monorepo."
 date: "2026-08-08"
+updated: "2026-09-30"
 type: "tech_report"
 tags: ["polyrepo", "multi-repo", "architecture", "cicd", "devops", "monorepo"]
 placements:
@@ -15,15 +18,15 @@ decisionReason: "Splitting related services and UI across repositories turns a s
 decidedDate: "2026-08-08"
 ---
 
-# Polyrepo Architecture: Why We Rejected the Multi-Repository Pattern
-
 In modern software engineering, repository architecture is frequently conflated with system deployment architecture. The classic convention—one Git repository per service or microservice—is commonly known as the **Polyrepo (or Multi-Repo)** pattern.
 
-While the polyrepo model is often the instinctive default for teams embracing microservices, real-world operational friction reveals severe systemic costs as systems grow. On our Tech Radar, **Polyrepo has been firmly rejected in favor of an orchestrated [Monorepo](/blog/monorepo)**.
+While the polyrepo model is often the instinctive default for teams embracing microservices, real-world operational friction reveals severe systemic costs as systems grow. **Short answer: for related services owned by the same organization, use a monorepo, not a polyrepo.** On my Tech Radar, **polyrepo is rejected in favor of an orchestrated [Monorepo](/blog/monorepo)** — independent deployment is a CI/CD concern, not a reason to split repositories.
 
 ---
 
 ## 1. The Core Promise vs. The Real-World Reality
+
+Polyrepos promise team autonomy and isolation; in practice they multiply the work of every change that crosses a service boundary.
 
 The traditional argument for polyrepos sounds compelling on paper:
 
@@ -37,7 +40,9 @@ However, in fast-moving engineering environments where microservices frequently 
 
 ## 2. The 5 Multi-Repo Taxes That Break Velocity
 
-When your software spans multiple repositories, simple changes become tedious cross-organizational projects. We identified five fatal friction points during our evaluation:
+The five recurring costs of polyrepos are: one feature split across several synchronized pull requests, dependency and version drift between repos, API contract breakage discovered at runtime instead of compile time, duplicated and drifting CI/CD pipelines, and harder code discovery and cross-team refactoring.
+
+When your software spans multiple repositories, simple changes become tedious cross-organizational projects. I identified five fatal friction points during my evaluation:
 
 ### 1. The Synchronized PR Tax (Atomic Commits are Impossible)
 
@@ -73,6 +78,8 @@ Polyrepos create organizational silos. Searching for how an internal API is cons
 
 ## 3. The Deployment Fallacy: Independent Deployment Does Not Require Independent Repos
 
+Services in a monorepo can still deploy independently: path-based CI triggers and per-service pipelines build and release only what changed, so repository layout and deployment granularity are separate decisions.
+
 The most frequent misconception cited by polyrepo proponents is:
 
 > _"We need separate repositories so we can deploy our microservices independently."_
@@ -92,6 +99,8 @@ You achieve 100% independent deployments while retaining all the developer exper
 
 ## 4. Architectural Comparison: Polyrepo vs. Monorepo
 
+A monorepo wins on atomic changes, shared tooling and refactoring; a polyrepo wins only on hard access isolation and fully independent ownership.
+
 | Evaluation Dimension             | Polyrepo (Multi-Repo)                        | Monorepo (Orchestrated)                                              |
 | :------------------------------- | :------------------------------------------- | :------------------------------------------------------------------- |
 | **Atomic Cross-Service Changes** | ❌ Impossible (Requires sequenced PRs)       | ✅ Native (Single commit, single review)                             |
@@ -106,7 +115,9 @@ You achieve 100% independent deployments while retaining all the developer exper
 
 ## 5. When Does Polyrepo Still Make Sense?
 
-While we rejected polyrepo for our core product and infrastructure systems, there are specific scenarios where multi-repo separation remains legitimate:
+Separate repositories still make sense for genuinely independent products, open-source packages with their own release cycle, strict legal or security isolation, and code owned by different organizations.
+
+While I reject polyrepo for core product and infrastructure systems, there are specific scenarios where multi-repo separation remains legitimate:
 
 1. **Hard Organizational or Security Firewalls:** Regulated financial systems or sensitive data modules that cannot be accessible to general engineering staff even in read-only mode.
 2. **Third-Party Open-Source Packages:** Standalone libraries published to the broader community that follow independent semantic versioning lifecycles and independent contributor communities.
@@ -118,10 +129,12 @@ For any set of applications, microservices, and client apps that cooperate to de
 
 ## 6. Related Architecture Reports & Tooling
 
-To explore the tooling we selected to make the monorepo architecture thrive:
+These reports cover the tooling that makes the monorepo alternative work.
+
+To explore the tooling I selected to make the monorepo architecture thrive:
 
 - **[Monorepo Architecture (Adopted)](/blog/monorepo):** Complete strategy breakdown from native workspaces to task orchestration.
-- **[pnpm](/blog/pnpm):** The disk-efficient package manager powering our TypeScript workspaces over [npm](/blog/npm).
-- **[uv](/blog/uv):** The high-speed Astral tool powering our Python workspaces over [pip](/blog/pip).
+- **[pnpm](/blog/pnpm):** The disk-efficient package manager powering TypeScript workspaces over [npm](/blog/npm).
+- **[uv](/blog/uv):** The high-speed Astral tool powering Python workspaces over [pip](/blog/pip).
 - **[Moon](/blog/moon):** The polyglot orchestrator unifying Python, TypeScript, and Rust task graphs.
 - **[Turborepo](/blog/turborepo):** High-velocity remote caching for JavaScript/TypeScript repositories.

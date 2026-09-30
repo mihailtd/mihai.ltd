@@ -16,6 +16,4 @@ link: "https://playwright.dev/"
 target: "_blank"
 ---
 
-# Playwright
-
 End-to-end testing framework, adopted in favor of [Cypress](/blog/cypress).

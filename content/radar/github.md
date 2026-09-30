@@ -17,8 +17,6 @@ link: "https://github.com/"
 target: "_blank"
 ---
 
-# GitHub
-
 Adopted for source control and CI/CD (via GitHub Actions), replacing [GitLab](/blog/gitlab). The deciding factor wasn't the basics — it was **GitHub Projects and Issues**, which feel noticeably more AI-friendly than GitLab's equivalents. Combined with [GitHub Copilot](/blog/github-copilot), that unlocks genuinely agentic project management, which was a massive UX shift for how work actually gets tracked and driven.
 
 Where the two platforms are roughly equivalent:

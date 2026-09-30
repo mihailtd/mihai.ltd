@@ -1,7 +1,10 @@
 ---
 title: "uv"
+seoTitle: "uv Review: Why uv Is My Standard Python Package Manager (vs pip & Poetry) | Mihai Farcas"
+headline: "uv: The High-Speed Standard for Modern Python & Workspaces"
 description: "Extremely fast, Rust-powered Python project manager and workspace orchestrator, adopted as the universal standard over pip and Poetry."
 date: "2026-08-08"
+updated: "2026-09-30"
 type: "tech_report"
 tags: ["uv", "python", "packaging", "astral", "tooling", "monorepo"]
 placements:
@@ -11,21 +14,21 @@ stage: "trial"
 decision: "adopt"
 evaluatedScore: 4
 satisfaction: 5
-decisionReason: "Always used instead of pip, with pyproject.toml and uv.lock. 10–100x faster dependency resolution, standardized cross-platform locking, hermetic Python version management, and native workspace support for multi-package monorepos make it our universal Python standard."
+decisionReason: "Always used instead of pip, with pyproject.toml and uv.lock. 10–100x faster dependency resolution, standardized cross-platform locking, hermetic Python version management, and native workspace support for multi-package monorepos make it my universal Python standard."
 decidedDate: "2026-08-08"
 link: "https://docs.astral.sh/uv/"
 target: "_blank"
 ---
 
-# uv: The High-Speed Standard for Modern Python & Workspaces
-
 In the Python landscape, toolchain fragmentation has historically been a persistent pain point. Engineers routinely balanced `pyenv` for runtime versions, `virtualenv` for isolation, **[pip](/blog/pip)** for installations, `pip-tools` for locking, and `poetry` or `flit` for packaging.
 
-Developed by Astral (the creators of **[Ruff](/blog/ruff)**) and implemented in Rust, **`uv` is our firmly adopted, non-negotiable standard** for Python package management, environment provisioning, and multi-package workspaces. It delivers a 5/5 satisfaction rating across our systems.
+Developed by Astral (the creators of **[Ruff](/blog/ruff)**) and implemented in Rust, **`uv` is my adopted, non-negotiable standard** for Python package management, environment provisioning, and multi-package workspaces, with a 5/5 satisfaction rating on my Tech Radar. **Short answer: use uv instead of pip, pip-tools, Poetry or pyenv** — one fast tool covers installs, locking, Python versions and workspaces.
 
 ---
 
 ## 1. Why uv Is a Generational Leap for Python
+
+uv replaces five tools at once — pip, pip-tools, virtualenv, pyenv and Poetry — with one Rust binary that installs 10–100x faster and writes a deterministic cross-platform `uv.lock`.
 
 `uv` is not merely an incremental speedup over **[pip](/blog/pip)**; it fundamentally transforms how engineers and CI systems interact with Python codebases:
 
@@ -63,6 +66,8 @@ Rather than introducing a proprietary DSL, `uv` strictly implements standard **P
 
 ## 2. Python Workspaces: Powering the Monorepo
 
+uv workspaces let several Python packages share one lockfile and one virtual environment while depending on each other locally — the Python equivalent of pnpm workspaces.
+
 The crowning achievement of modern `uv` is its native **workspace engine**, making it the Python equivalent of **[pnpm](/blog/pnpm)** in a **[Monorepo Architecture](/blog/monorepo)**.
 
 In a monorepo containing multiple Python services, background workers, and shared contract libraries, `uv` allows you to declare a workspace in the root `pyproject.toml`:
@@ -83,7 +88,9 @@ members = ["apps/*", "packages/*"]
 
 ## 3. Integration with Polyglot Orchestrator: Moon
 
-In a modern polyglot stack—such as our architecture combining FastAPI backends, Nuxt/Vue frontends, and Rust performance cores—`uv` acts as the execution engine underneath **[Moon](/blog/moon)**:
+In a multi-language monorepo, Moon orchestrates tasks and uv executes the Python side: Moon calls `uv sync` and `uv run` for Python projects just as it calls pnpm for TypeScript.
+
+In a modern polyglot stack—such as an architecture combining FastAPI backends, Nuxt/Vue frontends, and Rust performance cores—`uv` acts as the execution engine underneath **[Moon](/blog/moon)**:
 
 ```text
 Moon Task Runner (topological task coordinator)
@@ -97,6 +104,8 @@ Because `uv` provides deterministic CLI commands (`uv run <cmd>`), [Moon](/blog/
 ---
 
 ## 4. Production Best Practices: Containerized Deployments
+
+For Docker images, copy `pyproject.toml` and `uv.lock` first, run `uv sync --frozen` in its own cached layer, then copy the application code — fast, reproducible builds with small images.
 
 `uv` transforms Docker builds from slow multi-stage bottlenecks into lean, cached layers:
 
@@ -128,6 +137,8 @@ CMD ["uv", "run", "fastapi", "run", "app/main.py", "--port", "8000"]
 
 ## 5. Comparison: uv vs. Legacy Python Toolchains
 
+uv is the only option that is fast, fully locked, manages Python versions and supports workspaces in one tool.
+
 | Capability                      | uv (Adopted)                        | pip + requirements.txt (Rejected)       | Poetry (Superseded)   |
 | :------------------------------ | :---------------------------------- | :-------------------------------------- | :-------------------- |
 | **Status**                      | ✅ **Adopted (5/5)**                | ❌ **Rejected** ([Read Why](/blog/pip)) | ⚠️ **Superseded**     |
@@ -142,12 +153,14 @@ CMD ["uv", "run", "fastapi", "run", "app/main.py", "--port", "8000"]
 
 ## 6. Radar Verdict & Related Articles
 
+**Verdict: Adopted** as the default for every Python project.
+
 `uv` has redefined Python development. It eliminates the historical complaints regarding Python packaging slowness, dependency drift, and monorepo friction.
 
 Explore the connected ecosystem:
 
-- **[pip (Rejected)](/blog/pip):** The legacy toolchain and why requirements.txt was retired across our systems.
+- **[pip (Rejected)](/blog/pip):** The legacy toolchain and why requirements.txt was retired across my projects.
 - **[Ruff (Adopted)](/blog/ruff):** Astral's ultra-fast Python linter and code formatter.
-- **[Monorepo Architecture (Adopted)](/blog/monorepo):** How uv and pnpm form the dual foundations of our monorepo strategy.
+- **[Monorepo Architecture (Adopted)](/blog/monorepo):** How uv and pnpm form the dual foundations of my monorepo strategy.
 - **[Moon](/blog/moon):** Polyglot task orchestrator that coordinates uv with TypeScript and Rust pipelines.
-- **[pnpm](/blog/pnpm):** The content-addressable package manager powering our TypeScript ecosystem.
+- **[pnpm](/blog/pnpm):** The content-addressable package manager powering the TypeScript side.

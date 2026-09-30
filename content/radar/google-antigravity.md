@@ -13,6 +13,4 @@ stage: "trial"
 evaluatedScore: 2
 ---
 
-# Google Antigravity
-
 Evaluating as an agentic AI coding platform, alongside [GitHub Copilot](/blog/github-copilot) and [Claude Code](/blog/claude-code). It is also a full IDE in its own right, in the same space as [VS Code](/blog/vscode). Still early — no decision yet.

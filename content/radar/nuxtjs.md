@@ -13,6 +13,4 @@ evaluatedScore: 4
 decidedDate: "2026-08-08"
 ---
 
-# Nuxt.js
-
 Powers mihai.ltd. Strong DX on top of Vue with file-based routing, SSR, and a growing content/module ecosystem. Adopted — no longer just a trial.

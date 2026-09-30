@@ -15,6 +15,4 @@ decisionReason: "Adopted over Flux for GitOps delivery to Kubernetes. Full confi
 decidedDate: "2026-08-08"
 ---
 
-# ArgoCD
-
 Declarative, Git-driven deployments to Kubernetes. Pairs naturally with a GitOps workflow. Considered alongside [Flux](/blog/flux) — Flux was not bad, but ArgoCD won out and has been rock solid ever since.

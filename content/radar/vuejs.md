@@ -14,6 +14,4 @@ link: "https://vuejs.org/"
 target: "_blank"
 ---
 
-# Vue.js
-
 Default choice for front-end work: approachable component model, strong tooling via Vite, and a composition API that scales well from small sites to larger apps.

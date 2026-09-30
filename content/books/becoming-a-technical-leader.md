@@ -12,6 +12,4 @@ publisher: ""
 publishedDate: ""
 ---
 
-# Becoming a Technical Leader
-
 This book is a must-read for anyone who wants to become a technical leader. It's full of practical advice and real-world examples that will help you become a better leader.

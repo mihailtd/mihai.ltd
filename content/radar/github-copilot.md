@@ -15,6 +15,4 @@ link: "https://github.com/features/copilot"
 target: "_blank"
 ---
 
-# GitHub Copilot
-
 Adopted as an in-editor AI pair programmer. Useful for day-to-day completion and quick scaffolding, though not yet fully satisfying for larger, more agentic tasks.

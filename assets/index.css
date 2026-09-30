@@ -1,5 +1,5 @@
 html {
-  font-family: "HelveticaNeue";
+  font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;

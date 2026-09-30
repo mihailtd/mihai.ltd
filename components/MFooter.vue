@@ -17,14 +17,18 @@
       >
     </p>
 
-    <div class="ml-auto flex items-center justify-center">
+    <nav
+      aria-label="Social profiles"
+      class="ml-auto flex items-center justify-center"
+    >
       <span
         class="mt-4 inline-flex justify-center sm:ml-auto sm:mt-0 sm:justify-start"
       >
         <a
           class="my-auto text-gray-500 transition-transform duration-300 hover:scale-110"
-          href="https://youtube.com/@letstalkdev"
+          href="https://www.youtube.com/@letstalkdev"
           target="_blank"
+          rel="me noopener"
         >
           <img
             class="w-8 p-1 text-white"
@@ -36,6 +40,7 @@
           class="ml-3 text-gray-500 transition-transform duration-300 hover:scale-110"
           href="https://github.com/mihailtd"
           target="_blank"
+          rel="me noopener"
         >
           <img
             class="w-8 p-1 text-white"
@@ -47,6 +52,7 @@
           class="ml-3 text-gray-500 transition-transform duration-300 hover:scale-110"
           href="https://www.linkedin.com/in/mihai-farcas-ltd/"
           target="_blank"
+          rel="me noopener"
         >
           <img
             class="w-8 p-1 text-white"
@@ -55,6 +61,6 @@
           />
         </a>
       </span>
-    </div>
+    </nav>
   </footer>
 </template>

@@ -15,6 +15,4 @@ decisionReason: "Rejected in favor of GCP."
 decidedDate: "2026-08-08"
 ---
 
-# Azure
-
 Evaluated alongside [GCP](/blog/gcp) and [AWS](/blog/aws). Rejected in favor of GCP, the go-to among the "Big 3".

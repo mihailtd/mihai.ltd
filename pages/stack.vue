@@ -120,7 +120,7 @@
       </section>
 
       <!-- Category Filter & Search Bar -->
-      <section class="mb-10">
+      <section class="mb-10" aria-label="Filter tools">
         <div
           class="flex flex-col justify-between gap-4 md:flex-row md:items-center"
         >
@@ -178,12 +178,13 @@
       </section>
 
       <!-- Tools Grid -->
-      <section class="mb-20">
+      <section class="mb-20" aria-labelledby="all-tools-heading">
+        <h2 id="all-tools-heading" class="sr-only">All tools and platforms</h2>
         <div
           v-if="filteredTools.length > 0"
           class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
-          <div
+          <article
             v-for="tool in filteredTools"
             :key="tool.name"
             class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-gray-900/40 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/30 hover:bg-gray-800/60 hover:shadow-xl hover:shadow-blue-900/10"
@@ -260,7 +261,7 @@
                 </svg>
               </a>
             </div>
-          </div>
+          </article>
         </div>
 
         <!-- Empty State -->
@@ -283,9 +284,9 @@
         class="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-blue-950/40 via-slate-900/60 to-purple-950/40 p-8 text-center backdrop-blur-xl md:p-12"
       >
         <div class="mx-auto max-w-2xl">
-          <h3 class="mb-3 text-2xl font-bold text-white md:text-3xl">
+          <h2 class="mb-3 text-2xl font-bold text-white md:text-3xl">
             Want in-depth architectural evaluations?
-          </h3>
+          </h2>
           <p class="mb-8 text-sm leading-relaxed text-gray-300 md:text-base">
             Check out my interactive ThoughtWorks-style Tech Radar with 55+
             frameworks, platforms, and methodologies analyzed across assess,
@@ -482,12 +483,11 @@ const filteredTools = computed(() => {
 });
 
 useSeoMeta({
-  title: "Tech Stack & Recommended Tools - Mihai Farcas",
+  title: "Tech Stack & Recommended Tools | Mihai Farcas",
   description:
     "Curated software architecture tools, cloud platforms, AI engines, and creator equipment recommended by Mihai Farcas.",
-  ogTitle: "Tech Stack & Recommended Tools - Mihai Farcas",
+  ogTitle: "Tech Stack & Recommended Tools | Mihai Farcas",
   ogDescription:
     "Curated software architecture tools, cloud platforms, AI engines, and creator equipment recommended by Mihai Farcas.",
-  ogUrl: "https://mihai.ltd/stack",
 });
 </script>

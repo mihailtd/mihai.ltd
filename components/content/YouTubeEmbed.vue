@@ -1,5 +1,5 @@
 <template>
-  <div
+  <figure
     class="my-8 overflow-hidden rounded-3xl border border-white/10 bg-slate-950/80 p-4 shadow-2xl backdrop-blur-xl sm:p-6"
   >
     <!-- Header with Channel Info & External Link -->
@@ -24,12 +24,12 @@
           </svg>
         </div>
         <div>
-          <h4
+          <p
             v-if="title"
             class="line-clamp-1 text-sm font-bold text-white sm:text-base"
           >
             {{ title }}
-          </h4>
+          </p>
           <p class="text-xs text-gray-400">
             Featured video from
             <a
@@ -91,16 +91,43 @@
       ></iframe>
     </div>
 
-    <!-- Optional Caption / Takeaway Note -->
-    <div
-      v-if="caption || $slots.default"
-      class="mt-3.5 rounded-xl border border-white/5 bg-white/[0.02] px-4 py-2.5 text-xs leading-relaxed text-gray-400"
+    <!-- Plain-text context next to the embed (crawlers and AI search can't
+         watch the video): caption, key takeaways (MDC #summary slot) and
+         a collapsible full transcript (MDC #transcript slot). -->
+    <figcaption
+      v-if="caption || $slots.default || $slots.summary || $slots.transcript"
+      class="mt-3.5 space-y-3 text-sm leading-relaxed text-gray-300"
     >
-      <slot>
-        <p>{{ caption }}</p>
-      </slot>
-    </div>
-  </div>
+      <div
+        v-if="caption || $slots.default"
+        class="rounded-xl border border-white/5 bg-white/[0.02] px-4 py-2.5"
+      >
+        <slot>
+          <p>{{ caption }}</p>
+        </slot>
+      </div>
+
+      <div
+        v-if="$slots.summary"
+        class="rounded-xl border border-white/5 bg-white/[0.02] px-4 py-3"
+      >
+        <p class="mb-1 font-semibold text-white">Video summary</p>
+        <slot name="summary" />
+      </div>
+
+      <details
+        v-if="$slots.transcript"
+        class="rounded-xl border border-white/5 bg-white/[0.02] px-4 py-3"
+      >
+        <summary class="cursor-pointer font-semibold text-white">
+          Full transcript
+        </summary>
+        <div class="mt-2 space-y-2">
+          <slot name="transcript" />
+        </div>
+      </details>
+    </figcaption>
+  </figure>
 </template>
 
 <script setup lang="ts">
@@ -115,7 +142,7 @@ withDefaults(
   {
     title: "",
     channel: "Let's Talk Dev",
-    channelUrl: "https://youtube.com/@letstalkdev",
+    channelUrl: "https://www.youtube.com/@letstalkdev",
     caption: "",
   },
 );

@@ -1,7 +1,10 @@
 ---
 title: "Black"
+seoTitle: "Black vs Ruff: Why I Replaced the Black Python Formatter with Ruff | Mihai Farcas"
+headline: "Black: The Uncompromising Formatter That Changed Python (and Why I Moved to Ruff)"
 description: "The uncompromising Python code formatter that eliminated style debates, now superseded and rejected in favor of Ruff."
 date: "2026-08-08"
+updated: "2026-09-30"
 type: "tech_report"
 tags: ["black", "python", "formatting", "pep8", "code-quality", "legacy"]
 placements:
@@ -18,17 +21,17 @@ link: "https://black.readthedocs.io/"
 target: "_blank"
 ---
 
-# Black: The Uncompromising Formatter That Changed Python (and Why We Moved to Ruff)
-
 Few open-source developer tools have exerted as profound a cultural impact on modern software engineering as **Black**. Created by Łukasz Langa in 2018 under the Python Software Foundation (PSF), Black fundamentally transformed the Python ecosystem by solving one of the most persistent drains on developer productivity: **stylistic bikeshedding**.
 
 Borrowing Henry Ford's famous philosophy (_"Any customer can have a car painted any colour that he wants so long as it is black"_), Black introduced deterministic, zero-config formatting to a community that had spent years arguing over single versus double quotes, dangling brackets, and multi-line parameter indents.
 
-For years, Black was an indispensable pillar of our Python toolchain. However, as codebases grew and developer experience demands accelerated, Black's architectural foundation revealed insurmountable performance ceilings. Today, we have placed Black on **Hold** and transitioned our entire engineering organization to **[Ruff](/blog/ruff)**.
+**Short answer: I no longer recommend Black — use [Ruff](/blog/ruff) instead.** For years Black was an indispensable pillar of my Python toolchain, but as codebases grew its pure-Python architecture hit hard performance ceilings. I have **rejected** Black on my Tech Radar and moved every Python project I work on to Ruff, which formats code almost identically while running 30–100x faster.
 
 ---
 
 ## The Historical Triumph of Black
+
+Black mattered because it made Python formatting deterministic and non-negotiable: one output for any input, verified by an AST safety check, so style stopped being a code-review topic.
 
 Before Black, code reviews in enterprise Python teams routinely stalled over trivial aesthetic choices. Linters like Flake8 would complain about PEP 8 violations (such as `E501` line length or `E128` indentation), but developers were left to manually format the code to satisfy the linter.
 
@@ -41,6 +44,8 @@ Black flipped this dynamic on its head through three core innovations:
 ---
 
 ## Why Black Fell Behind: The Architectural Bottleneck
+
+Black fell behind because it is written in Python: every run pays interpreter start-up and double AST parsing, and it only formats — you still need isort, Flake8 and pyupgrade alongside it, each adding CI time.
 
 Despite its cultural success, Black was constrained by the very runtime it sought to format: **CPython**.
 
@@ -64,7 +69,9 @@ This fragmented stack meant CI jobs had to sequentially install, cache, and exec
 
 ---
 
-## Why We Migrated to Ruff
+## Why I Migrated to Ruff
+
+Ruff's formatter produces Black-compatible output (about 99.9% identical) from a native Rust binary that is 50–100x faster, and the same tool also replaces isort and Flake8 — one dependency and one config block instead of four.
 
 The release of `ruff format` by **Astral** delivered the exact architectural breakthrough the Python ecosystem needed.
 
@@ -82,11 +89,13 @@ The release of `ruff format` by **Astral** delivered the exact architectural bre
 
 The primary anxiety when replacing a formatter across a production codebase is git history pollution—generating massive diffs that break `git blame` across hundreds of files.
 
-Astral explicitly engineered `ruff format` to be a **drop-in visual clone of Black**. When we ran `ruff format` against our existing Black-formatted repositories, over 99.9% of files produced zero diff changes. The small remaining differences were minor edge cases where Ruff adhered even more faithfully to PEP 8 line-breaking guidelines.
+Astral explicitly engineered `ruff format` to be a **drop-in visual clone of Black**. When I ran `ruff format` against existing Black-formatted repositories, over 99.9% of files produced zero diff changes. The small remaining differences were minor edge cases where Ruff adhered even more faithfully to PEP 8 line-breaking guidelines.
 
 ---
 
 ## Migration Guide: Moving from Black to Ruff in 3 Steps
+
+To migrate, install Ruff, move your Black settings into a `[tool.ruff]` block in `pyproject.toml`, and swap the Black hook for `ruff format` in pre-commit and CI; on a Black-formatted codebase the resulting diff is close to zero.
 
 Migrating from Black to Ruff is straightforward and can be accomplished in minutes.
 
@@ -144,6 +153,8 @@ repos:
 
 ## Architectural Verdict & Retrospective
 
+**Verdict: Rejected in favor of Ruff.** Black earned its place in Python history, but for new and existing projects Ruff delivers the same style at a fraction of the runtime.
+
 | Status                   | Details                                             |
 | :----------------------- | :-------------------------------------------------- |
 | **Current Stage**        | **Hold / Rejected**                                 |
@@ -155,4 +166,4 @@ repos:
 
 Black deserves immense credit: it permanently freed Python engineers from stylistic bikeshedding and established deterministic formatting as an industry baseline.
 
-However, modern software engineering cannot afford the latency of interpreted Python tooling in critical path developer loops. By adopting **[Ruff](/blog/ruff)** alongside **[uv](/blog/uv)** and **[ty](/blog/ty)**, we retain Black's elegant, uncompromising aesthetic standards while gaining a 100x execution speedup and a completely unified toolchain.
+However, modern software engineering cannot afford the latency of interpreted Python tooling in critical path developer loops. By adopting **[Ruff](/blog/ruff)** alongside **[uv](/blog/uv)** and **[ty](/blog/ty)**, you retain Black's elegant, uncompromising aesthetic standards while gaining a 100x execution speedup and a completely unified toolchain.

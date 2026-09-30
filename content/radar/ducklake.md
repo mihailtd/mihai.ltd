@@ -13,6 +13,4 @@ link: "https://ducklake.select/"
 target: "_blank"
 ---
 
-# DuckLake
-
 Evaluating this lakehouse format as the natural extension of an already-adopted [DuckDB](/blog/duckdb). No decision yet.
