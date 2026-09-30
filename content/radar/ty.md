@@ -1,8 +1,10 @@
 ---
 title: "ty"
+seoTitle: "ty Review: Astral's Fast Python Type Checker vs mypy & pyright (In Trial) | Mihai Farcas"
 headline: "ty: The Final Frontier of the Astral Python Toolchain"
 description: "High-speed static type checker for Python from Astral, evaluated as the final piece in Astral's unified Rust toolchain alongside uv and Ruff."
 date: "2026-08-08"
+updated: "2026-09-30"
 type: "tech_report"
 tags: ["ty", "python", "typechecking", "astral", "rust", "mypy", "tooling"]
 placements:
@@ -26,9 +28,13 @@ However, the existing type checking landscape has long suffered from a painful t
 
 **ty** represents **Astral's** ambitious effort to solve Python type checking once and for all. Engineered by Charlie Marsh and the Astral team in compiled Rust, ty is designed to deliver sub-second type validation and seamless Language Server Protocol (LSP) performance with zero runtime dependencies.
 
+**Short answer: ty is promising and in Trial on my Tech Radar — try it alongside mypy or pyright, but keep your existing checker in CI until it reaches parity on your codebase.**
+
 ---
 
 ## The Astral Holy Trinity
+
+ty completes Astral's Rust-based Python toolchain: uv for packaging and environments, Ruff for linting and formatting, and ty for static type checking.
 
 The release and development of `ty` completes Astral's master blueprint for modern Python:
 
@@ -44,7 +50,9 @@ By consolidating the entire developer loop—from dependency installation and vi
 
 ## Why ty is in Trial
 
-We currently have ty in the **Trial** quadrant of our Tech Radar. Our initial evaluations highlight several compelling strengths:
+ty is in Trial because early results are strong — very fast checks, a single binary that runs in CI via `uvx ty`, and configuration in `pyproject.toml` — but it still needs to prove parity with mypy and pyright on complex real-world code.
+
+ty is in the **Trial** ring of my Tech Radar. My initial evaluations highlight several compelling strengths:
 
 ### 1. Millisecond Type Checking Velocity
 
@@ -62,10 +70,12 @@ ty shares Astral's unified configuration philosophy. Rather than wrestling with 
 
 ## Evaluation Roadmap & Next Steps
 
-Before transitioning ty from **Trial** to **Adopt** across all production repositories, we are validating:
+ty moves to Adopt once it handles complex generics and Pydantic v2 models, supports framework typing for SQLAlchemy, Django and FastAPI, and its language server is stable in VS Code and Neovim.
+
+Before transitioning ty from **Trial** to **Adopt** across all production repositories, I am validating:
 
 - **Type System Strictness**: Verifying compatibility with complex generic patterns, Pydantic v2 model validation, and higher-order protocol dispatch.
 - **Ecosystem Plugin Parity**: Ensuring seamless support for dynamic framework typing (such as SQLAlchemy, Django, and FastAPI dependency injection).
 - **Editor & LSP Stability**: Testing ty's native Language Server implementation across VS Code and Neovim for real-time diagnostics and symbol indexing.
 
-Given Astral's stellar track record with **[uv](/blog/uv)** and **[Ruff](/blog/ruff)**, `ty` is well on track to become our default type checker across all Python architectures.
+Given Astral's stellar track record with **[uv](/blog/uv)** and **[Ruff](/blog/ruff)**, `ty` is well on track to become my default type checker across all Python architectures.

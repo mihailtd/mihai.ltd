@@ -1,8 +1,10 @@
 ---
 title: "pip"
+seoTitle: "pip vs uv: Why I Replaced pip & requirements.txt with uv | Mihai Farcas"
 headline: "pip & requirements.txt: Why the Python Legacy Was Rejected"
 description: "Why pip and requirements.txt were rejected in favor of uv for modern, reproducible, high-performance Python development."
 date: "2026-08-08"
+updated: "2026-09-30"
 type: "tech_report"
 tags: ["pip", "uv", "python", "packaging", "tooling"]
 placements:
@@ -18,11 +20,13 @@ decidedDate: "2026-08-08"
 
 For nearly two decades, `pip` accompanied by `requirements.txt` was the universal standard for installing and managing Python packages. It served the community faithfully through Python's evolution into the world's most popular language for data science, backend services, and agentic AI.
 
-However, in modern enterprise engineering—where continuous integration speed, strict determinism, and multi-package architectures are mandatory—`pip` and raw `requirements.txt` files have become active operational liabilities. On our Tech Radar, **`pip` has been permanently rejected in favor of [uv](/blog/uv)**.
+However, in modern enterprise engineering—where continuous integration speed, strict determinism, and multi-package architectures are mandatory—`pip` and raw `requirements.txt` files have become active operational liabilities. **Short answer: replace `pip` and `requirements.txt` with [uv](/blog/uv).** On my Tech Radar, **`pip` is rejected in favor of uv**, which gives you a real lockfile, 10–100x faster installs, managed Python versions and workspaces in one tool.
 
 ---
 
 ## 1. The 4 Fatal Flaws of pip & requirements.txt
+
+pip with `requirements.txt` has four structural problems: no real lockfile for transitive dependencies, a slow backtracking resolver, a fragmented toolchain (pip, venv, pyenv, pip-tools) and no support for workspaces.
 
 ### 1. Non-Deterministic Resolutions & Transitive Dependency Drift
 
@@ -73,6 +77,8 @@ In a modern **[Monorepo Architecture](/blog/monorepo)**, you frequently have mul
 
 ## 2. Why uv Rendered pip Obsolete Overnight
 
+uv replaced pip because it is one Rust binary that resolves and installs 10–100x faster, writes a cross-platform `uv.lock`, manages Python versions and virtual environments, and supports workspaces.
+
 Created by Astral (the creators of **[Ruff](/blog/ruff)**) and written from scratch in Rust, **[uv](/blog/uv)** completely transforms Python package management:
 
 ```text
@@ -95,6 +101,8 @@ Created by Astral (the creators of **[Ruff](/blog/ruff)**) and written from scra
 
 ## 3. Comparison Matrix: pip vs. Poetry vs. Pipenv vs. uv
 
+Of the four, only uv combines speed, a deterministic lockfile, Python version management and workspaces; Poetry and Pipenv fixed locking but remain slow and do not manage Python itself.
+
 | Feature                       | pip (Rejected)                  | Poetry (Legacy)         | uv (Adopted Standard)                |
 | :---------------------------- | :------------------------------ | :---------------------- | :----------------------------------- |
 | **Status**                    | ❌ **Rejected**                 | ⚠️ **Superseded**       | ✅ **Adopted Standard**              |
@@ -108,6 +116,8 @@ Created by Astral (the creators of **[Ruff](/blog/ruff)**) and written from scra
 ---
 
 ## 4. Migration: From requirements.txt to uv
+
+Migrating is quick: run `uv init`, add your dependencies from `requirements.txt` with `uv add -r requirements.txt`, commit the generated `uv.lock`, and replace `pip install` with `uv sync` in CI.
 
 Migrating a legacy `pip` project to `uv` takes less than 60 seconds:
 
@@ -129,12 +139,14 @@ uv run pytest
 
 ## 5. Radar Verdict & Related Articles
 
+**Verdict: Rejected in favor of uv.** pip built the Python ecosystem, but it is no longer the right default for teams that need reproducible, fast builds.
+
 `pip` laid the groundwork for Python's ecosystem, but continuing to use raw `pip` and unpinned `requirements.txt` in enterprise systems is a liability that invites production drift and wastes developer hours on slow CI runs.
 
-Explore our connected Python and monorepo reports:
+Explore the connected Python and monorepo reports:
 
 - **[uv (Adopted Standard)](/blog/uv):** Full deep dive into Astral's ultra-fast Python package and project manager.
 - **[Ruff (Adopted)](/blog/ruff):** Astral's blazing fast Python linter and formatter that replaced Flake8, Black, and isort.
-- **[Monorepo Architecture (Adopted)](/blog/monorepo):** How uv workspaces anchor our Python services in multi-language repositories.
+- **[Monorepo Architecture (Adopted)](/blog/monorepo):** How uv workspaces anchor Python services in multi-language repositories.
 - **[Moon (Polyglot Monorepo)](/blog/moon):** Orchestrating uv tasks alongside **[pnpm](/blog/pnpm)** and Rust toolchains.
-- **[pnpm (Adopted)](/blog/pnpm):** The equivalent fast, content-addressable package manager for our TypeScript ecosystem.
+- **[pnpm (Adopted)](/blog/pnpm):** The equivalent fast, content-addressable package manager for the TypeScript ecosystem.

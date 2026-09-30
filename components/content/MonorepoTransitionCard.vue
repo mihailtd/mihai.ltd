@@ -259,6 +259,52 @@
         remote caching restore unaffected outputs in
         <strong>under 35 seconds</strong>.
       </p>
+
+      <!-- Same numbers as the client-only chart, as server-rendered text -->
+      <table class="mx-auto mt-3 text-left text-xs text-gray-300">
+        <caption class="sr-only">
+          CI pipeline run time by monorepo size
+        </caption>
+        <thead class="text-gray-400">
+          <tr>
+            <th scope="col" class="py-1 pr-4">Repository size</th>
+            <th scope="col" class="py-1 pr-4">Native workspaces (no cache)</th>
+            <th scope="col" class="py-1">
+              Moon / Turborepo (remote cache hit)
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" class="py-1 pr-4 font-medium text-gray-200">
+              1 package
+            </th>
+            <td class="py-1 pr-4 font-mono">15 s</td>
+            <td class="py-1 font-mono">12 s</td>
+          </tr>
+          <tr>
+            <th scope="row" class="py-1 pr-4 font-medium text-gray-200">
+              5 packages
+            </th>
+            <td class="py-1 pr-4 font-mono">130 s</td>
+            <td class="py-1 font-mono">16 s</td>
+          </tr>
+          <tr>
+            <th scope="row" class="py-1 pr-4 font-medium text-gray-200">
+              15 packages
+            </th>
+            <td class="py-1 pr-4 font-mono">580 s</td>
+            <td class="py-1 font-mono">22 s</td>
+          </tr>
+          <tr>
+            <th scope="row" class="py-1 pr-4 font-medium text-gray-200">
+              30 packages
+            </th>
+            <td class="py-1 pr-4 font-mono">1,440 s</td>
+            <td class="py-1 font-mono">32 s</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>

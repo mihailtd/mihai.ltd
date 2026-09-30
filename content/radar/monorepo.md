@@ -1,8 +1,10 @@
 ---
 title: "Monorepo"
+seoTitle: "Monorepo vs Polyrepo: Monorepo Architecture & Tooling Guide (pnpm, uv, Turborepo, Moon) | Mihai Farcas"
 headline: "Monorepo Architecture: From Native Workspaces to Polyglot Build Systems"
 description: "Single-repository architecture, adopted in favor of splitting services across multiple repos."
 date: "2026-08-08"
+updated: "2026-09-30"
 type: "tech_report"
 tags:
   [
@@ -24,7 +26,7 @@ decisionReason: "Preferred mainly because independent deployment is still fully 
 decidedDate: "2026-08-08"
 ---
 
-One repository for related services, libraries, and applications, rather than scattering them across a dozen disconnected repositories.
+**Short answer: I adopt a monorepo — one repository for related services, libraries and applications — rather than scattering them across a dozen disconnected repositories.** Start with native workspaces (pnpm for TypeScript, uv for Python), add Turborepo when a pure-TypeScript repo needs caching, and use Moon when the repo mixes languages.
 
 The most common objection to monorepos—_"How do we maintain independent deployability?"_—conflates code organization with artifact delivery. **Independent deployment is a CI/CD pipeline concern, not a repository layout problem.**
 
@@ -36,13 +38,15 @@ See also: [Polyrepo](/blog/polyrepo), the alternative this was weighed against.
 
 ## 1. The Foundation: Native Package Manager Workspaces
 
+Every monorepo should start with the package manager's own workspace feature — `pnpm` workspaces for TypeScript and `uv` workspaces for Python — which link local packages and share one lockfile without any extra build tool.
+
 Before reaching for heavy monorepo build orchestrators, every modern monorepo starts with **native package manager workspaces**.
 
 Workspaces solve the fundamental code-sharing problem: allowing internal packages to depend on one another locally via symlinks without publishing intermediate packages to npm or PyPI.
 
 ### pnpm Workspaces (TypeScript / Node.js)
 
-In the JavaScript and TypeScript world, **[pnpm workspaces](/blog/pnpm)** (configured via `pnpm-workspace.yaml`) is our adopted foundation, replacing legacy **[npm](/blog/npm)**:
+In the JavaScript and TypeScript world, **[pnpm workspaces](/blog/pnpm)** (configured via `pnpm-workspace.yaml`) is my adopted foundation, replacing legacy **[npm](/blog/npm)**:
 
 - **Strict symlink isolation:** Unlike **[npm](/blog/npm)** or Yarn classic which flatten `node_modules` and invite phantom dependency bugs, pnpm's content-addressable store creates strict, isolated symlinks.
 - **Workspace protocol:** Using `"@org/shared-ui": "workspace:*"` ensures internal dependencies always link directly to local source code during development.
@@ -61,6 +65,8 @@ Astral's **[uv workspaces](/blog/uv)** changed the game completely:
 ---
 
 ## 2. Workspaces vs. Full Monorepo Tooling: When to Transition?
+
+Move from plain workspaces to a build engine (Turborepo, Moon or Nx) when CI time and rebuilds start to hurt: roughly beyond 5–8 packages, when builds take minutes, or when you need caching and "only build what changed" pipelines.
 
 A common architectural mistake is adopting heavy build orchestration tools too early—or waiting until CI pipelines grind to a halt before realizing native workspaces are not enough.
 
@@ -86,6 +92,8 @@ Dedicated monorepo engines ([Moon](/blog/moon), [Turborepo](/blog/turborepo), [N
 ---
 
 ## 3. Homogeneous Stacks: Pure TypeScript vs. Pure Python
+
+For a single-language monorepo the choice is simple: pnpm workspaces plus Turborepo for pure TypeScript, and uv workspaces (optionally with a task runner) for pure Python.
 
 When your entire monorepo lives within a single language ecosystem, your tooling choice simplifies considerably.
 
@@ -114,6 +122,8 @@ For a pure Python monorepo (e.g., several FastAPI microservices, shared data mod
 
 ## 4. The Polyglot Challenge: Multi-Language Monorepos
 
+When one repo mixes Python, TypeScript and Rust or Go, JavaScript-first tools like Turborepo struggle to model cross-language dependencies; Moon handles this best because it manages every language's toolchain and builds one dependency graph across them.
+
 The real trial begins when a monorepo combines different language runtimes: **Python backend services + TypeScript web applications + Rust/Go microservices or WASM modules**.
 
 ### Why JS-First Tools Struggle with Polyglot
@@ -125,7 +135,7 @@ Both Turborepo and Nx originated in the JavaScript/Node.js ecosystem:
 
 ### Moon (`moonrepo`): The True Polyglot Architecture
 
-This is where **[Moon](/blog/moon)** stands apart as the front-runner in our evaluation.
+This is where **[Moon](/blog/moon)** stands apart as the front-runner in my evaluation.
 
 Moon was designed from day one as a language-agnostic, polyglot monorepo build system written in Rust:
 
@@ -159,6 +169,8 @@ Moon was designed from day one as a language-agnostic, polyglot monorepo build s
 
 ## 5. Architectural Decision Matrix
 
+The matrix below summarizes when to use native workspaces, Turborepo, Nx or Moon, by stack, scale and caching needs.
+
 | Dimension                | `pnpm` / `uv` Workspaces                  | Turborepo                             | Nx                                    | Moon (`moonrepo`)                             |
 | :----------------------- | :---------------------------------------- | :------------------------------------ | :------------------------------------ | :-------------------------------------------- |
 | **Primary Scope**        | Package linking & lockfiles               | JS/TS Task Orchestrator               | Enterprise JS/TS Ecosystem            | Polyglot Repository Orchestrator              |
@@ -173,6 +185,8 @@ Moon was designed from day one as a language-agnostic, polyglot monorepo build s
 
 ## 6. Summary & Radar Verdict
 
+**Verdict: Adopt monorepo.** Start with native workspaces, then add Turborepo for pure-TypeScript repos or Moon for polyglot repos once build times demand it.
+
 - **Architecture Decision:** **Adopt Monorepo.** The developer experience of unified PRs, atomic cross-service refactors, and synchronized contracts far outweighs the multi-repo coordination overhead.
 - **Phase 1 Foundation:** Always start with native workspaces—**`pnpm workspaces`** for TypeScript, **`uv workspaces`** for Python. Keep things simple until build times demand orchestration.
 - **Phase 2 Scaling:**
@@ -183,12 +197,14 @@ Moon was designed from day one as a language-agnostic, polyglot monorepo build s
 
 ## 7. Connected Deep Dives & Tech Reports
 
-Explore the individual technology evaluations that form our monorepo web:
+Each tool mentioned above has its own dated radar report with the full reasoning behind its decision.
 
-- **[Polyrepo (Rejected)](/blog/polyrepo):** Why multi-repo architectures failed our velocity tests and were rejected.
+Explore the individual technology evaluations behind this monorepo strategy:
+
+- **[Polyrepo (Rejected)](/blog/polyrepo):** Why multi-repo architectures failed my velocity tests and were rejected.
 - **[pnpm (Adopted Standard)](/blog/pnpm):** Content-addressable package management and workspace linking for Node/TS.
 - **[npm (Rejected)](/blog/npm):** Detailed analysis of phantom dependencies and flat node_modules liabilities.
-- **[uv (Adopted Standard)](/blog/uv):** The high-speed Rust toolchain powering our Python workspaces.
+- **[uv (Adopted Standard)](/blog/uv):** The high-speed Rust toolchain powering Python workspaces.
 - **[pip (Rejected)](/blog/pip):** Why pip and requirements.txt were retired in favor of uv.
 - **[Turborepo (Adopted for TS)](/blog/turborepo):** Task orchestration and remote caching for pure TypeScript monorepos.
 - **[Moon (Adopted for Polyglot)](/blog/moon):** Polyglot monorepo build system unifying Python, TypeScript, and Rust.

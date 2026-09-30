@@ -1,8 +1,10 @@
 ---
 title: "Bun"
+seoTitle: "Bun vs Node.js + pnpm: Should You Use Bun in Production? (Trial Review) | Mihai Farcas"
 headline: "Bun: The High-Speed All-in-One JavaScript & TypeScript Runtime"
 description: "Fast all-in-one JavaScript runtime, native bundler, and package manager, evaluated as a high-speed Node.js alternative."
 date: "2025-01-10"
+updated: "2026-09-30"
 type: "tech_report"
 tags: ["bun", "javascript", "typescript", "runtime", "packaging", "tooling"]
 placements:
@@ -12,7 +14,7 @@ placements:
     subCategory: "js_tooling"
 stage: "trial"
 evaluatedScore: 2
-decisionReason: "Trialing Bun for standalone microservices, high-speed scripts, and rapid test execution. While extraordinarily fast, Node.js remains our enterprise production standard for runtime maturity, with pnpm anchoring our multi-package monorepos."
+decisionReason: "Trialing Bun for standalone microservices, high-speed scripts, and rapid test execution. While extraordinarily fast, Node.js remains my enterprise production standard for runtime maturity, with pnpm anchoring my multi-package monorepos."
 decidedDate: "2025-01-10"
 logoPath: "/images/bun-logo.svg"
 link: "https://bun.sh/"
@@ -23,11 +25,13 @@ Written from scratch in Zig and powered by Apple's WebKit JavaScriptCore engine 
 
 Rather than assembling separate tools for execution (Node), package management (**[npm](/blog/npm)** / **[pnpm](/blog/pnpm)**), building (esbuild/webpack), and testing (Jest/Vitest), Bun bundles all four capabilities into a single, high-performance binary.
 
-On our Tech Radar, **Bun is actively evaluated in Trial (Evaluated Score: 2/4)** for standalone utility scripts, edge microservices, and rapid unit testing, while **Node.js with [pnpm](/blog/pnpm)** remains our enterprise production baseline.
+**Short answer: use Bun for scripts, tooling and standalone services — keep Node.js with pnpm for production applications and monorepos.** On my Tech Radar, **Bun is in Trial (evaluated score 2/4)** for standalone utility scripts, edge microservices and rapid unit testing, while **Node.js with [pnpm](/blog/pnpm)** remains my enterprise production baseline.
 
 ---
 
 ## 1. What Makes Bun Extraordinary
+
+Bun is fast because it is one native binary — runtime, package manager, bundler and test runner — built in Zig on JavaScriptCore, so start-up, installs and test runs are all dramatically quicker than the equivalent Node.js toolchain.
 
 Bun's primary differentiator is visceral execution speed across four primary pillars:
 
@@ -60,9 +64,11 @@ Bun includes a built-in test runner that implements the `describe / test / expec
 
 ---
 
-## 2. Why Node.js & pnpm Remain Our Production Standard
+## 2. Why Node.js & pnpm Remain My Production Standard
 
-Despite Bun's incredible benchmarks, we maintain a clear architectural separation between experimental tooling and production infrastructure:
+Node.js with pnpm stays the production default because of maturity: native addons and edge-case Node APIs still behave differently on Bun, and pnpm's strict, symlinked `node_modules` integrates better with monorepo tooling than Bun's hoisted layout.
+
+Despite Bun's incredible benchmarks, I keep a clear architectural separation between experimental tooling and production infrastructure:
 
 ### 1. Ecosystem Compatibility & Native Node Addons
 
@@ -77,14 +83,16 @@ In enterprise **[Monorepo Architectures](/blog/monorepo)**:
 
 ### 3. The Package Manager Rule
 
-Within our architecture:
+In the systems I design:
 
-- For standard Node.js and TypeScript repositories, **[pnpm](/blog/pnpm)** is our mandatory package manager.
+- For standard Node.js and TypeScript repositories, **[pnpm](/blog/pnpm)** is the mandatory package manager.
 - Bun is used when developing standalone Bun applications or running high-velocity local developer tools.
 
 ---
 
 ## 3. Comparison Matrix: Bun vs. Node.js + pnpm
+
+In short, Bun wins on raw speed and all-in-one convenience; Node.js + pnpm wins on ecosystem compatibility, dependency isolation and production track record.
 
 | Evaluation Dimension           | Bun (Trial)                   | Node.js + pnpm (Adopted Standard)                            |
 | :----------------------------- | :---------------------------- | :----------------------------------------------------------- |
@@ -100,6 +108,8 @@ Within our architecture:
 
 ## 4. Current Architectural Recommendation
 
+Use Bun where speed matters and blast radius is small; use Node.js and pnpm where stability and dependency isolation matter.
+
 - **Use Bun For:** Local CLI scripts, developer utilities, rapid test runners, and high-throughput standalone microservices where raw HTTP throughput and memory footprint are the primary design constraints.
 - **Stick with Node.js & [pnpm](/blog/pnpm) For:** Production web applications (Nuxt, Next.js), enterprise business logic, and multi-package **[Monorepos](/blog/monorepo)** where strict dependency isolation and third-party library stability are non-negotiable.
 
@@ -107,8 +117,10 @@ Within our architecture:
 
 ## 5. Related Architecture Reports & Toolchains
 
-- **[pnpm (Adopted Standard)](/blog/pnpm):** Our primary package manager for Node and TypeScript projects.
+These reports cover the rest of the JavaScript and TypeScript toolchain Bun is compared against.
+
+- **[pnpm (Adopted Standard)](/blog/pnpm):** My primary package manager for Node and TypeScript projects.
 - **[npm (Rejected)](/blog/npm):** Why the legacy npm package manager was retired.
-- **[Monorepo Architecture (Adopted)](/blog/monorepo):** How we structure and orchestrate multi-package repositories.
+- **[Monorepo Architecture (Adopted)](/blog/monorepo):** How I structure and orchestrate multi-package repositories.
 - **[Turborepo](/blog/turborepo):** High-speed task orchestration and remote caching for TypeScript.
 - **[uv (Adopted)](/blog/uv):** The parallel Rust revolution transforming Python toolchains.
