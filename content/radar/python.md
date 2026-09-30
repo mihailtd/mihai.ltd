@@ -14,6 +14,4 @@ link: "https://www.python.org/"
 target: "_blank"
 ---
 
-# Python
-
 Go-to for scripting, automation, and anything touching the AI/ML ecosystem, where its libraries and community are unmatched.

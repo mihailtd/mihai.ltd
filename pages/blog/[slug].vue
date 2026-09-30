@@ -7,9 +7,9 @@
       ></div>
     </div>
 
-    <div v-if="article">
+    <article v-if="article">
       <!-- Hero Section -->
-      <div
+      <header
         class="relative border-b border-white/5 bg-gradient-to-b from-transparent to-black/20 px-6 pb-16 pt-32"
       >
         <div class="mx-auto max-w-4xl text-center">
@@ -46,16 +46,32 @@
             >
               {{ formatType(article.type) }}
             </span>
-            <span class="flex items-center gap-2 text-gray-400">
+            <span
+              v-if="publishedDate"
+              class="flex items-center gap-2 text-gray-400"
+            >
               <span class="h-1 w-1 rounded-full bg-gray-500"></span>
-              {{ formatDate(article.date) }}
+              Published
+              <time :datetime="publishedDate">{{
+                formatDate(publishedDate)
+              }}</time>
+            </span>
+            <span
+              v-if="modifiedDate && modifiedDate !== publishedDate"
+              class="flex items-center gap-2 text-gray-400"
+            >
+              <span class="h-1 w-1 rounded-full bg-gray-500"></span>
+              Updated
+              <time :datetime="modifiedDate">{{
+                formatDate(modifiedDate)
+              }}</time>
             </span>
           </div>
 
           <h1
             class="mb-8 text-balance text-4xl font-extrabold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl"
           >
-            {{ article.title }}
+            {{ displayHeadline }}
           </h1>
 
           <p
@@ -63,22 +79,47 @@
           >
             {{ article.description }}
           </p>
+
+          <!-- Author byline: ties every article to one named, linkable author -->
+          <div class="mt-10 flex items-center justify-center gap-3">
+            <img
+              src="/mihai_farcas.webp"
+              alt="Mihai Farcas"
+              width="44"
+              height="44"
+              class="h-11 w-11 rounded-full border border-white/10 object-cover object-[center_20%]"
+            />
+            <div class="text-left text-sm">
+              <p class="text-gray-300">
+                By
+                <NuxtLink
+                  to="/#about"
+                  rel="author"
+                  class="font-semibold text-white hover:text-blue-300"
+                  >Mihai Farcas</NuxtLink
+                >
+              </p>
+              <p class="text-xs text-gray-500">{{ PERSON_HEADLINE }}</p>
+            </div>
+          </div>
         </div>
-      </div>
+      </header>
 
       <!-- Main Content Area -->
       <div class="relative z-10 mx-auto -mt-12 max-w-4xl px-6">
         <!-- Radar Snapshot (tech_report entries only) -->
-        <div
+        <aside
           v-if="article.stage"
+          aria-labelledby="radar-snapshot-heading"
           class="mb-16 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
         >
           <div class="mb-4 flex items-center justify-between">
-            <h3
+            <h2
+              id="radar-snapshot-heading"
               class="text-sm font-semibold uppercase tracking-wider text-gray-400"
             >
               Radar Snapshot
-            </h3>
+            </h2>
             <div class="flex items-center gap-2">
               <span
                 class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1 ring-inset"
@@ -182,7 +223,7 @@
               &ldquo;{{ article.decisionReason }}&rdquo;
             </p>
           </div>
-        </div>
+        </aside>
 
         <!-- Cover Image -->
         <div
@@ -191,14 +232,14 @@
         >
           <NuxtImg
             :src="article.cover_image"
-            :alt="article.title"
+            :alt="`${article.title} cover image`"
             class="h-auto w-full object-cover"
             loading="eager"
           />
         </div>
 
         <!-- Content -->
-        <article
+        <div
           class="prose prose-lg prose-invert mx-auto max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-white prose-p:leading-relaxed prose-p:text-gray-300 prose-a:text-blue-400 prose-a:no-underline hover:prose-a:text-blue-300 hover:prose-a:underline prose-blockquote:rounded-r-lg prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-900/10 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:not-italic prose-blockquote:text-blue-200 prose-code:rounded prose-code:bg-blue-900/20 prose-code:px-1.5 prose-code:py-0.5 prose-code:text-blue-300 prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-xl prose-pre:border prose-pre:border-white/10 prose-pre:bg-gray-900/50 prose-li:text-gray-300 prose-li:marker:text-blue-500 prose-img:rounded-xl prose-img:border prose-img:border-white/10 prose-img:shadow-lg"
         >
           <ContentRenderer :value="article">
@@ -206,18 +247,18 @@
               <p>No content found.</p>
             </template>
           </ContentRenderer>
-        </article>
+        </div>
 
         <!-- Tags Footer -->
-        <div class="mt-20 border-t border-white/10 pt-10">
+        <footer class="mt-20 border-t border-white/10 pt-10">
           <div
             class="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center"
           >
-            <h3
+            <h2
               class="text-sm font-semibold uppercase tracking-wider text-gray-400"
             >
               Related Topics
-            </h3>
+            </h2>
             <div class="flex flex-wrap gap-2">
               <NuxtLink
                 v-for="tag in article.tags"
@@ -229,32 +270,9 @@
               </NuxtLink>
             </div>
           </div>
-        </div>
+        </footer>
       </div>
-    </div>
-
-    <!-- 404 / Not Found State -->
-    <div v-else class="mx-auto max-w-xl px-6 py-36 text-center">
-      <div class="mb-4 text-5xl">📄</div>
-      <h1 class="text-3xl font-extrabold text-white">Article Not Found</h1>
-      <p class="mt-3 text-sm text-gray-400">
-        The requested article, book summary, or tech report could not be found.
-      </p>
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-        <NuxtLink
-          to="/radar"
-          class="rounded-full bg-blue-600 px-5 py-2 text-xs font-semibold text-white shadow-lg shadow-blue-600/30 hover:bg-blue-500"
-        >
-          Explore Tech Radar
-        </NuxtLink>
-        <NuxtLink
-          to="/blog"
-          class="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-semibold text-gray-300 hover:bg-white/10 hover:text-white"
-        >
-          View Blog
-        </NuxtLink>
-      </div>
-    </div>
+    </article>
   </main>
 </template>
 
@@ -269,6 +287,8 @@ const route = useRoute();
 // type) keeps `article` fully compatible with ContentRenderer below, while
 // letting the template read the radar-specific fields on any branch.
 type RadarFields = {
+  author?: string;
+  isbn?: string;
   stage?: string;
   decision?: string;
   decisionReason?: string;
@@ -314,6 +334,15 @@ const { data: article } = await useAsyncData(
   },
 );
 
+// Unknown slugs must return a real 404 status, not a 200 "not found" page.
+if (!article.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Article not found",
+    fatal: true,
+  });
+}
+
 // Radar snapshot panel — only relevant for tech_report entries. Resolves the
 // "rejected/on hold in favor of" link by looking up that item's own report.
 const { data: favorOfTarget } = await useAsyncData(
@@ -357,12 +386,146 @@ const formatDate = (date?: string) => {
   });
 };
 
+const slug = String(route.params.slug);
+const pageUrl = `${SITE_URL}/blog/${slug}`;
+
+const displayHeadline = computed(
+  () => article.value?.headline || article.value?.title || "",
+);
+const publishedDate = computed(() => article.value?.date || undefined);
+const modifiedDate = computed(
+  () => article.value?.updated || article.value?.date || undefined,
+);
+
+const radarVerdict = computed(() => {
+  const a = article.value;
+  if (!a?.stage) return "";
+  const favor = favorOfTarget.value?.title;
+  switch (a.decision) {
+    case "adopt":
+      return favor ? `Adopted over ${favor}` : "Adopted";
+    case "hold":
+      return favor ? `On Hold in Favor of ${favor}` : "On Hold";
+    case "reject":
+      return favor ? `Rejected in Favor of ${favor}` : "Rejected";
+    default:
+      return a.stage === "trial" ? "In Trial" : "Under Assessment";
+  }
+});
+
+// Descriptive <title>s: the short `title` ("n8n", "AWS") is fine for cards
+// and the radar, but on its own it tells a search engine nothing.
+const pageTitle = computed(() => {
+  const a = article.value;
+  if (!a) return "Article";
+  if (a.seoTitle) return a.seoTitle;
+  if (a.type === "tech_report") {
+    return `${a.title} Review: ${radarVerdict.value} | Mihai Farcas Tech Radar`;
+  }
+  if (a.type === "book_summary") {
+    return a.author
+      ? `${a.title} by ${a.author} — Book Notes | Mihai Farcas`
+      : `${a.title} — Book Notes | Mihai Farcas`;
+  }
+  return `${a.title} | Mihai Farcas`;
+});
+
+const ogImage = computed(
+  () => absoluteUrl(article.value?.cover_image) || DEFAULT_OG_IMAGE,
+);
+
 useSeoMeta({
-  title: () => article.value?.title || "Blog Post",
-  description: () => article.value?.description,
-  ogTitle: () => article.value?.title,
-  ogDescription: () => article.value?.description,
-  ogImage: () => article.value?.cover_image,
-  twitterCard: "summary_large_image",
+  title: pageTitle,
+  description: () => article.value?.description || undefined,
+  ogTitle: pageTitle,
+  ogDescription: () => article.value?.description || undefined,
+  ogType: "article",
+  ogImage,
+  twitterImage: ogImage,
+  twitterTitle: pageTitle,
+  twitterDescription: () => article.value?.description || undefined,
+  articlePublishedTime: publishedDate,
+  articleModifiedTime: modifiedDate,
+  articleAuthor: [`${SITE_URL}/`],
+  articleTag: () => article.value?.tags ?? [],
+});
+
+const section = computed(() => {
+  if (article.value?.type === "tech_report")
+    return { name: "Tech Radar", path: "/radar" };
+  if (article.value?.type === "book_summary")
+    return { name: "Book Notes", path: "/blog?type=book_summary" };
+  return { name: "Blog", path: "/blog" };
+});
+
+useJsonLd("article", () => {
+  const a = article.value;
+  if (!a) return [];
+  const about =
+    a.type === "tech_report"
+      ? { "@type": "Thing", name: a.title }
+      : a.type === "book_summary"
+        ? {
+            "@type": "Book",
+            name: a.title,
+            author: a.author
+              ? { "@type": "Person", name: a.author }
+              : undefined,
+            isbn: a.isbn || undefined,
+          }
+        : undefined;
+  const videos = (a.videos ?? []).map((v) => ({
+    "@type": "VideoObject",
+    "@id": `https://www.youtube.com/watch?v=${v.id}`,
+    name: v.title,
+    description: v.description,
+    thumbnailUrl: `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`,
+    uploadDate: v.uploadDate,
+    embedUrl: `https://www.youtube.com/embed/${v.id}`,
+    contentUrl: `https://www.youtube.com/watch?v=${v.id}`,
+    creator: { "@id": PERSON_ID },
+  }));
+  return [
+    {
+      "@type": "WebPage",
+      "@id": `${pageUrl}#webpage`,
+      url: pageUrl,
+      name: pageTitle.value,
+      isPartOf: { "@id": WEBSITE_ID },
+      breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
+      primaryImageOfPage: { "@type": "ImageObject", url: ogImage.value },
+      datePublished: publishedDate.value,
+      dateModified: modifiedDate.value,
+      inLanguage: "en",
+    },
+    {
+      "@type": a.type === "tech_report" ? "TechArticle" : "BlogPosting",
+      "@id": `${pageUrl}#article`,
+      headline: displayHeadline.value.slice(0, 110),
+      name: a.title,
+      description: a.description || undefined,
+      url: pageUrl,
+      mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+      datePublished: publishedDate.value,
+      dateModified: modifiedDate.value,
+      author: { "@id": PERSON_ID },
+      publisher: { "@id": PERSON_ID },
+      image: ogImage.value,
+      keywords: (a.tags ?? []).join(", "),
+      articleSection: section.value.name,
+      inLanguage: "en",
+      isPartOf: { "@id": WEBSITE_ID },
+      about,
+      video: videos.length ? videos : undefined,
+    },
+    breadcrumbNode(
+      [
+        { name: "Home", path: "/" },
+        section.value,
+        { name: a.title, path: `/blog/${slug}` },
+      ],
+      pageUrl,
+    ),
+  ];
 });
 </script>

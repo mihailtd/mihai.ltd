@@ -1,5 +1,5 @@
 <template>
-  <div
+  <figure
     class="my-8 overflow-hidden rounded-3xl border border-white/10 bg-slate-950/70 p-4 shadow-2xl backdrop-blur-xl sm:p-6"
   >
     <!-- Header -->
@@ -11,9 +11,9 @@
           <span
             class="flex h-2 w-2 animate-pulse rounded-full bg-blue-400"
           ></span>
-          <h4 class="text-base font-bold text-white sm:text-lg">
+          <p class="text-base font-bold text-white sm:text-lg">
             Interactive Cross-Language Dependency Graph (DAG)
-          </h4>
+          </p>
         </div>
         <p class="mt-0.5 text-xs text-gray-400">
           Visualizing topological task execution across Rust, Python, and
@@ -72,7 +72,50 @@
       >
       <span class="font-mono text-gray-600">Powered by Apache ECharts</span>
     </div>
-  </div>
+
+    <!-- Plain-text description of the graph: the canvas above is invisible
+         to crawlers, screen readers and AI search, so the flow is spelled
+         out here in the server-rendered HTML. -->
+    <figcaption
+      class="mt-4 rounded-2xl border border-white/5 bg-white/[0.02] p-4 text-sm leading-relaxed text-gray-300"
+    >
+      <p class="font-semibold text-white">How the build graph flows</p>
+      <p class="mt-1">
+        Moon runs one cross-language dependency graph: two independent chains —
+        a Rust engine and a Python API — feed a single TypeScript web app, which
+        produces the release bundle. Each task is cached on its inputs, so only
+        the chain whose sources changed is rebuilt.
+      </p>
+      <ol class="mt-2 list-decimal space-y-1 pl-5">
+        <li>
+          <strong>Rust core engine</strong> →
+          <code>cargo build --target wasm32</code> compiles to a
+          <strong>WASM module</strong> (<code>dist/engine.wasm</code>).
+        </li>
+        <li>
+          <strong>Python API (FastAPI, uv workspace)</strong> →
+          <code>uv run python -m app.openapi</code> generates the
+          <strong>OpenAPI schema</strong> (<code>contracts/openapi.json</code>),
+          the single source of truth for the API contract.
+        </li>
+        <li>
+          The OpenAPI schema generates the
+          <strong>TypeScript client SDK</strong>
+          (<code>pnpm --filter @org/api-client build</code>).
+        </li>
+        <li>
+          The <strong>web client application</strong> (<code
+            >pnpm --filter web build</code
+          >) depends on both the WASM module and the TS client SDK.
+        </li>
+        <li>
+          The web app is packaged into the
+          <strong>production release bundle</strong> with
+          <code>moon run web:deploy</code>.
+        </li>
+      </ol>
+    </figcaption>
+  </figure>
 </template>
 
 <script setup lang="ts">

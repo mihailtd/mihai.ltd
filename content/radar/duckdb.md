@@ -15,6 +15,4 @@ link: "https://duckdb.org/"
 target: "_blank"
 ---
 
-# DuckDB
-
 Adopted as the go-to in-process analytical database — fast, embeddable, and no separate server to run for local and small-to-medium analytical workloads. [DuckLake](/blog/ducklake) is being evaluated as the natural next step on top of it.

@@ -12,6 +12,4 @@ publisher: ""
 publishedDate: ""
 ---
 
-# Building Evolutionary Architectures
-
 This book provides a fresh perspective on software architecture. It's a must-read for anyone who wants to build systems that can evolve and adapt to changing requirements.

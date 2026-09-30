@@ -1,5 +1,6 @@
 ---
 title: "Monorepo"
+headline: "Monorepo Architecture: From Native Workspaces to Polyglot Build Systems"
 description: "Single-repository architecture, adopted in favor of splitting services across multiple repos."
 date: "2026-08-08"
 type: "tech_report"
@@ -22,8 +23,6 @@ evaluatedScore: 4
 decisionReason: "Preferred mainly because independent deployment is still fully achievable through proper CI/CD, while a feature spanning multiple modules (say, two microservices and a UI) stays a single PR: easy to review, and deployed together without coordinating release order across repositories. Deployment is a CI/CD problem, not a code organization problem."
 decidedDate: "2026-08-08"
 ---
-
-# Monorepo Architecture: From Native Workspaces to Polyglot Build Systems
 
 One repository for related services, libraries, and applications, rather than scattering them across a dozen disconnected repositories.
 

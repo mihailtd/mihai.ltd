@@ -24,61 +24,27 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: "page", mode: "out-in" },
     head: {
-      title:
-        "Mihai Farcas - Software Architect, Agentic AI Expert & Content Creator",
+      title: "Mihai Farcas — Software Architect · Agentic AI, n8n & MCP",
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
         {
           name: "description",
           content:
-            "Mihai Farcas is a Software Architect specializing in Agentic AI, AI automations, and n8n consulting. YouTube content creator at Let's Talk Dev, helping developers build scalable enterprise systems.",
+            "Mihai Farcas is a Software Architect who designs and ships production Agentic AI systems, n8n automations and MCP servers, with 10+ years in enterprise healthcare, fintech and insurance. Creator of the Let's Talk Dev YouTube channel.",
         },
-        {
-          name: "keywords",
-          content:
-            "Mihai Farcas, software architect, agentic ai, ai automations, n8n, n8n partner, content creator, consulting, youtube, software engineering, enterprise architecture, ai agents, langraph, automation workflows",
-        },
-        {
-          name: "author",
-          content: "Mihai Farcas",
-        },
-        // Open Graph
-        { property: "og:type", content: "website" },
-        { property: "og:url", content: "https://mihai.ltd/" },
-        {
-          property: "og:title",
-          content:
-            "Mihai Farcas - Software Architect, Agentic AI Expert & Content Creator",
-        },
-        {
-          property: "og:description",
-          content:
-            "Mihai Farcas is a Software Architect specializing in Agentic AI, AI automations, and n8n consulting. YouTube content creator at Let's Talk Dev.",
-        },
-        { property: "og:image", content: "https://mihai.ltd/og-cover.jpg" },
-        // Twitter
-        { name: "twitter:card", content: "summary_large_image" },
-        {
-          name: "twitter:title",
-          content:
-            "Mihai Farcas - Software Architect, Agentic AI Expert & Content Creator",
-        },
-        {
-          name: "twitter:description",
-          content:
-            "Software Architect specializing in Agentic AI, AI automations, and n8n consulting. YouTube content creator at Let's Talk Dev.",
-        },
-        { name: "twitter:image", content: "https://mihai.ltd/og-cover.jpg" },
+        { name: "author", content: "Mihai Farcas" },
         { name: "twitter:site", content: "@letstalkdev" },
         { name: "twitter:creator", content: "@letstalkdev" },
       ],
-      link: [{ rel: "canonical", href: "https://mihai.ltd/" }],
+      // Canonical, og:url, og:image and the site JSON-LD graph are set per
+      // route in plugins/seo.ts — a static canonical here would point every
+      // page at the homepage.
     },
   },
   site: {
     url: "https://mihai.ltd",
-    name: "Mihai Farcas - Software Architect & Content Creator",
+    name: "Mihai Farcas",
   },
   image: {},
   sitemap: {
@@ -92,7 +58,15 @@ export default defineNuxtConfig({
     prerender: {
       autoSubfolderIndex: false,
       crawlLinks: true,
-      routes: ["/", "/blog", "/radar", "/stack", "/contact", "/sitemap.xml"],
+      routes: [
+        "/",
+        "/blog",
+        "/radar",
+        "/stack",
+        "/contact",
+        "/sitemap.xml",
+        "/llms.txt",
+      ],
     },
     routeRules: {
       // Content-hashed build assets are safe to cache forever — a filename

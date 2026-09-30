@@ -14,6 +14,4 @@ link: "https://code.visualstudio.com/"
 target: "_blank"
 ---
 
-# VS Code
-
 Default code editor for day-to-day development, and the base for most of the AI-assisted tooling in this radar (GitHub Copilot, Claude Code).

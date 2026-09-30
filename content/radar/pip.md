@@ -1,5 +1,6 @@
 ---
 title: "pip"
+headline: "pip & requirements.txt: Why the Python Legacy Was Rejected"
 description: "Why pip and requirements.txt were rejected in favor of uv for modern, reproducible, high-performance Python development."
 date: "2026-08-08"
 type: "tech_report"
@@ -14,8 +15,6 @@ decisionInFavorOf: "uv"
 decisionReason: "Rejected, along with requirements.txt, in favor of uv with pyproject.toml and uv.lock. Pip suffers from non-deterministic dependency resolution, painful backtrack slowness, lack of true cross-platform lockfiles, and zero workspace support for monorepos."
 decidedDate: "2026-08-08"
 ---
-
-# pip & requirements.txt: Why the Python Legacy Was Rejected
 
 For nearly two decades, `pip` accompanied by `requirements.txt` was the universal standard for installing and managing Python packages. It served the community faithfully through Python's evolution into the world's most popular language for data science, backend services, and agentic AI.
 

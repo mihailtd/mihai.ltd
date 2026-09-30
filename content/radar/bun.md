@@ -1,5 +1,6 @@
 ---
 title: "Bun"
+headline: "Bun: The High-Speed All-in-One JavaScript & TypeScript Runtime"
 description: "Fast all-in-one JavaScript runtime, native bundler, and package manager, evaluated as a high-speed Node.js alternative."
 date: "2025-01-10"
 type: "tech_report"
@@ -17,8 +18,6 @@ logoPath: "/images/bun-logo.svg"
 link: "https://bun.sh/"
 target: "_blank"
 ---
-
-# Bun: The High-Speed All-in-One JavaScript & TypeScript Runtime
 
 Written from scratch in Zig and powered by Apple's WebKit JavaScriptCore engine (rather than Google's V8 used in Node.js and Chromium), **Bun** represents an ambitious rethink of the JavaScript toolchain.
 

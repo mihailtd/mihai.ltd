@@ -11,6 +11,4 @@ stage: "trial"
 evaluatedScore: 3
 ---
 
-# GoLang
-
 Trialing Go where concurrency and a small static binary matter more than ecosystem breadth. Simple, fast, and easy to operate.

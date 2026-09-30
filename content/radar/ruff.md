@@ -1,5 +1,6 @@
 ---
 title: "Ruff"
+headline: "Ruff: The High-Speed Rust Engine Consolidating Python Tooling"
 description: "Extremely fast Python linter and code formatter written in Rust, adopted to replace Black, Flake8, and isort into a unified zero-dependency binary."
 date: "2026-08-08"
 type: "tech_report"
@@ -26,8 +27,6 @@ decidedDate: "2026-08-08"
 link: "https://docs.astral.sh/ruff/"
 target: "_blank"
 ---
-
-# Ruff: The High-Speed Rust Engine Consolidating Python Tooling
 
 For nearly a decade, establishing code quality and formatting discipline in enterprise Python required stitching together an increasingly fragile assembly of standalone tools:
 

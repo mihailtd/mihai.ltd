@@ -16,6 +16,4 @@ link: "https://cloud.google.com/"
 target: "_blank"
 ---
 
-# GCP
-
 The go-to choice among the "Big 3" cloud providers — adopted ahead of both [AWS](/blog/aws) (on hold) and [Azure](/blog/azure) (rejected).

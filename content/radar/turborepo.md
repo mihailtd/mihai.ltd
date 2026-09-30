@@ -1,5 +1,6 @@
 ---
 title: "Turborepo"
+headline: "Turborepo: High-Velocity Task Orchestration for TypeScript Monorepos"
 description: "High-performance monorepo build system and task orchestrator with remote caching, evaluated for pure JavaScript and TypeScript architectures."
 date: "2026-08-08"
 type: "tech_report"
@@ -16,8 +17,6 @@ decidedDate: "2026-08-08"
 link: "https://turbo.build/"
 target: "_blank"
 ---
-
-# Turborepo: High-Velocity Task Orchestration for TypeScript Monorepos
 
 As a codebase expands from a handful of packages into an enterprise **[Monorepo Architecture](/blog/monorepo)**, native package manager scripts (`pnpm -r run build`) quickly run into a wall: they re-run tasks sequentially, test unchanged code, and waste minutes on redundant computation.
 

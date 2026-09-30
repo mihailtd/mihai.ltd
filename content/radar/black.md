@@ -1,5 +1,6 @@
 ---
 title: "Black"
+headline: "Black: The Uncompromising Formatter That Changed Python (and Why We Moved to Ruff)"
 description: "The uncompromising Python code formatter that eliminated style debates, now superseded and rejected in favor of Ruff."
 date: "2026-08-08"
 type: "tech_report"
@@ -17,8 +18,6 @@ decidedDate: "2026-08-08"
 link: "https://black.readthedocs.io/"
 target: "_blank"
 ---
-
-# Black: The Uncompromising Formatter That Changed Python (and Why We Moved to Ruff)
 
 Few open-source developer tools have exerted as profound a cultural impact on modern software engineering as **Black**. Created by Łukasz Langa in 2018 under the Python Software Foundation (PSF), Black fundamentally transformed the Python ecosystem by solving one of the most persistent drains on developer productivity: **stylistic bikeshedding**.
 

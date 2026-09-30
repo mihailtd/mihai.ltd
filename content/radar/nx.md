@@ -1,5 +1,6 @@
 ---
 title: "Nx"
+headline: "Nx: The Enterprise Heavyweight in Monorepo Build Tooling"
 description: "Enterprise-grade monorepo build system with deep code generation and AST dependency analysis, evaluated against Turborepo and Moon."
 date: "2026-08-08"
 type: "tech_report"
@@ -16,8 +17,6 @@ decidedDate: "2026-08-08"
 link: "https://nx.dev/"
 target: "_blank"
 ---
-
-# Nx: The Enterprise Heavyweight in Monorepo Build Tooling
 
 Created by Nrwl (founded by former Google engineers), **Nx** is one of the most mature, feature-complete monorepo build systems in the software industry. It powers enormous enterprise codebases across Fortune 500 companies, offering sophisticated project graph analysis, automated code generators, and distributed task execution.
 

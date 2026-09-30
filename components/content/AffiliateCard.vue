@@ -72,11 +72,11 @@
           <!-- Tool Title & Subtitle -->
           <div class="flex-1">
             <div class="flex items-baseline gap-2">
-              <h3
+              <p
                 class="text-2xl font-bold tracking-tight text-white sm:text-3xl"
               >
                 {{ name }}
-              </h3>
+              </p>
               <span
                 v-if="rating"
                 class="inline-flex items-center text-xs font-semibold text-yellow-300"

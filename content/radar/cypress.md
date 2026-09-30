@@ -15,6 +15,4 @@ decisionReason: "Rejected in favor of Playwright for end-to-end testing."
 decidedDate: "2026-08-08"
 ---
 
-# Cypress
-
 End-to-end testing framework, rejected in favor of [Playwright](/blog/playwright).

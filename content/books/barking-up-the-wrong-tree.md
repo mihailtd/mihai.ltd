@@ -12,6 +12,4 @@ publisher: ""
 publishedDate: ""
 ---
 
-# Barking Up the Wrong Tree
-
 A thought-provoking book that challenges conventional wisdom about success. Rather than offering cookie-cutter advice, Barker delves into the surprising science behind achievement.

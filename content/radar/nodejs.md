@@ -14,6 +14,4 @@ link: "https://nodejs.org/"
 target: "_blank"
 ---
 
-# NodeJS
-
 Battle-tested runtime for APIs, tooling, and glue code. The ecosystem and hiring pool make it the safe default for back-end JavaScript/TypeScript work.

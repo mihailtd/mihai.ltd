@@ -18,6 +18,4 @@ link: "https://www.typescriptlang.org/"
 target: "_blank"
 ---
 
-# TypeScript
-
 Used everywhere JavaScript would otherwise be written, front-end and back-end alike. Static types catch a large class of bugs before runtime and make refactors far less risky.

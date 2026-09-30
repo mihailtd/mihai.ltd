@@ -1,5 +1,6 @@
 ---
 title: "n8n"
+headline: "n8n: The Open-Source Workflow Automation & Agentic AI Platform"
 description: "Why n8n was adopted as our standard enterprise workflow automation and Agentic AI orchestration platform over Zapier and Make."
 date: "2026-08-08"
 type: "tech_report"
@@ -29,8 +30,6 @@ link: "https://n8n.partnerlinks.io/ltd"
 logoPath: "/images/tech/n8n.svg"
 target: "_blank"
 ---
-
-# n8n: The Open-Source Workflow Automation & Agentic AI Platform
 
 In the modern enterprise tech stack, automation is no longer just about syncing leads between a CRM and an email marketing tool. As software architectures shift toward distributed microservices, event-driven pipelines, and autonomous AI agents, organizations face a critical dilemma: **how to orchestrate complex business logic, third-party APIs, and LLM reasoning without drowning in proprietary per-task subscription fees or maintenance-heavy custom boilerplate.**
 

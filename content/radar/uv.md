@@ -1,5 +1,6 @@
 ---
 title: "uv"
+headline: "uv: The High-Speed Standard for Modern Python & Workspaces"
 description: "Extremely fast, Rust-powered Python project manager and workspace orchestrator, adopted as the universal standard over pip and Poetry."
 date: "2026-08-08"
 type: "tech_report"
@@ -16,8 +17,6 @@ decidedDate: "2026-08-08"
 link: "https://docs.astral.sh/uv/"
 target: "_blank"
 ---
-
-# uv: The High-Speed Standard for Modern Python & Workspaces
 
 In the Python landscape, toolchain fragmentation has historically been a persistent pain point. Engineers routinely balanced `pyenv` for runtime versions, `virtualenv` for isolation, **[pip](/blog/pip)** for installations, `pip-tools` for locking, and `poetry` or `flit` for packaging.
 

@@ -1,5 +1,6 @@
 ---
 title: "Rancher Desktop"
+headline: "Rancher Desktop: The Modern, Open-Source Local Container & Kubernetes Platform"
 description: "Open-source local Kubernetes and container management platform, adopted across developer workstations in favor of Docker Desktop."
 date: "2026-08-08"
 type: "tech_report"
@@ -27,8 +28,6 @@ decidedDate: "2026-08-08"
 link: "https://rancherdesktop.io/"
 target: "_blank"
 ---
-
-# Rancher Desktop: The Modern, Open-Source Local Container & Kubernetes Platform
 
 For years, developer onboarding on macOS and Windows followed an identical, uncontested script: install Docker Desktop, run `docker compose up`, and begin writing code.
 

@@ -25,8 +25,9 @@
             Thoughts
           </h1>
           <p class="text-xl leading-relaxed text-gray-400">
-            Exploring the frontiers of software architecture, AI agents, and
-            modern development practices.
+            Articles, hands-on tech radar reports and book notes by Mihai Farcas
+            on software architecture, Agentic AI, n8n automation and modern
+            development tooling.
           </p>
         </div>
 
@@ -422,13 +423,17 @@
         </p>
 
         <!-- Pagination Controls -->
-        <div class="flex items-center gap-1.5 sm:gap-2">
-          <!-- Previous Button -->
-          <button
-            type="button"
-            class="flex items-center gap-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-gray-300 transition-all duration-200 hover:border-white/20 hover:bg-white/10 hover:text-white disabled:pointer-events-none disabled:opacity-30 sm:px-4"
-            :disabled="activePage <= 1"
-            @click="goToPage(activePage - 1)"
+        <nav
+          aria-label="Blog pagination"
+          class="flex items-center gap-1.5 sm:gap-2"
+        >
+          <!-- Previous Link: real <a href> so crawlers can follow pagination -->
+          <NuxtLink
+            v-if="activePage > 1"
+            :to="pageLink(activePage - 1)"
+            rel="prev"
+            class="flex items-center gap-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-gray-300 transition-all duration-200 hover:border-white/20 hover:bg-white/10 hover:text-white sm:px-4"
+            @click="scrollToGrid"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -436,6 +441,7 @@
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
+              aria-hidden="true"
             >
               <path
                 stroke-linecap="round"
@@ -445,7 +451,29 @@
               />
             </svg>
             <span class="hidden sm:inline">Previous</span>
-          </button>
+          </NuxtLink>
+          <span
+            v-else
+            aria-disabled="true"
+            class="pointer-events-none flex items-center gap-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-gray-300 opacity-30 transition-all duration-200 sm:px-4"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+            <span class="hidden sm:inline">Previous</span>
+          </span>
 
           <!-- Numbered Page Pills -->
           <template v-for="(p, idx) in visiblePages" :key="idx">
@@ -455,27 +483,30 @@
             >
               …
             </span>
-            <button
+            <NuxtLink
               v-else
-              type="button"
-              class="min-w-[38px] rounded-xl border px-3 py-2 text-sm font-semibold transition-all duration-200 sm:min-w-[42px]"
+              :to="pageLink(p)"
+              :aria-current="activePage === p ? 'page' : undefined"
+              :aria-label="`Page ${p}`"
+              class="min-w-[38px] rounded-xl border px-3 py-2 text-center text-sm font-semibold transition-all duration-200 sm:min-w-[42px]"
               :class="
                 activePage === p
                   ? 'border-blue-500 bg-blue-600 text-white shadow-lg shadow-blue-600/30'
                   : 'border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10 hover:text-white'
               "
-              @click="goToPage(p)"
+              @click="scrollToGrid"
             >
               {{ p }}
-            </button>
+            </NuxtLink>
           </template>
 
-          <!-- Next Button -->
-          <button
-            type="button"
-            class="flex items-center gap-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-gray-300 transition-all duration-200 hover:border-white/20 hover:bg-white/10 hover:text-white disabled:pointer-events-none disabled:opacity-30 sm:px-4"
-            :disabled="activePage >= totalPages"
-            @click="goToPage(activePage + 1)"
+          <!-- Next Link -->
+          <NuxtLink
+            v-if="activePage < totalPages"
+            :to="pageLink(activePage + 1)"
+            rel="next"
+            class="flex items-center gap-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-gray-300 transition-all duration-200 hover:border-white/20 hover:bg-white/10 hover:text-white sm:px-4"
+            @click="scrollToGrid"
           >
             <span class="hidden sm:inline">Next</span>
             <svg
@@ -484,6 +515,7 @@
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
+              aria-hidden="true"
             >
               <path
                 stroke-linecap="round"
@@ -492,8 +524,30 @@
                 d="M9 5l7 7-7 7"
               />
             </svg>
-          </button>
-        </div>
+          </NuxtLink>
+          <span
+            v-else
+            aria-disabled="true"
+            class="pointer-events-none flex items-center gap-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-gray-300 opacity-30 transition-all duration-200 sm:px-4"
+          >
+            <span class="hidden sm:inline">Next</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </span>
+        </nav>
       </div>
     </div>
   </main>
@@ -894,18 +948,20 @@ const visiblePages = computed<(number | "...")[]>(() => {
 
 const contentGridRef = ref<HTMLElement | null>(null);
 
-const goToPage = (page: number | string) => {
-  if (typeof page !== "number") return;
-  if (page < 1 || page > totalPages.value || page === activePage.value) return;
-
+// Pagination renders real links (href="/blog?page=2") instead of click-only
+// buttons, so every listing page is reachable by crawlers. Filters and
+// search in the current query string are preserved.
+const pageLink = (page: number | string) => {
   const query = { ...route.query };
   if (page === 1) {
     delete query.page;
   } else {
     query.page = String(page);
   }
-  router.push({ query });
+  return { path: "/blog", query };
+};
 
+const scrollToGrid = () => {
   nextTick(() => {
     if (contentGridRef.value) {
       const yOffset = -90;
@@ -949,9 +1005,9 @@ useSeoMeta({
         .join(" & ");
       return `${typeLabels} - Blog - Mihai Farcas`;
     }
-    return "Blog - Mihai Farcas";
+    return "Blog: Software Architecture, Agentic AI & Tech Reports | Mihai Farcas";
   }),
   description:
-    "Thoughts on software architecture, Agentic AI, and development. Book summaries and technical deep dives.",
+    "Articles, hands-on tech radar reports and book notes by Mihai Farcas, Software Architect — covering Agentic AI, n8n, MCP, monorepos, Python and TypeScript tooling, Kubernetes and cloud.",
 });
 </script>

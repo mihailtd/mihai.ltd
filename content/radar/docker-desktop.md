@@ -1,5 +1,6 @@
 ---
 title: "Docker Desktop"
+headline: "Docker Desktop: The Pioneer That Slipped into Licensing Friction and Instability"
 description: "Proprietary local container and Kubernetes GUI, rejected in favor of Rancher Desktop."
 date: "2026-08-08"
 type: "tech_report"
@@ -26,8 +27,6 @@ decidedDate: "2026-08-08"
 link: "https://www.docker.com/products/docker-desktop/"
 target: "_blank"
 ---
-
-# Docker Desktop: The Pioneer That Slipped into Licensing Friction and Instability
 
 In the history of software development, few tools have catalyzed developer adoption as rapidly as **Docker Desktop**. When Docker launched Desktop for macOS and Windows, it turned what had previously been a painful tangle of VirtualBox machines, Vagrant scripts, and bridging network adapters into a seamless, single-click developer experience.
 

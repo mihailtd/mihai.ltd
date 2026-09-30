@@ -1,5 +1,6 @@
 ---
 title: "ty"
+headline: "ty: The Final Frontier of the Astral Python Toolchain"
 description: "High-speed static type checker for Python from Astral, evaluated as the final piece in Astral's unified Rust toolchain alongside uv and Ruff."
 date: "2026-08-08"
 type: "tech_report"
@@ -15,8 +16,6 @@ decidedDate: "2026-08-08"
 link: "https://docs.astral.sh/ty/"
 target: "_blank"
 ---
-
-# ty: The Final Frontier of the Astral Python Toolchain
 
 In modern enterprise software engineering, type checking is no longer optional in Python. Type annotations ([PEP 484](https://peps.python.org/pep-0484/), [PEP 544](https://peps.python.org/pep-0544/) protocols, and [PEP 604](https://peps.python.org/pep-0604/) union syntax `X | Y`) transform Python from an unpredictable dynamic scripting language into a robust foundation for mission-critical microservices and data pipelines.
 

@@ -11,9 +11,9 @@
           <span
             class="flex h-2 w-2 animate-pulse rounded-full bg-indigo-400"
           ></span>
-          <h4 class="text-base font-bold text-white sm:text-xl">
+          <p class="text-base font-bold text-white sm:text-xl">
             When to Transition: Workspaces vs. Monorepo Engines
-          </h4>
+          </p>
         </div>
         <p class="mt-1 text-xs text-gray-400">
           Comparing threshold criteria and the impact of distributed computation
@@ -82,9 +82,9 @@
             <span class="font-mono text-xs text-emerald-400/80">pnpm / uv</span>
           </div>
 
-          <h5 class="mb-2 text-lg font-bold text-white">
+          <p class="mb-2 text-lg font-bold text-white">
             Native Workspaces Are Sufficient When:
-          </h5>
+          </p>
           <p class="mb-5 text-xs text-gray-400">
             Keep your architecture lightweight. No extra build abstraction
             needed.
@@ -159,9 +159,9 @@
             >
           </div>
 
-          <h5 class="mb-2 text-lg font-bold text-white">
+          <p class="mb-2 text-lg font-bold text-white">
             Graduate to Monorepo Engines When:
-          </h5>
+          </p>
           <p class="mb-5 text-xs text-gray-400">
             Computation caching and affected analysis become business-critical.
           </p>
@@ -227,10 +227,10 @@
       :class="activeView === 'all' ? 'border-t border-white/10 pt-6' : ''"
     >
       <div class="flex items-center justify-between">
-        <h5 class="text-sm font-bold text-white">
+        <p class="text-sm font-bold text-white">
           CI Pipeline Run Time: Native Workspaces vs. Monorepo with Remote
           Caching
-        </h5>
+        </p>
         <span class="text-xs text-gray-400"
           >Time in Seconds (Lower is better)</span
         >

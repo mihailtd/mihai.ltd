@@ -1,5 +1,6 @@
 ---
 title: "Moon"
+headline: "Moon (moonrepo): The Premier Polyglot Monorepo Build System"
 description: "Polyglot monorepo build system and task runner with native multi-runtime toolchain management, evaluated for Python, TypeScript, and Rust architectures."
 date: "2026-08-08"
 type: "tech_report"
@@ -25,8 +26,6 @@ decidedDate: "2026-08-08"
 link: "https://moonrepo.dev/"
 target: "_blank"
 ---
-
-# Moon (moonrepo): The Premier Polyglot Monorepo Build System
 
 When scaling a **[Monorepo Architecture](/blog/monorepo)** beyond pure JavaScript, engineering teams encounter a severe tooling gap. Industry-standard tools like **[Turborepo](/blog/turborepo)** and **[Nx](/blog/nx)** are JavaScript-first systems; non-JS runtimes (like Python, Rust, or Go) are either bolted on via community plugins or forced to run through clumsy `package.json` script wrappers.
 

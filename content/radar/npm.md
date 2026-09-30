@@ -1,5 +1,6 @@
 ---
 title: "npm"
+headline: "npm: Why the Default Package Manager Was Rejected"
 description: "Why npm was rejected for enterprise Node.js and TypeScript projects in favor of pnpm's content-addressable architecture and workspace isolation."
 date: "2026-08-08"
 type: "tech_report"
@@ -14,8 +15,6 @@ decisionInFavorOf: "pnpm"
 decisionReason: "Rejected in favor of pnpm for Node and TypeScript projects. Flat node_modules hoisting causes phantom dependencies, duplicated disk space waste across repositories, and slow CI installations without a content-addressable store."
 decidedDate: "2026-08-08"
 ---
-
-# npm: Why the Default Package Manager Was Rejected
 
 As the default package manager distributed with Node.js, `npm` is universally known and ubiquitous across the JavaScript ecosystem. It established the registry standards that power the entire web ecosystem.
 

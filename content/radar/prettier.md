@@ -14,6 +14,4 @@ link: "https://prettier.io/"
 target: "_blank"
 ---
 
-# Prettier
-
 The formatter for the [TypeScript](/blog/typescript)/JavaScript side of things, same role that [Ruff](/blog/ruff) plays for Python.

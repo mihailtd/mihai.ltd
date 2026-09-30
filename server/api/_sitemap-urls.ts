@@ -1,43 +1,35 @@
 import { defineEventHandler, type H3Event } from "h3";
 import { queryCollection } from "@nuxt/content/server";
 
+type SitemapEntry = { loc: string; lastmod?: string };
+
+// Every collection is served under /blog/<slug>. lastmod comes from the
+// `updated` frontmatter (falling back to `date`) so crawlers can tell which
+// reports changed.
+const toEntry = (item: {
+  path: string;
+  date?: string;
+  updated?: string;
+}): SitemapEntry | null => {
+  const slug = item.path.split("/").pop();
+  if (!slug) return null;
+  const lastmod = item.updated || item.date;
+  return { loc: `/blog/${slug}`, ...(lastmod ? { lastmod } : {}) };
+};
+
 export default defineEventHandler(async (event: H3Event) => {
-  const urls: Array<{ loc: string }> = [];
+  const urls: SitemapEntry[] = [];
 
-  try {
-    const blogPosts = await queryCollection(event, "blog").all();
-    for (const post of blogPosts) {
-      const slug = post.path.split("/").pop();
-      if (slug) {
-        urls.push({ loc: `/blog/${slug}` });
+  for (const collection of ["blog", "books", "radar"] as const) {
+    try {
+      const items = await queryCollection(event, collection).all();
+      for (const item of items) {
+        const entry = toEntry(item);
+        if (entry) urls.push(entry);
       }
+    } catch (e) {
+      console.error(`Error querying ${collection} collection for sitemap:`, e);
     }
-  } catch (e) {
-    console.error("Error querying blog collection for sitemap:", e);
-  }
-
-  try {
-    const books = await queryCollection(event, "books").all();
-    for (const book of books) {
-      const slug = book.path.split("/").pop();
-      if (slug) {
-        urls.push({ loc: `/blog/${slug}` });
-      }
-    }
-  } catch (e) {
-    console.error("Error querying books collection for sitemap:", e);
-  }
-
-  try {
-    const radarItems = await queryCollection(event, "radar").all();
-    for (const item of radarItems) {
-      const slug = item.path.split("/").pop();
-      if (slug) {
-        urls.push({ loc: `/blog/${slug}` });
-      }
-    }
-  } catch (e) {
-    console.error("Error querying radar collection for sitemap:", e);
   }
 
   return urls;

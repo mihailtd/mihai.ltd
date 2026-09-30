@@ -1,5 +1,6 @@
 ---
 title: "pnpm"
+headline: "pnpm: The Foundation of Modern Node & TypeScript Workspaces"
 description: "Fast, disk-efficient package manager and workspace engine adopted in favor of npm for all Node.js and TypeScript projects."
 date: "2026-08-08"
 type: "tech_report"
@@ -16,8 +17,6 @@ decidedDate: "2026-08-08"
 link: "https://pnpm.io/"
 target: "_blank"
 ---
-
-# pnpm: The Foundation of Modern Node & TypeScript Workspaces
 
 In the modern TypeScript ecosystem, efficient package management is the bedrock of engineering velocity. After extensive evaluation against legacy **[npm](/blog/npm)** and alternative runtimes like **[Bun](/blog/bun)**, **`pnpm` is our firmly adopted standard** for all Node.js and TypeScript projects and multi-package repositories.
 

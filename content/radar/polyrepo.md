@@ -1,5 +1,6 @@
 ---
 title: "Polyrepo"
+headline: "Polyrepo Architecture: Why We Rejected the Multi-Repository Pattern"
 description: "Splitting microservices across independent repositories: why multi-repo architecture was rejected in favor of an orchestrated monorepo."
 date: "2026-08-08"
 type: "tech_report"
@@ -14,8 +15,6 @@ decisionInFavorOf: "monorepo"
 decisionReason: "Splitting related services and UI across repositories turns a single feature into multiple coordinated PRs, creates dependency drift, and forces ordering releases across repositories. A monorepo avoids that overhead entirely, since independent deployment is a CI/CD pipeline capability, not a repository boundary concern."
 decidedDate: "2026-08-08"
 ---
-
-# Polyrepo Architecture: Why We Rejected the Multi-Repository Pattern
 
 In modern software engineering, repository architecture is frequently conflated with system deployment architecture. The classic convention—one Git repository per service or microservice—is commonly known as the **Polyrepo (or Multi-Repo)** pattern.
 

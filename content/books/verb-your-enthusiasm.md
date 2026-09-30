@@ -13,8 +13,6 @@ publisher: "Penguin Press"
 publishedDate: "2026-04"
 ---
 
-# Verb Your Enthusiasm
-
 Verbs are the underrated stars of the English language. They hold it all together. A complete sentence cannot exist without one, yet a single verb can create complete meaning. (See?) In this glittering exploration of language, grammar, and style, Sarah L. Kaufman illuminates how all of us, professional writers and enthusiasts alike, can master the art of the verb.
 
 When she was the dance critic at _The Washington Post_, Kaufman was challenged to translate the dynamic language of movement into words. Verbs showed her the way. Good verbs power great storytelling; they leap off the page, fire our senses, and transform our perceptions.

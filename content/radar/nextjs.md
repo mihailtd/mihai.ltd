@@ -11,6 +11,4 @@ stage: "trial"
 evaluatedScore: 2
 ---
 
-# Next.js
-
 Trialing as a React meta-framework, alongside [React](/blog/react) itself and in the same spirit as [Nuxt.js](/blog/nuxtjs) on the Vue side. Still in progress — no decision yet.

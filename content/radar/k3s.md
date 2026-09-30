@@ -1,5 +1,6 @@
 ---
 title: "K3s"
+headline: "K3s: The Ultra-Lightweight, Production-Grade Kubernetes Engine"
 description: "Lightweight, CNCF-certified Kubernetes distribution packaged as a single <100MB binary, adopted for local development, edge computing, and resource-efficient clusters."
 date: "2026-08-08"
 type: "tech_report"
@@ -28,8 +29,6 @@ decidedDate: "2026-08-08"
 link: "https://k3s.io/"
 target: "_blank"
 ---
-
-# K3s: The Ultra-Lightweight, Production-Grade Kubernetes Engine
 
 When engineers consider deploying **[Kubernetes](/blog/kubernetes)**, the first barrier is almost always **operational weight**. Upstream Kubernetes (`k8s`) was architected by Google to orchestrate planetary-scale infrastructure with thousands of compute nodes. For enterprise production clusters on hyperscalers, this architectural breadth is indispensable.
 
