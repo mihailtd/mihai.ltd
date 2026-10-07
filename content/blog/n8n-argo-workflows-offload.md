@@ -1,5 +1,5 @@
 ---
-title: "n8n + Argo = Love: Offloading CPU-Heavy Steps to Argo Workflows"
+title: "n8n + Argo = ❤️: Offloading CPU-Heavy Steps to Argo Workflows"
 description: "Why n8n and Argo Workflows are a match made in heaven: let n8n handle event routing, webhooks, and visual business logic, while seamlessly handing CPU-heavy compute jobs to Argo Workflows on Kubernetes without blocking a single worker slot."
 date: "2026-10-05"
 type: "blog_post"
@@ -7,7 +7,7 @@ tags: ["kubernetes", "n8n", "argo-workflows", "workflow-automation", "devops"]
 cover_image: "/images/covers/n8n-argo-workflows-offload.png"
 ---
 
-# n8n + Argo = Love: Offloading CPU-Heavy Steps to Argo Workflows
+# n8n + Argo = ❤️: Offloading CPU-Heavy Steps to Argo Workflows
 
 _Visual event orchestration meets elastic containerized compute: how to hand off heavy steps from n8n to Argo Workflows without holding a single worker slot._
 
