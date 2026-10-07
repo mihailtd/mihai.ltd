@@ -18,6 +18,7 @@
     </div>
     <figcaption
       v-if="caption"
+      aria-hidden="true"
       class="mt-3 text-center font-mono text-xs text-gray-400"
     >
       {{ caption }}

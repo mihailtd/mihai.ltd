@@ -1,39 +1,55 @@
 ---
-title: "Beating llama.cpp from Scratch on Consumer AMD: Building a Native Rust + HIP Inference Engine"
-description: "How we engineered runtime-next for Qwen 3.5 on an AMD Radeon RX 7900 XTX (gfx1100), eliminated a 3,300-kernel prefill launch storm, fixed an un-flushed 8KB socket stall, and achieved 83.0 tok/s sustained BF16 decode."
+title: "Beating llama.cpp from Scratch on Consumer AMD: Building Strata, a Native Rust + HIP Local AI Engine"
+description: "Software Architect Mihai Farcas details engineering Strata: an ultra-fast local LLM inference engine for Qwen 3.5 on AMD Radeon RX 7900 XTX (gfx1100). How custom HIP kernels, split-KV reduction, and zero-allocation Rust beat llama.cpp and Ollama at 83.0 tok/s BF16 decode."
 date: "2026-10-08"
 type: "blog_post"
-tags: ["llm", "rust", "rocm", "amd", "gpu", "systems-engineering", "cuda"]
+tags:
+  [
+    "local-llm",
+    "local-ai",
+    "rust",
+    "rocm",
+    "amd",
+    "gpu-kernels",
+    "systems-engineering",
+    "cuda",
+    "qwen",
+    "strata",
+    "mihai-farcas",
+    "ai-infrastructure",
+  ]
 cover_image: "/images/covers/beating-llamacpp-from-scratch-consumer-amd.png"
 ---
 
-# Beating llama.cpp from Scratch on Consumer AMD: Building a Native Rust + HIP Inference Engine
+# Beating llama.cpp from Scratch on Consumer AMD: Building Strata, a Native Rust + HIP Local AI Engine
 
-_How we engineered runtime-next for Qwen 3.5 on an AMD Radeon RX 7900 XTX (gfx1100), eliminated a 3,300-kernel prefill launch storm, fixed an un-flushed 8KB socket stall, and achieved 83.0 tok/s sustained BF16 decode._
+_How Software Architect Mihai Farcas engineered **[Strata](https://github.com/mihailtd/strata)** for Qwen 3.5 on an AMD Radeon RX 7900 XTX (gfx1100), eliminated a 3,300-kernel prefill launch storm, fixed an un-flushed 8KB socket stall, and achieved 83.0 tok/s sustained BF16 decode._
 
-![runtime-next Architecture: Rust Host Orchestration, Qwen 3.5 Hybrid Topology, and AMD RDNA3 Execution | wide](/images/blog/runtime-next-architecture-poster.svg#wide)
+**By Mihai Farcas** — Software Architect & AI Systems Engineer
 
-Can you beat `llama.cpp` and `Ollama` by writing a custom inference engine from scratch in Rust and AMD HIP on consumer hardware?
+![Strata Architecture: Rust Host Orchestration, Qwen 3.5 Hybrid Topology, and AMD RDNA3 Execution | wide](/images/blog/runtime-next-architecture-poster.svg#wide)
 
-The conventional wisdom across local LLM communities says no. `llama.cpp` represents thousands of person-years of extreme C++ optimization: hand-tuned AVX-512 and AVX2 vector paths, custom GGML tensor kernels, optimized CUDA/HIP backends, and battle-tested memory allocators. On AMD silicon specifically, the common assumption is even more pessimistic: ROCm is perceived as fragile, RDNA3 consumer cards (gfx1100) are treated as second-class citizens behind CDNA datacenter accelerators, and writing raw HIP kernels from scratch sounds like an invitation to driver timeouts and kernel panics.
+Can you beat `llama.cpp` and `Ollama` by writing a custom local LLM inference engine from scratch in Rust and AMD HIP on consumer hardware?
+
+The conventional wisdom across the local AI and open-source LLM communities says no. `llama.cpp` represents thousands of person-years of extreme C++ optimization: hand-tuned AVX-512 and AVX2 vector paths, custom GGML tensor kernels, optimized CUDA/HIP backends, and battle-tested memory allocators. On AMD silicon specifically, the common assumption is even more pessimistic: ROCm is perceived as fragile, RDNA3 consumer cards (`gfx1100`) are treated as second-class citizens behind CDNA datacenter accelerators, and writing raw HIP GPU kernels from scratch sounds like an invitation to driver timeouts and kernel panics.
 
 We decided to test that assumption directly on bare metal.
 
-Over the past two months, we engineered **`runtime-next`**: a from-scratch LLM serving runtime written in safe Rust with custom AMD HIP compute kernels, targeting the **Qwen 3.5 hybrid architecture** running on a single consumer desktop GPU: the **AMD Radeon RX 7900 XTX (24GB GDDR6, gfx1100)**.
+Over the past two months, as a Software Architect exploring the frontiers of bare-metal local AI and GPU kernel development, I engineered **[Strata](https://github.com/mihailtd/strata)** (internally codenamed `runtime-next`): a from-scratch local LLM serving runtime written in safe Rust with custom AMD HIP compute kernels, targeting the **Qwen 3.5 hybrid architecture** running on a single consumer desktop GPU: the **AMD Radeon RX 7900 XTX (24GB GDDR6, gfx1100)**.
 
 We benchmarked head-to-head against both **`llama.cpp` (`llama-server`)** and **`Ollama` (`ollama serve`)** under strict, verifiable apples-to-apples conditions: independent HTTP daemons on localhost, streaming Server-Sent Events (SSE) over TCP sockets, unquantized byte-identical bfloat16 parameters, and 100% GPU offload on native ROCm 7.2.
 
 Here are the headline results on the 4B model:
 
-| Metric                         | `runtime-next` (Rust + HIP) | `llama.cpp` (`llama-server`) | `Ollama` (`ollama serve`) | Architectural Win                               |
-| :----------------------------- | :-------------------------: | :--------------------------: | :-----------------------: | :---------------------------------------------- |
-| **Decode Throughput**          |       **83.0 tok/s**        |          71.3 tok/s          |        72.0 tok/s         | **+16.4% vs llama.cpp** (+15.3% vs Ollama)      |
-| **Time-To-First-Token (TTFT)** |         **48.5 ms**         |           121.0 ms           |         173.2 ms          | **-59.9% latency reduction** (-72.0% vs Ollama) |
-| **Prefill Kernel Launches**    |      **280 launches**       |       ~3,300 launches        |      ~3,300 launches      | **-91.5% host CPU driver dispatch queue**       |
-| **Streaming Frame Overhead**   |        **&lt; 0.3%**        |             n/a              |            n/a            | Isolated in-process A/B/C measurement           |
-| **Weight Precision**           |          **BF16**           |             BF16             |           BF16            | Byte-identical parameters across all 3 arms     |
+| Metric                         | [Strata](https://github.com/mihailtd/strata) (Rust + HIP) | `llama.cpp` (`llama-server`) | `Ollama` (`ollama serve`) | Architectural Win                               |
+| :----------------------------- | :-------------------------------------------------------: | :--------------------------: | :-----------------------: | :---------------------------------------------- |
+| **Decode Throughput**          |                      **83.0 tok/s**                       |          71.3 tok/s          |        72.0 tok/s         | **+16.4% vs llama.cpp** (+15.3% vs Ollama)      |
+| **Time-To-First-Token (TTFT)** |                        **48.5 ms**                        |           121.0 ms           |         173.2 ms          | **-59.9% latency reduction** (-72.0% vs Ollama) |
+| **Prefill Kernel Launches**    |                     **280 launches**                      |       ~3,300 launches        |      ~3,300 launches      | **-91.5% host CPU driver dispatch queue**       |
+| **Streaming Frame Overhead**   |                       **&lt; 0.3%**                       |             n/a              |            n/a            | Isolated in-process A/B/C measurement           |
+| **Weight Precision**           |                         **BF16**                          |             BF16             |           BF16            | Byte-identical parameters across all 3 arms     |
 
-Across the wider model family, `runtime-next` maintained its decode and TTFT lead from **0.8B (285.9 vs 210.6 tok/s, +35.7%)** all the way to **9B (49.1 vs 44.6 tok/s, +10.2%)**, where execution firmly collides with the 960 GB/s physical memory bandwidth ceiling of the GDDR6 bus.
+Across the wider model family, **Strata** maintained its decode and TTFT lead from **0.8B (285.9 vs 210.6 tok/s, +35.7%)** all the way to **9B (49.1 vs 44.6 tok/s, +10.2%)**, where execution firmly collides with the 960 GB/s physical memory bandwidth ceiling of the GDDR6 bus.
 
 Getting there was neither clean nor straightforward. It required debugging a 3,300-kernel launch storm that locked the CPU driver queue for 50 ms, diagnosing a phantom 600 ms stall caused by an un-flushed 8KB HTTP socket buffer, debunking a widespread myth regarding per-token network streaming overhead, and restructuring decode attention into a 4-way parallel split-KV reduction kernel inspired by `llama.cpp` itself.
 
@@ -51,7 +67,7 @@ Before discussing speedups, we must establish the ground rules of the benchmark.
    - **VRAM**: 24 GB GDDR6 running on a 384-bit memory bus with **960 GB/s theoretical peak bandwidth**.
    - **Software Stack**: Linux x86_64, ROCm 7.2, HIP compiler (`hipcc`), GCC 14.
 2. **Independent Network Daemons**:
-   - Every engine ran as an independent background daemon listening on localhost: `runtime-next` on port `8000`, `llama-server` on port `8001`, and `ollama serve` on port `11434`.
+   - Every engine ran as an independent background daemon listening on localhost: **Strata** on port `8003`, `llama-server` on port `8001`, and `ollama serve` on port `11434`.
    - Test clients issued HTTP `POST /v1/chat/completions` requests over TCP loopback sockets with `{"stream": true}`.
    - **Time-To-First-Token (TTFT)** was measured from the moment the socket opened until the first SSE chunk arrived at the client.
    - **Decode throughput** was calculated as total generated tokens divided by the duration of the token generation phase.
@@ -83,6 +99,8 @@ Qwen 3.5 4B breaks this paradigm by utilizing a **hybrid topology** across its 3
 
 This hybrid structure dictates the inference engine's performance profile: memory allocation is lean, but the execution pipeline constantly alternates between linear recurrent scans and quadratic attention projections.
 
+![Qwen 3.5 layer map: 24 Gated DeltaNet layers with fixed 48 MB state and 8 full-attention layers with a growing KV cache | wide](/images/blog/strata-hybrid-layers.svg#wide){width=1200 height=600}
+
 ---
 
 ## Act 0: From 31.7 to 82.2 tok/s (The Raw Decode Engine)
@@ -99,13 +117,15 @@ Pass 3: HIP Graphs + Vectorized GEMV + Argmax    81.2 tok/s (+65%)
 Pass 4: GDN Thread Block Occupancy Tuning         82.2 tok/s (+1.2%)
 ```
 
+![Decode throughput climbing from 31.7 to 82.2 tok/s across four optimization passes, against the llama.cpp baseline of 71.3 | wide](/images/blog/strata-decode-waterfall.svg#wide){width=1200 height=650}
+
 ### Why Safe Rust with HIP?
 
-Writing GPU kernels for AMD RDNA3 requires compiling HIP C++ through `hipcc`. However, the host-side harness matters immensely. By writing the host engine in Rust:
+Writing bare-metal GPU kernels for AMD RDNA3 requires compiling HIP C++ through `hipcc`. However, the host-side architecture matters immensely for low-latency local AI serving. By engineering Strata's host engine in Rust:
 
-1. **FFI Encapsulation**: Unsafe raw device pointers and HIP runtime invocations were isolated into a strictly audited, minimal FFI module ([`hip.rs`](file:///home/mihai/Projects/gnn-experiment/apps/runtime-next/src/hip.rs)).
-2. **Safe Graph Orchestration**: The entire 5,000-line model execution DAG, KV management, and network server were written in 100% safe Rust.
-3. **Zero Interpreter Latency**: Moving away from Python completely eliminated the Global Interpreter Lock (GIL), garbage collection pauses, and runtime dispatch overhead.
+1. **FFI Encapsulation**: Unsafe raw device pointers and HIP runtime invocations were isolated into a strictly audited, minimal FFI module ([`hip.rs`](https://github.com/mihailtd/strata/blob/main/apps/runtime-next/src/hip.rs)).
+2. **Safe Graph Orchestration**: The entire model execution DAG, KV management, and network server were written in 100% safe Rust.
+3. **Zero Interpreter Latency**: Moving away from Python completely eliminated the Global Interpreter Lock (GIL), garbage collection pauses, and runtime dispatch overhead—non-negotiable for real-time local LLM applications.
 
 ### The Optimization Passes
 
@@ -114,7 +134,7 @@ Writing GPU kernels for AMD RDNA3 requires compiling HIP C++ through `hipcc`. Ho
 - **Pass 3 (49.2 → 81.2 tok/s)**: This was the architectural breakthrough, unlocked by three changes:
   1. **HIP Graph Replay**: Autoregressive decode evaluates exactly one token ($M=1$) per step. Re-issuing dozens of small kernels every 12 milliseconds flooded the host CPU with dispatch work. By capturing the complete decode iteration into a frozen `hipGraphExec_t`, host dispatch cost dropped to virtually zero.
   2. **Custom Vectorized GEMV (`ushort4`)**: Single-token decode is a matrix-vector product, not a general matrix-matrix multiply. Standard GEMM kernels suffer from poor warp tile utilization at $M=1$. We implemented a custom HIP GEMV kernel using vectorized 64-bit loads (`ushort4`, loading 4 BF16 elements per instruction), doubling global memory throughput on the dominant projection matrices.
-  3. **On-Device Argmax Reduction**: In naive implementations, the final logit tensor (248,320 floating-point numbers) is copied over PCIe to the host CPU, where the CPU performs an argmax to select the next token. We replaced this with an on-device parallel reduction kernel ([`argmax.hip`](file:///home/mihai/Projects/gnn-experiment/apps/runtime-next/src/kernels/argmax.hip)), reducing host-bound PCIe traffic from **993 KB per token to a single 4-byte integer**.
+  3. **On-Device Argmax Reduction**: In naive implementations, the final logit tensor (248,320 floating-point numbers) is copied over PCIe to the host CPU, where the CPU performs an argmax to select the next token. We replaced this with an on-device parallel reduction kernel ([`argmax.hip`](https://github.com/mihailtd/strata/blob/main/apps/runtime-next/src/kernels/argmax.hip)), reducing host-bound PCIe traffic from **993 KB per token to a single 4-byte integer**.
 - **Pass 4 (81.2 → 82.2 tok/s)**: We profiled kernel execution using AMD's official profiler, `rocprofv3`. The trace revealed that `gdn_recurrent_decode` utilized only 32 of the RX 7900 XTX's 96 Compute Units (launching one workgroup per attention head across 32 heads). Increasing the thread block size from 128 to 1,024 threads improved wave occupancy on Navi 31, reducing kernel execution from **60.5 μs to 24.9 μs**.
 
 With decode reaching 82.2 tok/s in internal harnesses, we turned to real-world prompt prefill and HTTP serving. That is where things started breaking.
@@ -149,6 +169,8 @@ We completely eliminated the per-token dispatch loops by engineering four batche
 | **RoPE Embeddings**     |            432            |      **8**       | Vectorized position indexing: Each token rotates via its precomputed absolute position buffer.                           |
 | **KV Cache Append**     |            432            |      **8**       | Direct strided scatter: Each token writes directly into its designated memory offset in VRAM.                            |
 | **Total Host Launches** |        **~3,300**         |     **280**      | **-91.5% reduction in CPU driver dispatch queue lag**                                                                    |
+
+![Kernel launches per prefill: per-token loops versus batched kernels, 3,300 down to 280 | wide](/images/blog/strata-launch-storm.svg#wide){width=1200 height=700}
 
 Batching these operations reduced internal GPU prefill latency from **78.95 ms to 71.28 ms**. We expected HTTP Time-To-First-Token to drop proportionally.
 
@@ -192,6 +214,8 @@ At ~150 bytes per Server-Sent Event (SSE) JSON chunk (`data: {"choices":[{"delta
 > A mail carrier establishes an arbitrary rule: _"I refuse to walk down the driveway until my mailbag weighs at least 8 kilograms."_ Even though your first letter was written and sealed in 70 milliseconds, the recipient has to wait while you write 54 more letters just to fill the carrier's bag.
 
 The client wasn't waiting for the first token. The client was waiting for token 55!
+
+![Timeline of the 613 ms time-to-first-token stall caused by the 8 KB buffer, and the 48.5 ms result after the fix | wide](/images/blog/strata-ttft-stall.svg#wide){width=1200 height=710}
 
 ### The Resolution
 
@@ -285,7 +309,7 @@ The earlier 90+ tok/s measurements had been taken on 5-token prompts at position
 
 In Qwen 3.5's 8 full-attention layers, each generated token must compute dot-product attention against all preceding tokens stored in the KV cache.
 
-Our initial decode attention kernel ([`attention.hip`](file:///home/mihai/Projects/gnn-experiment/apps/runtime-next/src/kernels/attention.hip)) assigned **one thread per output dimension** (`head_dim = 256`). In the final weighted-V-sum reduction phase, that single thread executed a **fully serial loop over all $K$ past positions in the cache** ($O(kv\_len)$ serial scan).
+Our initial decode attention kernel ([`attention.hip`](https://github.com/mihailtd/strata/blob/main/apps/runtime-next/src/kernels/attention.hip)) assigned **one thread per output dimension** (`head_dim = 256`). In the final weighted-V-sum reduction phase, that single thread executed a **fully serial loop over all $K$ past positions in the cache** ($O(kv\_len)$ serial scan).
 
 > [!NOTE]
 > **The Lone Archivist**:
@@ -293,7 +317,7 @@ Our initial decode attention kernel ([`attention.hip`](file:///home/mihai/Projec
 
 ### 4-Way Split-KV Parallel Reduction
 
-Borrowing the core concept from `llama.cpp`'s `fattn-vec.cuh`, we redesigned decode attention into a cooperative parallel reduction kernel ([`attention_decode_split.hip`](file:///home/mihai/Projects/gnn-experiment/apps/runtime-next/src/kernels/attention_decode_split.hip)):
+Borrowing the core concept from `llama.cpp`'s `fattn-vec.cuh`, we redesigned decode attention into a cooperative parallel reduction kernel ([`attention_decode_split.hip`](https://github.com/mihailtd/strata/blob/main/apps/runtime-next/src/kernels/attention_decode_split.hip)):
 
 - **4 Cooperative Workers (`kv_split = 4`)**: Instead of 1 thread per dimension, 4 parallel worker threads collaborate on each output dimension:
   ```c
@@ -305,8 +329,10 @@ Borrowing the core concept from `llama.cpp`'s `fattn-vec.cuh`, we redesigned dec
 - **Warp Tree Reduction in LDS**: Partial sums are combined in GPU shared memory (Local Data Share, LDS) via a fast workgroup tree reduction.
 - **RDNA3 Hardware Bound**: `head_dim (256) × kv_split (4) = 1,024 threads per block`. This lands exactly on the **physical maximum thread limit per compute block on AMD RDNA3 silicon**.
 
+![Serial single-thread KV scan compared with four strided workers merged by a tree reduction in LDS | wide](/images/blog/strata-split-kv.svg#wide){width=1200 height=620}
+
 ```c
-// Excerpt from apps/runtime-next/src/kernels/attention_decode_split.hip
+// Excerpt from apps/runtime-next/src/kernels/attention_decode_split.hip on GitHub
 extern "C" __global__ void attention_decode_split_bf16_kernel(
     const unsigned short* q,
     const unsigned short* k,
@@ -335,6 +361,8 @@ The microbenchmark measurements validated the redesign:
 |   **256 tokens**   |        32.46 μs         |         **14.04 μs**         |   **2.31×**    |
 |   **354 tokens**   |        44.81 μs         |         **16.79 μs**         |   **2.67×**    |
 
+![Attention kernel time by cache length: scalar versus 4-way split, with speedups from 1.65x to 2.67x | wide](/images/blog/strata-kernel-speedup.svg#wide){width=1200 height=620}
+
 When tested in the live HTTP server over full 350-token generation trajectories, decode throughput remained completely flat:
 
 ```
@@ -348,21 +376,23 @@ Segment Tokens 304 → 354:  83.21 tok/s
 
 With 4-way split-KV attention active, the generation cadence held steady at **~83.5 tok/s** from token 1 to token 350.
 
+![Decode tok/s across 350 tokens: scalar attention decays to 77.6, split-KV attention stays near 83.5 | wide](/images/blog/strata-decode-vs-depth.svg#wide){width=1200 height=640}
+
 ---
 
 ## Act 5: Auditing the Baselines & The Speculative Decoding Trap
 
 To guarantee that our lead over `llama.cpp` was legitimate, we conducted an exhaustive configuration audit of `llama-server`:
 
-| Flag / Parameter        | Status in Baseline | Impact on Fairness                                                                                                |
-| :---------------------- | :----------------- | :---------------------------------------------------------------------------------------------------------------- |
-| `-ngl 99`               | ACTIVE             | Parity: 100% of all 32 layers pinned to VRAM. Zero CPU fallback.                                                  |
-| `-fa on`                | ACTIVE             | Parity: Flash Attention enabled for full attention layers.                                                        |
-| `-ctk / -ctv q8_0`      | ACTIVE             | **Advantage llama.cpp**: 8-bit quantized KV cache reduces bandwidth vs `runtime-next`'s unquantized BF16 buffers. |
-| `GGML_HIP_GRAPHS`       | ACTIVE             | Parity: Verified compiled ON in `CMakeCache.txt`. HIP graph replay active on gfx1100.                             |
-| `-b 512 / -ub 512`      | ACTIVE             | Parity: Matched batch and microbatch sizes.                                                                       |
-| `-t 8`                  | ACTIVE             | Parity: 8 host CPU worker threads allocated.                                                                      |
-| `--spec-type ngram-mod` | TESTED SEPARATELY  | Model-free speculative decoding evaluated below.                                                                  |
+| Flag / Parameter        | Status in Baseline | Impact on Fairness                                                                                            |
+| :---------------------- | :----------------- | :------------------------------------------------------------------------------------------------------------ |
+| `-ngl 99`               | ACTIVE             | Parity: 100% of all 32 layers pinned to VRAM. Zero CPU fallback.                                              |
+| `-fa on`                | ACTIVE             | Parity: Flash Attention enabled for full attention layers.                                                    |
+| `-ctk / -ctv q8_0`      | ACTIVE             | **Advantage llama.cpp**: 8-bit quantized KV cache reduces bandwidth vs **Strata**'s unquantized BF16 buffers. |
+| `GGML_HIP_GRAPHS`       | ACTIVE             | Parity: Verified compiled ON in `CMakeCache.txt`. HIP graph replay active on gfx1100.                         |
+| `-b 512 / -ub 512`      | ACTIVE             | Parity: Matched batch and microbatch sizes.                                                                   |
+| `-t 8`                  | ACTIVE             | Parity: 8 host CPU worker threads allocated.                                                                  |
+| `--spec-type ngram-mod` | TESTED SEPARATELY  | Model-free speculative decoding evaluated below.                                                              |
 
 Every known acceleration flag was enabled for `llama.cpp`. In fact, running with `-ctk q8_0 -ctv q8_0` gave `llama.cpp` an inherent memory bandwidth advantage, as its attention layers read half as many KV bytes per token.
 
@@ -389,6 +419,8 @@ Telemetry logs emitted by `llama-server` revealed the failure mechanism:
 
 Out of 64 drafted tokens, **only 5 were accepted**—a dismal **7.8% acceptance rate**!
 
+![64 drafted tokens with 5 accepted, and sustained decode tok/s with and without speculation | wide](/images/blog/strata-spec-decoding.svg#wide){width=1200 height=620}
+
 > [!NOTE]
 > **The Guessing Assistant**:
 > An assistant attempts to guess the remainder of your sentence. If they shout out 64 words and 59 are wrong, you spend far more time stopping, correcting them, and restarting than if you had simply spoken at your normal pace.
@@ -403,14 +435,16 @@ Does this speedup hold as models scale? We ran the identical head-to-head benchm
 
 All three engines loaded byte-identical BF16 weights, and all outputs passed the exactness gate against Hugging Face references:
 
-| Model Tier | `runtime-next`  | `llama.cpp` |  `Ollama`   | Speedup vs llama.cpp | Speedup vs Ollama  | TTFT (`runtime-next` vs llama.cpp) |
-| :--------: | :-------------: | :---------: | :---------: | :------------------: | :----------------: | :--------------------------------: |
-|  **0.8B**  | **285.9 tok/s** | 210.6 tok/s | 222.5 tok/s |  **1.36× (+35.7%)**  | **1.28× (+28.5%)** |  **17.0 ms vs 37.4 ms (-54.5%)**   |
-|   **2B**   | **166.9 tok/s** | 136.4 tok/s | 135.0 tok/s |  **1.22× (+22.4%)**  | **1.24× (+23.7%)** |  **26.8 ms vs 54.2 ms (-50.6%)**   |
-|   **4B**   | **83.0 tok/s**  | 71.3 tok/s  | 72.0 tok/s  |  **1.16× (+16.4%)**  | **1.15× (+15.3%)** |  **48.5 ms vs 121.0 ms (-59.9%)**  |
-|   **9B**   | **49.1 tok/s**  | 44.6 tok/s  | 45.1 tok/s  |  **1.10× (+10.2%)**  | **1.09× (+8.9%)**  |  **81.0 ms vs 176.9 ms (-54.2%)**  |
+| Model Tier | **Strata** (Rust + HIP) | `llama.cpp` |  `Ollama`   | Speedup vs llama.cpp | Speedup vs Ollama  |  TTFT (**Strata** vs llama.cpp)  |
+| :--------: | :---------------------: | :---------: | :---------: | :------------------: | :----------------: | :------------------------------: |
+|  **0.8B**  |     **285.9 tok/s**     | 210.6 tok/s | 222.5 tok/s |  **1.36× (+35.7%)**  | **1.28× (+28.5%)** | **17.0 ms vs 37.4 ms (-54.5%)**  |
+|   **2B**   |     **166.9 tok/s**     | 136.4 tok/s | 135.0 tok/s |  **1.22× (+22.4%)**  | **1.24× (+23.7%)** | **26.8 ms vs 54.2 ms (-50.6%)**  |
+|   **4B**   |     **83.0 tok/s**      | 71.3 tok/s  | 72.0 tok/s  |  **1.16× (+16.4%)**  | **1.15× (+15.3%)** | **48.5 ms vs 121.0 ms (-59.9%)** |
+|   **9B**   |     **49.1 tok/s**      | 44.6 tok/s  | 45.1 tok/s  |  **1.10× (+10.2%)**  | **1.09× (+8.9%)**  | **81.0 ms vs 176.9 ms (-54.2%)** |
 
-Across every size tier, `runtime-next` achieved the highest decode throughput and the lowest Time-To-First-Token.
+Across every size tier, **Strata** achieved the highest decode throughput and the lowest Time-To-First-Token.
+
+![Decode tok/s for Strata, llama.cpp and Ollama at 0.8B, 2B, 4B and 9B, with Strata speedup shrinking from 35.7% to 10.2% | wide](/images/blog/strata-multisize.svg#wide){width=1200 height=740}
 
 However, notice the clear trend: **the throughput speedup margin compresses as model size grows** (from +35.7% at 0.8B down to +10.2% at 9B).
 
@@ -434,9 +468,11 @@ Two architectural realities explain this compression:
    $$\text{Theoretical Max tok/s} = \frac{\text{Memory Bandwidth (GB/s)}}{\text{Model Size in VRAM (GB)}}$$
    At 9B in BF16 (~18.2 GB parameter buffer), the absolute theoretical ceiling on a 960 GB/s bus is:
    $$\frac{960 \text{ GB/s}}{18.2 \text{ GB}} \approx 52.7 \text{ tok/s}$$
-   `runtime-next` achieved **49.12 tok/s**—which represents **93.2% of the theoretical physical memory bandwidth of the GPU**.
+   **Strata** achieved **49.12 tok/s**—which represents **93.2% of the theoretical physical memory bandwidth of the GPU**.
 
-When an engine operates at 93% of physical hardware wire limits, there is almost no software headroom left to extract. At 9B, both `runtime-next` and `llama.cpp` are completely memory-bandwidth bound.
+![Kernel time share by model size and 9B decode at 93.2% of the memory bandwidth ceiling | wide](/images/blog/strata-bandwidth-wall.svg#wide){width=1200 height=720}
+
+When an engine operates at 93% of physical hardware wire limits, there is almost no software headroom left to extract. At 9B, both **Strata** and `llama.cpp` are completely memory-bandwidth bound.
 
 ---
 
@@ -446,7 +482,7 @@ No systems engineering report is honest without documenting what broke, what fai
 
 ### 1. The 14,080-Token Shared Memory (LDS) Ceiling
 
-In our 4-way split attention kernel ([`attention_decode_split.hip`](file:///home/mihai/Projects/gnn-experiment/apps/runtime-next/src/kernels/attention_decode_split.hip)), shared memory is dynamically allocated across the workgroup:
+In our 4-way split attention kernel ([`attention_decode_split.hip`](https://github.com/mihailtd/strata/blob/main/apps/runtime-next/src/kernels/attention_decode_split.hip)), shared memory is dynamically allocated across the workgroup:
 
 ```c
 size_t shmem_bytes = (head_dim + kv_stride + threads + head_dim * kv_split) * sizeof(float);
@@ -459,7 +495,9 @@ $$\text{max\_seq\_len} \le \frac{65,536}{4} - 256 - (2 \times 256 \times 4) = 14
 
 We discovered this the hard way: when we raised the context window to 32,768, prefill processed 32,000 tokens smoothly, and then the very first decode step failed with a fatal HIP error: `hipErrorInvalidValue`.
 
-Context length in `runtime-next` is currently bounded at **12,288–14,080 tokens**. Crossing this threshold requires refactoring decode attention into a multi-block Flash-Decode architecture that combines partial sums across separate workgroups.
+Context length in **Strata** is currently bounded at **12,288–14,080 tokens**. Crossing this threshold requires refactoring decode attention into a multi-block Flash-Decode architecture that combines partial sums across separate workgroups.
+
+![LDS budget for the split-KV kernel: 14,080 tokens fit in 64 KB, 32,768 tokens need 137 KB | wide](/images/blog/strata-lds-ceiling.svg#wide){width=1200 height=590}
 
 ### 2. Guarding Against GPU Page Faults
 
@@ -482,13 +520,13 @@ Every benchmark in this article used **unquantized BF16 weights**. Unquantized i
 
 ### 4. Single-Sequence vs High-Throughput Batched Serving
 
-`runtime-next` was built specifically for **interactive, low-latency agentic streaming (batch size $B=1$)**. When scaling to heavy server batching ($B=32$ or $B=64$), execution shifts from memory-bandwidth bound to compute bound. While `runtime-next` supports batched decode, multi-tenant serving introduces different trade-offs in prefill scheduling and KV memory fragmentation.
+**Strata** was built specifically for **interactive, low-latency agentic streaming (batch size $B=1$)**. When scaling to heavy server batching ($B=32$ or $B=64$), execution shifts from memory-bandwidth bound to compute bound. While Strata supports batched decode, multi-tenant serving introduces different trade-offs in prefill scheduling and KV memory fragmentation.
 
 ---
 
 ## 🎯 Key Engineering Takeaways
 
-Building `runtime-next` from scratch taught us four fundamental principles of GPU systems engineering:
+Building **Strata** from scratch taught us four fundamental principles of GPU systems engineering and local AI architecture:
 
 1. **Host-Side Overhead Can Dwarf GPU Compute**:
    Our initial prefill implementation spent 50 ms in CPU driver queues issuing 3,300 tiny kernels, completely overshadowing the 20 ms of actual matrix compute. Batching host dispatch is just as critical as optimizing GEMM math.
@@ -497,16 +535,26 @@ Building `runtime-next` from scratch taught us four fundamental principles of GP
 3. **Isolate First, Hypothesize Second**:
    When streaming throughput drifted from 90 to 79 tok/s, our intuition blamed per-token network flushing. An in-process A/B/C isolation test proved network framing accounted for less than 0.3% of runtime, directing our attention to the real culprit: the serial KV cache reduction loop.
 4. **Consumer AMD Silicon Is Genuinely Capable**:
-   When programmed directly in native HIP and safe Rust, consumer AMD GPUs (like the Radeon RX 7900 XTX) deliver top-tier throughput and latency. You do not need enterprise datacenter silicon or closed proprietary APIs to achieve bleeding-edge inference performance.
+   When programmed directly in native HIP and safe Rust, consumer AMD GPUs (like the Radeon RX 7900 XTX) deliver top-tier throughput and latency. You do not need enterprise datacenter silicon or closed proprietary APIs to achieve bleeding-edge local LLM inference performance.
 
 ---
 
-_In **Part 2**, we examine what happened when we took runtime-next into quantized territory: why our initial W4A16 INT4 kernel lost to llama.cpp by 22%, and how custom dequant-gemv kernels turned it into a clean win across all model sizes._
+_In **Part 2**, we examine what happened when we took Strata into quantized territory: why our initial W4A16 INT4 kernel lost to llama.cpp by 22%, and how custom dequant-gemv kernels turned it into a clean win across all model sizes._
+
+---
+
+## 👨‍💻 About the Author
+
+**Mihai Farcas** is a **Software Architect**, **AI Systems Engineer**, and **GPU Kernel Developer** specializing in high-performance distributed systems, bare-metal hardware acceleration (AMD ROCm/HIP, NVIDIA CUDA), and local LLM infrastructure.
+
+- **GitHub**: [github.com/mihailtd](https://github.com/mihailtd) (Explore the [Strata Repository](https://github.com/mihailtd/strata))
+- **Engineering Blog & Portfolio**: [mihai.ltd](https://mihai.ltd)
+- **Domain Focus**: Local AI Architecture, High-Throughput Inference Engines, Custom GPU Kernels, and Zero-Allocation Systems Programming in Rust and C++.
 
 <!--
 EDITOR NOTES (Verified against local repo & lab hardware):
 - Hardware: AMD Radeon RX 7900 XTX (24GB GDDR6, gfx1100, ROCm 7.2).
-- Source Code: apps/runtime-next (Rust engine), src/kernels/attention_decode_split.hip (split-KV kernel), src/server.rs (tiny_http direct socket streaming).
+- Source Code: https://github.com/mihailtd/strata (apps/runtime-next).
 - Reference Benchmarks: results/benchmarks/4b_engine_comparison_scorecard.json & multi_size_engine_comparison_scorecard.json.
 - Notebook Source: notebooks/runtime_next_breakthrough.py.
 -->
