@@ -40,18 +40,19 @@
           class="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4 text-xs leading-relaxed text-gray-400 backdrop-blur-md"
         >
           <span class="font-semibold text-gray-200">FTC Transparency:</span>
-          Some of the tools listed below feature partner perks, extended trials,
-          or affiliate relationships. If you sign up using these links, I may
-          receive a commission at no additional cost to you. I only recommend
-          platforms I have evaluated, use in production, or stand behind.
+          Some of the tools listed below feature community perks, extended
+          trials, or affiliate relationships. If you sign up using these links,
+          I may receive a commission at no additional cost to you. I only
+          recommend platforms I have evaluated, use in production, or stand
+          behind.
         </div>
       </div>
 
-      <!-- Featured Partner Showcase (n8n & LearnWorlds) -->
+      <!-- Featured Community Perks (n8n & LearnWorlds) -->
       <section class="mb-16">
         <div class="mb-6 flex items-center justify-between">
           <h2 class="text-2xl font-bold tracking-tight text-white">
-            Featured Partner Perks
+            Featured Community Perks
           </h2>
           <span class="text-xs text-gray-400">Exclusive community offers</span>
         </div>
@@ -61,7 +62,7 @@
           <AffiliateCard
             name="n8n"
             tagline="Fair-Code Workflow Automation & Agentic AI Platform"
-            badge="Featured Partner Perk"
+            badge="n8n Creator Perk"
             perk="Start Free Trial or Deploy 100% Free Self-Hosted"
             href="https://n8n.partnerlinks.io/ltd"
             cta-text="Claim Free n8n Trial"
@@ -92,7 +93,7 @@
           <AffiliateCard
             name="LearnWorlds"
             tagline="All-in-One AI-Powered Course Platform & LMS"
-            badge="Featured Partner Perk"
+            badge="Community Perk"
             perk="30-Day Extended Free Trial"
             href="https://get.learnworlds.com/evbr2ynlzr52"
             cta-text="Claim 30-Day Free Trial"
@@ -351,7 +352,7 @@ const tools: ToolItem[] = [
       "Fair-code workflow automation and Agentic AI engine. Unlimited self-hosted executions or managed high-availability cloud, featuring native LangChain and MCP integration.",
     url: "https://n8n.partnerlinks.io/ltd",
     logo: "/images/tech/n8n.svg",
-    perk: "Partner Perk • Free Trial",
+    perk: "Creator Perk • Free Trial",
     cta: "Start Free Trial",
     isAffiliate: true,
   },

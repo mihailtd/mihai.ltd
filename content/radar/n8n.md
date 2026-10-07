@@ -39,7 +39,7 @@ For years, commercial SaaS integration platforms like **Zapier** and **Make (for
 
 On our Tech Radar, **n8n has earned an unconditional Adopt**. By combining a fair-code, self-hostable core with enterprise queue scalability, native JavaScript/Python code execution, and cutting-edge **Agentic AI and Model Context Protocol (MCP)** integration, n8n has become our foundational platform for both internal operations and production AI agent orchestration.
 
-::affiliate-card{name="n8n" tagline="Fair-Code Workflow Automation & Agentic AI Platform" badge="Official Partner" perk="Start Free Trial or Deploy 100% Free Self-Hosted" href="https://n8n.partnerlinks.io/ltd" ctaText="Try n8n Cloud (Free Trial)" secondaryHref="https://docs.n8n.io/" secondaryText="Documentation" logo="/images/tech/n8n.svg" bannerImage="/images/partners/n8n-banner.svg" bannerCaption="Visual Workflow Canvas • Native LangChain Agents • Model Context Protocol (MCP)" rating="5.0" features="Zero per-task execution tax,Native LangChain & Agentic AI nodes,Full JavaScript & Python code execution,100% self-hostable on Docker & K8s,400+ pre-built integrations" :featured="true"}
+::affiliate-card{name="n8n" tagline="Fair-Code Workflow Automation & Agentic AI Platform" badge="n8n Creator & Technical Writer" perk="Start Free Trial or Deploy 100% Free Self-Hosted" href="https://n8n.partnerlinks.io/ltd" ctaText="Try n8n Cloud (Free Trial)" secondaryHref="https://docs.n8n.io/" secondaryText="Documentation" logo="/images/tech/n8n.svg" bannerImage="/images/partners/n8n-banner.svg" bannerCaption="Visual Workflow Canvas • Native LangChain Agents • Model Context Protocol (MCP)" rating="5.0" features="Zero per-task execution tax,Native LangChain & Agentic AI nodes,Full JavaScript & Python code execution,100% self-hostable on Docker & K8s,400+ pre-built integrations" :featured="true"}
 Empower your engineering workflows and autonomous AI agents with n8n. Run it completely free on your own infrastructure or deploy in seconds with managed n8n Cloud. Unlimited executions, complete data privacy, and direct Model Context Protocol (MCP) tool integration.
 ::
 
@@ -248,10 +248,12 @@ One of n8n's greatest strengths is that **you are never vendor-locked**:
 - You want dedicated customer support, early access to new AI features, and managed email delivery infrastructure.
 
 ::affiliate-card{name="n8n Cloud" tagline="Production-Ready Managed Workflow Engine" badge="Special Offer" perk="Free 14-Day Trial • Zero Server Setup" href="https://n8n.partnerlinks.io/ltd" ctaText="Start Your Free n8n Trial" secondaryHref="https://n8n.partnerlinks.io/ltd" secondaryText="Explore Enterprise Features" logo="/images/tech/n8n.svg" rating="5.0" features="Instant setup with zero server maintenance,Automated upgrades & nightly backups,Managed high availability infrastructure,Native AI Agent nodes with hosted models" :featured="true"}
-Ready to automate your business processes and deploy agentic AI tools? Sign up through our official partner link to start your free trial with full access to all enterprise features.
+Ready to automate your business processes and deploy agentic AI tools? Sign up through my referral link to start your free trial with full access to all enterprise features.
 ::
 
 ---
+
+_Disclosure: I write on my personal tech radar independently and out of my own accord; all evaluations and ratings reflect my own independent technical assessments. Separately, I am also an official technical writer for n8n and an active creator in the community. If you choose to try n8n Cloud via my referral link, I may receive a referral commission at no additional cost to you._
 
 ## Architectural Verdict
 
@@ -259,7 +261,7 @@ Ready to automate your business processes and deploy agentic AI tools? Sign up t
 
 By bridging the gap between visual low-code accessibility and rigorous software engineering principles, n8n has eliminated the false trade-off between developer velocity and data sovereignty. Whether you are running a single self-hosted node to orchestrate Homelab cron jobs or deploying a clustered queue architecture executing mission-critical enterprise AI workflows, n8n delivers the flexibility, financial sanity, and architectural rigor demanded by modern engineering teams.
 
-- **Explore n8n Cloud**: **[Start your free trial via our partner link](https://n8n.partnerlinks.io/ltd)**
+- **Explore n8n Cloud**: **[Start your free trial via my referral link](https://n8n.partnerlinks.io/ltd)**
 - **Watch the MCP Tutorial**: **[n8n + MCP on Let's Talk Dev](https://www.youtube.com/watch?v=6AKXBCZH0pU)**
 - **Related Tech Radar Reports**:
   - **[Docker Compose (Adopt)](/blog/docker-compose)**: Local service isolation and database orchestration

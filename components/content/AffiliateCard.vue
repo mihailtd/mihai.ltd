@@ -43,7 +43,7 @@
       <span
         class="text-[11px] font-medium uppercase tracking-wider text-gray-400"
       >
-        Recommended Partner
+        Recommended Tool
       </span>
     </div>
 
@@ -186,7 +186,7 @@
         <span class="font-medium text-gray-300">Disclosure:</span>
         {{
           disclosure ||
-          "If you sign up using this link, I may receive an affiliate commission at no extra cost to you. I only partner with platforms I actively evaluate or use in professional production."
+          "If you sign up using this link, I may receive a referral commission at no extra cost to you. I only recommend platforms I actively evaluate or use in professional production."
         }}
       </p>
     </div>
@@ -219,7 +219,7 @@ const props = withDefaults(
   {
     tagline: "",
     description: "",
-    badge: "Partner Perk",
+    badge: "Community Perk",
     perk: "",
     ctaText: "Start Free Trial",
     secondaryHref: "",

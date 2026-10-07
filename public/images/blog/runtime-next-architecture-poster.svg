@@ -1,0 +1,207 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="740" viewBox="0 0 1200 740">
+  <defs>
+    <linearGradient id="posterBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090D16"/>
+      <stop offset="100%" stop-color="#04070C"/>
+    </linearGradient>
+    <pattern id="posterGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="#1E293B" opacity="0.45"/>
+    </pattern>
+    <linearGradient id="rustGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F97316"/>
+      <stop offset="100%" stop-color="#FB923C"/>
+    </linearGradient>
+    <linearGradient id="hipGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EF4444"/>
+      <stop offset="100%" stop-color="#F87171"/>
+    </linearGradient>
+    <linearGradient id="gdnGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
+    </linearGradient>
+    <linearGradient id="attnGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="740" fill="url(#posterBg)"/>
+  <rect width="1200" height="740" fill="url(#posterGrid)"/>
+
+  <!-- Border -->
+  <rect x="20" y="20" width="1160" height="700" rx="16" fill="none" stroke="#1E293B" stroke-width="1.5"/>
+
+  <!-- Header -->
+  <g transform="translate(50, 55)">
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#38BDF8" letter-spacing="2">SYSTEMS ARCHITECTURE DIAGRAM // RUNTIME-NEXT DEEP DIVE</text>
+    <text x="0" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="26" font-weight="800" fill="#F8FAFC">runtime-next: Native Rust + HIP Engine for Qwen 3.5</text>
+    <text x="0" y="48" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" fill="#94A3B8">End-to-End Pipeline on AMD Radeon RX 7900 XTX (gfx1100, 24GB GDDR6, ROCm 7.2)</text>
+  </g>
+
+  <!-- Flow Col 1: HTTP & Host Orchestration (Rust) -->
+  <g transform="translate(50, 130)" filter="url(#shadow)">
+    <rect width="255" height="470" rx="12" fill="#0F172A" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="255" height="38" rx="12" fill="#1E293B"/>
+    <text x="16" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#FB923C">1. HOST LAYER (RUST)</text>
+
+    <!-- Content Items -->
+    <g transform="translate(14, 52)">
+      <rect width="227" height="70" rx="8" fill="#1E293B" stroke="#475569" stroke-width="0.8"/>
+      <text x="12" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#F8FAFC">HTTP Server (tiny_http)</text>
+      <text x="12" y="40" font-family="monospace" font-size="10.5" fill="#38BDF8">POST /v1/chat/completions</text>
+      <text x="12" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#94A3B8">OpenAI-compatible SSE streaming</text>
+    </g>
+
+    <g transform="translate(14, 134)">
+      <rect width="227" height="96" rx="8" fill="#1E293B" stroke="#10B981" stroke-width="1"/>
+      <text x="12" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#34D399">Direct Socket Writer</text>
+      <text x="12" y="40" font-family="monospace" font-size="10" fill="#FBBF24">Request::into_writer()</text>
+      <text x="12" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#CBD5E1">• Bypasses 8KB chunk buffer</text>
+      <text x="12" y="74" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#CBD5E1">• Explicit per-token flush()</text>
+      <text x="12" y="88" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#10B981">✓ Drops TTFT from 410 → 48.5 ms</text>
+    </g>
+
+    <g transform="translate(14, 242)">
+      <rect width="227" height="85" rx="8" fill="#1E293B" stroke="#475569" stroke-width="0.8"/>
+      <text x="12" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#F8FAFC">Safe Rust Model Graph</text>
+      <text x="12" y="40" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94A3B8">• ~5,000 lines safe Rust</text>
+      <text x="12" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94A3B8">• Zero Python GIL / runtime overhead</text>
+      <text x="12" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94A3B8">• Sub-0.3% SSE framing latency</text>
+    </g>
+
+    <g transform="translate(14, 339)">
+      <rect width="227" height="115" rx="8" fill="#1E293B" stroke="#EF4444" stroke-width="1"/>
+      <text x="12" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#F87171">Batched Prefill Dispatch</text>
+      <text x="12" y="40" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#CBD5E1">• 4 chunked prefill kernels</text>
+      <text x="12" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#CBD5E1">• 1 launch per layer vs per-token</text>
+      <text x="12" y="72" font-family="monospace" font-size="10" fill="#FBBF24">3,300 → 280 kernel launches</text>
+      <text x="12" y="88" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#10B981">✓ Slashes 50ms CPU queue lag</text>
+      <text x="12" y="104" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" fill="#94A3B8">(-91.5% host dispatch overhead)</text>
+    </g>
+  </g>
+
+  <!-- Flow Arrow 1 to 2 -->
+  <g transform="translate(315, 350)">
+    <line x1="0" y1="0" x2="30" y2="0" stroke="#38BDF8" stroke-width="2" stroke-dasharray="4"/>
+    <polygon points="30,-5 40,0 30,5" fill="#38BDF8"/>
+    <text x="20" y="-12" text-anchor="middle" font-family="monospace" font-size="9" fill="#94A3B8">hip.rs FFI</text>
+  </g>
+
+  <!-- Flow Col 2: Qwen 3.5 Hybrid Architecture -->
+  <g transform="translate(365, 130)" filter="url(#shadow)">
+    <rect width="360" height="470" rx="12" fill="#0F172A" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="360" height="38" rx="12" fill="#1E293B"/>
+    <text x="16" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#38BDF8">2. HYBRID MODEL TOPOLOGY (QWEN 3.5 4B)</text>
+
+    <!-- Sub-Block A: 24 GDN Layers -->
+    <g transform="translate(14, 52)">
+      <rect width="332" height="185" rx="8" fill="#0B132B" stroke="#0284C7" stroke-width="1.2"/>
+      <rect x="0" y="0" width="332" height="28" rx="8" fill="#1E293B"/>
+      <text x="12" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" fill="#38BDF8">24 LAYERS: GATED DELTANET (GDN) LINEAR ATTENTION</text>
+
+      <g transform="translate(12, 38)">
+        <text x="0" y="14" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#F8FAFC">• Fixed Recurrent State Memory:</text>
+        <text x="12" y="32" font-family="monospace" font-size="10.5" fill="#38BDF8">S_t ∈ ℝ^[32, 128, 128] (FP32)</text>
+        <text x="12" y="48" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94A3B8">2.0 MB / layer = 48.0 MB total across all 24 layers</text>
+
+        <text x="0" y="70" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#F8FAFC">• Causal Conv1D State:</text>
+        <text x="12" y="86" font-family="monospace" font-size="10.5" fill="#38BDF8">[8192, 3] BF16 (48 KB / layer = 1.15 MB total)</text>
+
+        <text x="0" y="110" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#F8FAFC">• Scaling Law:</text>
+        <text x="12" y="126" font-family="monospace" font-size="11" font-weight="700" fill="#10B981">Constant O(1) Memory Footprint</text>
+        <text x="12" y="140" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#94A3B8">Recurrent state never grows with context length!</text>
+      </g>
+    </g>
+
+    <!-- Sub-Block B: 8 GQA Full Attention Layers -->
+    <g transform="translate(14, 250)">
+      <rect width="332" height="195" rx="8" fill="#061A14" stroke="#059669" stroke-width="1.2"/>
+      <rect x="0" y="0" width="332" height="28" rx="8" fill="#1E293B"/>
+      <text x="12" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" fill="#34D399">8 LAYERS: FULL GROUPED-QUERY ATTENTION (GQA)</text>
+
+      <g transform="translate(12, 38)">
+        <text x="0" y="14" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#F8FAFC">• Cadence: Every 4th Layer (3, 7, 11, 15, 19, 23, 27, 31)</text>
+        <text x="0" y="36" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#F8FAFC">• Dynamic KV Cache:</text>
+        <text x="12" y="52" font-family="monospace" font-size="10.5" fill="#34D399">[4 heads, seq_len, 256 dim] BF16</text>
+        <text x="12" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94A3B8">32 KB per token across all 8 full attention layers</text>
+
+        <text x="0" y="92" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#F8FAFC">• Scaling Law:</text>
+        <text x="12" y="108" font-family="monospace" font-size="11" font-weight="700" fill="#FBBF24">O(T) KV Scan Bottleneck</text>
+        <text x="12" y="124" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#94A3B8">Original scalar kernel degraded 80.5 → 77.6 tok/s</text>
+        <text x="12" y="138" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#34D399">Solved by 4-Way Split-KV Attention reduction!</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Flow Arrow 2 to 3 -->
+  <g transform="translate(735, 350)">
+    <line x1="0" y1="0" x2="30" y2="0" stroke="#10B981" stroke-width="2" stroke-dasharray="4"/>
+    <polygon points="30,-5 40,0 30,5" fill="#10B981"/>
+    <text x="20" y="-12" text-anchor="middle" font-family="monospace" font-size="9" fill="#94A3B8">HIP Kernels</text>
+  </g>
+
+  <!-- Flow Col 3: GPU Execution (AMD RDNA3) -->
+  <g transform="translate(785, 130)" filter="url(#shadow)">
+    <rect width="365" height="470" rx="12" fill="#0F172A" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="0" width="365" height="38" rx="12" fill="#1E293B"/>
+    <text x="16" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#F87171">3. AMD RDNA3 HARDWARE EXECUTION</text>
+
+    <!-- Sub-blocks -->
+    <g transform="translate(14, 52)">
+      <rect width="337" height="92" rx="8" fill="#1E293B" stroke="#475569" stroke-width="0.8"/>
+      <text x="12" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#F8FAFC">HIP Graph Per-Token Decode Replay</text>
+      <text x="12" y="40" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#CBD5E1">• Captured decode execution stream</text>
+      <text x="12" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#CBD5E1">• 0 ms CPU dispatch overhead per token</text>
+      <text x="12" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#10B981">✓ Closes launch gaps between back-to-back layers</text>
+    </g>
+
+    <g transform="translate(14, 154)">
+      <rect width="337" height="98" rx="8" fill="#1E293B" stroke="#0284C7" stroke-width="1"/>
+      <text x="12" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#38BDF8">Custom Vectorized GEMV (M = 1)</text>
+      <text x="12" y="40" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#CBD5E1">• Replaces general GEMM with custom matrix-vector kernel</text>
+      <text x="12" y="56" font-family="monospace" font-size="10" fill="#FBBF24">• Vectorized 4-element reads (ushort4)</text>
+      <text x="12" y="72" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#CBD5E1">• On-device argmax: returns 4-byte token ID</text>
+      <text x="12" y="86" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" fill="#10B981">(Kills 248,320 float PCIe logit transfer)</text>
+    </g>
+
+    <g transform="translate(14, 262)">
+      <rect width="337" height="195" rx="8" fill="#1A1010" stroke="#EF4444" stroke-width="1.2"/>
+      <rect x="0" y="0" width="337" height="28" rx="8" fill="#1E293B"/>
+      <text x="12" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" fill="#F87171">4-WAY SPLIT-KV ATTENTION (Flash-Decode)</text>
+
+      <g transform="translate(12, 38)">
+        <text x="0" y="14" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="600" fill="#F8FAFC">• Parallel Factor: kv_split = 4 workers</text>
+        <text x="0" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="600" fill="#F8FAFC">• Workgroup Sizing:</text>
+        <text x="12" y="48" font-family="monospace" font-size="10" fill="#FBBF24">head_dim (256) × 4 = 1,024 threads/block</text>
+        <text x="12" y="64" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#94A3B8">(Exact physical hardware thread limit on RDNA3!)</text>
+
+        <text x="0" y="86" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="600" fill="#F8FAFC">• Warp Reduction in Shared Memory (LDS):</text>
+        <text x="12" y="102" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#CBD5E1">Each worker scans 1/4 of KV cache in parallel</text>
+        <text x="12" y="118" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#10B981">✓ 2.67x kernel speedup at seq_len 354</text>
+        <text x="12" y="132" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#10B981">✓ Flattens decode cadence to 83.5 tok/s</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bottom Scorecard Banner -->
+  <g transform="translate(50, 620)">
+    <rect width="1100" height="75" rx="10" fill="#080C14" stroke="#1E293B" stroke-width="1.2"/>
+    <g transform="translate(30, 24)">
+      <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#94A3B8">HEAD-TO-HEAD BENCHMARK WIN:</text>
+      <text x="0" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" fill="#F8FAFC">runtime-next: <tspan fill="#10B981">83.0 tok/s</tspan> (48.5 ms TTFT)</text>
+    </g>
+    <g transform="translate(390, 24)">
+      <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#94A3B8">OLLAMA (ROCm V7.2):</text>
+      <text x="0" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#94A3B8">72.0 tok/s (173.2 ms TTFT) • <tspan fill="#38BDF8">+15.3% Speedup</tspan></text>
+    </g>
+    <g transform="translate(740, 24)">
+      <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#94A3B8">LLAMA.CPP (HIPBLAS):</text>
+      <text x="0" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#94A3B8">71.3 tok/s (121.0 ms TTFT) • <tspan fill="#38BDF8">+16.4% Speedup</tspan></text>
+    </g>
+  </g>
+</svg>
+

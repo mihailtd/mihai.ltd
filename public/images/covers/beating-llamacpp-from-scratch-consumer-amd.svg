@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0F19"/>
+      <stop offset="50%" stop-color="#080C14"/>
+      <stop offset="100%" stop-color="#05080E"/>
+    </linearGradient>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#1E293B" opacity="0.6"/>
+    </pattern>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="amdGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EF4444"/>
+      <stop offset="100%" stop-color="#F97316"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#111827" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.95"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Subtle glow circles -->
+  <circle cx="200" cy="150" r="280" fill="#06B6D4" opacity="0.06" filter="blur(60px)"/>
+  <circle cx="1000" cy="450" r="320" fill="#EF4444" opacity="0.05" filter="blur(70px)"/>
+
+  <!-- Outer Border Frame -->
+  <rect x="24" y="24" width="1152" height="582" rx="16" fill="none" stroke="#1E293B" stroke-width="1.5"/>
+
+  <!-- Left Content Column -->
+  <g transform="translate(80, 110)">
+    <!-- Header: Kicker -->
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#06B6D4" letter-spacing="2.5">SYSTEMS &amp; GPU RUNTIMES // CONSUMER AMD SILICON</text>
+
+    <!-- Main Title -->
+    <text x="0" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="44" font-weight="800" fill="#F8FAFC">
+      <tspan x="0" dy="0">Beating llama.cpp</tspan>
+      <tspan x="0" dy="54" fill="url(#cyanGrad)">from Scratch on AMD</tspan>
+    </text>
+
+    <!-- Subtitle (Multiline) -->
+    <g transform="translate(0, 142)">
+      <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="400" fill="#94A3B8">
+        <tspan x="0" dy="0">Building a Native Rust + HIP Engine for Qwen 3.5</tspan>
+        <tspan x="0" dy="26">Prefill Batching, Socket Flushing &amp; 4-Way Split-KV Attention</tspan>
+        <tspan x="0" dy="26">on an AMD Radeon RX 7900 XTX (24GB VRAM)</tspan>
+      </text>
+    </g>
+
+    <!-- Stat Highlights -->
+    <g transform="translate(0, 240)">
+      <!-- Box 1 -->
+      <g transform="translate(0, 0)">
+        <rect width="145" height="74" rx="10" fill="#0F172A" stroke="#1E293B" stroke-width="1.2"/>
+        <text x="16" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="800" fill="#10B981">83.0</text>
+        <text x="74" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#64748B">tok/s</text>
+        <text x="16" y="54" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#94A3B8">+16.4% vs llama.cpp</text>
+      </g>
+      <!-- Box 2 -->
+      <g transform="translate(160, 0)">
+        <rect width="145" height="74" rx="10" fill="#0F172A" stroke="#1E293B" stroke-width="1.2"/>
+        <text x="16" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="800" fill="#38BDF8">48.5</text>
+        <text x="74" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#64748B">ms</text>
+        <text x="16" y="54" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#94A3B8">-59.9% TTFT Latency</text>
+      </g>
+      <!-- Box 3 -->
+      <g transform="translate(320, 0)">
+        <rect width="145" height="74" rx="10" fill="#0F172A" stroke="#1E293B" stroke-width="1.2"/>
+        <text x="16" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="800" fill="#F59E0B">BF16</text>
+        <text x="16" y="54" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#94A3B8">Byte-Identical Weights</text>
+      </g>
+    </g>
+
+    <!-- Footer Badges -->
+    <g transform="translate(0, 350)">
+      <g transform="translate(0, 0)">
+        <rect width="65" height="28" rx="6" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+        <text x="32.5" y="18" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="#38BDF8">RUST</text>
+      </g>
+      <g transform="translate(75, 0)">
+        <rect width="65" height="28" rx="6" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+        <text x="32.5" y="18" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="#F87171">ROCM</text>
+      </g>
+      <g transform="translate(150, 0)">
+        <rect width="75" height="28" rx="6" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+        <text x="37.5" y="18" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="#FBBF24">RDNA3</text>
+      </g>
+      <g transform="translate(235, 0)">
+        <rect width="90" height="28" rx="6" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+        <text x="45.0" y="18" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="#A78BFA">QWEN 3.5</text>
+      </g>
+      <g transform="translate(335, 0)">
+        <rect width="130" height="28" rx="6" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+        <text x="65.0" y="18" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="#34D399">BENCHMARK</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right Visual Card: Head-to-Head Scorecard -->
+  <g transform="translate(685, 95)">
+    <rect width="435" height="440" rx="16" fill="url(#cardGrad)" stroke="#1E293B" stroke-width="1.5"/>
+
+    <!-- Card Header -->
+    <text x="24" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#E2E8F0" letter-spacing="1">HEAD-TO-HEAD STREAMING SCORECARD</text>
+    <text x="24" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" fill="#64748B">Qwen 3.5 4B BF16 • AMD RX 7900 XTX • HTTP + SSE</text>
+    <line x1="24" y1="72" x2="411" y2="72" stroke="#1E293B" stroke-width="1"/>
+
+    <!-- Section 1: Decode Throughput -->
+    <text x="24" y="100" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#94A3B8">SUSTAINED THROUGHPUT (TOK/S)</text>
+
+    <!-- Bar 1: runtime-next -->
+    <g transform="translate(24, 115)">
+      <text x="0" y="15" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" fill="#F8FAFC">runtime-next</text>
+      <rect x="110" y="2" width="220" height="18" rx="4" fill="#0EA5E9"/>
+      <text x="338" y="16" font-family="monospace" font-size="13" font-weight="700" fill="#38BDF8">83.0</text>
+    </g>
+
+    <!-- Bar 2: Ollama -->
+    <g transform="translate(24, 142)">
+      <text x="0" y="15" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#94A3B8">Ollama (ROCm)</text>
+      <rect x="110" y="2" width="190" height="18" rx="4" fill="#475569"/>
+      <text x="308" y="16" font-family="monospace" font-size="13" font-weight="600" fill="#94A3B8">72.0</text>
+    </g>
+
+    <!-- Bar 3: llama.cpp -->
+    <g transform="translate(24, 169)">
+      <text x="0" y="15" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#94A3B8">llama.cpp (HIP)</text>
+      <rect x="110" y="2" width="188" height="18" rx="4" fill="#334155"/>
+      <text x="306" y="16" font-family="monospace" font-size="13" font-weight="600" fill="#94A3B8">71.3</text>
+    </g>
+
+    <line x1="24" y1="205" x2="411" y2="205" stroke="#1E293B" stroke-width="1"/>
+
+    <!-- Section 2: Time to First Token -->
+    <text x="24" y="232" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#94A3B8">TIME TO FIRST TOKEN (MS) — LOWER IS BETTER</text>
+
+    <!-- TTFT Bar 1: runtime-next -->
+    <g transform="translate(24, 247)">
+      <text x="0" y="15" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" fill="#F8FAFC">runtime-next</text>
+      <rect x="110" y="2" width="70" height="18" rx="4" fill="#10B981"/>
+      <text x="188" y="16" font-family="monospace" font-size="13" font-weight="700" fill="#34D399">48.5 ms</text>
+    </g>
+
+    <!-- TTFT Bar 2: llama.cpp -->
+    <g transform="translate(24, 274)">
+      <text x="0" y="15" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#94A3B8">llama.cpp</text>
+      <rect x="110" y="2" width="175" height="18" rx="4" fill="#D97706"/>
+      <text x="293" y="16" font-family="monospace" font-size="13" font-weight="600" fill="#FBBF24">121.0 ms</text>
+    </g>
+
+    <!-- TTFT Bar 3: Ollama -->
+    <g transform="translate(24, 301)">
+      <text x="0" y="15" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#94A3B8">Ollama</text>
+      <rect x="110" y="2" width="250" height="18" rx="4" fill="#EA580C"/>
+      <text x="368" y="16" font-family="monospace" font-size="13" font-weight="600" fill="#FB923C">173.2 ms</text>
+    </g>
+
+    <line x1="24" y1="337" x2="411" y2="337" stroke="#1E293B" stroke-width="1"/>
+
+    <!-- Key Engineering Insights Box -->
+    <g transform="translate(24, 350)">
+      <rect width="387" height="68" rx="8" fill="#080C14" stroke="#1E293B" stroke-width="1"/>
+      <text x="14" y="22" font-family="monospace" font-size="11" font-weight="600" fill="#38BDF8">⚡ 3,300 → 280 Prefill Kernel Launches (-91%)</text>
+      <text x="14" y="40" font-family="monospace" font-size="11" font-weight="600" fill="#10B981">⚡ 4-Way Split-KV Attention (2.67x Kernel Speedup)</text>
+      <text x="14" y="58" font-family="monospace" font-size="11" font-weight="600" fill="#F59E0B">⚡ Direct SSE Flushing (Fixed 8KB TCP Socket Stall)</text>
+    </g>
+  </g>
+</svg>
+

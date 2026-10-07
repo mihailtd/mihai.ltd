@@ -427,7 +427,7 @@ useHead({
           serviceType: [
             "Software Architecture Consulting",
             "AI Automation Solutions",
-            "n8n Partner Services",
+            "n8n Workflow Automation",
           ],
           areaServed: "Worldwide",
         },
@@ -531,7 +531,7 @@ const featuredProjects = [
       "Through INNOVI PRO, I offer specialized consulting in Enterprise-Grade Architecture and the development of Autonomous AI Agents. I help organizations navigate the complexities of modern software design, ensuring their systems are secure, scalable, and ready for the future of AI-driven automation.",
     logo: "/innovi_pro_logo.png",
     logoClass: "group-hover:scale-110",
-    tech: "Software Architecture, AI & Automation Solutions, n8n Partner",
+    tech: "Software Architecture, AI & Automation Solutions, n8n Automation",
     links: [{ text: "View Services", url: "https://innovi.pro/" }],
   },
   {

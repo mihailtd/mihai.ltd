@@ -14,7 +14,28 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
     "@nuxt/content",
   ],
-  css: ["@/assets/index.css", "vue-echarts/style.css"],
+  css: [
+    "@/assets/index.css",
+    "vue-echarts/style.css",
+    "katex/dist/katex.min.css",
+    "remark-github-blockquote-alert/alert.css",
+  ],
+  mdc: {
+    remarkPlugins: {
+      "remark-math": {},
+      "remark-alert": {
+        src: "@/utils/remark-alert.mjs",
+      },
+    },
+    rehypePlugins: {
+      "rehype-katex": {},
+    },
+  },
+  postcss: {
+    plugins: {
+      "tailwindcss/nesting": false,
+    },
+  },
   turnstile: {
     siteKey: "0x4AAAAAAAUBxBNAPgRBo5hj",
   },
@@ -37,7 +58,7 @@ export default defineNuxtConfig({
         {
           name: "keywords",
           content:
-            "Mihai Farcas, software architect, agentic ai, ai automations, n8n, n8n partner, content creator, consulting, youtube, software engineering, enterprise architecture, ai agents, langraph, automation workflows",
+            "Mihai Farcas, software architect, agentic ai, ai automations, n8n, n8n automations, n8n technical writer, content creator, consulting, youtube, software engineering, enterprise architecture, ai agents, langraph, automation workflows",
         },
         {
           name: "author",

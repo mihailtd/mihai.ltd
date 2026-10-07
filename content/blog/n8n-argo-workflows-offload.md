@@ -13,7 +13,7 @@ _Visual event orchestration meets elastic containerized compute: how to hand off
 
 n8n and Argo Workflows are built for completely different superpowers—and when you combine them, magic happens.
 
-**n8n** is unrivaled at event-driven visual orchestration: connecting hundreds of SaaS APIs, listening to webhooks, transforming JSON payloads, and managing human-in-the-loop approvals. It runs lean, fast, and agile.
+**[n8n](https://n8n.partnerlinks.io/ltd)** is unrivaled at event-driven visual orchestration: connecting hundreds of SaaS APIs, listening to webhooks, transforming JSON payloads, and managing human-in-the-loop approvals. It runs lean, fast, and agile.
 
 **Argo Workflows** is the Kubernetes-native champion for heavy, isolated, elastic container compute: running crunching algorithms, batch jobs, video transcoding, and ML pipelines across a dynamic pod cluster.
 
@@ -25,7 +25,7 @@ Here is the architectural pattern and lab data demonstrating why this combinatio
 
 ## What does the lab run?
 
-The cluster is the one from the KEDA article: single-node k3s, n8n 2.40.5 in queue mode (main, two webhook processors, KEDA-scaled workers with a concurrency of 10 and a CPU limit of 1 core each), PostgreSQL on CloudNativePG, Valkey as the queue, all deployed by Argo CD. I added [Argo Workflows](https://argo-workflows.readthedocs.io/) 4.1.4 in a single namespace.
+The cluster is the one from the KEDA article: single-node k3s, [n8n](https://n8n.partnerlinks.io/ltd) 2.40.5 in queue mode (main, two webhook processors, KEDA-scaled workers with a concurrency of 10 and a CPU limit of 1 core each), PostgreSQL on CloudNativePG, Valkey as the queue, all deployed by Argo CD. I added [Argo Workflows](https://argo-workflows.readthedocs.io/) 4.1.4 in a single namespace.
 
 The test job is a synchronous JavaScript loop: xorshift over a 256 MiB typed array, calibrated so one unit costs about one CPU-second on this machine. Both variants run the identical function, so the only difference is where it runs:
 
@@ -219,9 +219,11 @@ Things this lab did not test: cancelling an n8n execution while its Argo job run
 - Give n8n its own Argo ServiceAccount with a Role limited to submitting from templates. Client auth mode only constrains callers that send a token, so close the `server` mode fallback with a NetworkPolicy or SSO.
 - Offloading costs about 12 seconds per job in this lab, so keep short jobs inline, and budget cluster capacity for the jobs you hand off.
 
+::affiliate-card{name="n8n" tagline="Fair-Code Workflow Automation & Agentic AI Platform" badge="Creator Perk" perk="Start Free Trial or Deploy 100% Free Self-Hosted" href="https://n8n.partnerlinks.io/ltd" ctaText="Try n8n Cloud (Free Trial)" secondaryHref="https://docs.n8n.io/" secondaryText="Documentation" logo="/images/tech/n8n.svg" bannerImage="/images/partners/n8n-banner.svg" bannerCaption="Visual Workflow Canvas • Native LangChain Agents • Model Context Protocol (MCP)" rating="5.0" features="Zero per-task execution tax,Native LangChain & Agentic AI nodes,Full JavaScript & Python code execution,100% self-hostable on Docker & K8s,400+ pre-built integrations" :featured="true"}
+
 ---
 
-_Disclosure: I'm a member of the n8n Creators program. All configuration in this article runs on my own single-node k3s lab cluster._
+_Disclosure: I write on this personal blog independently and out of my own accord. Separately, I am also an official technical writer for n8n and a member of the [n8n Creators program](https://n8n.partnerlinks.io/ltd). All experiments and benchmarks in this article were conducted independently on my own single-node k3s lab cluster. If you choose to try [n8n Cloud](https://n8n.partnerlinks.io/ltd), using my referral link supports my personal research and lab benchmarks at no additional cost to you._
 
 <!--
 EDITOR NOTES (remove before publishing)
