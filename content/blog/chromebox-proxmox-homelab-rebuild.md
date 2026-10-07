@@ -42,7 +42,7 @@ For this cluster, I am preparing two identical nodes:
 | **Target OS**       | Proxmox VE 9.2 (Debian 13 Trixie)   | Proxmox VE 9.2 (Debian 13 Trixie)   |
 | **Idle Power**      | ~7–11 Watts                         | ~7–11 Watts                         |
 
-![Flashing a Chromebox to Proxmox VE: Flashing and Stability Pipeline](/images/blog/chromebox-proxmox-workflow-poster.svg)
+![Flashing a Chromebox to Proxmox VE 9.2: Flashing & Stability Pipeline | wide](/images/blog/chromebox-proxmox-workflow-poster.svg#wide)
 
 ---
 
