@@ -23,9 +23,6 @@ export default defineNuxtConfig({
   mdc: {
     remarkPlugins: {
       "remark-math": {},
-      "remark-alert": {
-        src: "@/utils/remark-alert.mjs",
-      },
     },
     rehypePlugins: {
       "rehype-katex": {},
