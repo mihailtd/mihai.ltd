@@ -15,6 +15,7 @@ decisionReason: "Extremely capable for massive enterprise Angular and React suit
 decidedDate: "2026-08-08"
 link: "https://nx.dev/"
 target: "_blank"
+cover_image: "/images/covers/radar-nx.png"
 ---
 
 # Nx: The Enterprise Heavyweight in Monorepo Build Tooling

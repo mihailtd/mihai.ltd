@@ -4,7 +4,7 @@ description: "Summary and key takeaways from the classic book by Robert C. Marti
 date: "2023-11-15"
 type: "book_summary"
 tags: ["books", "clean-code", "software-engineering"]
-cover_image: "https://placehold.co/600x400?text=Clean+Code"
+cover_image: "/images/covers/clean-code.png"
 ---
 
 # Clean Code Summary

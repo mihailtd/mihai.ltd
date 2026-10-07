@@ -13,6 +13,7 @@ evaluatedScore: 3
 decisionInFavorOf: "github"
 decisionReason: "Rejected GitLab in favor of GitHub."
 decidedDate: "2026-08-08"
+cover_image: "/images/covers/radar-gitlab.png"
 ---
 
 # GitLab

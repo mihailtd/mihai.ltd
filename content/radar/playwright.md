@@ -14,6 +14,7 @@ decisionReason: "Adopted in favor of Cypress for end-to-end testing."
 decidedDate: "2026-08-08"
 link: "https://playwright.dev/"
 target: "_blank"
+cover_image: "/images/covers/radar-playwright.png"
 ---
 
 # Playwright

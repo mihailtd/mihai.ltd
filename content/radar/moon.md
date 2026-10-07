@@ -24,6 +24,7 @@ decisionReason: "The clear front-runner for polyglot monorepos mixing Python (uv
 decidedDate: "2026-08-08"
 link: "https://moonrepo.dev/"
 target: "_blank"
+cover_image: "/images/covers/radar-moon.png"
 ---
 
 # Moon (moonrepo): The Premier Polyglot Monorepo Build System

@@ -25,6 +25,7 @@ decisionReason: "Adopted as company-wide standard for Python code quality. Repla
 decidedDate: "2026-08-08"
 link: "https://docs.astral.sh/ruff/"
 target: "_blank"
+cover_image: "/images/covers/radar-ruff.png"
 ---
 
 # Ruff: The High-Speed Rust Engine Consolidating Python Tooling

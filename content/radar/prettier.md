@@ -12,6 +12,7 @@ decision: "adopt"
 evaluatedScore: 4
 link: "https://prettier.io/"
 target: "_blank"
+cover_image: "/images/covers/radar-prettier.png"
 ---
 
 # Prettier

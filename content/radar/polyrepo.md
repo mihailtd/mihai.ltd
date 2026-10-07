@@ -13,6 +13,7 @@ evaluatedScore: 3
 decisionInFavorOf: "monorepo"
 decisionReason: "Splitting related services and UI across repositories turns a single feature into multiple coordinated PRs, creates dependency drift, and forces ordering releases across repositories. A monorepo avoids that overhead entirely, since independent deployment is a CI/CD pipeline capability, not a repository boundary concern."
 decidedDate: "2026-08-08"
+cover_image: "/images/covers/radar-polyrepo.png"
 ---
 
 # Polyrepo Architecture: Why We Rejected the Multi-Repository Pattern

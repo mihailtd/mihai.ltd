@@ -13,6 +13,7 @@ evaluatedScore: 2
 decisionInFavorOf: "gcp"
 decisionReason: "Rejected in favor of GCP."
 decidedDate: "2026-08-08"
+cover_image: "/images/covers/radar-azure.png"
 ---
 
 # Azure

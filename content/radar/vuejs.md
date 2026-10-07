@@ -12,6 +12,7 @@ decision: "adopt"
 evaluatedScore: 4
 link: "https://vuejs.org/"
 target: "_blank"
+cover_image: "/images/covers/radar-vuejs.png"
 ---
 
 # Vue.js

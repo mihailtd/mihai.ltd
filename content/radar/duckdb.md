@@ -13,6 +13,7 @@ evaluatedScore: 4
 decidedDate: "2026-08-08"
 link: "https://duckdb.org/"
 target: "_blank"
+cover_image: "/images/covers/radar-duckdb.png"
 ---
 
 # DuckDB

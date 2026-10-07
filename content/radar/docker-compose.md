@@ -12,6 +12,7 @@ decision: "adopt"
 evaluatedScore: 4
 decisionReason: "Adopted as the low-complexity entry point for local development: fast to set up for simple multi-container workflows, without reaching for a full local Kubernetes toolkit."
 decidedDate: "2026-08-08"
+cover_image: "/images/covers/radar-docker-compose.png"
 ---
 
 # Docker Compose

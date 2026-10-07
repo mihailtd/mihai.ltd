@@ -9,6 +9,7 @@ placements:
     subCategory: "back_end"
 stage: "trial"
 evaluatedScore: 3
+cover_image: "/images/covers/radar-golang.png"
 ---
 
 # GoLang

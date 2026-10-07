@@ -10,6 +10,7 @@ placements:
 stage: "trial"
 decision: "adopt"
 evaluatedScore: 4
+cover_image: "/images/covers/radar-cloudflare.png"
 ---
 
 # Cloudflare

@@ -15,6 +15,7 @@ decisionReason: "The premier build system and computation cache for pure JavaScr
 decidedDate: "2026-08-08"
 link: "https://turbo.build/"
 target: "_blank"
+cover_image: "/images/covers/radar-turborepo.png"
 ---
 
 # Turborepo: High-Velocity Task Orchestration for TypeScript Monorepos

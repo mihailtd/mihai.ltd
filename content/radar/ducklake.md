@@ -11,6 +11,7 @@ stage: "trial"
 evaluatedScore: 2
 link: "https://ducklake.select/"
 target: "_blank"
+cover_image: "/images/covers/radar-ducklake.png"
 ---
 
 # DuckLake

@@ -26,6 +26,7 @@ decisionReason: "Adopted across all developer workstations in place of Docker De
 decidedDate: "2026-08-08"
 link: "https://rancherdesktop.io/"
 target: "_blank"
+cover_image: "/images/covers/radar-rancher-desktop.png"
 ---
 
 # Rancher Desktop: The Modern, Open-Source Local Container & Kubernetes Platform

@@ -13,6 +13,7 @@ evaluatedScore: 4
 decisionInFavorOf: "polars"
 decisionReason: "Dropped in favor of Polars for dataframe work."
 decidedDate: "2026-08-08"
+cover_image: "/images/covers/radar-pandas.png"
 ---
 
 # Pandas

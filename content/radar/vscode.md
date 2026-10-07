@@ -12,6 +12,7 @@ decision: "adopt"
 evaluatedScore: 4
 link: "https://code.visualstudio.com/"
 target: "_blank"
+cover_image: "/images/covers/radar-vscode.png"
 ---
 
 # VS Code

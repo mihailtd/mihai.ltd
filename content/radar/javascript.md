@@ -15,6 +15,7 @@ evaluatedScore: 4
 decisionInFavorOf: "typescript"
 decisionReason: "Rejected as the language actually written by hand, in favor of TypeScript, across both front-end and back-end work. JavaScript is still what everything compiles down to and runs as under the hood, so this is about the authoring language, not the runtime."
 decidedDate: "2026-08-08"
+cover_image: "/images/covers/radar-javascript.png"
 ---
 
 # JavaScript

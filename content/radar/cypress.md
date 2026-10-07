@@ -13,6 +13,7 @@ evaluatedScore: 2
 decisionInFavorOf: "playwright"
 decisionReason: "Rejected in favor of Playwright for end-to-end testing."
 decidedDate: "2026-08-08"
+cover_image: "/images/covers/radar-cypress.png"
 ---
 
 # Cypress

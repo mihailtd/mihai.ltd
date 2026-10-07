@@ -15,6 +15,7 @@ decisionReason: "Always used instead of pip, with pyproject.toml and uv.lock. 10
 decidedDate: "2026-08-08"
 link: "https://docs.astral.sh/uv/"
 target: "_blank"
+cover_image: "/images/covers/radar-uv.png"
 ---
 
 # uv: The High-Speed Standard for Modern Python & Workspaces

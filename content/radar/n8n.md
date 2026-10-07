@@ -28,6 +28,7 @@ decidedDate: "2026-08-08"
 link: "https://n8n.partnerlinks.io/ltd"
 logoPath: "/images/tech/n8n.svg"
 target: "_blank"
+cover_image: "/images/covers/radar-n8n.png"
 ---
 
 # n8n: The Open-Source Workflow Automation & Agentic AI Platform

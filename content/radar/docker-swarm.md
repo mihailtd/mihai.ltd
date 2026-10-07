@@ -13,6 +13,7 @@ evaluatedScore: 1
 decisionInFavorOf: "kubernetes"
 decisionReason: "By the time a workload actually needs Swarm-level clustering, it is usually worth just going straight to Kubernetes instead."
 decidedDate: "2026-08-08"
+cover_image: "/images/covers/radar-docker-swarm.png"
 ---
 
 # Docker Swarm

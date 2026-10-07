@@ -1,0 +1,135 @@
+direction: right
+
+classes: {
+  hwNode: {
+    style: {
+      fill: "#1C1811"
+      stroke: "#D8A657"
+      stroke-width: 2
+      font-color: "#EFE7D6"
+      border-radius: 8
+      shadow: true
+      font-size: 15
+    }
+  }
+  flashNode: {
+    style: {
+      fill: "#0B0A08"
+      stroke: "#6FAFA3"
+      stroke-width: 2
+      font-color: "#6FAFA3"
+      border-radius: 8
+      shadow: true
+      font-size: 14
+    }
+  }
+  kernelNode: {
+    style: {
+      fill: "#0B0A08"
+      stroke: "#FF4433"
+      stroke-width: 2
+      font-color: "#EFE7D6"
+      border-radius: 8
+      shadow: true
+      font-size: 14
+    }
+  }
+}
+
+title: "CHROMEBOX TO PROXMOX VE: FLASHING & STABILITY PIPELINE" {
+  near: top-center
+  style: {
+    font-size: 20
+    font-color: "#EFE7D6"
+  }
+}
+
+phase1: "STAGE 1: UEFI FULL ROM (MrChromebox)" {
+  style: {
+    fill: "#1C1811"
+    stroke: "#3A3225"
+    font-color: "#D8A657"
+    border-radius: 12
+  }
+
+  live_usb: "Live Linux USB\n(Ubuntu / Mint)\nTap ESC/F2 at boot" {
+    class: hwNode
+  }
+
+  script: "Run Firmware Utility\ncurl -LOf mrchromebox.tech/firmware-util.sh\nsudo bash firmware-util.sh" {
+    class: flashNode
+  }
+
+  option2: "Select Option 2:\nInstall/Update UEFI (Full ROM)" {
+    class: flashNode
+  }
+
+  mac_restore: "CRITICAL: Restore LAN MAC\nPrompt: Enter Ethernet MAC\nNode A: B4:A9:FC:21:B9:77\nNode B: D8:C4:97:AD:0F:A4" {
+    class: hwNode
+    style.stroke: "#D8A657"
+  }
+
+  live_usb -> script -> option2 -> mac_restore
+}
+
+phase2: "STAGE 2: PROXMOX VE 8.x INSTALL" {
+  style: {
+    fill: "#0B0A08"
+    stroke: "#3A3225"
+    font-color: "#6FAFA3"
+    border-radius: 12
+  }
+
+  pve_usb: "Proxmox VE 8.x USB\nSelect Graphical Installer" {
+    class: hwNode
+  }
+
+  target_disk: "Target NVMe SSD\n500GB internal drive\nFilesystem: ext4 or ZFS RAID0" {
+    class: flashNode
+  }
+
+  network_cfg: "Network Identity\nNode A: 192.168.1.51 (pve-01.lan)\nNode B: 192.168.1.52 (pve-02.lan)\nGateway: 192.168.1.1" {
+    class: flashNode
+  }
+
+  pve_usb -> target_disk -> network_cfg
+}
+
+phase3: "STAGE 3: MANDATORY 24/7 STABILITY FLAGS" {
+  style: {
+    fill: "#1C1811"
+    stroke: "#FF4433"
+    font-color: "#FF4433"
+    border-radius: 12
+  }
+
+  cstate_fix: "Intel Mobile C-State Fix\nintel_idle.max_cstate=1\nprocessor.max_cstate=1\n(Prevents idle freeze without monitor)" {
+    class: kernelNode
+  }
+
+  nvme_fix: "Samsung NVMe APST Fix\nnvme_core.default_ps_max_latency_us=0\n(Prevents SSD sleep controller drop)" {
+    class: kernelNode
+  }
+
+  gpu_fix: "Headless GPU Fix\nnomodeset\n(Prevents iGPU crash with no display)" {
+    class: kernelNode
+  }
+
+  bridge_pin: "Hardware MAC Pinning\n/etc/network/interfaces\nhwaddress ether <STICKER-MAC>" {
+    class: hwNode
+  }
+
+  repo_clean: "No-Subscription Repos\nRemove pve-enterprise\nEnable pve-no-subscription" {
+    class: flashNode
+  }
+
+  cstate_fix -> nvme_fix -> gpu_fix -> bridge_pin -> repo_clean
+}
+
+phase1 -> phase2: "Power off ➔ Insert PVE USB" {
+  style.stroke: "#D8A657"
+}
+
+phase2 -> phase3: "Reboot into Proxmox Console" {
+  style.stroke: "#6FAFA3"
+}

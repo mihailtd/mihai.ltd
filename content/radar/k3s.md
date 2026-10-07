@@ -27,6 +27,7 @@ decisionReason: "Adopted as our standard lightweight Kubernetes engine for local
 decidedDate: "2026-08-08"
 link: "https://k3s.io/"
 target: "_blank"
+cover_image: "/images/covers/radar-k3s.png"
 ---
 
 # K3s: The Ultra-Lightweight, Production-Grade Kubernetes Engine

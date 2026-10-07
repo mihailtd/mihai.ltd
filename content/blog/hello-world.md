@@ -4,7 +4,7 @@ description: "This is the first post on my new Nuxt Content powered blog."
 date: "2023-10-27"
 type: "blog_post"
 tags: ["nuxt", "vue", "webdev"]
-cover_image: "https://placehold.co/600x400?text=Hello+World"
+cover_image: "/images/covers/hello-world.png"
 ---
 
 # Hello World

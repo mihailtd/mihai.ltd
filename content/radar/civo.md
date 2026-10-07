@@ -9,6 +9,7 @@ placements:
     subCategory: "cloud"
 stage: "trial"
 evaluatedScore: 0
+cover_image: "/images/covers/radar-civo.png"
 ---
 
 # Civo

@@ -11,6 +11,7 @@ stage: "trial"
 decision: "adopt"
 evaluatedScore: 4
 decidedDate: "2026-08-08"
+cover_image: "/images/covers/radar-nuxtjs.png"
 ---
 
 # Nuxt.js

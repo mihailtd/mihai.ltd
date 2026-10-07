@@ -15,6 +15,7 @@ decisionReason: "Adopted in favor of plain npm for all Node and TypeScript proje
 decidedDate: "2026-08-08"
 link: "https://pnpm.io/"
 target: "_blank"
+cover_image: "/images/covers/radar-pnpm.png"
 ---
 
 # pnpm: The Foundation of Modern Node & TypeScript Workspaces

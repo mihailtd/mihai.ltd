@@ -13,6 +13,7 @@ evaluatedScore: 3
 decisionInFavorOf: "marimo"
 decisionReason: "Rejected in favor of Marimo for Python notebooks."
 decidedDate: "2026-08-08"
+cover_image: "/images/covers/radar-jupyter.png"
 ---
 
 # Jupyter

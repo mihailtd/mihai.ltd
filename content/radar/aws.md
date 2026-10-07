@@ -13,6 +13,7 @@ evaluatedScore: 3
 decisionInFavorOf: "gcp"
 decisionReason: "On hold in favor of GCP, which is the go-to among the Big 3 cloud providers."
 decidedDate: "2026-08-08"
+cover_image: "/images/covers/radar-aws.png"
 ---
 
 # AWS

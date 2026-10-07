@@ -11,6 +11,7 @@ stage: "trial"
 evaluatedScore: 2
 link: "https://docs.getdbt.com/"
 target: "_blank"
+cover_image: "/images/covers/radar-dbt-core.png"
 ---
 
 # dbt-core

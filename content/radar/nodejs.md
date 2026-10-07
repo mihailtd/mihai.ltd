@@ -12,6 +12,7 @@ decision: "adopt"
 evaluatedScore: 4
 link: "https://nodejs.org/"
 target: "_blank"
+cover_image: "/images/covers/radar-nodejs.png"
 ---
 
 # NodeJS

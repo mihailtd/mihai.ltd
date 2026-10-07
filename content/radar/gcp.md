@@ -14,6 +14,7 @@ decisionReason: "The go-to among the Big 3 cloud providers, ahead of AWS and Azu
 decidedDate: "2026-08-08"
 link: "https://cloud.google.com/"
 target: "_blank"
+cover_image: "/images/covers/radar-gcp.png"
 ---
 
 # GCP

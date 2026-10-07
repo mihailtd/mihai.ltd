@@ -14,6 +14,7 @@ decisionReason: "Adopted in favor of Jupyter for Python notebooks."
 decidedDate: "2026-08-08"
 link: "https://marimo.io/"
 target: "_blank"
+cover_image: "/images/covers/radar-marimo.png"
 ---
 
 # Marimo

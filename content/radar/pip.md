@@ -13,6 +13,7 @@ evaluatedScore: 4
 decisionInFavorOf: "uv"
 decisionReason: "Rejected, along with requirements.txt, in favor of uv with pyproject.toml and uv.lock. Pip suffers from non-deterministic dependency resolution, painful backtrack slowness, lack of true cross-platform lockfiles, and zero workspace support for monorepos."
 decidedDate: "2026-08-08"
+cover_image: "/images/covers/radar-pip.png"
 ---
 
 # pip & requirements.txt: Why the Python Legacy Was Rejected

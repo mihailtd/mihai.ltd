@@ -9,6 +9,7 @@ placements:
     subCategory: "front_end"
 stage: "trial"
 evaluatedScore: 2
+cover_image: "/images/covers/radar-react.png"
 ---
 
 # React

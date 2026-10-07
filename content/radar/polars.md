@@ -14,6 +14,7 @@ decisionReason: "Adopted for dataframe work, in favor of Pandas."
 decidedDate: "2026-08-08"
 link: "https://pola.rs/"
 target: "_blank"
+cover_image: "/images/covers/radar-polars.png"
 ---
 
 # Polars

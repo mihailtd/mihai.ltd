@@ -14,6 +14,7 @@ decisionReason: "Evaluating ty as the high-speed replacement for mypy and pyrigh
 decidedDate: "2026-08-08"
 link: "https://docs.astral.sh/ty/"
 target: "_blank"
+cover_image: "/images/covers/radar-ty.png"
 ---
 
 # ty: The Final Frontier of the Astral Python Toolchain

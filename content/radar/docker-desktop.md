@@ -25,6 +25,7 @@ decisionReason: "Rejected in favor of Rancher Desktop. Chronic update instabilit
 decidedDate: "2026-08-08"
 link: "https://www.docker.com/products/docker-desktop/"
 target: "_blank"
+cover_image: "/images/covers/radar-docker-desktop.png"
 ---
 
 # Docker Desktop: The Pioneer That Slipped into Licensing Friction and Instability

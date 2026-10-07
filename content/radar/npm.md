@@ -13,6 +13,7 @@ evaluatedScore: 3
 decisionInFavorOf: "pnpm"
 decisionReason: "Rejected in favor of pnpm for Node and TypeScript projects. Flat node_modules hoisting causes phantom dependencies, duplicated disk space waste across repositories, and slow CI installations without a content-addressable store."
 decidedDate: "2026-08-08"
+cover_image: "/images/covers/radar-npm.png"
 ---
 
 # npm: Why the Default Package Manager Was Rejected

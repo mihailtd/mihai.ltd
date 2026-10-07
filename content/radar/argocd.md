@@ -13,6 +13,7 @@ evaluatedScore: 4
 satisfaction: 5
 decisionReason: "Adopted over Flux for GitOps delivery to Kubernetes. Full confidence after extended use, no reservations."
 decidedDate: "2026-08-08"
+cover_image: "/images/covers/radar-argocd.png"
 ---
 
 # ArgoCD

@@ -16,6 +16,7 @@ decisionReason: "Replaced by Ruff. While Black revolutionized Python development
 decidedDate: "2026-08-08"
 link: "https://black.readthedocs.io/"
 target: "_blank"
+cover_image: "/images/covers/radar-black.png"
 ---
 
 # Black: The Uncompromising Formatter That Changed Python (and Why We Moved to Ruff)

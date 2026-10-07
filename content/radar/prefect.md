@@ -11,6 +11,7 @@ stage: "trial"
 evaluatedScore: 2
 link: "https://www.prefect.io/"
 target: "_blank"
+cover_image: "/images/covers/radar-prefect.png"
 ---
 
 # Prefect

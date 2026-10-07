@@ -11,6 +11,7 @@ placements:
     subCategory: "development"
 stage: "trial"
 evaluatedScore: 2
+cover_image: "/images/covers/radar-google-antigravity.png"
 ---
 
 # Google Antigravity

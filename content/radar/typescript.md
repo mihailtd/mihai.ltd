@@ -16,6 +16,7 @@ decisionReason: "Adopted as the primary authoring language across both front-end
 decidedDate: "2026-08-08"
 link: "https://www.typescriptlang.org/"
 target: "_blank"
+cover_image: "/images/covers/radar-typescript.png"
 ---
 
 # TypeScript

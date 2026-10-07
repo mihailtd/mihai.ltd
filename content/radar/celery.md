@@ -11,6 +11,7 @@ stage: "trial"
 evaluatedScore: 2
 link: "https://docs.celeryq.dev/"
 target: "_blank"
+cover_image: "/images/covers/radar-celery.png"
 ---
 
 # Celery

@@ -13,6 +13,7 @@ evaluatedScore: 1
 decisionInFavorOf: "argocd"
 decisionReason: "Considered as a GitOps delivery tool alongside ArgoCD. Not bad at all — ArgoCD just won out. On hold rather than rejected, since Flux is a solid option worth revisiting."
 decidedDate: "2026-08-08"
+cover_image: "/images/covers/radar-flux.png"
 ---
 
 # Flux

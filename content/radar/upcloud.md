@@ -12,6 +12,7 @@ evaluatedScore: 3
 satisfaction: 5
 link: "https://upcloud.com/"
 target: "_blank"
+cover_image: "/images/covers/radar-upcloud.png"
 ---
 
 # UpCloud

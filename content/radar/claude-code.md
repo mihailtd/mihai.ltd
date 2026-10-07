@@ -13,6 +13,7 @@ evaluatedScore: 4
 satisfaction: 3
 link: "https://claude.com/product/claude-code"
 target: "_blank"
+cover_image: "/images/covers/radar-claude-code.png"
 ---
 
 # Claude Code

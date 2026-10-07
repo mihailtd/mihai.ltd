@@ -16,6 +16,7 @@ decidedDate: "2025-01-10"
 logoPath: "/images/bun-logo.svg"
 link: "https://bun.sh/"
 target: "_blank"
+cover_image: "/images/covers/radar-bun.png"
 ---
 
 # Bun: The High-Speed All-in-One JavaScript & TypeScript Runtime

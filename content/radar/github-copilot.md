@@ -13,6 +13,7 @@ evaluatedScore: 4
 satisfaction: 3
 link: "https://github.com/features/copilot"
 target: "_blank"
+cover_image: "/images/covers/radar-github-copilot.png"
 ---
 
 # GitHub Copilot
