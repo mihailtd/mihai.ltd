@@ -1,21 +1,27 @@
 ---
-title: "When an n8n Execution Is Too Big for a Worker: Offloading CPU-Heavy Steps to Argo Workflows"
-description: "In a measured lab, ten 30-second CPU jobs in an n8n Code node made the task runner unresponsive and failed 9 of 10 executions. Handing the same jobs to Argo Workflows finished all ten with a median of 81 seconds and left the workers idle."
+title: "n8n + Argo = Love: Offloading CPU-Heavy Steps to Argo Workflows"
+description: "Why n8n and Argo Workflows are a match made in heaven: let n8n handle event routing, webhooks, and visual business logic, while seamlessly handing CPU-heavy compute jobs to Argo Workflows on Kubernetes without blocking a single worker slot."
 date: "2026-10-05"
 type: "blog_post"
 tags: ["kubernetes", "n8n", "argo-workflows", "workflow-automation", "devops"]
 cover_image: "/images/covers/n8n-argo-workflows-offload.png"
 ---
 
-# When an n8n Execution Is Too Big for a Worker: Offloading CPU-Heavy Steps to Argo Workflows
+# n8n + Argo = Love: Offloading CPU-Heavy Steps to Argo Workflows
 
-_Measured on a single-node k3s lab: what n8n's task runner does to CPU-bound Code nodes, and how to hand the work to Argo Workflows without holding a worker slot._
+_Visual event orchestration meets elastic containerized compute: how to hand off heavy steps from n8n to Argo Workflows without holding a single worker slot._
 
-> **[COVER IMAGE]** A worker pod with a small gauge on one side and a row of job pods on the other, an arrow looping from the pods back to the worker. Title text overlaid: "Hand off the heavy step."
+n8n and Argo Workflows are built for completely different superpowers—and when you combine them, magic happens.
 
-Don't run CPU-bound work in an n8n Code node. In queue mode, every Code node runs in a single-threaded task runner inside the worker, and a synchronous loop starves it. In my lab, ten 30-second jobs on the default settings made the runner unresponsive, and 9 of the 10 executions failed. Raising the runner's limits made all ten pass, but they ran one after another and took 305 seconds. Submitting the same ten jobs to Argo Workflows, with a Wait node that frees the worker until the job pod calls back, finished all ten with a median of 81 seconds and used 0.07 of a CPU core on the n8n side.
+**n8n** is unrivaled at event-driven visual orchestration: connecting hundreds of SaaS APIs, listening to webhooks, transforming JSON payloads, and managing human-in-the-loop approvals. It runs lean, fast, and agile.
 
-This article picks up where [my KEDA article](https://mihai.ltd/posts/keda-autoscaling-n8n/) stops. That one autoscales workers for workflows that spend their time waiting on APIs. CPU-bound steps invert the problem: the worker has free slots and no spare CPU, so the queue-depth signal never fires. The fix is to move the step out of the worker.
+**Argo Workflows** is the Kubernetes-native champion for heavy, isolated, elastic container compute: running crunching algorithms, batch jobs, video transcoding, and ML pipelines across a dynamic pod cluster.
+
+When a workflow requires intense CPU or GPU compute, you don't want to squeeze it into an n8n worker's lightweight Node.js event loop. Instead, you let n8n hand off the heavy lifting to Argo Workflows, free its worker slot with a Wait node, and resume in real-time when the Argo pod calls back.
+
+In our measured k3s lab benchmarks, pairing n8n with Argo Workflows allowed ten concurrent heavy jobs to finish smoothly with a median of 81 seconds while n8n workers consumed a mere 0.07 CPU cores and remained 100% responsive for everyday webhook traffic.
+
+Here is the architectural pattern and lab data demonstrating why this combination works so beautifully.
 
 ## What does the lab run?
 

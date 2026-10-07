@@ -21,7 +21,7 @@ So I took the hardware down to the operating table.
 
 This article is the foundation and teaser for the rebuild. Before we talk about declarative OpenTofu/Terraform pipelines, Ansible convergence, or high-availability Postgres clusters, we have to solve the physical silicon foundation.
 
-My compute nodes for this rebuild are repurposed **Intel Core i7 Chromeboxes (4 cores, 8 threads, 16GB DDR4 RAM, 500GB NVMe SSD)**. These machines were originally designed for ChromeOS kiosks and desktop browsing. They were already previously repurposed in my lab, but today we are bringing them up to modern standards: flashing the latest **MrChromebox UEFI Full ROM** firmware, doing a clean installation of **Proxmox VE 8.x**, and applying the non-negotiable kernel fixes required to keep mobile hardware stable 24/7.
+My compute nodes for this rebuild are repurposed **Intel Core i7 Chromeboxes (4 cores, 8 threads, 16GB DDR4 RAM, 500GB NVMe SSD)**. These machines were originally designed for ChromeOS kiosks and desktop browsing. They were already previously repurposed in my lab, but today we are bringing them up to modern standards: flashing the latest **MrChromebox UEFI Full ROM** firmware, doing a clean installation of **Proxmox VE 9.2** (based on Debian 13 Trixie with Linux Kernel 7.0), and applying the non-negotiable kernel fixes required to keep mobile hardware stable 24/7.
 
 Here is the exact step-by-step engineering runbook.
 
@@ -39,7 +39,7 @@ For this cluster, I am preparing two identical nodes:
 | **Storage**         | 500 GB M.2 NVMe SSD                 | 500 GB M.2 NVMe SSD                 |
 | **Chassis LAN MAC** | `B4:A9:FC:21:B9:77`                 | `D8:C4:97:AD:0F:A4`                 |
 | **Static IP**       | `192.168.1.51`                      | `192.168.1.52`                      |
-| **Target OS**       | Proxmox VE 8.x (Debian Bookworm)    | Proxmox VE 8.x (Debian Bookworm)    |
+| **Target OS**       | Proxmox VE 9.2 (Debian 13 Trixie)   | Proxmox VE 9.2 (Debian 13 Trixie)   |
 | **Idle Power**      | ~7–11 Watts                         | ~7–11 Watts                         |
 
 ![Flashing a Chromebox to Proxmox VE: Flashing and Stability Pipeline](/images/blog/chromebox-proxmox-workflow-poster.svg)
@@ -51,10 +51,12 @@ For this cluster, I am preparing two identical nodes:
 You will need two USB flash drives (or a single drive equipped with [Ventoy](https://www.ventoy.net/)):
 
 1. **Live Linux USB:** Standard Ubuntu Desktop, Linux Mint, or Fedora Live ISO. This is used strictly to boot into memory and run the MrChromebox firmware utility script.
-2. **Proxmox VE USB:** The official Proxmox VE 8.x ISO written via Rufus (in **DD mode**), BalenaEtcher, or Ventoy.
+2. **Proxmox VE USB:** The official Proxmox VE 9.2 ISO written via Rufus (in **DD mode**), BalenaEtcher, or Ventoy.
 
 > [!NOTE]
 > Make sure the unit being flashed has the NVMe SSD seated, an Ethernet cable connected with active internet access, a monitor attached via HDMI/DisplayPort, and a USB keyboard plugged in.
+>
+> **Why Proxmox VE 9.2?** Proxmox VE 8.x reached End-Of-Life (EOL) in August 2026. Proxmox VE 9.2 is based on Debian 13 ("Trixie") and ships with Linux Kernel 7.0 by default, featuring native Cluster Resource Scheduling (CRS) dynamic load balancing and integrated WireGuard Software-Defined Networking (SDN).
 
 Because these units already had custom UEFI firmware from their prior lifecycle, **you do not need to touch the physical write-protect screw or ChromeOS Developer Mode jumpers again**.
 
@@ -107,9 +109,9 @@ Once the flashing progress bar reaches 100% and validates checksums, **choose th
 
 ---
 
-## Step 2: Install Proxmox VE 8.x
+## Step 2: Install Proxmox VE 9.2 (Debian 13 Trixie)
 
-1. Insert your Proxmox VE 8.x USB installer into the Chromebox.
+1. Insert your Proxmox VE 9.2 USB installer into the Chromebox.
 2. Power on and tap <kbd>ESC</kbd> to enter the boot menu. Select the Proxmox installer.
 3. Choose **Install Proxmox VE (Graphical)**.
 4. **Target Harddisk:** Select your internal NVMe SSD (`/dev/nvme0n1`).
@@ -198,15 +200,15 @@ iface enp1s0 inet manual
 
 ### 3. Clean Up Proxmox Repositories (No-Subscription)
 
-Disable the enterprise repository (which errors out without a paid license key) and enable the official community no-subscription repo for Proxmox VE 8.x (Debian Bookworm):
+Disable the enterprise repository (which errors out without a paid license key) and enable the official community no-subscription repo for Proxmox VE 9.2 (Debian 13 Trixie):
 
 ```bash
 # 1. Disable enterprise repository
 rm -f /etc/apt/sources.list.d/pve-enterprise.list
 
-# 2. Add community no-subscription repository
+# 2. Add community no-subscription repository (Debian 13 Trixie)
 cat <<EOF > /etc/apt/sources.list.d/pve-no-subscription.list
-deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription
+deb http://download.proxmox.com/debian/pve trixie pve-no-subscription
 EOF
 
 # 3. Update packages and upgrade system
@@ -240,15 +242,16 @@ You should see `intel_idle.max_cstate=1 processor.max_cstate=1 nvme_core.default
 | **Physical LAN MAC**       | `B4:A9:FC:21:B9:77`                     | `D8:C4:97:AD:0F:A4`                     |
 | **MrChromebox UEFI**       | Flashed via Live USB (Option 2)         | Flashed via Live USB (Option 2)         |
 | **Proxmox Static IP**      | `192.168.1.51`                          | `192.168.1.52`                          |
+| **Target Hypervisor**      | Proxmox VE 9.2 (Linux Kernel 7.0)       | Proxmox VE 9.2 (Linux Kernel 7.0)       |
 | **Kernel Stability Flags** | `max_cstate=1` + `APST=0` + `nomodeset` | `max_cstate=1` + `APST=0` + `nomodeset` |
-| **No-Subscription Repo**   | Configured & updated                    | Configured & updated                    |
+| **No-Subscription Repo**   | Configured (`trixie`) & upgraded        | Configured (`trixie`) & upgraded        |
 | **M.2 Wi-Fi Hardware**     | Antenna connected / card removed        | Antenna connected / card removed        |
 
 ---
 
 ## 🔮 What’s Next: The Homelab Rebuild Pipeline
 
-With our physical compute layer flashed, stabilized, and running Proxmox VE 8.x on 35W hardware, the foundation is rock solid.
+With our physical compute layer flashed, stabilized, and running Proxmox VE 9.2 on 35W hardware, the foundation is rock solid.
 
 In the upcoming articles and YouTube videos on [@letstalkdev](https://youtube.com/@letstalkdev), we will build the rest of the stack:
 
