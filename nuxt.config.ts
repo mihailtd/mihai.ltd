@@ -35,6 +35,15 @@ export default defineNuxtConfig({
   },
   turnstile: {
     siteKey: "0x4AAAAAAAUBxBNAPgRBo5hj",
+    // Set NUXT_TURNSTILE_SECRET_KEY as a Cloudflare Worker secret.
+    secretKey: "",
+  },
+  runtimeConfig: {
+    // Google Apps Script web app that appends the message to a Google Sheet.
+    // Override with NUXT_CONTACT_WEBHOOK_URL / NUXT_CONTACT_WEBHOOK_SECRET.
+    contactWebhookUrl:
+      "https://script.google.com/macros/s/AKfycbwSFjdg4IwKtacpoAKMrou0wZLkos95X0wh__NaMQV2nkz6J6eB9acdeZhBGnhAcitRIg/exec",
+    contactWebhookSecret: "",
   },
   build: {
     transpile: ["echarts", "zrender", "tslib", "vue-echarts"],

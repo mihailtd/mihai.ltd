@@ -246,6 +246,7 @@ const submit = async () => {
           email: email.value,
           message: message.value,
           source: window.location.origin,
+          "cf-turnstile-response": token.value,
         },
       });
 
