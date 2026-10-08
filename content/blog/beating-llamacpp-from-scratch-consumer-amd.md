@@ -27,7 +27,7 @@ _How Software Architect Mihai Farcas engineered **[Strata](https://github.com/mi
 
 **By Mihai Farcas** — Software Architect & AI Systems Engineer
 
-![Strata Architecture: Rust Host Orchestration, Qwen 3.5 Hybrid Topology, and AMD RDNA3 Execution | wide](/images/blog/runtime-next-architecture-poster.svg#wide)
+![Strata Architecture: Rust Host Orchestration, Qwen 3.5 Hybrid Topology, and AMD RDNA3 Execution | wide](/images/blog/strata-architecture-poster.svg#wide)
 
 Can you beat `llama.cpp` and `Ollama` by writing a custom local LLM inference engine from scratch in Rust and AMD HIP on consumer hardware?
 

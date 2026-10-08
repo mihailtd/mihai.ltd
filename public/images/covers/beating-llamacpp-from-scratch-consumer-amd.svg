@@ -114,9 +114,9 @@
     <!-- Section 1: Decode Throughput -->
     <text x="24" y="100" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#94A3B8">SUSTAINED THROUGHPUT (TOK/S)</text>
 
-    <!-- Bar 1: runtime-next -->
+    <!-- Bar 1: Strata -->
     <g transform="translate(24, 115)">
-      <text x="0" y="15" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" fill="#F8FAFC">runtime-next</text>
+      <text x="0" y="15" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" fill="#F8FAFC">Strata</text>
       <rect x="110" y="2" width="220" height="18" rx="4" fill="#0EA5E9"/>
       <text x="338" y="16" font-family="monospace" font-size="13" font-weight="700" fill="#38BDF8">83.0</text>
     </g>
@@ -140,9 +140,9 @@
     <!-- Section 2: Time to First Token -->
     <text x="24" y="232" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#94A3B8">TIME TO FIRST TOKEN (MS) — LOWER IS BETTER</text>
 
-    <!-- TTFT Bar 1: runtime-next -->
+    <!-- TTFT Bar 1: Strata -->
     <g transform="translate(24, 247)">
-      <text x="0" y="15" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" fill="#F8FAFC">runtime-next</text>
+      <text x="0" y="15" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" fill="#F8FAFC">Strata</text>
       <rect x="110" y="2" width="70" height="18" rx="4" fill="#10B981"/>
       <text x="188" y="16" font-family="monospace" font-size="13" font-weight="700" fill="#34D399">48.5 ms</text>
     </g>
