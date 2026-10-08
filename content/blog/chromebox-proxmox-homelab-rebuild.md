@@ -15,15 +15,15 @@ _From ChromeOS Desktop to 24/7 Enterprise Hypervisor: Hardware Teardown, UEFI Fl
 
 I am wiping my homelab and rebuilding everything from bare metal.
 
-Over the last two years, my homelab became a museum of forgotten experiments: custom Postgres operators, local LLM runtimes, test Kubernetes clusters, and manual SSH hotfixes. Everything worked, but it had accumulated drift. If a drive died at 2 AM, restoring it would require remembering dozens of undocumented system tweaks.
+Over the last two years, my homelab became a museum of forgotten experiments: custom Postgres operators, local LLM runtimes, test Kubernetes clusters, and manual SSH hotfixes. Everything worked, but drift had piled up. If a drive died at 2 AM, I would have to remember dozens of undocumented system tweaks to restore it.
 
-So I took the hardware down to the operating table.
+I pulled the hardware apart to start clean.
 
-This article is the foundation and teaser for the rebuild. Before we talk about declarative OpenTofu/Terraform pipelines, Ansible convergence, or high-availability Postgres clusters, we have to solve the physical silicon foundation.
+This article covers the foundation of the rebuild. Before I get to declarative OpenTofu/Terraform pipelines, Ansible convergence, or high-availability Postgres clusters, I have to get the physical hardware stable.
 
-My compute nodes for this rebuild are repurposed **Intel Core i7 Chromeboxes (4 cores, 8 threads, 16GB DDR4 RAM, 500GB NVMe SSD)**. These machines were originally designed for ChromeOS kiosks and desktop browsing. They were already previously repurposed in my lab, but today we are bringing them up to modern standards: flashing the latest **MrChromebox UEFI Full ROM** firmware, doing a clean installation of **Proxmox VE 9.2** (based on Debian 13 Trixie with Linux Kernel 7.0), and applying the non-negotiable kernel fixes required to keep mobile hardware stable 24/7.
+My compute nodes for this rebuild are **Intel Core i7 Chromeboxes (4 cores, 8 threads, 16GB DDR4 RAM, 500GB NVMe SSD)**. Google designed these machines for ChromeOS kiosks and desktop browsing. I had already repurposed them once in my lab, and now I am bringing them up to modern standards: I flash the latest **MrChromebox UEFI Full ROM** firmware, install **Proxmox VE 9.2** clean (it builds on Debian 13 Trixie with Linux Kernel 7.0), and apply the kernel fixes that keep mobile hardware stable 24/7.
 
-Here is the exact step-by-step engineering runbook.
+Here is the step-by-step runbook.
 
 ---
 
@@ -50,13 +50,13 @@ For this cluster, I am preparing two identical nodes:
 
 You will need two USB flash drives (or a single drive equipped with [Ventoy](https://www.ventoy.net/)):
 
-1. **Live Linux USB:** Standard Ubuntu Desktop, Linux Mint, or Fedora Live ISO. This is used strictly to boot into memory and run the MrChromebox firmware utility script.
+1. **Live Linux USB:** Standard Ubuntu Desktop, Linux Mint, or Fedora Live ISO. It only boots into memory and runs the MrChromebox firmware utility script.
 2. **Proxmox VE USB:** The official Proxmox VE 9.2 ISO written via Rufus (in **DD mode**), BalenaEtcher, or Ventoy.
 
 > [!NOTE]
-> Make sure the unit being flashed has the NVMe SSD seated, an Ethernet cable connected with active internet access, a monitor attached via HDMI/DisplayPort, and a USB keyboard plugged in.
+> Before flashing, seat the NVMe SSD, connect an Ethernet cable with active internet access, attach a display via HDMI/DisplayPort, and plug in a USB keyboard.
 >
-> **Why Proxmox VE 9.2?** Proxmox VE 8.x reached End-Of-Life (EOL) in August 2026. Proxmox VE 9.2 is based on Debian 13 ("Trixie") and ships with Linux Kernel 7.0 by default, featuring native Cluster Resource Scheduling (CRS) dynamic load balancing and integrated WireGuard Software-Defined Networking (SDN).
+> **Why Proxmox VE 9.2?** Proxmox VE 8.x reached End-Of-Life (EOL) in August 2026. Proxmox VE 9.2 builds on Debian 13 ("Trixie") and ships with Linux Kernel 7.0 by default, with native Cluster Resource Scheduling (CRS) dynamic load balancing and integrated WireGuard Software-Defined Networking (SDN).
 
 Because these units already had custom UEFI firmware from their prior lifecycle, **you do not need to touch the physical write-protect screw or ChromeOS Developer Mode jumpers again**.
 
@@ -129,11 +129,11 @@ Once Proxmox boots to the console/login prompt (`https://<ip>:8006`), log in as 
 
 > [!CAUTION]
 > **Why 99% of Chromebox server setups crash:**
-> Chromeboxes use mobile laptop-grade Intel processors and consumer NVMe controllers. In a desktop environment with a human moving a mouse and a screen attached, they work fine. But on a **headless 24/7 server with no monitor plugged in**, they will freeze after 6 to 18 hours due to three specific hardware quirks:
+> Chromeboxes use mobile laptop-grade Intel processors and consumer NVMe controllers. In a desktop environment with a human moving a mouse and a screen attached, they work fine. But on a **headless 24/7 server with no display plugged in**, they will freeze after 6 to 18 hours due to three specific hardware quirks:
 >
 > 1. **Intel Mobile C-State Lockups:** The CPU enters ultra-low power idle states (C7/C8) and never wakes up.
 > 2. **NVMe APST Drops:** Samsung and consumer SSDs enter aggressive Autonomous Power State Transitions, the controller drops off the PCIe bus, and Linux forces the filesystem into read-only mode.
-> 3. **Headless GPU Driver Hangs:** The Intel iGPU kernel mode driver panics when no display output is negotiated.
+> 3. **Headless GPU Driver Hangs:** The Intel iGPU kernel mode driver panics when it finds no display output.
 
 Applying the following configuration fixes all three issues permanently.
 
@@ -217,7 +217,7 @@ apt update && apt dist-upgrade -y
 
 ### 4. M.2 Wi-Fi Card Maintenance
 
-If your Chromebox includes an internal M.2 Wi-Fi card, either keep the internal antennas securely connected to the PCB connectors, or physically unscrew and remove the Wi-Fi card altogether. Unconnected Wi-Fi cards frequently spam the Linux kernel ring buffer (`dmesg`) with antenna beacon scanning loops, wasting CPU cycles and generating heat.
+If your Chromebox includes an internal M.2 Wi-Fi card, either keep the internal antennas securely connected to the PCB connectors, or physically unscrew and remove the Wi-Fi card altogether. Unconnected Wi-Fi cards frequently flood the Linux kernel ring buffer (`dmesg`) with antenna scanning loops, which waste CPU cycles and generate heat.
 
 ### 5. Final Reboot
 
@@ -251,14 +251,14 @@ You should see `intel_idle.max_cstate=1 processor.max_cstate=1 nvme_core.default
 
 ## 🔮 What’s Next: The Homelab Rebuild Pipeline
 
-With our physical compute layer flashed, stabilized, and running Proxmox VE 9.2 on 35W hardware, the foundation is rock solid.
+The compute layer is now flashed, stabilized, and running Proxmox VE 9.2 on 35W hardware.
 
-In the upcoming articles and YouTube videos on [@letstalkdev](https://youtube.com/@letstalkdev), we will build the rest of the stack:
+In the upcoming articles and YouTube videos on [@letstalkdev](https://youtube.com/@letstalkdev), I will build the rest of the stack:
 
 1. **Where Terraform/OpenTofu Stops and Ansible Begins:** Creating a clean, non-leaky abstraction where OpenTofu provisions cloud-init VM templates via the Proxmox API, and Ansible converges machine state without manual SSH interventions.
-2. **The 1-Liter Storage Architecture:** Why enterprise ZFS storage advice doesn't always fit consumer mini PCs, and how we configure storage pools for database workloads.
+2. **The 1-Liter Storage Architecture:** Why enterprise ZFS storage advice doesn't always fit consumer mini PCs, and how I configure storage pools for database workloads.
 3. **High-Availability PostgreSQL with CloudNativePG:** Migrating from legacy Patroni stateful sets to native Kubernetes controller reconciliation with Barman Cloud S3 backups.
 
 If you have old Chromeboxes gathering dust in a drawer, don't throw them away. With an i7 processor, 16GB of RAM, and MrChromebox UEFI, they are some of the most power-efficient, cost-effective virtualization nodes you can run.
 
-Stay tuned for the full automation pipeline.
+The full automation pipeline comes next.
