@@ -10,6 +10,14 @@
     <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="1.1" fill="#3A3225" opacity="0.35"/>
     </pattern>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#181510"/>
+      <stop offset="100%" stop-color="#13100B"/>
+    </linearGradient>
+    <linearGradient id="statGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A1611"/>
+      <stop offset="100%" stop-color="#120F0B"/>
+    </linearGradient>
   </defs>
 
   <!-- Background Canvas -->
@@ -20,47 +28,197 @@
   <rect x="24" y="24" width="1152" height="582" rx="16" fill="none" stroke="#3A3225" stroke-width="1.5"/>
 
   <!-- Left Content Column -->
-  <g transform="translate(80, 135)">
-    <!-- Header: Kicker + Optional Inline Stage Pill -->
+  <g transform="translate(75, 115)">
+    <!-- Header: Kicker + Type Pill -->
     <text x="0" y="0" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" fill="#6FAFA3" letter-spacing="2.2">KUBERNETES INFRASTRUCTURE</text>
-    
-        <g transform="translate(205, -19)">
-          <rect width="120.0" height="26" rx="6" fill="#1C1811" stroke="#38BDF8" stroke-width="1.3"/>
-          <circle cx="13" cy="13" r="4" fill="#38BDF8"/>
-          <text x="24" y="17" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#38BDF8">STAGE: TRIAL</text>
-        </g>
+    <g transform="translate(290, -17)">
+      <rect width="125" height="24" rx="6" fill="#1C1811" stroke="#10B981" stroke-width="1.2"/>
+      <circle cx="12" cy="12" r="3.5" fill="#10B981"/>
+      <text x="23" y="16" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="700" fill="#10B981">STORAGE GUIDE</text>
+    </g>
 
     <!-- Main Title -->
-    <text x="0" y="52" font-family="Source Serif 4, Georgia, serif" font-size="46" font-weight="600" fill="#EFE7D6">
-      <tspan x="0" dy="0">Mount Local Storage to Kubernetes</tspan><tspan x="0" dy="57.5">Pods: K3s &amp; Local Path Provisioner</tspan>
+    <text x="0" y="48" font-family="Source Serif 4, Georgia, serif" font-size="44" font-weight="600" fill="#EFE7D6">
+      <tspan x="0" dy="0">Mount Local Storage to</tspan>
+      <tspan x="0" dy="54">Kubernetes Pods: K3s &amp;</tspan>
+      <tspan x="0" dy="54">Local Path Provisioner</tspan>
     </text>
 
     <!-- Subtitle (Multiline) -->
-    <g transform="translate(0, 185.0)">
-      <text x="0" y="0" font-family="JetBrains Mono, monospace" font-size="14" fill="#B4AA94">
-        <tspan x="0" dy="0">Zero-overhead NVMe persistent storage with</tspan><tspan x="0" dy="22">automated PVC lifecycles</tspan>
+    <g transform="translate(0, 215)">
+      <text x="0" y="0" font-family="JetBrains Mono, monospace" font-size="14.5" fill="#B4AA94">
+        <tspan x="0" dy="0">Zero-overhead bare-metal NVMe persistent</tspan>
+        <tspan x="0" dy="23">storage with automated PVC lifecycles</tspan>
       </text>
     </g>
 
+    <!-- Left Stat Highlight Boxes -->
+    <g transform="translate(0, 280)">
+      <!-- Stat 1: Zero Tax -->
+      <g transform="translate(0, 0)">
+        <rect width="160" height="66" rx="8" fill="url(#statGrad)" stroke="#3A3225" stroke-width="1.2"/>
+        <text x="14" y="28" font-family="JetBrains Mono, monospace" font-size="20" font-weight="800" fill="#10B981">0%</text>
+        <text x="46" y="28" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#6FAFA3">TAX</text>
+        <text x="14" y="49" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#B4AA94">Zero Network Hop</text>
+      </g>
+      <!-- Stat 2: Bare-metal NVMe -->
+      <g transform="translate(172, 0)">
+        <rect width="160" height="66" rx="8" fill="url(#statGrad)" stroke="#3A3225" stroke-width="1.2"/>
+        <text x="14" y="28" font-family="JetBrains Mono, monospace" font-size="18" font-weight="800" fill="#38BDF8">Direct</text>
+        <text x="90" y="28" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#38BDF8">IOPS</text>
+        <text x="14" y="49" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#B4AA94">Bare-Metal NVMe</text>
+      </g>
+      <!-- Stat 3: Auto lifecycle -->
+      <g transform="translate(344, 0)">
+        <rect width="160" height="66" rx="8" fill="url(#statGrad)" stroke="#3A3225" stroke-width="1.2"/>
+        <text x="14" y="28" font-family="JetBrains Mono, monospace" font-size="18" font-weight="800" fill="#D8A657">Built-in</text>
+        <text x="14" y="49" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#B4AA94">Default in K3s</text>
+      </g>
+    </g>
+
     <!-- Footer Badges -->
-    <g transform="translate(0, 410)">
-      
-        <g transform="translate(0, 0)">
-          <rect width="104" height="28" rx="6" fill="#1C1811" stroke="#3A3225" stroke-width="1.2"/>
-          <text x="52.0" y="18" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" font-weight="600" fill="#B4AA94">KUBERNETES</text>
-        </g>
-        <g transform="translate(114, 0)">
-          <rect width="72" height="28" rx="6" fill="#1C1811" stroke="#3A3225" stroke-width="1.2"/>
-          <text x="36.0" y="18" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" font-weight="600" fill="#B4AA94">DOCKER</text>
-        </g>
+    <g transform="translate(0, 395)">
+      <g transform="translate(0, 0)">
+        <rect width="104" height="28" rx="6" fill="#1C1811" stroke="#3A3225" stroke-width="1.2"/>
+        <text x="52.0" y="18" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="600" fill="#326CE5">KUBERNETES</text>
+      </g>
+      <g transform="translate(114, 0)">
+        <rect width="52" height="28" rx="6" fill="#1C1811" stroke="#3A3225" stroke-width="1.2"/>
+        <text x="26.0" y="18" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="600" fill="#FFC61C">K3S</text>
+      </g>
+      <g transform="translate(176, 0)">
+        <rect width="80" height="28" rx="6" fill="#1C1811" stroke="#3A3225" stroke-width="1.2"/>
+        <text x="40.0" y="18" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="600" fill="#0075A8">RANCHER</text>
+      </g>
+      <g transform="translate(266, 0)">
+        <rect width="60" height="28" rx="6" fill="#1C1811" stroke="#3A3225" stroke-width="1.2"/>
+        <text x="30.0" y="18" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="600" fill="#38BDF8">NVME</text>
+      </g>
+      <g transform="translate(336, 0)">
+        <rect width="100" height="28" rx="6" fill="#1C1811" stroke="#3A3225" stroke-width="1.2"/>
+        <text x="50.0" y="18" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="600" fill="#10B981">LOCAL-PATH</text>
+      </g>
     </g>
   </g>
 
-  <!-- Right Visual Side -->
-  
+  <!-- Right Visual Side: Architectural Card & Flow Diagram -->
+  <g transform="translate(670, 85)">
+    <!-- Card Frame -->
+    <rect width="455" height="460" rx="18" fill="#14110C" stroke="#3A3225" stroke-width="1.5"/>
+
+    <!-- Card Header -->
+    <text x="24" y="32" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700" fill="#D8A657" letter-spacing="1.5">STORAGE TOPOLOGY</text>
+    <text x="24" y="50" font-family="JetBrains Mono, monospace" font-size="11" fill="#7A7263">Dynamic Local-Path CSI Pipeline</text>
+
+    <!-- Brand Logos (K8s, K3s, Rancher) -->
+    <!-- 1. Kubernetes Logo -->
+    <g transform="translate(284, 16)">
+      <rect width="38" height="38" rx="8" fill="#1C1811" stroke="#3A3225" stroke-width="1"/>
+      <g transform="translate(5, 5) scale(1.75)">
+        <path fill="#326DE6" d="M4.5 14.569c.214.278.539.431.874.431h5.251c.335 0 .66-.165.875-.434l3.258-4.178c.214-.278.288-.633.214-.978l-1.165-5.207a1.128 1.128 0 00-.606-.777l-4.714-2.31A1.062 1.062 0 008.002 1c-.168 0-.335.038-.485.115l-4.715 2.32a1.129 1.129 0 00-.605.777L1.032 9.42c-.084.345 0 .7.214.978L4.5 14.568z"/>
+        <path fill="#ffffff" fill-rule="evenodd" d="M12.741 9.128c.098.002.196.01.293.024l.058.013.031.008a.308.308 0 01.26.371.306.306 0 01-.396.223h-.004l-.003-.001-.003-.002a1.58 1.58 0 00-.03-.006l-.05-.01a2.55 2.55 0 01-.274-.106 2.867 2.867 0 00-.533-.157.242.242 0 00-.171.064 4.656 4.656 0 00-.131-.023 3.971 3.971 0 01-1.764 2.212c.015.042.032.083.051.123a.239.239 0 00-.023.18c.074.17.165.332.271.484.06.078.114.16.164.244l.028.057.012.025a.306.306 0 01-.381.44.308.308 0 01-.172-.18l-.01-.02a1.57 1.57 0 01-.028-.058 2.546 2.546 0 01-.089-.28 2.837 2.837 0 00-.21-.512.242.242 0 00-.156-.095l-.03-.053-.035-.064a3.97 3.97 0 01-2.823-.007l-.07.125a.25.25 0 00-.132.064 2.13 2.13 0 00-.237.548 2.518 2.518 0 01-.088.28 1.196 1.196 0 01-.025.05l-.013.027v.001a.306.306 0 01-.421.173.308.308 0 01-.173-.314.306.306 0 01.041-.12l.014-.03.026-.052c.05-.085.104-.166.164-.244.108-.156.2-.322.277-.496a.302.302 0 00-.028-.173l.056-.133A3.972 3.972 0 014.22 9.532l-.134.023a.34.34 0 00-.176-.062 2.871 2.871 0 00-.533.156c-.09.04-.181.075-.274.105a1.017 1.017 0 01-.05.011l-.03.007H3.02l-.002.002h-.005a.308.308 0 01-.397-.349.306.306 0 01.261-.245l.005-.001h.002l.006-.002c.024-.006.054-.014.076-.018.097-.013.195-.021.293-.023.186-.013.37-.043.549-.09a.422.422 0 00.131-.133l.128-.037a3.938 3.938 0 01.625-2.752l-.098-.087a.338.338 0 00-.062-.176 2.854 2.854 0 00-.455-.319 2.557 2.557 0 01-.254-.148l-.048-.038-.015-.013-.004-.003a.323.323 0 01-.076-.45.295.295 0 01.244-.107.365.365 0 01.213.08l.022.017c.016.013.034.026.046.037.072.067.139.139.202.213.125.137.263.262.412.372.056.03.121.036.182.018l.11.078a3.938 3.938 0 012.552-1.224l.008-.129a.332.332 0 00.099-.158 2.844 2.844 0 00-.034-.553 2.56 2.56 0 01-.042-.29v-.082-.005A.306.306 0 018 2.82a.308.308 0 01.306.337v.087a2.529 2.529 0 01-.041.29 2.85 2.85 0 00-.035.553.242.242 0 00.1.153v.007l.007.129c.967.088 1.87.522 2.54 1.223l.116-.082a.34.34 0 00.186-.02c.149-.11.287-.236.412-.373.063-.075.13-.146.202-.213l.051-.04.017-.014a.307.307 0 11.381.477l-.024.02c-.015.012-.03.025-.043.034a2.537 2.537 0 01-.254.148 2.87 2.87 0 00-.455.32.241.241 0 00-.058.172l-.05.044-.058.053c.542.806.77 1.783.637 2.745l.123.036c.031.055.077.101.133.132.179.048.363.078.548.09zM7.291 5.24c.107-.024.216-.043.326-.056l-.09 1.6-.008.004a.268.268 0 01-.293.256.27.27 0 01-.135-.05l-.002.001-1.316-.93c.419-.41.945-.696 1.518-.825zm1.618 1.75l1.308-.924a3.182 3.182 0 00-1.833-.882l.09 1.598h.002a.268.268 0 00.294.256.27.27 0 00.135-.05l.004.002zm2.248 1.656L9.609 8.2l-.002-.006a.27.27 0 01-.185-.343.27.27 0 01.08-.12L9.5 7.73l1.195-1.067c.366.594.527 1.29.46 1.983zM9.096 9.5l.618 1.49a3.148 3.148 0 001.275-1.598l-1.593-.269-.002.003a.26.26 0 00-.166.023.27.27 0 00-.13.348l-.002.003zm-.385 1.905c-.573.13-1.17.1-1.727-.088l.777-1.4h.001a.27.27 0 01.475-.001h.006l.779 1.402a3.286 3.286 0 01-.311.087zm-2.418-.422l.611-1.474-.004-.006a.268.268 0 00-.297-.37L6.6 9.13l-1.579.267a3.16 3.16 0 001.272 1.586zm-.997-4.32l1.201 1.071-.001.007a.269.269 0 01-.106.462l-.001.005-1.54.443a3.134 3.134 0 01.447-1.988zm2.95 1.154h-.492l-.307.38.11.476.443.213.442-.212.11-.476-.306-.381z" clip-rule="evenodd"/>
+      </g>
+    </g>
+
+    <!-- 2. K3s Logo -->
+    <g transform="translate(332, 16)">
+      <rect width="38" height="38" rx="8" fill="#1C1811" stroke="#3A3225" stroke-width="1"/>
+      <g transform="translate(6, 7) scale(0.135)">
+        <path fill="#FFC61C" d="M173.69548,0H20.56071A20.62124,20.62124,0,0,0-.00008,20.56068V138.52845a20.62124,20.62124,0,0,0,20.56079,20.56067H173.69548a20.62124,20.62124,0,0,0,20.56079-20.56067V20.56068A20.62124,20.62124,0,0,0,173.69548,0ZM82.08293,115.68666,44.71086,137.40492a9.9999,9.9999,0,1,1-10.04883-17.292L72.0341,98.39466a9.9999,9.9999,0,1,1,10.04883,17.292ZM96.78508,82.59779h-.04492A9.99956,9.99956,0,0,1,86.7841,72.55433l.1875-43.05322a10.00081,10.00081,0,0,1,9.999-9.95654h.04493a9.99984,9.99984,0,0,1,9.956,10.04345l-.1875,43.05323A10.0008,10.0008,0,0,1,96.78508,82.59779Zm66.125,51.15723a9.99567,9.99567,0,0,1-13.66016,3.66015l-37.42676-21.6084a9.99991,9.99991,0,0,1,10-17.32031l37.42676,21.6084A9.99937,9.99937,0,0,1,162.91008,133.755Z"/>
+      </g>
+    </g>
+
+    <!-- 3. Rancher Logo -->
+    <g transform="translate(380, 16)">
+      <rect width="52" height="38" rx="8" fill="#1C1811" stroke="#3A3225" stroke-width="1"/>
+      <g transform="translate(8, 10) scale(0.14)">
+        <path fill="#0075A8" d="M158.083457,0 C159.747307,0 161.15518,4.47959583 161.15518,9.85511083 L161.15518,9.85511083 L161.15518,12.4148799 C161.411157,12.2868914 161.667134,12.2868914 162.051099,12.2868914 L162.051099,12.2868914 L216.57418,12.2868914 C221.949695,12.2868914 226.429291,16.7664873 226.429291,22.2699907 L226.429291,22.2699907 L226.429291,73.4653717 C226.429291,78.8408867 221.949695,83.3204825 216.57418,83.3204825 L216.57418,83.3204825 L190.08057,83.3204825 C184.705055,83.3204825 180.22546,78.8408867 180.22546,73.4653717 L180.22546,73.4653717 L180.22546,53.3711846 C177.793679,55.163023 176.257818,57.9787689 176.257818,61.1784802 L176.257818,61.1784802 L176.257818,77.9449675 C176.257818,83.3204825 180.737413,87.8000783 186.112928,87.8000783 L186.112928,87.8000783 L203.391369,87.8000783 L203.391369,114.293688 C203.391369,117.621388 200.703612,120.309145 197.375912,120.309145 L197.375912,120.309145 L164.866845,120.309145 C161.539145,120.309145 158.851388,117.621388 158.851388,114.293688 L158.851388,114.293688 L158.851388,89.975882 C158.851388,86.6481823 156.16363,83.9604248 152.835931,83.9604248 L152.835931,83.9604248 L71.8192404,83.9604248 C68.4915406,83.9604248 65.8037831,86.6481823 65.8037831,89.975882 L65.8037831,89.975882 L65.8037831,114.293688 C65.8037831,117.621388 63.1160256,120.309145 59.7883258,120.309145 L59.7883258,120.309145 L27.2792589,120.309145 C23.9515592,120.309145 21.2638017,117.621388 21.2638017,114.293688 L21.2638017,114.293688 L21.2638017,44.1560161 L6.67311809,55.6749768 C6.03317583,56.1869306 5.13725666,56.0589421 4.62530285,55.4189999 L4.62530285,55.4189999 L0.40168392,50.4274502 C-0.110269889,49.9154964 -0.110269889,49.1475657 0.273695468,48.6356119 L0.273695468,48.6356119 L21.7757555,15.7425796 C22.7996631,13.566776 24.8474783,12.158903 27.2792589,12.158903 L27.2792589,12.158903 L141.444958,12.158903 C145.156624,12.158903 147.97237,15.4866027 147.332427,19.1982679 L147.332427,19.1982679 L145.028635,33.1490092 C144.388693,36.8606743 147.204439,40.1883741 150.916104,40.1883741 L150.916104,40.1883741 L173.954025,40.1883741 C176.89776,40.1883741 179.32954,38.1405588 179.841494,35.3248129 C178.56161,35.8367667 176.89776,36.0927436 175.23391,36.0927436 L175.23391,36.0927436 L158.851388,36.0927436 C153.475873,36.0927436 149.764208,31.7411362 150.660127,26.3656212 L150.660127,26.3656212 L153.475873,9.72712238 C154.371792,4.35160738 156.419607,0 158.083457,0 Z M248.443305,3.55271368e-15 C250.107155,3.55271368e-15 252.15497,4.35160738 253.050889,9.72712238 L253.050889,9.72712238 L255.866635,26.3656212 C256.762554,31.7411362 253.050889,36.0927436 247.547385,36.0927436 L247.547385,36.0927436 L230.268944,36.0927436 L230.268944,24.061829 L230.268944,24.061829 L235.516471,24.061829 C240.891986,24.061829 245.371582,19.5822332 245.371582,14.2067182 L245.371582,14.2067182 L245.371582,9.85511083 C245.371582,4.47959583 246.779455,3.55271368e-15 248.443305,3.55271368e-15 Z"/>
+      </g>
+    </g>
+
+    <!-- Header Divider -->
+    <line x1="24" y1="66" x2="431" y2="66" stroke="#2A241A" stroke-width="1"/>
+
+    <!-- Tier 1: Application Pod & PVC Claim -->
+    <g transform="translate(24, 78)">
+      <rect width="407" height="90" rx="10" fill="url(#boxGrad)" stroke="#3A3225" stroke-width="1.2"/>
+      <!-- Header row -->
+      <rect x="14" y="12" width="44" height="20" rx="4" fill="#1C1811" stroke="#6FAFA3" stroke-width="1"/>
+      <text x="36" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#6FAFA3">POD</text>
+      <text x="68" y="27" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#EFE7D6">Stateful Workload</text>
+      <!-- Running status -->
+      <circle cx="385" cy="22" r="3.5" fill="#10B981"/>
+      <text x="375" y="26" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="#10B981">RUNNING</text>
+      <!-- Content lines -->
+      <text x="14" y="53" font-family="JetBrains Mono, monospace" font-size="11" fill="#7A7263">volumeMounts: <tspan fill="#6FAFA3">/data</tspan></text>
+      <text x="14" y="73" font-family="JetBrains Mono, monospace" font-size="11" fill="#7A7263">claimName: <tspan fill="#EFE7D6">local-data-pvc</tspan> <tspan fill="#B4AA94">(10Gi • RWO)</tspan></text>
+    </g>
+
+    <!-- Connector 1 -->
+    <line x1="227" y1="168" x2="227" y2="197" stroke="#6FAFA3" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <polygon points="227,199 223,191 231,191" fill="#6FAFA3"/>
+    <g transform="translate(167, 175)">
+      <rect width="120" height="16" rx="4" fill="#14110C" stroke="#3A3225" stroke-width="1"/>
+      <text x="60" y="12" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#6FAFA3">BOUND VIA CSI</text>
+    </g>
+
+    <!-- Tier 2: Rancher Local-Path Provisioner -->
+    <g transform="translate(24, 199)">
+      <rect width="407" height="90" rx="10" fill="url(#boxGrad)" stroke="#38BDF8" stroke-width="1.2"/>
+      <!-- Header row -->
+      <rect x="14" y="12" width="94" height="20" rx="4" fill="#1C1811" stroke="#38BDF8" stroke-width="1"/>
+      <text x="61" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#38BDF8">PROVISIONER</text>
+      <text x="118" y="27" font-family="JetBrains Mono, monospace" font-size="12.5" font-weight="600" fill="#EFE7D6">rancher/local-path-provisioner</text>
+      <!-- Content lines -->
+      <text x="14" y="53" font-family="JetBrains Mono, monospace" font-size="11" fill="#7A7263">StorageClass: <tspan fill="#FFC61C">local-path</tspan> <tspan fill="#38BDF8">(default in K3s)</tspan></text>
+      <text x="14" y="73" font-family="JetBrains Mono, monospace" font-size="11" fill="#7A7263">Lifecycle: <tspan fill="#B4AA94">Dynamic provision &amp; auto-cleanup on delete</tspan></text>
+    </g>
+
+    <!-- Connector 2 -->
+    <line x1="227" y1="289" x2="227" y2="318" stroke="#D8A657" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <polygon points="227,320 223,312 231,312" fill="#D8A657"/>
+    <g transform="translate(157, 296)">
+      <rect width="140" height="16" rx="4" fill="#14110C" stroke="#3A3225" stroke-width="1"/>
+      <text x="70" y="12" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="#D8A657">HOSTPATH MOUNT</text>
+    </g>
+
+    <!-- Tier 3: Host Storage & Bare-Metal NVMe -->
+    <g transform="translate(24, 320)">
+      <rect width="407" height="86" rx="10" fill="url(#boxGrad)" stroke="#D8A657" stroke-width="1.2"/>
+      <!-- Header row -->
+      <rect x="14" y="12" width="76" height="20" rx="4" fill="#1C1811" stroke="#D8A657" stroke-width="1"/>
+      <text x="52" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#D8A657">HOST DISK</text>
+      <text x="98" y="27" font-family="JetBrains Mono, monospace" font-size="12" font-weight="600" fill="#D8A657">/var/lib/rancher/k3s/storage/</text>
+      <!-- Content lines -->
+      <text x="14" y="53" font-family="JetBrains Mono, monospace" font-size="11" fill="#7A7263">Folder: <tspan fill="#EFE7D6">pvc-7a9f..._default_local-data-pvc</tspan></text>
+      <text x="14" y="72" font-family="JetBrains Mono, monospace" font-size="11" fill="#7A7263">Physical: <tspan fill="#10B981">Bare-Metal NVMe SSD • Native Linux IOPS</tspan></text>
+    </g>
+
+    <!-- Bottom Stat Badges -->
+    <g transform="translate(24, 418)">
+      <!-- Stat 1 -->
+      <g transform="translate(0, 0)">
+        <rect width="128" height="26" rx="6" fill="#181510" stroke="#3A3225" stroke-width="1"/>
+        <circle cx="16" cy="13" r="3" fill="#10B981"/>
+        <text x="24" y="17" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="#10B981">0% OVERHEAD</text>
+      </g>
+      <!-- Stat 2 -->
+      <g transform="translate(139, 0)">
+        <rect width="128" height="26" rx="6" fill="#181510" stroke="#3A3225" stroke-width="1"/>
+        <circle cx="16" cy="13" r="3" fill="#38BDF8"/>
+        <text x="24" y="17" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="#38BDF8">DIRECT NVME</text>
+      </g>
+      <!-- Stat 3 -->
+      <g transform="translate(278, 0)">
+        <rect width="129" height="26" rx="6" fill="#181510" stroke="#3A3225" stroke-width="1"/>
+        <circle cx="16" cy="13" r="3" fill="#D8A657"/>
+        <text x="24" y="17" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="#D8A657">AUTO-CLEANUP</text>
+      </g>
+    </g>
+  </g>
 
   <!-- Brand Signature / Footer Right -->
   <g transform="translate(980, 576)">
-    <text x="0" y="0" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#7A7263">mihai.ltd // radar</text>
+    <text x="0" y="0" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#7A7263">mihai.ltd // dev</text>
   </g>
 </svg>
