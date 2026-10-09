@@ -151,3 +151,10 @@ When an engineer is iterating on localized application logic, **[Docker Compose]
 **Rancher Desktop is an unconditional Adopt.**
 
 By pairing the lightweight efficiency of **[K3s](/blog/k3s)** with modern `containerd`/`nerdctl` runtime flexibility, built-in Traefik Ingress, and rock-solid update stability, Rancher Desktop has permanently replaced **[Docker Desktop](/blog/docker-desktop)** across our entire engineering organization.
+
+---
+
+### Step-by-Step Implementation Guides
+
+- **Windows Setup Guide:** [Rancher Desktop on Windows: The Complete Zero-License Replacement for Docker Desktop](/blog/rancher-desktop-windows-guide)
+- **Linux Setup Guide:** [Do You Need Rancher Desktop (or Docker Desktop) on Linux? My CachyOS Setup](/blog/rancher-desktop-docker-desktop-on-linux)

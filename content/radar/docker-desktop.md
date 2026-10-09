@@ -147,3 +147,10 @@ Existing `docker-compose.yml` workflows, IDE extensions, and terminal commands w
 Docker Desktop was instrumental in bringing containerization to the masses. However, enterprise developer platforms must be stable, lightweight, and legally unencumbered.
 
 By migrating to **[Rancher Desktop](/blog/rancher-desktop)** paired with **[K3s](/blog/k3s)**, our engineering organization eliminated commercial licensing overhead, reclaimed gigabytes of developer workstation RAM, and permanently eradicated update-induced downtime.
+
+---
+
+### Step-by-Step Replacement Guides
+
+- **Windows Workstations:** [Rancher Desktop on Windows: The Complete Zero-License Replacement for Docker Desktop](/blog/rancher-desktop-windows-guide)
+- **Linux Workstations:** [Do You Need Rancher Desktop (or Docker Desktop) on Linux? My CachyOS Setup](/blog/rancher-desktop-docker-desktop-on-linux)
