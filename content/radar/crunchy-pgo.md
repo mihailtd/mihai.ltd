@@ -36,7 +36,7 @@ Running stateful relational databases inside Kubernetes used to provoke pushback
 
 **Crunchy Data PostgreSQL Operator (PGO)** addressed those concerns directly. Developed by PostgreSQL contributors and built for production reliability, Crunchy PGO has served as our unconditional **Adopt** for mission-critical database clusters across bare-metal k3s nodes and cloud infrastructure.
 
-While modern contenders like **[CloudNativePG](/radar/cloudnativepg)** offer streamlined GitOps ergonomics, Crunchy PGO remains our standard where backup durability, multi-destination retention, and disaster recovery cannot fail.
+While modern contenders like **[CloudNativePG](/blog/cloudnativepg)** offer streamlined GitOps ergonomics, Crunchy PGO remains our standard where backup durability, multi-destination retention, and disaster recovery cannot fail.
 
 ---
 

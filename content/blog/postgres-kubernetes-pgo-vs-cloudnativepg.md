@@ -23,9 +23,9 @@ For years, database administrators repeated a familiar warning: _never run relat
 
 That dogma is obsolete. High-performance NVMe storage, CSI volume snapshotting, and production Kubernetes operators transformed stateful database deployments into standard practice.
 
-For over three years, **[Crunchy Data PGO](/radar/crunchy-pgo)** anchored our database infrastructure. As documented in our earlier production walkthrough (_[PostgreSQL Deployments with Crunchy Data Operator](https://youtube.com/watch?v=Y2V5HqCqx34)_), PGO proved that automated failover, declarative connection pooling, and pgBackRest backups survive node evictions and disk failures.
+For over three years, **[Crunchy Data PGO](/blog/crunchy-pgo)** anchored our database infrastructure. As documented in our earlier production walkthrough (_[PostgreSQL Deployments with Crunchy Data Operator](https://youtube.com/watch?v=Y2V5HqCqx34)_), PGO proved that automated failover, declarative connection pooling, and pgBackRest backups survive node evictions and disk failures.
 
-In 2026, the landscape shifted. **[CloudNativePG (CNPG)](/radar/cloudnativepg)** reached feature parity and matured within the CNCF. Built from the ground up to leverage native Kubernetes primitives rather than wrapping legacy clustering tools, CNPG introduced a lighter, daemonless alternative.
+In 2026, the landscape shifted. **[CloudNativePG (CNPG)](/blog/cloudnativepg)** reached feature parity and matured within the CNCF. Built from the ground up to leverage native Kubernetes primitives rather than wrapping legacy clustering tools, CNPG introduced a lighter, daemonless alternative.
 
 This breakdown evaluates both operators across architecture, backup durability, GitOps ergonomics, and operational maintenance. It explains why Crunchy PGO remains our **Adopted** engine for complex enterprise retention, while CloudNativePG has entered **Trial** as our default for greenfield deployments.
 
@@ -218,11 +218,11 @@ Our technology radar reflects practical operational boundaries rather than theor
 - You require **pgBackRest's multi-repository architecture** (writing to local storage and remote cloud providers simultaneously).
 - Your operations team already possesses deep operational runbooks and automation around Crunchy's `pgo` CLI and CRDs.
 - You are managing multi-terabyte datasets where page-level delta backups save network bandwidth and restore time.
-- Detailed report: **[Crunchy Data PGO Tech Report](/radar/crunchy-pgo)**.
+- Detailed report: **[Crunchy Data PGO Tech Report](/blog/crunchy-pgo)**.
 
 ### When to Standardize on CloudNativePG
 
 - You are deploying **greenfield clusters** and want minimal resource footprint without dedicated backup repository pods.
 - You manage infrastructure strictly through **ArgoCD or Flux** and require clean, concise manifests.
 - You want fast cluster bootstrap and sub-10-second failovers driven directly by native Kubernetes API leases.
-- Detailed report: **[CloudNativePG Tech Report](/radar/cloudnativepg)**.
+- Detailed report: **[CloudNativePG Tech Report](/blog/cloudnativepg)**.

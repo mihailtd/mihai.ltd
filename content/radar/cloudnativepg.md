@@ -33,7 +33,7 @@ cover_image: "/images/covers/radar-cloudnativepg.png"
 
 # CloudNativePG: The Next-Generation Kubernetes-Native PostgreSQL Engine
 
-For over three years, **[Crunchy Data PGO](/radar/crunchy-pgo)** anchored our database deployments on Kubernetes. It established that stateful relational data could survive node reboots, volume re-attachments, and network failovers.
+For over three years, **[Crunchy Data PGO](/blog/crunchy-pgo)** anchored our database deployments on Kubernetes. It established that stateful relational data could survive node reboots, volume re-attachments, and network failovers.
 
 Yet as Kubernetes architectures matured, a new paradigm emerged: rather than wrapping legacy database clustering tools inside container wrappers, build an operator that treats Kubernetes itself as the native clustering foundation.
 
