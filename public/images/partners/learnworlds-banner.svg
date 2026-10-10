@@ -53,10 +53,10 @@
 
   <!-- LEFT CONTENT COLUMN -->
   <g transform="translate(80, 95)">
-    <!-- Partner Badge -->
-    <rect x="0" y="0" width="235" height="36" rx="18" fill="#132347" stroke="#2563EB" stroke-width="1.5" stroke-opacity="0.6"/>
+    <!-- Community Perk Badge -->
+    <rect x="0" y="0" width="245" height="36" rx="18" fill="#132347" stroke="#2563EB" stroke-width="1.5" stroke-opacity="0.6"/>
     <circle cx="20" cy="18" r="5" fill="#38BDF8"/>
-    <text x="36" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="12" fill="#93C5FD" letter-spacing="0.8">EXCLUSIVE PARTNER PERK</text>
+    <text x="36" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="12" fill="#93C5FD" letter-spacing="0.8">FEATURED COMMUNITY PERK</text>
 
     <!-- Main Title -->
     <text x="0" y="95" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="52" fill="#FFFFFF" letter-spacing="-1.5">

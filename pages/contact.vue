@@ -27,12 +27,11 @@
           ></div>
           <div class="relative z-10">
             <h2 class="mb-4 text-2xl font-bold text-yellow-100">
-              I need a Software Architect or Automation Partner.
+              I need a Software Architect or Automation Specialist.
             </h2>
             <p class="mb-8 text-gray-300">
-              If you are a founder or company looking for Fractional CTO
-              services, Agentic AI implementation, or n8n workflow design,
-              please visit my agency.
+              For Fractional CTO engagements, Agentic AI implementation, or n8n
+              workflow architecture, explore my consultancy work at Innovi Pro.
             </p>
             <a
               href="https://innovi.pro"

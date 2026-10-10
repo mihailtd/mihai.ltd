@@ -223,7 +223,7 @@ Things this lab did not test: cancelling an n8n execution while its Argo job run
 
 ---
 
-_Disclosure: I write on this personal blog independently and out of my own accord. Separately, I am also an official technical writer for n8n and a member of the [n8n Creators program](https://n8n.partnerlinks.io/ltd). All experiments and benchmarks in this article were conducted independently on my own single-node k3s lab cluster. If you choose to try [n8n Cloud](https://n8n.partnerlinks.io/ltd), using my referral link supports my personal research and lab benchmarks at no additional cost to you._
+_Disclosure: I write on this personal blog independently and out of my own accord. Separately, I also write technical articles for n8n and participate in the [n8n Creators program](https://n8n.partnerlinks.io/ltd). All experiments and benchmarks in this article were conducted independently on my own single-node k3s lab cluster. If you choose to try [n8n Cloud](https://n8n.partnerlinks.io/ltd), using my referral link supports my personal research and lab benchmarks at no additional cost to you._
 
 <!--
 EDITOR NOTES (remove before publishing)

@@ -26,7 +26,7 @@
           <span
             class="h-1.5 w-1.5 animate-pulse rounded-full bg-blue-400"
           ></span>
-          {{ badge || "Partner Perk" }}
+          {{ badge || "Community Perk" }}
         </span>
 
         <!-- Special Perk Highlight -->
