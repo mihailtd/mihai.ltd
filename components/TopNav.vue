@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="fixed left-1/2 top-5 z-50 mx-auto w-[94%] max-w-5xl -translate-x-1/2 rounded-full border border-white/20 bg-slate-950/60 px-3 py-2 shadow-2xl shadow-purple-950/40 ring-1 ring-white/10 backdrop-blur-2xl transition-all duration-300 hover:border-white/30 hover:bg-slate-950/70 sm:px-6 sm:py-2.5"
+    class="fixed top-5 left-1/2 z-50 mx-auto w-[94%] max-w-5xl -translate-x-1/2 rounded-full border border-white/20 bg-slate-950/60 px-3 py-2 shadow-2xl ring-1 shadow-purple-950/40 ring-white/10 backdrop-blur-2xl transition-all duration-300 hover:border-white/30 hover:bg-slate-950/70 sm:px-6 sm:py-2.5"
   >
     <ul class="flex items-center justify-between">
       <li>
@@ -41,7 +41,7 @@
       </li>
       <li>
         <NuxtLink
-          class="rounded-full bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 px-4 py-1.5 text-xs font-bold text-white shadow-md shadow-orange-500/20 transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/40 active:scale-95 sm:px-5 sm:py-2 sm:text-sm"
+          class="rounded-full bg-linear-to-r from-orange-500 via-pink-500 to-purple-600 px-4 py-1.5 text-xs font-bold text-white shadow-md shadow-orange-500/20 transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/40 active:scale-95 sm:px-5 sm:py-2 sm:text-sm"
           to="/contact"
           active-class="ring-2 ring-white/80 ring-offset-2 ring-offset-slate-950"
         >

@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="sticky top-full flex flex-row items-center border-t border-white/10 bg-primary/30 px-5 py-8 text-gray-500 backdrop-blur-sm"
+    class="sticky top-full flex flex-row items-center border-t border-white/10 bg-primary/30 px-5 py-8 text-gray-500 backdrop-blur-xs"
   >
     <img
       class="w-16 transition-transform duration-500 hover:rotate-12"
@@ -19,7 +19,7 @@
 
     <div class="ml-auto flex items-center justify-center">
       <span
-        class="mt-4 inline-flex justify-center sm:ml-auto sm:mt-0 sm:justify-start"
+        class="mt-4 inline-flex justify-center sm:mt-0 sm:ml-auto sm:justify-start"
       >
         <a
           class="my-auto text-gray-500 transition-transform duration-300 hover:scale-110"

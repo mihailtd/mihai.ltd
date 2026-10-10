@@ -2,13 +2,13 @@
   <main id="main">
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-yellow-100 focus:px-3 focus:py-2 focus:text-black"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-sm focus:bg-yellow-100 focus:px-3 focus:py-2 focus:text-black"
       >Skip to content</a
     >
 
     <!-- Hero Header with "Hello." and background image -->
     <section
-      class="hero-bg min-h-[30vh] bg-cover bg-top pb-12 pt-28 md:min-h-[35vh] lg:bg-center"
+      class="hero-bg min-h-[30vh] bg-cover bg-top pt-28 pb-12 md:min-h-[35vh] lg:bg-center"
     >
       <p
         class="text-center text-9xl font-bold tracking-wide text-yellow-100 md:text-[12em]"
@@ -28,13 +28,13 @@
         <h2 class="py-12 text-6xl md:text-[8rem] lg:text-[9rem]">
           Crafting
           <span
-            class="bg-gradient-to-r from-yellow-100 to-blue-900 bg-clip-text font-extrabold tracking-wide text-transparent"
+            class="bg-linear-to-r from-yellow-100 to-blue-900 bg-clip-text font-extrabold tracking-wide text-transparent"
           >
             digital
           </span>
           experiences that help
           <span
-            class="bg-gradient-to-r from-blue-900 to-yellow-100 bg-clip-text font-extrabold tracking-wide text-transparent"
+            class="bg-linear-to-r from-blue-900 to-yellow-100 bg-clip-text font-extrabold tracking-wide text-transparent"
             >people.</span
           >
         </h2>
@@ -42,7 +42,7 @@
     </section>
 
     <section
-      class="bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px] py-12"
+      class="bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-size-[20px_20px] py-12"
     >
       <div class="mx-auto max-w-7xl px-5 md:px-12 lg:px-24">
         <h2 class="pb-2 text-4xl text-yellow-100 md:text-5xl lg:text-6xl">
@@ -72,9 +72,9 @@
           architecture.
         </p>
 
-        <div class="group relative flex-shrink-0">
+        <div class="group relative shrink-0">
           <div
-            class="absolute -inset-1 rounded-full bg-gradient-to-r from-yellow-100 to-blue-600 opacity-25 blur-xl transition duration-1000 group-hover:opacity-50 group-hover:duration-200"
+            class="absolute -inset-1 rounded-full bg-linear-to-r from-yellow-100 to-blue-600 opacity-25 blur-xl transition duration-1000 group-hover:opacity-50 group-hover:duration-200"
           ></div>
           <img
             src="/mihai_farcas.webp"
@@ -109,7 +109,7 @@
             <h3 class="pb-2 text-2xl text-yellow-100">
               {{ project.title }}
             </h3>
-            <p class="text-pretty pb-2 text-sm text-gray-300">
+            <p class="pb-2 text-sm text-pretty text-gray-300">
               {{ project.description }}
             </p>
             <p class="text-xs text-gray-500">
@@ -196,7 +196,7 @@
               height="32"
             />
             <h3
-              class="text-balance pl-6 text-xl font-extrabold text-yellow-100"
+              class="pl-6 text-xl font-extrabold text-balance text-yellow-100"
             >
               {{ group.title }}
             </h3>
@@ -215,7 +215,7 @@
                 width="48"
                 height="48"
               />
-              <span class="text-balance text-center text-sm">{{
+              <span class="text-center text-sm text-balance">{{
                 skill.name
               }}</span>
             </div>
@@ -225,7 +225,7 @@
     </section>
 
     <section
-      class="bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px] px-5 pb-12 lg:px-8 xl:px-12"
+      class="bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-size-[20px_20px] px-5 pb-12 lg:px-8 xl:px-12"
     >
       <h2
         class="py-12 text-4xl text-yellow-100 md:text-5xl lg:px-24 lg:text-6xl xl:px-36"
@@ -239,7 +239,7 @@
           class="group flex items-center justify-center rounded-xl border border-white/5 bg-black/30 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-white/5 hover:shadow-xl hover:shadow-blue-900/20"
         >
           <NuxtImg
-            class="w-36 transition-transform duration-500 group-hover:rotate-2 group-hover:scale-105"
+            class="w-36 transition-transform duration-500 group-hover:scale-105 group-hover:rotate-2"
             :src="book.cover"
             :alt="`${book.title} by ${book.author} cover image`"
             width="144"
@@ -252,7 +252,7 @@
 
             <p class="pt-4 text-gray-400">{{ book.author }}</p>
 
-            <p class="line-clamp-5 text-balance pt-4 text-yellow-100">
+            <p class="line-clamp-5 pt-4 text-balance text-yellow-100">
               {{ book.summary }}
             </p>
 
@@ -312,7 +312,7 @@
         /></a>
         <a
           target="_blank"
-          class="flex h-14 w-48 flex-row items-center justify-center bg-gray-950 text-2xl font-bold uppercase tracking-widest"
+          class="flex h-14 w-48 flex-row items-center justify-center bg-gray-950 text-2xl font-bold tracking-widest uppercase"
           href="https://drive.google.com/file/d/1DoBEPMMXbafSET8aX67J-enLyofGhxjo/view?usp=sharing"
           ><NuxtImg
             class="mr-4 w-8"

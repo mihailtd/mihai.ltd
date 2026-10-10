@@ -4,7 +4,7 @@
     :class="wrapperClasses"
   >
     <div
-      class="inline-block w-full overflow-hidden rounded-2xl border border-white/10 bg-[#090025]/60 shadow-2xl backdrop-blur-sm transition-all duration-300"
+      class="inline-block w-full overflow-hidden rounded-2xl border border-white/10 bg-[#090025]/60 shadow-2xl backdrop-blur-xs transition-all duration-300"
     >
       <NuxtImg
         :src="src"

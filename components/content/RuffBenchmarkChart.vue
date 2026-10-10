@@ -30,7 +30,7 @@
           class="rounded-full px-3 py-1 font-semibold transition-all duration-200"
           :class="
             activeView === 'latency'
-              ? 'bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white shadow-md'
+              ? 'bg-linear-to-r from-fuchsia-600 to-purple-600 text-white shadow-md'
               : 'text-gray-400 hover:text-white'
           "
           @click="activeView = 'latency'"
@@ -42,7 +42,7 @@
           class="rounded-full px-3 py-1 font-semibold transition-all duration-200"
           :class="
             activeView === 'ci'
-              ? 'bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white shadow-md'
+              ? 'bg-linear-to-r from-fuchsia-600 to-purple-600 text-white shadow-md'
               : 'text-gray-400 hover:text-white'
           "
           @click="activeView = 'ci'"

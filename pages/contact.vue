@@ -2,7 +2,7 @@
   <main class="relative min-h-screen">
     <!-- Hero Section -->
     <section
-      class="hero-bg min-h-[30vh] bg-cover bg-top pb-8 pt-28 md:min-h-[35vh] lg:bg-center"
+      class="hero-bg min-h-[30vh] bg-cover bg-top pt-28 pb-8 md:min-h-[35vh] lg:bg-center"
     >
       <h1
         class="mx-auto text-center text-7xl font-bold tracking-wide text-yellow-100 md:text-8xl lg:max-w-[60%] lg:text-9xl"
@@ -11,7 +11,7 @@
       </h1>
     </section>
 
-    <div class="mx-auto max-w-2xl px-6 pb-24 pt-8 text-center">
+    <div class="mx-auto max-w-2xl px-6 pt-8 pb-24 text-center">
       <p class="mb-12 text-xl text-gray-300">
         Choose the option that best fits your needs so I can route you to the
         right place.
@@ -23,7 +23,7 @@
           class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-8 transition-all duration-300 hover:border-yellow-100/30 hover:bg-white/10 hover:shadow-2xl hover:shadow-blue-900/20"
         >
           <div
-            class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            class="absolute inset-0 bg-linear-to-br from-blue-900/20 to-purple-900/20 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
           ></div>
           <div class="relative z-10">
             <h2 class="mb-4 text-2xl font-bold text-yellow-100">
@@ -38,7 +38,7 @@
               href="https://innovi.pro"
               target="_blank"
               rel="me"
-              class="inline-block rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-lg font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50"
+              class="inline-block rounded-full bg-linear-to-r from-blue-600 to-purple-600 px-8 py-4 text-lg font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50"
             >
               Work with INNOVI PRO
             </a>
@@ -108,7 +108,7 @@
               <input
                 v-model="name"
                 required
-                class="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-white placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                class="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-hidden"
                 placeholder="Your name"
                 type="text"
             /></label>
@@ -117,7 +117,7 @@
               <input
                 v-model="email"
                 required
-                class="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-white placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                class="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-hidden"
                 placeholder="your@email.com"
                 type="email"
             /></label>
@@ -126,7 +126,7 @@
               ><textarea
                 v-model="message"
                 required
-                class="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-white placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                class="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-hidden"
                 rows="4"
                 minlength="3"
                 maxlength="500"

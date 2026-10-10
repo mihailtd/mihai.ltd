@@ -3,14 +3,14 @@
     <!-- Background Gradient -->
     <div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
       <div
-        class="absolute left-1/2 top-0 h-[600px] w-full max-w-7xl -translate-x-1/2 rounded-full bg-blue-900/10 blur-[120px]"
+        class="absolute top-0 left-1/2 h-[600px] w-full max-w-7xl -translate-x-1/2 rounded-full bg-blue-900/10 blur-[120px]"
       ></div>
     </div>
 
     <div v-if="article">
       <!-- Hero Section -->
       <div
-        class="relative border-b border-white/5 bg-gradient-to-b from-transparent to-black/20 px-6 pb-16 pt-32"
+        class="relative border-b border-white/5 bg-linear-to-b from-transparent to-black/20 px-6 pt-32 pb-16"
       >
         <div class="mx-auto max-w-4xl text-center">
           <!-- Back Button -->
@@ -42,7 +42,7 @@
             class="mb-6 flex flex-wrap items-center justify-center gap-4 text-sm"
           >
             <span
-              class="rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-blue-300"
+              class="rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-xs font-medium tracking-wider text-blue-300 uppercase"
             >
               {{ formatType(article.type) }}
             </span>
@@ -53,13 +53,13 @@
           </div>
 
           <h1
-            class="mb-8 text-balance text-4xl font-extrabold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl"
+            class="mb-8 text-4xl leading-tight font-extrabold tracking-tight text-balance text-white md:text-6xl md:leading-none lg:text-7xl"
           >
             {{ article.title }}
           </h1>
 
           <p
-            class="mx-auto max-w-2xl text-balance text-xl font-light leading-relaxed text-gray-300"
+            class="mx-auto max-w-2xl text-xl leading-relaxed font-light text-balance text-gray-300"
           >
             {{ article.description }}
           </p>
@@ -71,11 +71,11 @@
         <!-- Radar Snapshot (tech_report entries only) -->
         <div
           v-if="article.stage"
-          class="mb-16 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
+          class="mb-16 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xs"
         >
           <div class="mb-4 flex items-center justify-between">
             <h3
-              class="text-sm font-semibold uppercase tracking-wider text-gray-400"
+              class="text-sm font-semibold tracking-wider text-gray-400 uppercase"
             >
               Radar Snapshot
             </h3>
@@ -177,7 +177,7 @@
 
             <p
               v-if="article.decisionReason"
-              class="border-t border-white/10 pt-3 text-xs italic leading-relaxed text-gray-400"
+              class="border-t border-white/10 pt-3 text-xs leading-relaxed text-gray-400 italic"
             >
               &ldquo;{{ article.decisionReason }}&rdquo;
             </p>
@@ -199,7 +199,7 @@
 
         <!-- Content -->
         <article
-          class="prose prose-lg prose-invert mx-auto max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-white prose-p:leading-relaxed prose-p:text-gray-300 prose-a:text-blue-400 prose-a:no-underline hover:prose-a:text-blue-300 hover:prose-a:underline prose-blockquote:rounded-r-lg prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-900/10 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:not-italic prose-blockquote:text-blue-200 prose-code:rounded prose-code:bg-blue-900/20 prose-code:px-1.5 prose-code:py-0.5 prose-code:text-blue-300 prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-xl prose-pre:border prose-pre:border-white/10 prose-pre:bg-gray-900/50 prose-li:text-gray-300 prose-li:marker:text-blue-500 prose-img:mx-auto prose-img:rounded-xl prose-img:border prose-img:border-white/10 prose-img:shadow-lg"
+          class="mx-auto prose prose-lg max-w-none prose-invert prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-white prose-p:leading-relaxed prose-p:text-gray-300 prose-a:text-blue-400 prose-a:no-underline prose-a:hover:text-blue-300 prose-a:hover:underline prose-blockquote:rounded-r-lg prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-900/10 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:text-blue-200 prose-blockquote:not-italic prose-code:rounded-sm prose-code:bg-blue-900/20 prose-code:px-1.5 prose-code:py-0.5 prose-code:text-blue-300 prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-xl prose-pre:border prose-pre:border-white/10 prose-pre:bg-gray-900/50 prose-li:text-gray-300 prose-li:marker:text-blue-500 prose-img:mx-auto prose-img:rounded-xl prose-img:border prose-img:border-white/10 prose-img:shadow-lg"
         >
           <ContentRenderer :value="article">
             <template #empty>
@@ -214,7 +214,7 @@
             class="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center"
           >
             <h3
-              class="text-sm font-semibold uppercase tracking-wider text-gray-400"
+              class="text-sm font-semibold tracking-wider text-gray-400 uppercase"
             >
               Related Topics
             </h3>

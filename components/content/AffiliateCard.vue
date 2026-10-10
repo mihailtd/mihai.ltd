@@ -3,14 +3,14 @@
     class="relative my-8 overflow-hidden rounded-3xl border transition-all duration-300"
     :class="[
       featured
-        ? 'border-blue-500/40 bg-gradient-to-b from-slate-900/90 via-slate-950/90 to-purple-950/40 shadow-2xl shadow-blue-900/20 ring-1 ring-blue-500/30'
+        ? 'border-blue-500/40 bg-linear-to-b from-slate-900/90 via-slate-950/90 to-purple-950/40 shadow-2xl ring-1 shadow-blue-900/20 ring-blue-500/30'
         : 'border-white/10 bg-slate-950/70 backdrop-blur-xl hover:border-white/20',
       compact ? 'p-5 sm:p-6' : 'p-6 sm:p-8',
     ]"
   >
     <!-- Ambient Glow Accent Orbs -->
     <div
-      class="pointer-events-none absolute -right-20 -top-20 -z-10 h-64 w-64 rounded-full bg-blue-600/15 blur-3xl"
+      class="pointer-events-none absolute -top-20 -right-20 -z-10 h-64 w-64 rounded-full bg-blue-600/15 blur-3xl"
     ></div>
     <div
       class="pointer-events-none absolute -bottom-20 -left-20 -z-10 h-64 w-64 rounded-full bg-purple-600/15 blur-3xl"
@@ -32,7 +32,7 @@
         <!-- Special Perk Highlight -->
         <span
           v-if="perk"
-          class="inline-flex items-center gap-1 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-3 py-1 text-xs font-bold text-yellow-300 shadow-sm"
+          class="inline-flex items-center gap-1 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-3 py-1 text-xs font-bold text-yellow-300 shadow-xs"
         >
           <span>🎁</span>
           {{ perk }}
@@ -41,7 +41,7 @@
 
       <!-- Small sponsored transparency indicator -->
       <span
-        class="text-[11px] font-medium uppercase tracking-wider text-gray-400"
+        class="text-[11px] font-medium tracking-wider text-gray-400 uppercase"
       >
         Recommended Tool
       </span>
@@ -91,7 +91,9 @@
         </div>
 
         <!-- Description / Personal Verdict -->
-        <div class="mt-4 text-sm leading-relaxed text-gray-300 sm:text-base">
+        <div
+          class="mt-4 text-sm leading-relaxed text-gray-300 sm:text-base sm:leading-normal"
+        >
           <slot>
             <p>{{ description }}</p>
           </slot>
@@ -129,7 +131,7 @@
             :href="href"
             target="_blank"
             rel="sponsored noopener noreferrer"
-            class="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-blue-600/30 transition-all duration-300 hover:scale-[1.02] hover:shadow-blue-500/50 active:scale-[0.98]"
+            class="group inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-blue-600 via-indigo-600 to-purple-600 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-blue-600/30 transition-all duration-300 hover:scale-[1.02] hover:shadow-blue-500/50 active:scale-[0.98]"
           >
             <span>{{ ctaText || "Explore " + name }}</span>
             <svg
@@ -163,7 +165,7 @@
         v-if="bannerImage && !compact"
         class="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900/80 shadow-2xl lg:col-span-5"
       >
-        <div class="aspect-[16/10] w-full overflow-hidden">
+        <div class="aspect-16/10 w-full overflow-hidden">
           <img
             :src="bannerImage"
             :alt="`${name} preview`"

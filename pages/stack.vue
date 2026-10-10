@@ -1,11 +1,11 @@
 <template>
-  <main class="relative min-h-screen overflow-hidden pb-20 pt-24">
+  <main class="relative min-h-screen overflow-hidden pt-24 pb-20">
     <!-- Ambient Background Glow -->
     <div
-      class="pointer-events-none absolute left-0 top-0 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/4 rounded-full bg-blue-600/15 blur-[140px]"
+      class="pointer-events-none absolute top-0 left-0 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/4 rounded-full bg-blue-600/15 blur-[140px]"
     ></div>
     <div
-      class="pointer-events-none absolute right-0 top-40 -z-10 h-[500px] w-[500px] translate-x-1/3 rounded-full bg-purple-600/15 blur-[140px]"
+      class="pointer-events-none absolute top-40 right-0 -z-10 h-[500px] w-[500px] translate-x-1/3 rounded-full bg-purple-600/15 blur-[140px]"
     ></div>
 
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -13,7 +13,7 @@
       <div class="mb-12 border-b border-white/10 pb-10">
         <div class="max-w-3xl">
           <div
-            class="mb-3 inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-blue-300"
+            class="mb-3 inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-3.5 py-1 text-xs font-semibold tracking-wider text-blue-300 uppercase"
           >
             <span>🛠️</span>
             <span>Tools & Recommendations</span>
@@ -23,7 +23,7 @@
           >
             Tech Stack & <br />
             <span
-              class="bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent"
+              class="bg-linear-to-r from-blue-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent"
             >
               Recommended Tools
             </span>
@@ -130,10 +130,10 @@
             <button
               v-for="cat in categories"
               :key="cat.value"
-              class="rounded-full border px-4 py-2 text-xs font-semibold backdrop-blur-sm transition-all duration-200"
+              class="rounded-full border px-4 py-2 text-xs font-semibold backdrop-blur-xs transition-all duration-200"
               :class="
                 selectedCategory === cat.value
-                  ? 'border-blue-500/50 bg-blue-600/25 text-blue-200 shadow-lg shadow-blue-600/20 ring-1 ring-blue-500/30'
+                  ? 'border-blue-500/50 bg-blue-600/25 text-blue-200 shadow-lg ring-1 shadow-blue-600/20 ring-blue-500/30'
                   : 'border-white/10 bg-white/5 text-gray-400 hover:border-white/20 hover:bg-white/10 hover:text-white'
               "
               @click="selectedCategory = cat.value"
@@ -158,11 +158,11 @@
               v-model="searchQuery"
               type="text"
               placeholder="Filter tools..."
-              class="w-full rounded-full border border-white/10 bg-white/5 py-2 pl-9 pr-4 text-xs text-white placeholder-gray-500 backdrop-blur-md focus:border-blue-500/50 focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-blue-500/30"
+              class="w-full rounded-full border border-white/10 bg-white/5 py-2 pr-4 pl-9 text-xs text-white placeholder-gray-500 backdrop-blur-md focus:border-blue-500/50 focus:bg-white/10 focus:ring-1 focus:ring-blue-500/30 focus:outline-hidden"
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="pointer-events-none absolute left-3 top-2.5 h-3.5 w-3.5 text-gray-400"
+              class="pointer-events-none absolute top-2.5 left-3 h-3.5 w-3.5 text-gray-400"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -187,7 +187,7 @@
           <div
             v-for="tool in filteredTools"
             :key="tool.name"
-            class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-gray-900/40 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/30 hover:bg-gray-800/60 hover:shadow-xl hover:shadow-blue-900/10"
+            class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-gray-900/40 p-6 backdrop-blur-xs transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/30 hover:bg-gray-800/60 hover:shadow-xl hover:shadow-blue-900/10"
           >
             <div>
               <!-- Top Row: Icon, Name & Category Badge -->
@@ -281,20 +281,22 @@
 
       <!-- Bottom Cross-Link to Tech Radar -->
       <section
-        class="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-blue-950/40 via-slate-900/60 to-purple-950/40 p-8 text-center backdrop-blur-xl md:p-12"
+        class="relative overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-blue-950/40 via-slate-900/60 to-purple-950/40 p-8 text-center backdrop-blur-xl md:p-12"
       >
         <div class="mx-auto max-w-2xl">
           <h3 class="mb-3 text-2xl font-bold text-white md:text-3xl">
             Want in-depth architectural evaluations?
           </h3>
-          <p class="mb-8 text-sm leading-relaxed text-gray-300 md:text-base">
+          <p
+            class="mb-8 text-sm leading-relaxed text-gray-300 md:text-base md:leading-normal"
+          >
             Check out my interactive ThoughtWorks-style Tech Radar with 55+
             frameworks, platforms, and methodologies analyzed across assess,
             trial, adopt, and hold stages.
           </p>
           <NuxtLink
             to="/radar"
-            class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50"
+            class="inline-flex items-center gap-2 rounded-full bg-linear-to-r from-blue-600 to-purple-600 px-8 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-600/30 transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50"
           >
             <span>Explore Tech Radar</span>
             <svg

@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import tailwindcss from "@tailwindcss/vite";
 
 const isDev = process.env.NODE_ENV !== "production";
 
@@ -6,7 +7,6 @@ export default defineNuxtConfig({
   compatibilityDate: "2026-08-08",
   devtools: { enabled: isDev },
   modules: [
-    "@nuxtjs/tailwindcss",
     "@nuxtjs/turnstile",
     "@nuxt/image",
     "@nuxtjs/sitemap",
@@ -28,10 +28,8 @@ export default defineNuxtConfig({
       "rehype-katex": {},
     },
   },
-  postcss: {
-    plugins: {
-      "tailwindcss/nesting": false,
-    },
+  vite: {
+    plugins: [tailwindcss()],
   },
   turnstile: {
     siteKey: "0x4AAAAAAAUBxBNAPgRBo5hj",

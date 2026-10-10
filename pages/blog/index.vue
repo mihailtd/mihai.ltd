@@ -1,11 +1,11 @@
 <template>
-  <main class="relative min-h-screen overflow-hidden pb-16 pt-24">
+  <main class="relative min-h-screen overflow-hidden pt-24 pb-16">
     <!-- Background Ambient Glow -->
     <div
-      class="pointer-events-none absolute left-0 top-0 -z-10 h-[500px] w-[500px] translate-x-[-50%] translate-y-[-20%] rounded-full bg-blue-600 opacity-20 blur-[120px]"
+      class="pointer-events-none absolute top-0 left-0 -z-10 h-[500px] w-[500px] translate-x-[-50%] translate-y-[-20%] rounded-full bg-blue-600 opacity-20 blur-[120px]"
     ></div>
     <div
-      class="pointer-events-none absolute right-0 top-40 -z-10 h-[400px] w-[400px] translate-x-[20%] rounded-full bg-purple-600 opacity-10 blur-[100px]"
+      class="pointer-events-none absolute top-40 right-0 -z-10 h-[400px] w-[400px] translate-x-[20%] rounded-full bg-purple-600 opacity-10 blur-[100px]"
     ></div>
 
     <!-- Header Section -->
@@ -18,7 +18,7 @@
             class="mb-6 text-5xl font-extrabold tracking-tight text-white md:text-7xl"
           >
             <span
-              class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+              class="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
               >Insights</span
             >
             & <br />
@@ -35,7 +35,7 @@
           <!-- All Insights Pill -->
           <button
             type="button"
-            class="rounded-full border px-4 py-2 text-xs font-medium backdrop-blur-sm transition-all duration-300 sm:px-5 sm:py-2.5 sm:text-sm"
+            class="rounded-full border px-4 py-2 text-xs font-medium backdrop-blur-xs transition-all duration-300 sm:px-5 sm:py-2.5 sm:text-sm"
             :class="
               isAllTypesActive
                 ? 'border-blue-500/50 bg-blue-600/25 text-blue-200 shadow-[0_0_20px_rgba(37,99,235,0.25)] ring-1 ring-blue-500/30'
@@ -61,7 +61,7 @@
             v-for="type in individualTypes"
             :key="type.value"
             type="button"
-            class="group inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-medium backdrop-blur-sm transition-all duration-300 sm:px-5 sm:py-2.5 sm:text-sm"
+            class="group inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-medium backdrop-blur-xs transition-all duration-300 sm:px-5 sm:py-2.5 sm:text-sm"
             :class="
               isTypeSelected(type.value)
                 ? 'border-blue-500/50 bg-blue-600/25 text-blue-200 shadow-[0_0_20px_rgba(37,99,235,0.25)] ring-1 ring-blue-500/30'
@@ -129,7 +129,7 @@
               v-model="searchInput"
               type="text"
               placeholder="Search by keyword, technology, tag, or title (e.g. docker, agent, architecture)..."
-              class="w-full rounded-2xl border border-white/10 bg-white/5 py-4 pl-12 pr-28 text-base text-white placeholder-gray-500 backdrop-blur-md transition-all duration-300 focus:border-blue-500/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+              class="w-full rounded-2xl border border-white/10 bg-white/5 py-4 pr-28 pl-12 text-base text-white placeholder-gray-500 backdrop-blur-md transition-all duration-300 focus:border-blue-500/50 focus:bg-white/10 focus:ring-2 focus:ring-blue-500/20 focus:outline-hidden"
               @keydown.esc="clearSearch"
             />
 
@@ -176,7 +176,7 @@
             <div
               v-for="topic in selectedTopics"
               :key="`active-${topic}`"
-              class="inline-flex items-center gap-1.5 rounded-full border border-blue-500/40 bg-blue-500/25 px-3 py-1 font-semibold text-blue-200 shadow-sm transition-all"
+              class="inline-flex items-center gap-1.5 rounded-full border border-blue-500/40 bg-blue-500/25 px-3 py-1 font-semibold text-blue-200 shadow-xs transition-all"
             >
               <span>#{{ topic }}</span>
               <button
@@ -279,12 +279,12 @@
           v-for="article in paginatedArticles"
           :key="article.id"
           :to="`/blog/${article.path?.split('/').pop()}`"
-          class="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-gray-900/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-blue-500/30 hover:bg-gray-800/60 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]"
+          class="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-gray-900/40 backdrop-blur-xs transition-all duration-300 hover:-translate-y-2 hover:border-blue-500/30 hover:bg-gray-800/60 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]"
         >
           <!-- Image -->
-          <div class="relative aspect-[16/10] w-full overflow-hidden">
+          <div class="relative aspect-16/10 w-full overflow-hidden">
             <div
-              class="absolute inset-0 z-10 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60"
+              class="absolute inset-0 z-10 bg-linear-to-t from-gray-900 via-transparent to-transparent opacity-60"
             ></div>
             <NuxtImg
               v-if="article.cover_image"
@@ -309,9 +309,9 @@
             </div>
 
             <!-- Floating Type & Status Badges -->
-            <div class="absolute left-4 top-4 z-20 flex items-center gap-2">
+            <div class="absolute top-4 left-4 z-20 flex items-center gap-2">
               <span
-                class="rounded-full border border-white/10 bg-black/40 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white backdrop-blur-md"
+                class="rounded-full border border-white/10 bg-black/40 px-3 py-1 text-xs font-semibold tracking-wide text-white uppercase backdrop-blur-md"
               >
                 {{ formatType(article.type) }}
               </span>
@@ -345,7 +345,7 @@
             </div>
 
             <h2
-              class="mb-3 text-2xl font-bold leading-tight text-white transition-colors group-hover:text-blue-200"
+              class="mb-3 text-2xl leading-tight font-bold text-white transition-colors group-hover:text-blue-200"
             >
               {{ article.title }}
             </h2>
@@ -364,7 +364,7 @@
                 v-for="tag in article.tags?.slice(0, 3)"
                 :key="tag"
                 type="button"
-                class="inline-flex items-center gap-1 rounded px-2 py-1 text-xs font-medium transition-colors"
+                class="inline-flex items-center gap-1 rounded-sm px-2 py-1 text-xs font-medium transition-colors"
                 :class="
                   isTopicSelected(tag)
                     ? 'bg-blue-500/30 text-blue-200 ring-1 ring-blue-500/40'
@@ -451,7 +451,7 @@
           <template v-for="(p, idx) in visiblePages" :key="idx">
             <span
               v-if="p === '...'"
-              class="select-none px-2 py-1 text-sm font-medium text-gray-500"
+              class="px-2 py-1 text-sm font-medium text-gray-500 select-none"
             >
               …
             </span>

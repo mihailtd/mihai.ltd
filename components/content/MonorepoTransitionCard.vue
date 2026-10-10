@@ -70,7 +70,7 @@
     >
       <!-- Zone 1: Native Workspaces -->
       <div
-        class="relative flex flex-col justify-between overflow-hidden rounded-2xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/20 via-slate-900/60 to-transparent p-6 shadow-lg"
+        class="relative flex flex-col justify-between overflow-hidden rounded-2xl border border-emerald-500/30 bg-linear-to-br from-emerald-950/20 via-slate-900/60 to-transparent p-6 shadow-lg"
       >
         <div>
           <div class="mb-4 flex items-center justify-between">
@@ -145,7 +145,7 @@
 
       <!-- Zone 2: Dedicated Monorepo Engines -->
       <div
-        class="relative flex flex-col justify-between overflow-hidden rounded-2xl border border-blue-500/30 bg-gradient-to-br from-blue-950/25 via-slate-900/60 to-purple-950/20 p-6 shadow-lg"
+        class="relative flex flex-col justify-between overflow-hidden rounded-2xl border border-blue-500/30 bg-linear-to-br from-blue-950/25 via-slate-900/60 to-purple-950/20 p-6 shadow-lg"
       >
         <div>
           <div class="mb-4 flex items-center justify-between">

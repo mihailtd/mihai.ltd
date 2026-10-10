@@ -31,7 +31,7 @@
             <span class="text-xs font-bold text-fuchsia-300">ruff format</span>
           </div>
           <span
-            class="rounded bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-400"
+            class="rounded-sm bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-400"
             >99.9% Parity</span
           >
         </div>
@@ -60,7 +60,7 @@
             >
           </div>
           <span
-            class="rounded bg-blue-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-blue-400"
+            class="rounded-sm bg-blue-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-blue-400"
             >Built-in</span
           >
         </div>
@@ -87,7 +87,7 @@
             <span class="text-xs font-bold text-fuchsia-300">ruff check</span>
           </div>
           <span
-            class="rounded bg-purple-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-purple-400"
+            class="rounded-sm bg-purple-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-purple-400"
             >800+ Rules</span
           >
         </div>
@@ -117,7 +117,7 @@
             >
           </div>
           <span
-            class="rounded bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-400"
+            class="rounded-sm bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-400"
             >Auto-Modernizer</span
           >
         </div>
@@ -147,7 +147,7 @@
             >
           </div>
           <span
-            class="rounded bg-sky-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-sky-400"
+            class="rounded-sm bg-sky-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-sky-400"
             >Zero Dead Code</span
           >
         </div>
@@ -176,7 +176,7 @@
             >
           </div>
           <span
-            class="rounded bg-indigo-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-indigo-400"
+            class="rounded-sm bg-indigo-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-indigo-400"
             >PEP 257</span
           >
         </div>
@@ -192,14 +192,14 @@
 
     <!-- The Astral Trilogy Banner -->
     <div
-      class="mt-4 rounded-2xl border border-fuchsia-500/20 bg-gradient-to-r from-fuchsia-950/40 via-purple-950/30 to-blue-950/40 p-4 backdrop-blur-md"
+      class="mt-4 rounded-2xl border border-fuchsia-500/20 bg-linear-to-r from-fuchsia-950/40 via-purple-950/30 to-blue-950/40 p-4 backdrop-blur-md"
     >
       <div
         class="flex flex-col justify-between gap-3 sm:flex-row sm:items-center"
       >
         <div>
           <div
-            class="text-xs font-bold uppercase tracking-wider text-fuchsia-300"
+            class="text-xs font-bold tracking-wider text-fuchsia-300 uppercase"
           >
             The Complete Astral Ecosystem
           </div>

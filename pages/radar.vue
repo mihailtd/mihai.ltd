@@ -1,13 +1,13 @@
 <template>
   <main
-    class="relative min-h-screen overflow-hidden pb-16 pt-24 text-yellow-100"
+    class="relative min-h-screen overflow-hidden pt-24 pb-16 text-yellow-100"
   >
     <!-- Ambient Background Glow -->
     <div
-      class="pointer-events-none absolute left-0 top-0 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/4 rounded-full bg-blue-600/15 blur-[140px]"
+      class="pointer-events-none absolute top-0 left-0 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/4 rounded-full bg-blue-600/15 blur-[140px]"
     ></div>
     <div
-      class="pointer-events-none absolute right-0 top-36 -z-10 h-[500px] w-[500px] translate-x-1/3 rounded-full bg-purple-600/15 blur-[140px]"
+      class="pointer-events-none absolute top-36 right-0 -z-10 h-[500px] w-[500px] translate-x-1/3 rounded-full bg-purple-600/15 blur-[140px]"
     ></div>
     <div
       class="pointer-events-none absolute bottom-20 left-1/3 -z-10 h-[400px] w-[400px] rounded-full bg-emerald-600/10 blur-[130px]"
@@ -20,7 +20,7 @@
       >
         <div>
           <div
-            class="mb-3 inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-blue-300"
+            class="mb-3 inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-3.5 py-1 text-xs font-semibold tracking-wider text-blue-300 uppercase"
           >
             <span class="h-2 w-2 animate-pulse rounded-full bg-blue-400"></span>
             Tech Strategy & Evaluation
@@ -30,7 +30,7 @@
           >
             Interactive
             <span
-              class="bg-gradient-to-r from-blue-400 via-purple-300 to-amber-300 bg-clip-text text-transparent"
+              class="bg-linear-to-r from-blue-400 via-purple-300 to-amber-300 bg-clip-text text-transparent"
               >Tech Radar</span
             >
           </h1>
@@ -139,7 +139,7 @@
           class="mb-3 flex flex-col justify-between gap-2 sm:flex-row sm:items-center"
         >
           <span
-            class="text-xs font-semibold uppercase tracking-wider text-gray-400"
+            class="text-xs font-semibold tracking-wider text-gray-400 uppercase"
           >
             Adoption Lifecycle Distribution
           </span>
@@ -171,7 +171,7 @@
             class="rounded-full border px-3 py-1.5 text-xs font-medium transition-all duration-200"
             :class="
               selectedStatus === 'all'
-                ? 'border-white/40 bg-white/15 text-white shadow-sm'
+                ? 'border-white/40 bg-white/15 text-white shadow-xs'
                 : 'border-white/10 text-gray-400 hover:border-white/20 hover:text-white'
             "
             @click="selectedStatus = 'all'"
@@ -189,7 +189,7 @@
             class="flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-all duration-200"
             :class="
               selectedStatus === segment.status
-                ? 'text-white shadow-sm'
+                ? 'text-white shadow-xs'
                 : 'border-white/10 text-gray-400 hover:border-white/20 hover:text-white'
             "
             :style="
@@ -252,7 +252,7 @@
             v-model="searchQuery"
             type="text"
             placeholder="Search technologies (e.g. Kubernetes, Vue, Python, DuckDB)..."
-            class="w-full rounded-xl border border-white/10 bg-black/40 py-2.5 pl-10 pr-9 text-sm text-white placeholder-gray-500 transition-colors focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            class="w-full rounded-xl border border-white/10 bg-black/40 py-2.5 pr-9 pl-10 text-sm text-white placeholder-gray-500 transition-colors focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-hidden"
           />
           <button
             v-if="searchQuery"
@@ -439,7 +439,7 @@
                       :alt="item.name"
                       class="h-full w-full object-contain"
                     />
-                    <span v-else class="text-xs font-bold uppercase text-white">
+                    <span v-else class="text-xs font-bold text-white uppercase">
                       {{ item.name.slice(0, 2) }}
                     </span>
                   </div>
@@ -629,7 +629,7 @@
         >
           <!-- Close button -->
           <button
-            class="absolute right-5 top-5 rounded-full p-2 text-gray-400 transition-colors hover:bg-white/10 hover:text-white"
+            class="absolute top-5 right-5 rounded-full p-2 text-gray-400 transition-colors hover:bg-white/10 hover:text-white"
             title="Close modal"
             @click="selectedTech = null"
           >
@@ -660,7 +660,7 @@
                 :alt="selectedTech.name"
                 class="h-full w-full object-contain"
               />
-              <span v-else class="text-base font-bold uppercase text-white">
+              <span v-else class="text-base font-bold text-white uppercase">
                 {{ selectedTech.name.slice(0, 2) }}
               </span>
             </div>
@@ -735,7 +735,7 @@
               <div class="flex items-center justify-between">
                 <span class="text-xs text-gray-400">Evaluation Stage</span>
                 <span
-                  class="text-xs font-semibold uppercase tracking-wider text-white"
+                  class="text-xs font-semibold tracking-wider text-white uppercase"
                 >
                   {{ getRadarStatusMeta(selectedTech.stage).label }}
                 </span>
@@ -794,7 +794,7 @@
             <!-- Decision Quote -->
             <div
               v-if="selectedTech.decisionReason"
-              class="rounded-xl border border-white/10 bg-slate-800/50 p-3.5 text-xs italic text-gray-300"
+              class="rounded-xl border border-white/10 bg-slate-800/50 p-3.5 text-xs text-gray-300 italic"
             >
               &ldquo;{{ selectedTech.decisionReason }}&rdquo;
             </div>
@@ -1355,7 +1355,7 @@ const tooltipFormatter = (rawParams: unknown): string => {
       : "";
 
   return `
-    <div class="bg-slate-900/95 p-4 rounded-2xl border border-slate-700 shadow-2xl backdrop-blur-xl w-80 max-w-full break-words">
+    <div class="bg-slate-900/95 p-4 rounded-2xl border border-slate-700 shadow-2xl backdrop-blur-xl w-80 max-w-full wrap-break-word">
       <div class="flex items-center gap-3 mb-3">
         ${logoImage}
         <div class="flex-1 min-w-0">
