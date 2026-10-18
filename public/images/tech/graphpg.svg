@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <title>graphpg</title>
+  <defs>
+    <linearGradient id="g" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4f8cc9"/>
+      <stop offset="1" stop-color="#d63aa0"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="32" cy="14" rx="20" ry="7" stroke="url(#g)" stroke-width="4"/>
+  <path d="M12 14v36c0 3.9 9 7 20 7s20-3.1 20-7V14" stroke="url(#g)" stroke-width="4"/>
+  <path d="M22 32l10-6 10 6v12l-10 6-10-6z" stroke="url(#g)" stroke-width="3" stroke-linejoin="round"/>
+  <circle cx="32" cy="26" r="3" fill="#d63aa0"/>
+  <circle cx="22" cy="32" r="3" fill="#7b6fc0"/>
+  <circle cx="42" cy="32" r="3" fill="#7b6fc0"/>
+  <circle cx="22" cy="44" r="3" fill="#4f8cc9"/>
+  <circle cx="42" cy="44" r="3" fill="#4f8cc9"/>
+  <circle cx="32" cy="50" r="3" fill="#d63aa0"/>
+</svg>

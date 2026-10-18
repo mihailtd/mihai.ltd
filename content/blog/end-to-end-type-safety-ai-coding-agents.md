@@ -66,7 +66,7 @@ The agent proposes, a human reads two lines, and the database applies them in a 
 
 ## From the database to GraphQL and OpenAPI
 
-The next link turns the schema into the API contract. A handful of tools read PostgreSQL's catalog and serve an API from it: [PostGraphile](https://postgraphile.org) and [Hasura](https://hasura.io) for GraphQL, [PostgREST](https://postgrest.org) for REST. I built [graphpg](https://mihailtd.github.io/graphpg/) to do both from one engine: one Rust binary that serves a GraphQL API and a REST API from the same schema, and writes the two contracts to files:
+The next link turns the schema into the API contract. A handful of tools read PostgreSQL's catalog and serve an API from it: [PostGraphile](https://postgraphile.org) and [Hasura](https://hasura.io) for GraphQL, [PostgREST](https://postgrest.org) for REST. We built [graphpg](https://mihailtd.github.io/graphpg/) in-house (and adopted it on our [technology radar](/blog/graphpg)) to do both from one engine: one Rust binary that serves a GraphQL API and a REST API from the same schema, and writes the two contracts to files:
 
 - `schema.graphql`, the GraphQL SDL, with every type, field, filter, order option and error code.
 - `openapi.json`, an OpenAPI 3.1 document, with every path, parameter, body and response, and `CHECK` constraints as JSON Schema keywords (`minLength`, `maximum`, `pattern`).
@@ -200,4 +200,4 @@ Two other gaps are worth keeping in mind:
 - **Agents are only as reliable as their definition of done.** Solution: one `check` command that regenerates the types and runs `tsc`, required to pass before the agent reports success.
 - **Function bodies written as strings sit outside the type chain.** Solution: use SQL-standard `RETURN` / `BEGIN ATOMIC` bodies, so PostgreSQL tracks the columns they read.
 
-The setup, the configuration and the full measurement are in the [end-to-end type safety guide](https://mihailtd.github.io/graphpg/docs/type-safety) of graphpg's documentation. If you want the story of why graphpg serves GraphQL and REST from one engine, I wrote that up in [Why GraphQL and REST Should Share One Engine](/blog/building-graphpg-graphql-and-rest-from-postgres).
+The setup, the configuration and the full measurement are in the [end-to-end type safety guide](https://mihailtd.github.io/graphpg/docs/type-safety) on the [graphpg documentation website](https://mihailtd.github.io/graphpg/). If you want the story of why graphpg serves GraphQL and REST from one engine, I wrote that up in [Why GraphQL and REST Should Share One Engine: What I Learned Building graphpg](/blog/building-graphpg-graphql-and-rest-from-postgres).
