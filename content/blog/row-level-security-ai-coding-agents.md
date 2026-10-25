@@ -1,17 +1,17 @@
 ---
-title: "Why Row-Level Security Is the Only Reliable Auth for AI-Built Apps"
-description: "Why AI coding agents routinely introduce data leaks in application-layer authorization, and how PostgreSQL Row-Level Security (RLS) turns authorization into an auditable data-layer barrier that no agent query can bypass."
+title: "Why Row-Level Security Is the Safest Place for Authorization in AI-Built Apps"
+description: "Why AI coding agents leave tenant filters out of queries, and how PostgreSQL Row-Level Security (RLS) moves authorization into the database, where one short policy covers every query and is easy to review."
 date: "2026-10-18"
 type: "blog_post"
 tags: ["postgresql", "security", "ai", "graphpg", "architecture"]
 cover_image: "/images/covers/row-level-security-ai-coding-agents.png"
 ---
 
-# Why Row-Level Security Is the Only Reliable Auth for AI-Built Apps
+# Why Row-Level Security Is the Safest Place for Authorization in AI-Built Apps
 
-_How many times has an AI coding agent written a flawless feature, only to leave out the tenant filter in the query?_
+_How many times has an AI coding agent written a feature that works, and left the tenant filter out of the query?_
 
-Ask an AI coding agent to add a new dashboard view or export endpoint. It reads your models, builds an expressive query, wires up the route, writes unit tests, and presents a clean diff. The tests pass and the feature works in development.
+Ask an AI coding agent to add a new dashboard view or export endpoint. It reads your models, writes the query, wires up the route, writes unit tests, and presents a clean diff. The tests pass and the feature works in development.
 
 Then you look closely at the database query:
 
@@ -26,13 +26,13 @@ The agent remembered to filter by status. It forgot to filter by `tenant_id` or 
 
 In a single-tenant development database with ten seed rows, that query behaves properly. In a multi-tenant staging or production cluster, it leaks every customer's medical records to whichever user called the endpoint.
 
-This is not a defect unique to language models; human developers make the same mistake under fatigue or tight deadlines. But coding agents make this error at machine speed across dozens of files. As a codebase expands from five tables to fifty, search recall degrades, and the probability of an agent missing a scoping filter in some obscure query approaches certainty.
+This is not a defect unique to language models; people make the same mistake under deadline. But an agent can repeat it across dozens of files in one session, and as a codebase grows from five tables to fifty, the odds that some query misses the scoping filter keep climbing.
 
-The solution is not prompting the agent to "remember security." The solution is moving the authorization boundary into the database engine itself using PostgreSQL Row-Level Security (RLS).
+Prompting the agent to "remember security" won't fix it. Moving authorization into the database with PostgreSQL Row-Level Security (RLS) will: the filter is applied whether the query asks for it or not.
 
 ---
 
-## The structural flaw of application-layer authorization
+## Why application-layer authorization breaks
 
 Most web applications enforce multi-tenancy and data ownership in the application layer:
 
@@ -40,11 +40,11 @@ Most web applications enforce multi-tenancy and data ownership in the applicatio
 2. The controller passes that context down through services, repositories, or resolvers.
 3. Every individual database query explicitly includes `WHERE tenant_id = context.tenant_id`.
 
-This model is structurally fragile because it requires **flawless discipline across every single read and write**.
+This model is fragile because every read and every write has to get it right.
 
 ![Application-layer authorization requires manual checks across fifty files; database Row-Level Security enforces authorization in one place](/images/blog/rls-vs-app-auth-poster.png)
 
-If an application exposes 80 database queries across its routes, resolvers, background workers, and search endpoints, authorization must succeed 80 times out of 80. A single missed `WHERE` clause in query 47 compromises the entire security posture of the product.
+If an application exposes 80 database queries across its routes, resolvers, background workers, and search endpoints, authorization must succeed 80 times out of 80. One missed `WHERE` clause in query 47 is enough to leak data.
 
 When AI coding agents author software, application-layer authorization breaks down for three specific reasons:
 
@@ -54,7 +54,7 @@ When an agent writes a new feature, it searches the repository for existing patt
 
 ### 2. Happy-path test generation
 
-Agents write tests for the code they just created. If an agent writes a query that lacks tenant scoping, its accompanying test seeds records for one user, queries the endpoint, and asserts that the records returned match what it seeded. The test suite passes with full line coverage while harboring a critical cross-tenant data leak.
+Agents write tests for the code they just created. If an agent writes a query that lacks tenant scoping, its accompanying test seeds records for one user, queries the endpoint, and asserts that the records returned match what it seeded. The tests pass with full line coverage, and the cross-tenant leak ships with them.
 
 ### 3. Imperative complexity vs declarative rules
 
@@ -93,7 +93,7 @@ If an AI coding agent writes an unfiltered query:
 SELECT id, name, department FROM documents;
 ```
 
-PostgreSQL does not execute an unfiltered table scan. It transparently rewrites the execution tree to:
+PostgreSQL adds the policies to the query, so it runs as if you had written:
 
 ```sql
 SELECT id, name, department FROM documents
@@ -101,15 +101,15 @@ WHERE tenant_id = current_setting('app.tenant_id', true)
   AND owner_id = current_setting('request.jwt.claim.sub', true);
 ```
 
-Even if the agent writes `DELETE FROM documents;` without a `WHERE` clause, the database deletes only the rows owned by the current session's subject in the current tenant. The agent cannot leak or destroy another customer's data because the database kernel prevents it.
+Even if the agent writes `DELETE FROM documents;` without a `WHERE` clause, the database deletes only the rows owned by the current session's subject in the current tenant. As long as the application connects as `authenticated`, no query the agent writes can reach another customer's rows.
 
 ---
 
 ## Auditing: one migration vs fifty files
 
-The greatest benefit for teams pairing with AI coding agents is **auditability**.
+For teams working with AI coding agents, the main gain is in review.
 
-When an agent submits a pull request with application-layer authorization, the human reviewer must inspect every changed route, controller, ORM invocation, and SQL builder across twenty files, verifying that:
+When an agent submits a pull request with application-layer authorization, the human reviewer must inspect every changed route, controller, ORM invocation, and SQL builder across every changed file, checking that:
 
 - The tenant context extracted in middleware reached the query.
 - The query builder joined the correct scoping table.
@@ -128,9 +128,9 @@ CREATE POLICY team_access_policy ON medical_records
   );
 ```
 
-The reviewer reads five lines of declarative SQL. If those five lines match your security specification, **every query the agent writes now or six months from now will adhere to that policy**.
+The reviewer reads five lines of SQL. If they match your security specification, **every query the agent writes, now or six months from now, follows that policy**.
 
-Language models also write declarative SQL policies with much higher precision than they maintain across dozens of imperative JavaScript or Python controller guards. Writing a constraint or a policy is a compact, self-contained task with decades of training data and formal relational logic behind it.
+In my experience, models also get a policy right more often than they keep dozens of controller guards consistent. A policy is short and self-contained; the guards are spread across files the agent may never open.
 
 ---
 
@@ -160,11 +160,11 @@ SELECT
   set_config('app.tenant_id', 'tenant-1', true);
 ```
 
-The third argument (`is_local = true`) instructs PostgreSQL to scope these settings strictly to the current transaction. When the transaction commits or rolls back, PostgreSQL discards the settings automatically. Connection pool poisoning is impossible because no session setting leaks into later pooled connections.
+The third argument (`is_local = true`) scopes these settings to the current transaction, and PostgreSQL discards them on commit or rollback. A pooled connection never carries one request's claims into the next.
 
-### Real-world test validation
+### What the tests check
 
-In graphpg's test suite ([`crates/graphpg/tests/rls_auth.rs`](https://github.com/mihailtd/graphpg/blob/main/crates/graphpg/tests/rls_auth.rs)), we verify this exact behavior against a live PostgreSQL 18 instance with two isolated tenants and medical departments:
+In graphpg's test suite ([`crates/graphpg/tests/rls_auth.rs`](https://github.com/mihailtd/graphpg/blob/main/crates/graphpg/tests/rls_auth.rs)), we check this against a real PostgreSQL database with two tenants and two departments:
 
 ```rust
 // A token for Alice in cardiology, tenant-1
@@ -197,20 +197,20 @@ Even though the GraphQL query requested all documents without filters:
 - Evan's cardiology documents in `acme-2` remain hidden.
 - Unauthenticated requests run as `anon` and see only public documents.
 
-The agent authored a query that looked like a security hole, and the database answered with complete tenant isolation.
+The query looked like a security hole, and the database returned only Alice's rows.
 
 ---
 
-## Defensive architecture: RLS plus end-to-end type safety
+## RLS and end-to-end type safety
 
-Row-Level Security solves authorization at the data boundary. In an earlier article, we covered how [End-to-End Type Safety](/blog/end-to-end-type-safety-ai-coding-agents) solves schema drift at the compile-time boundary.
+Row-Level Security covers who can see which rows. In [How End-to-End Type Safety Turns "Change It Everywhere" Into a List Your AI Agent Can Finish](/blog/end-to-end-type-safety-ai-coding-agents) I wrote about the other half: what happens when an agent changes the shape of the data.
 
-When you combine both patterns, you create a dual-barrier architecture for agentic development:
+The two checks catch different mistakes:
 
-1. **Compile-time barrier (Types):** PostgreSQL catalog changes regenerate GraphQL SDL and OpenAPI 3.1 contracts via graphpg. Code generators convert contracts into TypeScript types. If an agent changes a column name or omits a required input, `tsc` fails before the code ever runs.
-2. **Runtime barrier (RLS):** When the agent's code runs, PostgreSQL enforces tenant boundaries, ownership rules, and access control policies directly in the database kernel. If an agent generates an unfiltered query, the database limits the result set to the user's permitted rows.
+1. **Types, at build time.** A schema change regenerates the GraphQL SDL and the OpenAPI document, and from them the TypeScript types. If an agent renames a column or leaves out a required input, `tsc` fails before the code runs.
+2. **Policies, at run time.** When the code runs, PostgreSQL applies the tenant and ownership rules. An unfiltered query returns only the rows the user may see.
 
-Neither barrier requires trust in the model's memory, attention span, or prompt compliance.
+Neither depends on the agent remembering anything.
 
 ---
 
@@ -220,7 +220,7 @@ If you adopt RLS for agent-assisted projects, keep three operational practices i
 
 ### 1. Separate table owners from application roles
 
-PostgreSQL superusers and table owners bypass Row-Level Security by default. Ensure your application connects as an unprivileged login role (such as `authenticator`) that switches to `authenticated` or `anon`. Never run application queries as the database owner or superuser, or apply `ALTER TABLE ... FORCE ROW LEVEL SECURITY` if the owner must connect directly.
+PostgreSQL superusers and table owners bypass Row-Level Security by default. Make sure your application connects as an unprivileged login role (such as `authenticator`) that switches to `authenticated` or `anon`. Never run application queries as the database owner or superuser, or apply `ALTER TABLE ... FORCE ROW LEVEL SECURITY` if the owner must connect directly.
 
 ### 2. Combine PERMISSIVE and RESTRICTIVE policies
 
@@ -236,19 +236,19 @@ CREATE POLICY tenant_barrier ON documents
   USING (tenant_id = current_setting('app.tenant_id', true));
 ```
 
-PostgreSQL requires all `RESTRICTIVE` policies to pass alongside at least one `PERMISSIVE` policy. This prevents an overly broad permission policy from ever leaking records across tenant boundaries.
+A row is visible only when every `RESTRICTIVE` policy passes and at least one `PERMISSIVE` policy does. A permissive rule written too broadly still can't open rows in another tenant.
 
 ### 3. Index your policy columns
 
-Row-Level Security injects policy predicates into every table scan. If your policy checks `tenant_id` and `owner_id`, composite indexes covering `(tenant_id, owner_id)` ensure policy evaluation remains sub-millisecond even on tables with millions of rows.
+Row-Level Security adds the policy conditions to every query on the table. If your policy checks `tenant_id` and `owner_id`, composite indexes covering `(tenant_id, owner_id)` keep the added predicate an index lookup instead of a scan.
 
 ---
 
 ## Key takeaways
 
-- **Application-layer authorization is too fragile for AI coding agents.** Agents authoring dozens of queries will eventually miss a scoping filter or spread an unvalidated input.
-- **PostgreSQL Row-Level Security moves the boundary to the database kernel.** Unfiltered queries written by agents are transparently rewritten to include tenant and ownership rules.
-- **Reviewers audit declarative SQL policies with predictable effort.** Human reviewers inspect a five-line SQL policy once, rather than verifying fifty scattered controllers across pull requests.
-- **graphpg provides zero-drift RLS integration.** Session variables set per-transaction from verified JWT claims ensure seamless RLS enforcement across both GraphQL and REST.
+- **Application-layer authorization is too fragile for AI coding agents.** An agent writing dozens of queries will sooner or later miss a scoping filter.
+- **Row-Level Security moves the boundary into PostgreSQL.** An unfiltered query from an agent still returns only the rows the policies allow.
+- **Reviewers check one short policy instead of fifty controllers.** The policy applies to every query, including the ones written next month.
+- **graphpg sets the session from verified JWT claims on every request.** The same policies apply to GraphQL and REST.
 
 To learn more about configuring authentication and session settings in graphpg, explore the [Authentication and RLS Guide](https://mihailtd.github.io/graphpg/docs/authentication) and the [AI Agents Guide](https://mihailtd.github.io/graphpg/docs/ai-agents) on the [graphpg documentation website](https://mihailtd.github.io/graphpg/).

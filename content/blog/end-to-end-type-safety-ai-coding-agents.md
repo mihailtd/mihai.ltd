@@ -11,13 +11,13 @@ cover_image: "/images/covers/end-to-end-type-safety-ai-coding-agents.png"
 
 _How many times have you asked a coding agent to "rename this everywhere", and found the one place it missed a day later?_
 
-How many times have you asked a coding agent to "change this everywhere"? Rename a column, drop a field nobody uses, split `name` into `first_name` and `last_name`. The agent searches the repository, edits fourteen files, runs the tests, and tells you it is done. Then a screen nobody opened during the session breaks in staging, because the field was read through a string in a query, or a spread in a component, or a file the search pattern did not match.
+You ask a coding agent to change something everywhere: rename a column, drop a field nobody uses, split `name` into `first_name` and `last_name`. The agent searches the repository, edits fourteen files, runs the tests, and tells you it is done. Then a screen nobody opened during the session breaks in staging, because the field was read through a string in a query, or a spread in a component, or a file the search pattern did not match.
 
-In most cases the model is not the problem. Search is. "Find every use of `family`" is a recall problem, and on a large codebase text search has poor recall: the same word means different things in different files, the same field is spelled three ways across layers (`family`, `familyName`, `FAMILY_ASC`), and some uses are only visible at run time. A person misses places for the same reasons; an agent just does it faster and with more confidence.
+The problem is more often search than the model. "Find every use of `family`" is a recall problem, and on a large codebase text search has poor recall: the same word means different things in different files, the same field is spelled three ways across layers (`family`, `familyName`, `FAMILY_ASC`), and some uses are only visible at run time. A person misses places for the same reasons; an agent just does it faster and with more confidence.
 
-The fix is not a better search. Make every place that uses the field fail to compile once the field changes, so the type checker produces the list of places, and the agent works through the list instead of guessing where to look.
+A better search won't fix that. Instead, make every place that uses the field fail to compile once the field changes, so the type checker produces the list of places, and the agent works through the list instead of guessing where to look.
 
-That is what end-to-end type safety means in practice, and it matters more now that agents write a large share of the code.
+That is what end-to-end type safety means in practice, and it matters more when an agent makes the change.
 
 ---
 
@@ -30,11 +30,11 @@ End-to-end type safety means **one source of truth for the shape of your data, a
 In a typical stack that chain has four links:
 
 1. **The schema**, in the database (tables, columns, constraints).
-2. **The API contract**, a GraphQL SDL (Schema Definition Language, the text form of a GraphQL schema) and an OpenAPI 3.1 document for REST.
+2. **The API contract**, a GraphQL SDL and an OpenAPI 3.1 document for REST.
 3. **The client types**, generated TypeScript for every query, request and response.
 4. **The type checker**, `tsc` and your editor, which compare every use against those types.
 
-Most projects have links 3 and 4. The weak spot is link 2: a contract written by hand, or generated from server code that someone else wrote by hand, drifts from the database without anyone noticing. When the contract is generated _from_ the database, a migration is enough to update every type downstream.
+Many projects already have links 3 and 4. The weak spot is link 2: a contract written by hand, or generated from server code that someone else wrote by hand, drifts from the database without anyone noticing. When the contract is generated _from_ the database, a migration is enough to update every type downstream.
 
 ---
 
@@ -44,9 +44,9 @@ If the database is the source of truth, the schema language is SQL, or a thin la
 
 **SQL is declarative and compact.** A table states its columns, keys, relations and rules in a few lines, and says _what_ is allowed instead of _how_ to check it. `CHECK (length(body) BETWEEN 1 AND 2000)` or `REFERENCES authors (id)` is one line, and PostgreSQL enforces it on every write, from every client, including the ones an agent writes next month. The same rules spread across validation functions, resolvers and controllers take hundreds of lines, each one a place to get wrong.
 
-**Models write SQL well.** SQL has decades of public examples, documentation and answered questions behind it, so models have seen a lot of it. In my experience a schema migration is one of the more reliable things an agent produces, much more reliable than a hand-rolled data layer with the same rules.
+**Models write SQL well.** SQL has decades of public examples, documentation and answered questions behind it, so models have seen a lot of it. In my experience a schema migration is one of the more reliable things an agent produces, more reliable than a hand-rolled data layer with the same rules.
 
-**It is auditable.** Every schema change is a migration: a file a person reviews in a pull request before it runs. With [Drizzle](https://orm.drizzle.team) (a TypeScript ORM, Object-Relational Mapper, whose schema is plain TypeScript), the reviewer reads a small diff of the schema file, and `drizzle-kit generate` writes the SQL migration from it:
+**It is auditable.** Every schema change is a migration: a file a person reviews in a pull request before it runs. With [Drizzle](https://orm.drizzle.team), a TypeScript ORM, the reviewer reads a small diff of the schema file, and `drizzle-kit generate` writes the SQL migration from it:
 
 ```diff
  export const patients = pgTable("patients", {
@@ -60,7 +60,7 @@ If the database is the source of truth, the schema language is SQL, or a thin la
 ALTER TABLE "patients" RENAME COLUMN "family" TO "family_name";
 ```
 
-The agent proposes, a human reads two lines, and the database applies them in a transaction. Compare that with reviewing an agent's changes across a REST controller, a GraphQL resolver, two DTOs (Data Transfer Objects) and a mapper, all of which have to agree.
+The agent proposes, a human reads two lines, and the database applies them in a transaction. Compare that with reviewing an agent's changes across a REST controller, a GraphQL resolver, two DTOs and a mapper, all of which have to agree.
 
 ---
 
@@ -71,7 +71,7 @@ The next link turns the schema into the API contract. A handful of tools read Po
 - `schema.graphql`, the GraphQL SDL, with every type, field, filter, order option and error code.
 - `openapi.json`, an OpenAPI 3.1 document, with every path, parameter, body and response, and `CHECK` constraints as JSON Schema keywords (`minLength`, `maximum`, `pattern`).
 
-In development mode it watches the database for schema changes (DDL, Data Definition Language: `CREATE`, `ALTER`, `DROP`) and rewrites both files after each one. The files go in the repository, so a schema change and the contract it produces arrive in the same pull request.
+In development mode it watches the database for schema changes and rewrites both files after each one. The files go in the repository, so a schema change and the contract it produces arrive in the same pull request.
 
 From there, standard tools do the rest:
 
@@ -98,17 +98,17 @@ If your whole stack is TypeScript, tRPC or a Zod schema shared between server an
 
 ## What a rename looks like on a 177-table schema
 
-I wanted real numbers rather than a demo on three tables, so I ran the rename above on the largest schema I have: a FHIR R5 data model (FHIR is the HL7 standard for exchanging healthcare records) with 177 tables, modelled in Drizzle. Its SDL is 100,534 lines (4.3 MB) and its OpenAPI document 38 MB. The client was a small TypeScript project with one GraphQL query and one REST call reading `patients.family`. Everything ran on one workstation with graphpg 1.1.0 in development mode.
+I wanted real numbers rather than a demo on three tables, so I ran the rename above on the largest schema I have: a FHIR R5 data model (FHIR is the HL7 standard for exchanging healthcare records) with 177 tables, modelled in Drizzle. Its GraphQL schema runs to about 100,000 lines and its OpenAPI document to 38 MB. The client was a small TypeScript project with one GraphQL query and one REST call reading `patients.family`.
 
-| Step                                                | Time         |
-| :-------------------------------------------------- | :----------- |
-| Migration committed → `schema.graphql` rewritten    | 0.63 s       |
-| Migration committed → `openapi.json` rewritten      | 0.98 s       |
-| GraphQL Code Generator validates the queries        | 4.8 s        |
-| openapi-typescript writes the types (470,089 lines) | 5.3 to 6.1 s |
-| `tsc` (TypeScript 7) checks the project             | 0.3 s        |
+| Step                                             | Time         |
+| :----------------------------------------------- | :----------- |
+| Migration committed → `schema.graphql` rewritten | 0.63 s       |
+| Migration committed → `openapi.json` rewritten   | 0.98 s       |
+| GraphQL Code Generator validates the queries     | 4.8 s        |
+| openapi-typescript writes the types              | 5.3 to 6.1 s |
+| `tsc` checks the project                         | 0.3 s        |
 
-From `ALTER TABLE` to errors in the editor took under ten seconds, and almost all of it was code generation on an unusually large contract. A schema of twenty tables generates in a fraction of that.
+From `ALTER TABLE` to errors in the editor took under ten seconds, and almost all of it was code generation on an unusually large contract. Most schemas are far smaller.
 
 The GraphQL side failed at code generation, with the replacement in the message:
 
@@ -164,7 +164,7 @@ Commit the generated `schema.graphql` and `openapi.json`. In CI, regenerate them
 
 ## Where the chain stops
 
-Types cover what crosses the API. In the same experiment, one thing broke that no type caught, and it is worth knowing about.
+Types cover what crosses the API. In the same experiment, one thing broke that no type caught.
 
 The FHIR schema has a computed column, `Patient.fullName`, backed by a SQL function that reads `p.family`. After the rename its GraphQL type was still `String`, and every request that selected it failed at run time. The function was written the common way, with its body as a string:
 
@@ -183,7 +183,7 @@ CREATE FUNCTION patient_full_name(p patients) RETURNS text
   RETURN coalesce(p.family_name, '') || ', ' || coalesce(p.given, '');
 ```
 
-With that body, a rename rewrites the function on its own (I checked: it became `(p).surname` after a second rename), and dropping the column fails with `cannot drop column ... because other objects depend on it`. PL/pgSQL functions are always stored as text, so they need tests that run after each migration.
+With that body, a rename updates the function on its own, and dropping the column fails with `cannot drop column ... because other objects depend on it`. PL/pgSQL functions are always stored as text, so they need tests that run after each migration.
 
 Two other gaps are worth keeping in mind:
 
