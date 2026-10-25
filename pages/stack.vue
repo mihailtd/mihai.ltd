@@ -411,6 +411,16 @@ const tools: ToolItem[] = [
     cta: "Explore GitOps",
   },
   {
+    name: "graphpg",
+    category: "dev",
+    categoryLabel: "Database & API Engine",
+    description:
+      "Instant GraphQL and OpenAPI REST server for PostgreSQL written in Rust. Reads database catalogs at startup, enforces Row-Level Security, and compiles requests into single SQL queries with zero resolver boilerplate.",
+    url: "https://mihailtd.github.io/graphpg/",
+    logo: "/images/tech/graphpg.svg",
+    cta: "Explore graphpg",
+  },
+  {
     name: "VS Code",
     category: "dev",
     categoryLabel: "IDE & Code Editor",
