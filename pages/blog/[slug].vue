@@ -357,12 +357,88 @@ const formatDate = (date?: string) => {
   });
 };
 
+const siteUrl = "https://mihai.ltd";
+const pageUrl = computed(() => `${siteUrl}/blog/${route.params.slug}`);
+// crawlers and social cards need absolute image URLs; covers are stored as site paths
+const coverUrl = computed(() => {
+  const cover = article.value?.cover_image;
+  if (!cover) return `${siteUrl}/og-cover.jpg`;
+  return cover.startsWith("http") ? cover : `${siteUrl}${cover}`;
+});
+const publishedIso = computed(() =>
+  article.value?.date ? new Date(article.value.date).toISOString() : undefined,
+);
+
 useSeoMeta({
   title: () => article.value?.title || "Blog Post",
   description: () => article.value?.description,
   ogTitle: () => article.value?.title,
   ogDescription: () => article.value?.description,
-  ogImage: () => article.value?.cover_image,
+  ogType: "article",
+  ogUrl: () => pageUrl.value,
+  ogImage: () => coverUrl.value,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  ogImageAlt: () => article.value?.title,
+  articlePublishedTime: () => publishedIso.value,
+  articleAuthor: [siteUrl],
+  articleTag: () => article.value?.tags ?? [],
   twitterCard: "summary_large_image",
+  twitterImage: () => coverUrl.value,
 });
+
+// canonical URL and BlogPosting structured data: date, author and image in search results
+useHead(() => ({
+  link: [{ rel: "canonical", href: pageUrl.value }],
+  script: article.value
+    ? [
+        {
+          type: "application/ld+json",
+          innerHTML: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              headline: article.value.title,
+              description: article.value.description,
+              image: [coverUrl.value],
+              datePublished: publishedIso.value,
+              keywords: (article.value.tags ?? []).join(", "),
+              mainEntityOfPage: pageUrl.value,
+              url: pageUrl.value,
+              author: { "@type": "Person", name: "Mihai Farcas", url: siteUrl },
+              publisher: {
+                "@type": "Person",
+                name: "Mihai Farcas",
+                url: siteUrl,
+              },
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: siteUrl,
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Blog",
+                  item: `${siteUrl}/blog`,
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: article.value.title,
+                  item: pageUrl.value,
+                },
+              ],
+            },
+          ]),
+        },
+      ]
+    : [],
+}));
 </script>

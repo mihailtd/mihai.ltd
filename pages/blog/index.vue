@@ -282,7 +282,8 @@
           class="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-gray-900/40 backdrop-blur-xs transition-all duration-300 hover:-translate-y-2 hover:border-blue-500/30 hover:bg-gray-800/60 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]"
         >
           <!-- Image -->
-          <div class="relative aspect-16/10 w-full overflow-hidden">
+          <!-- covers are 1200x630: the same ratio here shows them uncropped -->
+          <div class="relative aspect-[1200/630] w-full overflow-hidden">
             <div
               class="absolute inset-0 z-10 bg-linear-to-t from-gray-900 via-transparent to-transparent opacity-60"
             ></div>
