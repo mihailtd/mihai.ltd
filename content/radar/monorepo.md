@@ -98,7 +98,7 @@ When your entire monorepo lives within a single language ecosystem, your tooling
 
 For pure TypeScript/JavaScript monorepos (e.g., Next.js/Nuxt web apps, Node/Fastify microservices, shared UI components, shared TS schemas):
 
-- **Turborepo** is the recommended default. It is lightweight, configuration-minimal (`turbo.json`), written in Rust, and focuses squarely on fast caching and task orchestration. It integrates seamlessly with Vercel and self-hosted remote caches without altering how your packages build.
+- **Turborepo** is the recommended default. It is lightweight, configuration-minimal (`turbo.json`), written in Rust, and focuses squarely on fast caching and task orchestration. It works with Vercel and self-hosted remote caches without altering how your packages build.
 - **Nx** is a heavier, enterprise-grade alternative. It provides deep AST analysis, project visualizers, and code generators. However, it introduces significant abstraction that can feel intrusive for teams wanting standard build scripts.
 
 ### Scenario B: Pure Python

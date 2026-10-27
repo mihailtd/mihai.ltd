@@ -199,7 +199,7 @@
 
         <!-- Content -->
         <article
-          class="mx-auto prose prose-lg max-w-none prose-invert prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-white prose-p:leading-relaxed prose-p:text-gray-300 prose-a:text-blue-400 prose-a:no-underline prose-a:hover:text-blue-300 prose-a:hover:underline prose-blockquote:rounded-r-lg prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-900/10 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:text-blue-200 prose-blockquote:not-italic prose-code:rounded-sm prose-code:bg-blue-900/20 prose-code:px-1.5 prose-code:py-0.5 prose-code:text-blue-300 prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-xl prose-pre:border prose-pre:border-white/10 prose-pre:bg-gray-900/50 prose-li:text-gray-300 prose-li:marker:text-blue-500 prose-img:mx-auto prose-img:rounded-xl prose-img:border prose-img:border-white/10 prose-img:shadow-lg"
+          class="mx-auto prose prose-lg max-w-none prose-invert prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-white prose-p:leading-relaxed prose-p:text-gray-300 prose-a:text-blue-400 prose-a:underline prose-a:decoration-blue-400/50 prose-a:underline-offset-2 prose-a:hover:text-blue-300 prose-blockquote:rounded-r-lg prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-900/10 prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:text-blue-200 prose-blockquote:not-italic prose-code:rounded-sm prose-code:bg-blue-900/20 prose-code:px-1.5 prose-code:py-0.5 prose-code:text-blue-300 prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-xl prose-pre:border prose-pre:border-white/10 prose-pre:bg-gray-900/50 prose-li:text-gray-300 prose-li:marker:text-blue-500 prose-img:mx-auto prose-img:rounded-xl prose-img:border prose-img:border-white/10 prose-img:shadow-lg"
         >
           <ContentRenderer :value="article">
             <template #empty>
@@ -357,12 +357,88 @@ const formatDate = (date?: string) => {
   });
 };
 
+const siteUrl = "https://mihai.ltd";
+const pageUrl = computed(() => `${siteUrl}/blog/${route.params.slug}`);
+// crawlers and social cards need absolute image URLs; covers are stored as site paths
+const coverUrl = computed(() => {
+  const cover = article.value?.cover_image;
+  if (!cover) return `${siteUrl}/og-cover.jpg`;
+  return cover.startsWith("http") ? cover : `${siteUrl}${cover}`;
+});
+const publishedIso = computed(() =>
+  article.value?.date ? new Date(article.value.date).toISOString() : undefined,
+);
+
 useSeoMeta({
   title: () => article.value?.title || "Blog Post",
   description: () => article.value?.description,
   ogTitle: () => article.value?.title,
   ogDescription: () => article.value?.description,
-  ogImage: () => article.value?.cover_image,
+  ogType: "article",
+  ogUrl: () => pageUrl.value,
+  ogImage: () => coverUrl.value,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  ogImageAlt: () => article.value?.title,
+  articlePublishedTime: () => publishedIso.value,
+  articleAuthor: [siteUrl],
+  articleTag: () => article.value?.tags ?? [],
   twitterCard: "summary_large_image",
+  twitterImage: () => coverUrl.value,
 });
+
+// canonical URL and BlogPosting structured data: date, author and image in search results
+useHead(() => ({
+  link: [{ rel: "canonical", href: pageUrl.value }],
+  script: article.value
+    ? [
+        {
+          type: "application/ld+json",
+          innerHTML: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              headline: article.value.title,
+              description: article.value.description,
+              image: [coverUrl.value],
+              datePublished: publishedIso.value,
+              keywords: (article.value.tags ?? []).join(", "),
+              mainEntityOfPage: pageUrl.value,
+              url: pageUrl.value,
+              author: { "@type": "Person", name: "Mihai Farcas", url: siteUrl },
+              publisher: {
+                "@type": "Person",
+                name: "Mihai Farcas",
+                url: siteUrl,
+              },
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: siteUrl,
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Blog",
+                  item: `${siteUrl}/blog`,
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: article.value.title,
+                  item: pageUrl.value,
+                },
+              ],
+            },
+          ]),
+        },
+      ]
+    : [],
+}));
 </script>

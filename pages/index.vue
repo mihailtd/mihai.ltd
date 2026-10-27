@@ -112,7 +112,7 @@
             <p class="pb-2 text-sm text-pretty text-gray-300">
               {{ project.description }}
             </p>
-            <p class="text-xs text-gray-500">
+            <p class="text-xs text-gray-400">
               {{ project.tech }}
             </p>
             <div class="flex gap-2 pt-2">
@@ -156,7 +156,7 @@
             <p class="pb-2 text-sm text-gray-300">
               {{ client.subtitle }}
             </p>
-            <p class="text-xs text-gray-500">
+            <p class="text-xs text-gray-400">
               {{ client.tech }}
             </p>
             <div class="flex gap-2 pt-2">
@@ -424,7 +424,7 @@ useHead({
           name: "INNOVI PRO",
           url: "https://innovi.pro",
           description:
-            "Specialized consulting in Enterprise-Grade Architecture and Autonomous AI Agents",
+            "Specialized consulting in software architecture and autonomous AI agents",
           provider: {
             "@type": "Person",
             name: "Mihai Farcas",
@@ -533,7 +533,7 @@ const featuredProjects = [
   {
     title: "INNOVI PRO",
     description:
-      "Through INNOVI PRO, I offer specialized consulting in Enterprise-Grade Architecture and the development of Autonomous AI Agents. I help organizations navigate the complexities of modern software design, ensuring their systems are secure, scalable, and ready for the future of AI-driven automation.",
+      "Through INNOVI PRO, I offer specialized consulting in software architecture and the development of Autonomous AI Agents. I help organizations navigate the complexities of modern software design, ensuring their systems are secure, scalable, and ready for the future of AI-driven automation.",
     logo: "/innovi_pro_logo.png",
     logoClass: "group-hover:scale-110",
     tech: "Software Architecture, AI & Automation Solutions, n8n Automation",
@@ -628,7 +628,7 @@ const topBooks = [
     cover: "/images/book_covers/barking-up-the-wrong-tree.webp",
     author: "Eric Barker",
     summary:
-      "A thought-provoking book that challenges conventional wisdom about success. Rather than offering cookie-cutter advice, Barker delves into the surprising science behind achievement.",
+      "A thought-provoking book that challenges conventional wisdom about success. Rather than offering cookie-cutter advice, Barker digs into the surprising science behind achievement.",
   },
   {
     slug: "building-evolutionary-architectures",

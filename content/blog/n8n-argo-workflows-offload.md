@@ -219,7 +219,7 @@ Things this lab did not test: cancelling an n8n execution while its Argo job run
 
 ---
 
-::affiliate-card{name="n8n" tagline="Fair-Code Workflow Automation & Agentic AI Platform" badge="Creator Perk" perk="Start Free Trial or Deploy 100% Free Self-Hosted" href="https://n8n.partnerlinks.io/ltd" ctaText="Try n8n Cloud (Free Trial)" secondaryHref="https://docs.n8n.io/" secondaryText="Documentation" logo="/images/tech/n8n.svg" bannerImage="/images/partners/n8n-banner.svg" bannerCaption="Visual Workflow Canvas • Native LangChain Agents • Model Context Protocol (MCP)" rating="5.0" features="Zero per-task execution tax,Native LangChain & Agentic AI nodes,Full JavaScript & Python code execution,100% self-hostable on Docker & K8s,400+ pre-built integrations" :featured="true"}
+::affiliate-card{name="n8n" tagline="Fair-Code Workflow Automation & Agentic AI Platform" badge="Creator Perk" perk="Start Free Trial or Self-Host for Free" href="https://n8n.partnerlinks.io/ltd" ctaText="Try n8n Cloud (Free Trial)" secondaryHref="https://docs.n8n.io/" secondaryText="Documentation" logo="/images/tech/n8n.svg" bannerImage="/images/partners/n8n-banner.svg" bannerCaption="Visual Workflow Canvas • Native LangChain Agents • Model Context Protocol (MCP)" rating="5.0" features="Zero per-task execution tax,Native LangChain & Agentic AI nodes,Full JavaScript & Python code execution,Self-hostable on Docker & K8s,400+ pre-built integrations" :featured="true"}
 
 ---
 

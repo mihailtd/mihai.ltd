@@ -68,7 +68,7 @@ Despite Bun's incredible benchmarks, we maintain a clear architectural separatio
 
 ### 1. Ecosystem Compatibility & Native Node Addons
 
-While Bun achieves high Node.js API compatibility, edge cases remain with complex native C++ / N-API addons, obscure Node internal streams, and specialized enterprise libraries. In mission-critical production environments, **Node.js**'s decade-long track record of battle-tested stability remains indispensable.
+While Bun achieves high Node.js API compatibility, edge cases remain with complex native C++ / N-API addons, obscure Node internal streams, and specialized enterprise libraries. In mission-critical production environments, **Node.js**'s decade-long production track record remains indispensable.
 
 ### 2. Monorepo Maturity & Ecosystem Tooling
 

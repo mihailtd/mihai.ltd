@@ -100,7 +100,7 @@ On local macOS, Linux, and Windows workstations, K3s is the default engine embed
 
 ### GitOps Testing with ArgoCD and Flux
 
-Because K3s is 100% CNCF certified, declarative GitOps operators like **[ArgoCD](/blog/argocd)** and **[Flux](/blog/flux)** run natively on K3s clusters without requiring custom patching. Developers can test complex deployment rollouts, automated syncs, and Helm chart releases locally on K3s before pushing to staging.
+Because K3s is a CNCF-certified Kubernetes distribution, declarative GitOps operators like **[ArgoCD](/blog/argocd)** and **[Flux](/blog/flux)** run natively on K3s clusters without requiring custom patching. Developers can test complex deployment rollouts, automated syncs, and Helm chart releases locally on K3s before pushing to staging.
 
 ---
 

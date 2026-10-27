@@ -137,7 +137,7 @@
             <button
               type="submit"
               :disabled="pending"
-              class="rounded-full bg-orange-500 px-6 py-2 text-lg font-bold text-white transition-all duration-300 hover:bg-orange-600 hover:shadow-lg hover:shadow-orange-500/20 disabled:cursor-not-allowed disabled:opacity-50"
+              class="rounded-full bg-orange-700 px-6 py-2 text-lg font-bold text-white transition-all duration-300 hover:bg-orange-800 hover:shadow-lg hover:shadow-orange-500/20 disabled:cursor-not-allowed disabled:opacity-50"
             >
               Send message
             </button>
@@ -150,7 +150,7 @@
             I just want to say hi.
           </h2>
           <p class="mb-6 text-gray-400">
-            The best way to engage with me casually or discuss my videos is via
+            The easiest way to reach me casually or discuss my videos is via
             social media.
           </p>
           <div class="flex justify-center gap-6">
@@ -195,7 +195,7 @@
 
         <!-- 4. The "No-Go" Note -->
         <div class="border-t border-white/5 pt-8">
-          <p class="text-sm text-gray-500">
+          <p class="text-sm text-gray-400">
             Please note: Due to volume, I cannot offer free code debugging via
             email. Please leave a comment on the relevant YouTube video or
             article.

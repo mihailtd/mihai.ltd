@@ -39,8 +39,8 @@ For years, commercial SaaS integration platforms like **Zapier** and **Make (for
 
 On our Tech Radar, **n8n has earned an unconditional Adopt**. By combining a fair-code, self-hostable core with enterprise queue scalability, native JavaScript/Python code execution, and cutting-edge **Agentic AI and Model Context Protocol (MCP)** integration, n8n has become our foundational platform for both internal operations and production AI agent orchestration.
 
-::affiliate-card{name="n8n" tagline="Fair-Code Workflow Automation & Agentic AI Platform" badge="n8n Creator & Technical Writer" perk="Start Free Trial or Deploy 100% Free Self-Hosted" href="https://n8n.partnerlinks.io/ltd" ctaText="Try n8n Cloud (Free Trial)" secondaryHref="https://docs.n8n.io/" secondaryText="Documentation" logo="/images/tech/n8n.svg" bannerImage="/images/partners/n8n-banner.svg" bannerCaption="Visual Workflow Canvas • Native LangChain Agents • Model Context Protocol (MCP)" rating="5.0" features="Zero per-task execution tax,Native LangChain & Agentic AI nodes,Full JavaScript & Python code execution,100% self-hostable on Docker & K8s,400+ pre-built integrations" :featured="true"}
-Empower your engineering workflows and autonomous AI agents with n8n. Run it completely free on your own infrastructure or deploy in seconds with managed n8n Cloud. Unlimited executions, complete data privacy, and direct Model Context Protocol (MCP) tool integration.
+::affiliate-card{name="n8n" tagline="Fair-Code Workflow Automation & Agentic AI Platform" badge="n8n Creator & Technical Writer" perk="Start Free Trial or Self-Host for Free" href="https://n8n.partnerlinks.io/ltd" ctaText="Try n8n Cloud (Free Trial)" secondaryHref="https://docs.n8n.io/" secondaryText="Documentation" logo="/images/tech/n8n.svg" bannerImage="/images/partners/n8n-banner.svg" bannerCaption="Visual Workflow Canvas • Native LangChain Agents • Model Context Protocol (MCP)" rating="5.0" features="Zero per-task execution tax,Native LangChain & Agentic AI nodes,Full JavaScript & Python code execution,Self-hostable on Docker & K8s,400+ pre-built integrations" :featured="true"}
+Empower your engineering workflows and autonomous AI agents with n8n. Run it at no cost on your own infrastructure or deploy in seconds with managed n8n Cloud. Unlimited executions, complete data privacy, and direct Model Context Protocol (MCP) tool integration.
 ::
 
 ---
@@ -113,7 +113,7 @@ As showcased in our YouTube deep dive above, the **Model Context Protocol (MCP)*
 
 ### 4. Enterprise Production Topology: Queue Mode with Redis & PostgreSQL
 
-For enterprise-grade reliability, n8n moves beyond single-container installations to support a distributed **Queue Mode** architecture:
+For production reliability, n8n moves beyond single-container installations to support a distributed **Queue Mode** architecture:
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
@@ -144,7 +144,7 @@ For enterprise-grade reliability, n8n moves beyond single-container installation
 - **Leader/Coordinator**: Handles user interface interactions, credential encryption, and webhook endpoints.
 - **Redis Queue**: Buffers incoming high-velocity webhook bursts to prevent dropped requests.
 - **Autoscaled Worker Pool**: Horizontally scaled worker pods pull jobs off the Redis queue, executing CPU-intensive data transformations and AI inference calls without starving the main web interface.
-- **Zero-Downtime Upgrades**: Because execution state resides in PostgreSQL and job queues in Redis, worker nodes can be rolled out seamlessly across cluster updates.
+- **Zero-Downtime Upgrades**: Because execution state resides in PostgreSQL and job queues in Redis, worker nodes can be rolled out one at a time during cluster updates, without stopping running workflows.
 
 ---
 
@@ -154,7 +154,7 @@ For enterprise-grade reliability, n8n moves beyond single-container installation
 | :------------------------------ | :-------------------------------------------- | :--------------------------------- | :-------------------------- | :---------------------------------- |
 | **Hosting Model**               | **Self-Hosted or Cloud**                      | Proprietary Cloud Only             | Proprietary Cloud Only      | VPS / Serverless                    |
 | **Pricing Predictability**      | **Unlimited (Self-Hosted) / Execution-Based** | Steep Per-Task Pricing             | Operation-Based             | Infrastructure Only                 |
-| **Data Privacy (GDPR/HIPAA)**   | **100% In-VPC / Air-gapped**                  | Third-party cloud storage          | Third-party cloud storage   | Complete control                    |
+| **Data residency**              | **Inside your VPC, air-gapped possible**      | Third-party cloud storage          | Third-party cloud storage   | Complete control                    |
 | **Agentic AI & LangChain**      | **Native Visual Agent Nodes + MCP**           | Primitive AI step actions          | Basic AI connector nodes    | High custom code effort             |
 | **Code Execution**              | **Native JS/TS & Python with npm/pip**        | Sandboxed, restricted code steps   | Complex formula syntax only | Native code                         |
 | **Queue Mode & Clustering**     | **Native Redis + Worker scaling**             | Black box (Vendor managed)         | Black box (Vendor managed)  | Manual [Celery](/blog/celery) setup |

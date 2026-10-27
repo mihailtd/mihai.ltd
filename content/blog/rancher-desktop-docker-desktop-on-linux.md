@@ -243,7 +243,7 @@ Launching `lazydocker` inside a terminal window consumes under 30 MB of RAM whil
 | **File I/O Latency**     | Native NVMe disk speed                | Virtualized bridge latency                | 9P bridge latency                         |
 | **RAM Footprint (Idle)** | ~60 MB                                | ~1.5 GB (with K3s)                        | ~2.5 GB (with VM & UI)                    |
 | **Kubernetes Support**   | Requires k3d, kind, or bare k3s       | Built-in K3s with version selector        | Built-in single-node Kubernetes           |
-| **Licensing**            | 100% Free & Open Source               | 100% Free & Open Source (Apache 2.0)      | Paid subscription required for large orgs |
+| **Licensing**            | Free and open source                  | Free and open source (Apache 2.0)         | Paid subscription required for large orgs |
 | **Primary CLI**          | `docker`, `docker compose`, `nerdctl` | `rdctl`, `nerdctl`, `docker`              | `docker`, `docker compose`                |
 | **Best For**             | Daily development, peak performance   | Multi-version K8s testing, mixed-OS teams | Legacy enterprise compliance only         |
 
