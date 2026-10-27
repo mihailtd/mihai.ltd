@@ -49,6 +49,7 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: "page", mode: "out-in" },
     head: {
+      htmlAttrs: { lang: "en" },
       title:
         "Mihai Farcas - Software Architect, Agentic AI Expert & Content Creator",
       meta: [

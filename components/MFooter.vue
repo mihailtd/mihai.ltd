@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="sticky top-full flex flex-row items-center border-t border-white/10 bg-primary/30 px-5 py-8 text-gray-500 backdrop-blur-xs"
+    class="sticky top-full flex flex-row items-center border-t border-white/10 bg-primary/30 px-5 py-8 text-gray-400 backdrop-blur-xs"
   >
     <img
       class="w-16 transition-transform duration-500 hover:rotate-12"
@@ -11,7 +11,7 @@
       © {{ new Date().getFullYear() }} Mihai Farcas —
       <a
         href="https://youtube.com/@letstalkdev"
-        class="text-blue-400 transition-colors duration-300 hover:text-blue-300 hover:underline"
+        class="text-blue-400 underline underline-offset-2 transition-colors duration-300 hover:text-blue-300"
         target="_blank"
         >@letstalkdev</a
       >
