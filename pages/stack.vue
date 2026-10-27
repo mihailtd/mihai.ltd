@@ -63,7 +63,7 @@
             name="n8n"
             tagline="Fair-Code Workflow Automation & Agentic AI Platform"
             badge="n8n Creator Perk"
-            perk="Start Free Trial or Deploy 100% Free Self-Hosted"
+            perk="Start Free Trial or Self-Host for Free"
             href="https://n8n.partnerlinks.io/ltd"
             cta-text="Claim Free n8n Trial"
             secondary-href="/blog/n8n"
@@ -104,7 +104,7 @@
             :features="[
               'AI Assistant for course outlines, quizzes & assessments',
               'Interactive video editor with in-video questions & notes',
-              '100% white-label academy with custom domain & mobile apps',
+              'White-label academy with custom domain & mobile apps',
               'SCORM & xAPI compliance with flexible payment gateways',
             ]"
             :featured="true"
@@ -375,7 +375,7 @@ const tools: ToolItem[] = [
     category: "cloud",
     categoryLabel: "Edge Infrastructure & CDN",
     description:
-      "Powers DNS, edge caching, and Cloudflare Workers hosting for this very website. Unbeatable global latency and security.",
+      "Powers DNS, edge caching, and Cloudflare Workers hosting for this website, with low global latency and built-in DDoS protection.",
     url: "https://www.cloudflare.com",
     logo: "/images/cloudflare.svg",
     cta: "Explore Cloudflare",
@@ -435,7 +435,7 @@ const tools: ToolItem[] = [
     category: "dev",
     categoryLabel: "Python Package Manager",
     description:
-      "Extremely fast Python package installer and resolver written in Rust. Completely replaced pip, poetry, and virtualenv for my Python projects.",
+      "Fast Python package installer and resolver written in Rust. Replaced pip, poetry, and virtualenv for my Python projects.",
     url: "https://docs.astral.sh/uv/",
     logo: "/images/tech/uv.svg",
     cta: "View uv Docs",

@@ -19,15 +19,8 @@ This guide details how Rancher Desktop functions on Windows, explains runtime tr
 
 ## Video Walkthrough
 
-<iframe 
-  width="100%" 
-  height="480" 
-  src="https://www.youtube.com/embed/UwXaUESSRBY" 
-  title="Rancher Desktop - Simple and Reliable Local Kubernetes (Sorry, Docker Desktop)" 
-  frameborder="0" 
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-  allowfullscreen>
-</iframe>
+::you-tube-embed{id="UwXaUESSRBY" title="Rancher Desktop - Simple and Reliable Local Kubernetes (Sorry, Docker Desktop)" channel="Let's Talk Dev" channelUrl="https://youtube.com/@letstalkdev"}
+::
 
 ### Chapters
 
@@ -45,7 +38,7 @@ The shift away from Docker Desktop centers on licensing clarity and operational 
 
 Rancher Desktop removes licensing exposure:
 
-- **100% Open Source:** Built entirely on Apache 2.0 components.
+- **Open source:** Licensed under Apache 2.0.
 - **Zero Seat Audits:** No commercial subscriptions, corporate telemetry mandates, or login gates.
 - **Enterprise Governance:** IT administrators can lock configurations through central provisioning profiles (`rancher-desktop.json`), enforcing specific container engines, Kubernetes versions, or network tunnels across fleets of developer machines.
 
@@ -221,7 +214,7 @@ Your container engine (`dockerd` or `containerd`) continues operating at full ca
 
 | Capability                       | Docker Desktop                                         | Rancher Desktop 1.24                          |
 | :------------------------------- | :----------------------------------------------------- | :-------------------------------------------- |
-| **Licensing**                    | Commercial subscription required for medium/large orgs | 100% Free & Open Source (Apache 2.0)          |
+| **Licensing**                    | Commercial subscription required for medium/large orgs | Free and open source (Apache 2.0)             |
 | **Telemetry Mandates**           | Required on free tiers                                 | Configurable toggle, disabled by default      |
 | **Container Engines**            | Docker Engine only                                     | Choose `dockerd (moby)` OR `containerd`       |
 | **Kubernetes Version Selection** | Single fixed version per release                       | Selectable K3s versions (v1.26 through v1.32) |

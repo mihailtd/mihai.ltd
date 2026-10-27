@@ -27,7 +27,7 @@ Here is the step-by-step runbook.
 
 ---
 
-## 🛠️ The Node Architecture & Hardware Specs
+## The Node Architecture & Hardware Specs
 
 For this cluster, I am preparing two identical nodes:
 
@@ -235,7 +235,7 @@ You should see `intel_idle.max_cstate=1 processor.max_cstate=1 nvme_core.default
 
 ---
 
-## 📋 Summary Checklist for Both Nodes
+## Summary Checklist for Both Nodes
 
 | Task                       | Node A (`pve-01.lan`)                   | Node B (`pve-02.lan`)                   |
 | -------------------------- | --------------------------------------- | --------------------------------------- |
@@ -249,7 +249,7 @@ You should see `intel_idle.max_cstate=1 processor.max_cstate=1 nvme_core.default
 
 ---
 
-## 🔮 What’s Next: The Homelab Rebuild Pipeline
+## What’s Next: The Homelab Rebuild Pipeline
 
 The compute layer is now flashed, stabilized, and running Proxmox VE 9.2 on 35W hardware.
 

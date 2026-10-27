@@ -1,6 +1,6 @@
 ---
 title: "Ruff"
-description: "Extremely fast Python linter and code formatter written in Rust, adopted to replace Black, Flake8, and isort into a unified zero-dependency binary."
+description: "Fast Python linter and code formatter written in Rust, adopted to replace Black, Flake8, and isort into a unified zero-dependency binary."
 date: "2026-08-08"
 type: "tech_report"
 tags:

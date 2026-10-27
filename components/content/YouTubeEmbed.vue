@@ -74,9 +74,11 @@
       class="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/10 bg-black/60 shadow-inner"
     >
       <iframe
+        ref="frame"
         :src="`https://www.youtube-nocookie.com/embed/${id}`"
         :title="title || 'YouTube video player'"
         class="absolute inset-0 h-full w-full border-0"
+        :class="{ 'outline-2 -outline-offset-4 outline-blue-400': focused }"
         allow="
           accelerometer;
           autoplay;
@@ -104,6 +106,24 @@
 </template>
 
 <script setup lang="ts">
+// The player is a cross-origin frame: once focus moves inside it, the iframe matches no :focus
+// selector, so the ring is set from here when the page loses focus to this frame.
+const frame = ref<HTMLIFrameElement | null>(null);
+const focused = ref(false);
+const sync = () => {
+  setTimeout(() => {
+    focused.value = document.activeElement === frame.value;
+  });
+};
+onMounted(() => {
+  window.addEventListener("blur", sync);
+  window.addEventListener("focus", sync);
+});
+onBeforeUnmount(() => {
+  window.removeEventListener("blur", sync);
+  window.removeEventListener("focus", sync);
+});
+
 withDefaults(
   defineProps<{
     id: string;

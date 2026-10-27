@@ -34,7 +34,7 @@ In the history of software development, few tools have catalyzed developer adopt
 
 For nearly seven years, Docker Desktop was the undisputed gold standard for local container development. It allowed developers on non-Linux hosts to run Linux containers natively, mount host directories, and interact with the Docker daemon via standard CLI tools.
 
-However, over the past several years, a series of architectural missteps, bloated background resource usage, recurring update failures, and a controversial licensing change severely undermined developer trust. Today, Docker Desktop has been placed on **Hold** and rejected across our engineering organization in favor of **[Rancher Desktop](/blog/rancher-desktop)** and **[K3s](/blog/k3s)**.
+However, over recent years, a series of architectural missteps, bloated background resource usage, recurring update failures, and a controversial licensing change severely undermined developer trust. Today, Docker Desktop has been placed on **Hold** and rejected across our engineering organization in favor of **[Rancher Desktop](/blog/rancher-desktop)** and **[K3s](/blog/k3s)**.
 
 ---
 
@@ -50,7 +50,7 @@ By far the most severe technical issue was update instability—an experience fe
 - **Hours of Recovery & Debugging**: Getting Docker Desktop back to a working state often required hours of forensic debugging: inspecting Windows Event Viewer logs, killing zombie processes, manually unregistering and reinstalling WSL distributions, resizing corrupted Virtual Hard Disks (`.vhdx`), and combing through GitHub issue threads spanning hundreds of frustrated developer comments.
 - **The "Factory Reset" Obliteration**: When troubleshooting failed, the only recourse left was the dreaded **"Reset to factory defaults"** button. For developers maintaining stateful local testing environments (PostgreSQL, MySQL, Redis, Kafka), this nuked all container volumes, wiped persistent data, and deleted cached container images. Developers lost hours re-seeding databases and re-pulling gigabytes of base images.
 
-> **A Candid Admission**: To be fair, many of these catastrophic failures occurred during earlier release cycles (the chaotic transitions across Docker Desktop v2.x through early v4.x), and Docker Inc. has made concerted engineering efforts to stabilize modern builds. But for a foundational daily-driver tool, **developer trust is a non-renewable resource**. Once an engineer has lost entire working afternoons to a broken updater instead of shipping code, the confidence never truly returns.
+> **A Candid Admission**: To be fair, many of these serious failures occurred during earlier release cycles (the chaotic transitions across Docker Desktop v2.x through early v4.x), and Docker Inc. has made concerted engineering efforts to stabilize modern builds. But for a foundational daily-driver tool, **developer trust is a non-renewable resource**. Once an engineer has lost entire working afternoons to a broken updater instead of shipping code, the confidence never truly returns.
 
 ### 2. The 2021 Licensing Pivot & Procurement Friction
 
@@ -84,7 +84,7 @@ When evaluating replacements, we sought an open-source solution that preserved c
 | **Outdated Kubernetes Addon**    | Embeds ultra-lightweight **[K3s](/blog/k3s)** (<512MB RAM, boots in seconds, supports latest k8s releases).          |
 | **Missing Local Ingress**        | Ships with **Traefik Ingress out-of-the-box**, providing realistic HTTP/HTTPS path routing locally.                  |
 | **Monolithic Daemon Bottleneck** | Provides modern **`containerd`** + **`nerdctl`** environments alongside standard `dockerd` (Moby).                   |
-| **Commercial Licensing Fees**    | **100% Free & Open Source (Apache 2.0)** with zero seat tracking or procurement overhead.                            |
+| **Commercial Licensing Fees**    | **Free and open source (Apache 2.0)** with zero seat tracking or procurement overhead.                               |
 | **Mandatory Cloud Telemetry**    | Zero account logins required; telemetry disabled by default.                                                         |
 
 ---
@@ -126,7 +126,7 @@ sudo apt install rancher-desktop
 
 During initial startup:
 
-1. **Container Engine**: Choose **`dockerd (moby)`** for 100% drop-in compatibility with existing `docker` and `docker compose` commands, or **`containerd`** for cutting-edge CNCF standards with `nerdctl`.
+1. **Container Engine**: Choose **`dockerd (moby)`** for drop-in compatibility with existing `docker` and `docker compose` commands, or **`containerd`** for cutting-edge CNCF standards with `nerdctl`.
 2. **Kubernetes**: Enable **[K3s](/blog/k3s)** and select your target Kubernetes release (e.g., v1.31). Traefik Ingress is enabled automatically.
 
 Existing `docker-compose.yml` workflows, IDE extensions, and terminal commands will work immediately without any modification.

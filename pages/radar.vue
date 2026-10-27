@@ -214,8 +214,7 @@
               class="py-0.2 ml-0.5 rounded-full px-1.5 text-[10px] font-semibold"
               :style="{
                 backgroundColor: segment.color + '33',
-                color:
-                  selectedStatus === segment.status ? '#ffffff' : segment.color,
+                color: '#f3f4f6',
               }"
             >
               {{ segment.count }}
@@ -376,7 +375,7 @@
               arc to drill down. Click any technology for full details.
             </span>
           </div>
-          <span class="hidden text-gray-500 sm:inline">Interactive Chart</span>
+          <span class="hidden text-gray-400 sm:inline">Interactive Chart</span>
         </div>
 
         <!-- ECharts Canvas Container -->

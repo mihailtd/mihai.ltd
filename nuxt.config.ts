@@ -20,6 +20,38 @@ export default defineNuxtConfig({
     "katex/dist/katex.min.css",
     "remark-github-blockquote-alert/alert.css",
   ],
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          // the site is dark only: one dark theme, so no light token colours leak onto it
+          theme: "github-dark-default",
+          langs: [
+            "bash",
+            "shell",
+            "yaml",
+            "sql",
+            "json",
+            "rust",
+            "toml",
+            "typescript",
+            "javascript",
+            "powershell",
+            "graphql",
+            "c",
+            "ini",
+            "dockerfile",
+            "diff",
+            "python",
+            "vue",
+            "html",
+            "css",
+            "go",
+          ],
+        },
+      },
+    },
+  },
   mdc: {
     remarkPlugins: {
       "remark-math": {},

@@ -202,3 +202,22 @@ x-vue-echarts > .echarts-host > :first-child > canvas {
   overflow-y: hidden;
   padding: 0.5rem 0;
 }
+
+/* Code blocks: the article's prose-code utilities are meant for inline code. Inside <pre> they
+   painted every token blue and gave <code> an inline padded box, which showed up as empty
+   slivers above the first and below the last line. */
+.prose pre code {
+  display: block;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+}
+
+/* embedded videos: a visible ring when the iframe takes keyboard focus */
+iframe:focus,
+iframe:focus-within,
+iframe:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: -3px;
+}

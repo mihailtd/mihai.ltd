@@ -22,7 +22,7 @@ stage: "trial"
 decision: "adopt"
 evaluatedScore: 4
 satisfaction: 5
-decisionReason: "Adopted across all developer workstations in place of Docker Desktop. Completely immune to update breakage, 100% open-source (Apache 2.0), features modern containerd/nerdctl environments, supports the latest Kubernetes versions via K3s, and includes Traefik Ingress out-of-the-box."
+decisionReason: "Adopted across all developer workstations in place of Docker Desktop. No update breakage so far, open source (Apache 2.0), features modern containerd/nerdctl environments, supports the latest Kubernetes versions via K3s, and includes Traefik Ingress out-of-the-box."
 decidedDate: "2026-08-08"
 link: "https://rancherdesktop.io/"
 target: "_blank"
@@ -37,7 +37,7 @@ However, between 2021 and 2024, developer sentiment around **[Docker Desktop](/b
 
 To restore developer velocity, confidence, and architectural modernity, we evaluated open-source alternatives and standardized on **Rancher Desktop**.
 
-Maintained by SUSE and built 100% on permissive open-source standards (Apache 2.0), Rancher Desktop provides a modern container environment, embedded **[K3s](/blog/k3s)** Kubernetes with rapid support for the latest releases, out-of-the-box **Traefik Ingress**, and rock-solid virtualization stability.
+Maintained by SUSE and licensed under the permissive Apache 2.0 license, Rancher Desktop provides a modern container environment, embedded **[K3s](/blog/k3s)** Kubernetes with rapid support for the latest releases, out-of-the-box **Traefik Ingress**, and rock-solid virtualization stability.
 
 ---
 
@@ -53,9 +53,9 @@ The single biggest complaint with Docker Desktop was update anxiety. On Windows 
 - Broken named pipe connections between the Windows host and the underlying WSL2 distributions.
 - Virtual disk (`.vhdx`) corruptions that required hours of manual WSL unregistration, event log triage, and 결국 a complete factory reset that destroyed local databases and container volumes.
 
-While to be fair many of these catastrophic failures plagued older release cycles, the developer trust was permanently burned.
+While to be fair many of these serious failures plagued older release cycles, the developer trust was permanently burned.
 
-Rancher Desktop completely solves this through clean architectural decoupling. The desktop GUI wrapper is decoupled from the underlying virtual machine (WSL2 on Windows, Apple Virtualization / Lima on macOS). Updates apply smoothly without altering virtual disk images or corrupting cluster metadata. In over two years of daily engineering use across Windows, macOS, and Linux workstations, we have experienced **zero update-related breakage**.
+Rancher Desktop avoids this through clean architectural decoupling. The desktop GUI wrapper is decoupled from the underlying virtual machine (WSL2 on Windows, Apple Virtualization / Lima on macOS). Updates apply smoothly without altering virtual disk images or corrupting cluster metadata. In over two years of daily engineering use across Windows, macOS, and Linux workstations, we have experienced **zero update-related breakage**.
 
 ---
 
@@ -85,7 +85,7 @@ Legacy container platforms lock developers into the monolithic Docker daemon arc
 
 In legacy tools, the bundled Kubernetes engine was an afterthought—often lagging months behind upstream Kubernetes releases and forcing developers to test against outdated APIs.
 
-Rancher Desktop is powered by **[K3s](/blog/k3s)**, which tracks upstream Kubernetes releases within days of their CNCF announcement. Furthermore, Rancher Desktop features a **seamless Kubernetes version switcher**:
+Rancher Desktop is powered by **[K3s](/blog/k3s)**, which tracks upstream Kubernetes releases within days of their CNCF announcement. Rancher Desktop also has a **seamless Kubernetes version switcher**:
 
 - Developers can select any minor or patch release (e.g., v1.28, v1.29, v1.30, v1.31) from a simple dropdown menu.
 - Rancher Desktop downloads the corresponding K3s binary in seconds and updates the control plane without destroying persistent volumes or requiring a full reinstallation.
@@ -104,9 +104,9 @@ Because Rancher Desktop runs **[K3s](/blog/k3s)**, it ships with **Traefik Ingre
 
 ---
 
-### 5. 100% Open Source with Zero Commercial Licensing Traps
+### 5. Open Source With No Commercial Licensing Traps
 
-Rancher Desktop is licensed under Apache 2.0. There are no corporate seat limits, no surprise license tier audits, no forced account creation, and no mandatory cloud telemetry. It can be deployed frictionlessly across contractor machines, startup teams, and large enterprise fleets.
+Rancher Desktop is licensed under Apache 2.0, with no corporate seat limits, no surprise license tier audits, no forced account creation, and no mandatory cloud telemetry. It can be deployed frictionlessly across contractor machines, startup teams, and large enterprise fleets.
 
 ---
 
@@ -136,7 +136,7 @@ When an engineer is iterating on localized application logic, **[Docker Compose]
 
 | Capability                          | Rancher Desktop (Adopted)                           | Docker Desktop (Rejected)                                                 |
 | :---------------------------------- | :-------------------------------------------------- | :------------------------------------------------------------------------ |
-| **Licensing**                       | **100% Free & Open Source (Apache 2.0)**            | Proprietary (Paid commercial subscription >250 employees / \$10M revenue) |
+| **Licensing**                       | **Free and open source (Apache 2.0)**               | Proprietary (Paid commercial subscription >250 employees / \$10M revenue) |
 | **Update Stability (Windows WSL2)** | **Decoupled VM state; zero update crashes**         | Frequent post-update hangs requiring hours of recovery                    |
 | **Kubernetes Engine**               | **[K3s](/blog/k3s) (<512MB RAM, boots in seconds)** | Upstream k8s (Heavyweight, 2GB–3GB RAM)                                   |
 | **Kubernetes Version Selection**    | **Dropdown selector (v1.26 – v1.31+)**              | Fixed to current vendor release                                           |

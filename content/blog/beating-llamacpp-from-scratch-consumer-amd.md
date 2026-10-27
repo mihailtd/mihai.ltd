@@ -31,7 +31,7 @@ _How Software Architect Mihai Farcas engineered **[Strata](https://github.com/mi
 
 Can you beat `llama.cpp` and `Ollama` by writing a custom local LLM inference engine from scratch in Rust and AMD HIP on consumer hardware?
 
-The conventional wisdom across the local AI and open-source LLM communities says no. `llama.cpp` represents thousands of person-years of extreme C++ optimization: hand-tuned AVX-512 and AVX2 vector paths, custom GGML tensor kernels, optimized CUDA/HIP backends, and battle-tested memory allocators. On AMD silicon specifically, the common assumption is even more pessimistic: people call ROCm fragile, rank RDNA3 consumer cards (`gfx1100`) behind CDNA datacenter accelerators, and expect raw HIP kernels written from scratch to bring driver timeouts and kernel panics.
+The conventional wisdom across the local AI and open-source LLM communities says no. `llama.cpp` represents thousands of person-years of extreme C++ optimization: hand-tuned AVX-512 and AVX2 vector paths, custom GGML tensor kernels, optimized CUDA/HIP backends, and memory allocators refined over years of production use. On AMD silicon specifically, the common assumption is even more pessimistic: people call ROCm fragile, rank RDNA3 consumer cards (`gfx1100`) behind CDNA datacenter accelerators, and expect raw HIP kernels written from scratch to bring driver timeouts and kernel panics.
 
 We decided to test that assumption directly on bare metal.
 
@@ -57,7 +57,7 @@ The sections below cover the engineering journey, the data, the kernel code, and
 
 ---
 
-## 🛠️ The Test Bench & The Parity Rules
+## The Test Bench & The Parity Rules
 
 Before any speedup claims, the benchmark needs ground rules. Comparing a raw CLI binary against an HTTP daemon, or quantized weights against float16, produces meaningless marketing numbers. I enforced strict architectural parity:
 
@@ -82,7 +82,7 @@ Before any speedup claims, the benchmark needs ground rules. Comparing a raw CLI
 
 ---
 
-## 🧠 The Beast: Qwen 3.5 Hybrid Architecture
+## The Beast: Qwen 3.5 Hybrid Architecture
 
 Standard autoregressive Transformers (such as LLaMA 3 or Mistral) use standard Multi-Head or Grouped-Query Attention across every single layer. In those architectures, the Key-Value (KV) cache grows linearly ($O(T)$) with every generated token. By layer 32 at context length 8,192, a standard transformer allocates gigabytes of VRAM strictly to store KV activations.
 
@@ -476,7 +476,7 @@ When an engine operates at 93% of physical hardware wire limits, there is almost
 
 ---
 
-## ⚠️ What Broke: Hard Limits & Caveats
+## What Broke: Hard Limits & Caveats
 
 An honest report documents what broke and where the hard ceilings sit. These are mine:
 
@@ -524,7 +524,7 @@ I built **Strata** specifically for **interactive, low-latency agentic streaming
 
 ---
 
-## 🎯 Key Engineering Takeaways
+## Key Engineering Takeaways
 
 Building **Strata** from scratch taught us four fundamental principles of GPU systems engineering and local AI architecture:
 
@@ -543,7 +543,7 @@ _In **Part 2**, we examine what happened when we took Strata into quantized terr
 
 ---
 
-## 👨‍💻 About the Author
+## About the Author
 
 **Mihai Farcas** is a **Software Architect**, **AI Systems Engineer**, and **GPU Kernel Developer** specializing in high-performance distributed systems, bare-metal hardware acceleration (AMD ROCm/HIP, NVIDIA CUDA), and local LLM infrastructure.
 
