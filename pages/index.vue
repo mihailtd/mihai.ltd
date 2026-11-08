@@ -79,6 +79,9 @@
           <img
             src="/mihai_farcas.webp"
             alt="Mihai Farcas - Software Architect"
+            fetchpriority="high"
+            width="320"
+            height="320"
             class="relative size-48 rounded-full border-2 border-white/10 object-cover object-[center_30%] p-2 shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:border-yellow-100/30 group-hover:shadow-yellow-500/20 md:size-64 lg:size-80"
           />
         </div>
@@ -376,9 +379,10 @@ useHead({
           "@context": "https://schema.org",
           "@type": "ProfilePage",
           dateCreated: "2024-01-01T00:00:00+00:00",
-          dateModified: "2026-10-08T00:00:00+00:00",
+          dateModified: "2026-11-08T00:00:00+00:00",
           mainEntity: {
             "@type": "Person",
+            "@id": "https://mihai.ltd/#person",
             name: "Mihai Farcas",
             alternateName: "Mihai Farcaș",
             url: "https://mihai.ltd",
@@ -395,6 +399,9 @@ useHead({
               "AI Automations",
               "n8n",
               "Enterprise Architecture",
+              "PostgreSQL Internals",
+              "Rust Database Engines",
+              "Spec-Driven Development",
               "LangGraph",
               "Microservices",
               "Kubernetes",
@@ -404,11 +411,34 @@ useHead({
               "Technical Consulting",
             ],
             sameAs: [
+              "https://retroagile.com",
+              "https://mihailtd.github.io/graphpg/",
+              "https://innovi.pro",
               "https://github.com/mihailtd",
               "https://www.linkedin.com/in/mihai-farcas-ltd/",
               "https://youtube.com/@letstalkdev",
               "https://dev.to/mihailtd",
               "https://blog.n8n.io/author/mihai/",
+            ],
+            creatorOf: [
+              {
+                "@type": "SoftwareApplication",
+                "@id": "https://retroagile.com/#software",
+                name: "RetroAgile",
+                url: "https://retroagile.com",
+                applicationCategory: "DeveloperApplication",
+                description:
+                  "Continuous Retrospectives, Agent Churn Auditing, and Spec-Readiness Scoring for human + AI coding agent teams.",
+              },
+              {
+                "@type": "SoftwareApplication",
+                "@id": "https://mihailtd.github.io/graphpg/#software",
+                name: "GraphPG",
+                url: "https://mihailtd.github.io/graphpg/",
+                applicationCategory: "DeveloperApplication",
+                description:
+                  "Instant GraphQL and REST API Engine for PostgreSQL written in Rust.",
+              },
             ],
             alumniOf: {
               "@type": "Organization",
@@ -421,18 +451,21 @@ useHead({
         {
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
+          "@id": "https://innovi.pro/#organization",
           name: "INNOVI PRO",
           url: "https://innovi.pro",
           description:
-            "Specialized consulting in software architecture and autonomous AI agents",
+            "Specialized consulting in software architecture, enterprise AI systems, and autonomous agent orchestration",
           provider: {
             "@type": "Person",
+            "@id": "https://mihai.ltd/#person",
             name: "Mihai Farcas",
           },
           serviceType: [
             "Software Architecture Consulting",
             "AI Automation Solutions",
             "n8n Workflow Automation",
+            "Architecture and System Audits",
           ],
           areaServed: "Worldwide",
         },

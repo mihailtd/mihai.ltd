@@ -33,14 +33,28 @@
               For Fractional CTO engagements, Agentic AI implementation, or n8n
               workflow architecture, explore my consultancy work at Innovi Pro.
             </p>
-            <a
-              href="https://innovi.pro"
-              target="_blank"
-              rel="me"
-              class="inline-block rounded-full bg-linear-to-r from-blue-600 to-purple-600 px-8 py-4 text-lg font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50"
+            <div
+              class="flex flex-col items-center justify-center gap-4 sm:flex-row"
             >
-              Work with INNOVI PRO
-            </a>
+              <a
+                href="https://innovi.pro"
+                target="_blank"
+                rel="me"
+                class="inline-block w-full rounded-full bg-linear-to-r from-blue-600 to-purple-600 px-8 py-4 text-base font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50 sm:w-auto"
+              >
+                Work with INNOVI PRO
+              </a>
+              <!-- Feature-flagged: disabled until Google Calendar appointment schedule is tested -->
+              <a
+                v-if="showCalendarBooking"
+                :href="bookingUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex w-full items-center justify-center gap-2 rounded-full border border-yellow-100/30 bg-white/5 px-8 py-4 text-base font-bold text-yellow-100 shadow-lg transition-all duration-300 hover:scale-105 hover:border-yellow-100/60 hover:bg-white/10 sm:w-auto"
+              >
+                <span>📅 Schedule via Google Calendar</span>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -220,6 +234,12 @@ useSeoMeta({
   twitterDescription:
     "Get in touch for consulting services, AI automation solutions, and content collaboration.",
 });
+
+// Feature flag: disabled until Google Calendar appointment schedule is tested & ready
+const showCalendarBooking = ref(false);
+const bookingUrl = ref(
+  "https://calendar.google.com/calendar/u/0/appointments/schedules",
+);
 
 const contactForm = ref<HTMLFormElement | null>(null);
 
