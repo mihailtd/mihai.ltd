@@ -7,15 +7,20 @@
       src="/images/logo.png"
       alt="Let's Talk Dev YouTube channel logo"
     />
-    <p class="pl-8 text-sm">
-      © {{ new Date().getFullYear() }} Mihai Farcas —
-      <a
-        href="https://youtube.com/@letstalkdev"
-        class="text-blue-400 underline underline-offset-2 transition-colors duration-300 hover:text-blue-300"
-        target="_blank"
-        >@letstalkdev</a
-      >
-    </p>
+    <div class="pl-4 text-sm sm:pl-8">
+      <p>
+        © {{ new Date().getFullYear() }} Mihai Farcas —
+        <a
+          href="https://youtube.com/@letstalkdev"
+          class="text-blue-400 underline underline-offset-2 transition-colors duration-300 hover:text-blue-300"
+          target="_blank"
+          >@letstalkdev</a
+        >
+      </p>
+      <p class="text-xs text-gray-400">
+        Based in Cluj-Napoca, Romania • Available worldwide
+      </p>
+    </div>
 
     <div class="ml-auto flex items-center justify-center">
       <span
