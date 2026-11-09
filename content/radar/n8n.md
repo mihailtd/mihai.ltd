@@ -263,6 +263,8 @@ By bridging the gap between visual low-code accessibility and rigorous software 
 
 - **Explore n8n Cloud**: **[Start your free trial via my referral link](https://n8n.partnerlinks.io/ltd)**
 - **Watch the MCP Tutorial**: **[n8n + MCP on Let's Talk Dev](https://www.youtube.com/watch?v=6AKXBCZH0pU)**
+- **Related Guides & Architectural Deep Dives**:
+  - **[Offloading Heavy Compute from n8n to Argo Workflows on Kubernetes](/blog/n8n-argo-workflows-offload)**: Prevent worker starvation, eliminate timeout crashes, and scale heavy batch jobs natively on Kubernetes
 - **Related Tech Radar Reports**:
   - **[Docker Compose (Adopt)](/blog/docker-compose)**: Local service isolation and database orchestration
   - **[K3s (Adopt)](/blog/k3s)**: Ultra-lightweight Kubernetes distribution for running n8n in edge clusters

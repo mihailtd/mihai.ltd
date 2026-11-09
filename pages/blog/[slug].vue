@@ -405,9 +405,15 @@ useHead(() => ({
               keywords: (article.value.tags ?? []).join(", "),
               mainEntityOfPage: pageUrl.value,
               url: pageUrl.value,
-              author: { "@type": "Person", name: "Mihai Farcas", url: siteUrl },
+              author: {
+                "@type": "Person",
+                "@id": `${siteUrl}/#person`,
+                name: "Mihai Farcas",
+                url: siteUrl,
+              },
               publisher: {
                 "@type": "Person",
+                "@id": `${siteUrl}/#person`,
                 name: "Mihai Farcas",
                 url: siteUrl,
               },

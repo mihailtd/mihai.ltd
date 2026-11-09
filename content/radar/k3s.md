@@ -122,3 +122,10 @@ Because K3s is a CNCF-certified Kubernetes distribution, declarative GitOps oper
 **K3s is an unconditional Adopt.**
 
 By eliminating the excessive resource overhead and configuration friction of vanilla Kubernetes, K3s brings genuine cloud-native Kubernetes APIs to developer laptops, CI pipelines, and lightweight production servers. When combined with **[Rancher Desktop](/blog/rancher-desktop)** for local developer ergonomics and declarative tooling like **[ArgoCD](/blog/argocd)**, K3s ensures our engineering teams test against real Kubernetes topologies from day one.
+
+---
+
+### In-Depth Guides & Tutorials
+
+- **Persistent Storage Walkthrough**: **[Mount Local Storage to Kubernetes Pods (K3s Local-Path Guide)](/blog/mount-local-storage-to-kubernetes-pods-k3s)**
+- **Local Workstation Setup**: **[Rancher Desktop on Windows](/blog/rancher-desktop-windows-guide)** and **[Rancher Desktop on Linux](/blog/rancher-desktop-docker-desktop-on-linux)**

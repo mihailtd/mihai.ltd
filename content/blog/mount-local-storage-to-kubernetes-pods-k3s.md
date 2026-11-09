@@ -283,3 +283,13 @@ While local path storage delivers exceptional speed, engineers must weigh its ar
 - K3s includes Rancher's Local Path Provisioner out of the box under the `local-path` storage class; bare-metal clusters can install it via a single manifest.
 - `volumeBindingMode: WaitForFirstConsumer` ensures the provisioner allocates volumes on the exact worker node selected by the scheduler.
 - Local path storage delivers raw NVMe throughput with zero network overhead, making it the ideal storage choice for homelabs, edge nodes, and replicated database clusters.
+
+---
+
+### Related Architecture Reports
+
+For broader evaluations of Kubernetes distributions and container workflows, read:
+
+- **[K3s Tech Radar Report](/blog/k3s)**: Why K3s is an unconditional Adopt for edge, homelab, and local clusters.
+- **[Rancher Desktop on Windows](/blog/rancher-desktop-windows-guide)**: The complete zero-license replacement for Docker Desktop with built-in K3s.
+- **[PostgreSQL on Kubernetes in 2026: Crunchy PGO vs. CloudNativePG](/blog/postgres-kubernetes-pgo-vs-cloudnativepg)**: Running durable databases on top of Kubernetes storage.

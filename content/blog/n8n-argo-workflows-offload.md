@@ -219,6 +219,16 @@ Things this lab did not test: cancelling an n8n execution while its Argo job run
 
 ---
 
+### Related Tech Radar Reports
+
+For broader evaluations of the tools used across this architecture, read:
+
+- **[n8n Tech Radar Deep Dive (Adopt)](/blog/n8n)**: Comprehensive analysis of n8n architecture, self-hosting vs. cloud, and ROI comparison against Zapier/Make.
+- **[K3s Tech Radar Report (Adopt)](/blog/k3s)**: Ultra-lightweight Kubernetes distribution for running worker pods.
+- **[CloudNativePG (Trial)](/blog/cloudnativepg)**: Running declarative PostgreSQL clusters inside Kubernetes.
+
+---
+
 ::affiliate-card{name="n8n" tagline="Fair-Code Workflow Automation & Agentic AI Platform" badge="Creator Perk" perk="Start Free Trial or Self-Host for Free" href="https://n8n.partnerlinks.io/ltd" ctaText="Try n8n Cloud (Free Trial)" secondaryHref="https://docs.n8n.io/" secondaryText="Documentation" logo="/images/tech/n8n.svg" bannerImage="/images/partners/n8n-banner.svg" bannerCaption="Visual Workflow Canvas • Native LangChain Agents • Model Context Protocol (MCP)" rating="5.0" features="Zero per-task execution tax,Native LangChain & Agentic AI nodes,Full JavaScript & Python code execution,Self-hostable on Docker & K8s,400+ pre-built integrations" :featured="true"}
 
 ---
