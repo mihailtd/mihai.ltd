@@ -435,6 +435,7 @@ useHead({
               "https://retroagile.com",
               "https://mihailtd.github.io/graphpg/",
               "https://innovi.pro",
+              "https://innovi.care",
               "https://github.com/mihailtd",
               "https://www.linkedin.com/in/mihai-farcas-ltd/",
               "https://youtube.com/@letstalkdev",
@@ -442,6 +443,15 @@ useHead({
               "https://blog.n8n.io/author/mihai/",
             ],
             creatorOf: [
+              {
+                "@type": "SoftwareApplication",
+                "@id": "https://innovi.care/#software",
+                name: "Innovi Care",
+                url: "https://innovi.care",
+                applicationCategory: "HealthApplication, MedicalApplication",
+                description:
+                  "Multilingual clinical practice platform and patient portal built on schema-first PostgreSQL RLS and GraphPG.",
+              },
               {
                 "@type": "SoftwareApplication",
                 "@id": "https://retroagile.com/#software",
@@ -602,6 +612,33 @@ const featuredProjects = [
     logoClass: "group-hover:scale-110",
     tech: "Software Architecture, AI & Automation Solutions, n8n Automation",
     links: [{ text: "View Services", url: "https://innovi.pro/" }],
+  },
+  {
+    title: "Innovi Care",
+    description:
+      "A multilingual healthcare platform and patient portal built for clinics, physiotherapists, psychologists, nutritionists, and dentists, featuring conflict-free booking and strict consent boundaries.",
+    logo: "/innovi_pro_logo.png",
+    logoClass: "group-hover:scale-110",
+    tech: "PostgreSQL RLS, GraphPG, Nuxt, FHIR-Aligned Data Modeling",
+    links: [{ text: "Visit Platform", url: "https://innovi.care/" }],
+  },
+  {
+    title: "RetroAgile",
+    description:
+      "Continuous retrospectives, agent context-churn auditing, and spec-readiness scoring for engineering teams running AI coding agents.",
+    logo: "/images/tech/retroagile.svg",
+    logoClass: "group-hover:scale-110",
+    tech: "Agentic IDP, Spec-Readiness Linter, Git Telemetry, GraphPG",
+    links: [{ text: "Explore RetroAgile", url: "https://retroagile.com/" }],
+  },
+  {
+    title: "GraphPG",
+    description:
+      "Open-source Rust engine that derives unified GraphQL and OpenAPI 3.1 REST APIs directly from PostgreSQL catalogs in a single SQL statement.",
+    logo: "/images/tech/graphpg.svg",
+    logoClass: "group-hover:scale-110",
+    tech: "Rust, PostgreSQL 17/18, GraphQL, OpenAPI 3.1, Row-Level Security",
+    links: [{ text: "Read Docs", url: "https://mihailtd.github.io/graphpg/" }],
   },
   {
     title: "n8n",

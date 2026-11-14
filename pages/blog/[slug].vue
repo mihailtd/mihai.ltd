@@ -208,6 +208,74 @@
           </ContentRenderer>
         </article>
 
+        <!-- Consulting & Ecosystem Callout -->
+        <section
+          aria-label="Work with Mihai Farcas and Innovi Pro"
+          class="mt-14 rounded-3xl border border-yellow-100/20 bg-gradient-to-br from-blue-950/50 via-white/[0.04] to-yellow-900/10 p-6 sm:p-8"
+        >
+          <p
+            class="text-xs font-semibold tracking-wider text-yellow-100 uppercase"
+          >
+            Software Architecture &amp; AI Engineering
+          </p>
+          <h2 class="mt-2 text-2xl font-bold tracking-tight text-white">
+            Building something similar or need a second pair of eyes on your
+            architecture?
+          </h2>
+          <p class="mt-3 max-w-2xl text-sm leading-relaxed text-gray-300">
+            Through <strong class="text-white">Innovi Pro</strong>, I help teams
+            audit existing systems, design Agent-Ready Internal Developer
+            Platforms, and ship production AI automations and custom software.
+          </p>
+          <div class="mt-6 flex flex-wrap items-center gap-3">
+            <a
+              href="https://innovi.pro/#contact"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-full bg-yellow-100 px-5 py-2.5 text-sm font-semibold text-gray-950 transition-colors hover:bg-yellow-200"
+            >
+              Book a Discovery Call at Innovi Pro →
+            </a>
+            <a
+              href="https://innovi.pro/services/software-architecture-audit"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:border-yellow-100/40 hover:bg-white/10"
+            >
+              Software Architecture Audit
+            </a>
+          </div>
+          <div
+            class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-white/10 pt-4 text-xs text-gray-400"
+          >
+            <span class="font-semibold text-gray-300">In-house platforms:</span>
+            <a
+              href="https://retroagile.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-blue-300 underline decoration-blue-400/40 underline-offset-4 hover:text-blue-200"
+            >
+              RetroAgile: Agent Telemetry
+            </a>
+            <a
+              href="https://innovi.care"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-blue-300 underline decoration-blue-400/40 underline-offset-4 hover:text-blue-200"
+            >
+              Innovi Care: Clinical Platform
+            </a>
+            <a
+              href="https://mihailtd.github.io/graphpg/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-blue-300 underline decoration-blue-400/40 underline-offset-4 hover:text-blue-200"
+            >
+              GraphPG: PostgreSQL Engine
+            </a>
+          </div>
+        </section>
+
         <!-- Tags Footer -->
         <div class="mt-20 border-t border-white/10 pt-10">
           <div
