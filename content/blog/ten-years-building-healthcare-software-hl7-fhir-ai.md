@@ -11,6 +11,7 @@ tags:
   - agentic AI
   - software architecture
   - care pathway digitization
+cover_image: "/images/covers/ten-years-building-healthcare-software-hl7-fhir-ai.png"
 canonical_url: "https://mihai.ltd/blog/ten-years-building-healthcare-software-hl7-fhir-ai/"
 ---
 
