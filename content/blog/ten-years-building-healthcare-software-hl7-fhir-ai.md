@@ -83,7 +83,7 @@ Healthcare software forces you to think end to end. Double-booking a doctor disr
 
 That combination of challenge and responsibility is what pushed me to create two connected projects from scratch:
 
-- **[graphpg](https://github.com/mihailtd/graphpg):** An open-source Rust engine ([documentation](https://mihailtd.github.io/graphpg/)) that reads a PostgreSQL schema directly and compiles GraphQL and OpenAPI REST requests into single SQL queries, so teams spend their time on domain modeling and database security instead of hand-writing CRUD endpoints.
+- **[graphpg](https://github.com/mihailtd/graphpg):** An open-source Rust engine ([documentation](https://graphpg.com/)) that reads a PostgreSQL schema directly and compiles GraphQL and OpenAPI REST requests into single SQL queries, so teams spend their time on domain modeling and database security instead of hand-writing CRUD endpoints.
 - **[Innovi Care](https://innovi.care):** A calm, multilingual practice management platform and patient portal built on HL7 FHIR R5 and PostgreSQL 18 through my consultancy [Innovi Pro](https://innovi.pro), bringing conflict-free scheduling, adaptive specialty workspaces, mobile care entry, and between-visit home plans to independent practitioners and clinics across Europe.
 
 Writing code that starts as a blank migration file and turns into a system that saves a clinician an hour of evening charting or helps a family track recovery plans in their own language is still the best feeling in engineering.

@@ -19,7 +19,7 @@ In practice, building a GraphQL API from scratch often stops people from adoptin
 
 Tools like [Hasura](https://hasura.io) and [PostGraphile](https://postgraphile.org) proved there is a better way: let the database define the API. But Hasura has grown into a large platform with metadata tracking, admin consoles, and cloud connectors. PostGraphile runs on Node.js and relies on an internal plugin system for extensions. And adopting either often meant abandoning REST or running a separate service alongside it.
 
-We built **[graphpg](https://mihailtd.github.io/graphpg/)** to take a simpler path. It is an open-source, single static binary written in Rust. You point it at any PostgreSQL database, and it immediately serves both a GraphQL API and a REST API described by an OpenAPI 3.1 document. You don't write resolver code, configure metadata consoles, or maintain schema files by hand.
+We built **[graphpg](https://graphpg.com/)** to take a simpler path. It is an open-source, single static binary written in Rust. You point it at any PostgreSQL database, and it immediately serves both a GraphQL API and a REST API described by an OpenAPI 3.1 document. You don't write resolver code, configure metadata consoles, or maintain schema files by hand.
 
 ---
 
@@ -234,4 +234,4 @@ graphpg is not the right choice when:
 - **Every request compiles into a single SQL statement.** Lateral joins and JSON aggregation keep database round-trips to one per request.
 - **Permissions live in PostgreSQL Row-Level Security.** Your authorization logic stays in standard SQL policies rather than proprietary configuration layers.
 
-graphpg is open source under MIT or Apache-2.0. You can explore the documentation and guides on the [graphpg documentation site](https://mihailtd.github.io/graphpg/) or view the code on [GitHub](https://github.com/mihailtd/graphpg).
+graphpg is open source under MIT or Apache-2.0. You can explore the documentation and guides on the [graphpg documentation site](https://graphpg.com/) or view the code on [GitHub](https://github.com/mihailtd/graphpg).

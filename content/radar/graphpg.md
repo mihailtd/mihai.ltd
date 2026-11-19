@@ -27,7 +27,7 @@ evaluatedScore: 4
 satisfaction: 5
 decisionReason: "Built in-house to solve GraphQL and REST protocol drift. Derives both APIs from PostgreSQL catalogs into a single query execution plan with lateral joins and keyset pagination. Delivers end-to-end type safety for AI coding agents and eliminates hand-written data layers."
 decidedDate: "2026-10-15"
-link: "https://mihailtd.github.io/graphpg/"
+link: "https://graphpg.com/"
 target: "_blank"
 cover_image: "/images/covers/radar-graphpg.png"
 logoPath: "/images/tech/graphpg.svg"
@@ -35,7 +35,7 @@ logoPath: "/images/tech/graphpg.svg"
 
 # graphpg: Unified GraphQL and REST Engine for PostgreSQL
 
-**[graphpg](https://mihailtd.github.io/graphpg/)** is an open-source, database-first API engine built in-house in Rust. It reads a PostgreSQL schema—tables, foreign keys, constraints, composite types, functions, and Row-Level Security policies—and serves a full **GraphQL API** and a **REST API** (with OpenAPI 3.1 specifications) from a single query planner.
+**[graphpg](https://graphpg.com/)** is an open-source, database-first API engine built in-house in Rust. It reads a PostgreSQL schema—tables, foreign keys, constraints, composite types, functions, and Row-Level Security policies—and serves a full **GraphQL API** and a **REST API** (with OpenAPI 3.1 specifications) from a single query planner.
 
 We built and **Adopted** graphpg across our infrastructure after hitting the limits of running separate tools for GraphQL and REST. Maintaining two distinct data layers creates protocol drift: filter operators differ, error codes diverge, and connection limits apply inconsistently. graphpg eliminates this drift by planning both protocols onto one execution model where every request compiles into one SQL statement.
 
@@ -74,8 +74,8 @@ graphpg rejects arbitrary in-process plugins to preserve predictable single-stat
 
 - **Computed Columns & Queries**: Declared directly as PostgreSQL functions (`STABLE` for queries, `VOLATILE` for mutations).
 - **Asynchronous Side Effects**: Captured via event triggers within the database transaction and delivered as signed webhooks (Standard Webhooks format).
-- **Federated Services**: Composed at the gateway as an [Apollo Federation v2](https://mihailtd.github.io/graphpg/docs/federation-and-rbac) subgraph.
-- **External Data**: Linked across databases and Parquet files using PostgreSQL [Foreign Data Wrappers](https://mihailtd.github.io/graphpg/docs/foreign-data).
+- **Federated Services**: Composed at the gateway as an [Apollo Federation v2](https://graphpg.com/docs/federation-and-rbac) subgraph.
+- **External Data**: Linked across databases and Parquet files using PostgreSQL [Foreign Data Wrappers](https://graphpg.com/docs/foreign-data).
 
 ---
 
@@ -91,5 +91,5 @@ graphpg is our standard API engine for PostgreSQL-backed applications and AI age
 
 - Architectural Deep-Dive: **[Why GraphQL and REST Should Share One Engine: What I Learned Building graphpg](/blog/building-graphpg-graphql-and-rest-from-postgres)**
 - Developer Guide: **[How End-to-End Type Safety Turns "Change It Everywhere" Into a List Your AI Agent Can Finish](/blog/end-to-end-type-safety-ai-coding-agents)**
-- Official Website & Documentation: **[graphpg Documentation](https://mihailtd.github.io/graphpg/)**
+- Official Website & Documentation: **[graphpg Documentation](https://graphpg.com/)**
 - Open Source Repository: **[GitHub @mihailtd/graphpg](https://github.com/mihailtd/graphpg)**

@@ -433,7 +433,7 @@ useHead({
             ],
             sameAs: [
               "https://retroagile.com",
-              "https://mihailtd.github.io/graphpg/",
+              "https://graphpg.com",
               "https://innovi.pro",
               "https://innovi.care",
               "https://github.com/mihailtd",
@@ -463,9 +463,9 @@ useHead({
               },
               {
                 "@type": "SoftwareApplication",
-                "@id": "https://mihailtd.github.io/graphpg/#software",
+                "@id": "https://graphpg.com/#software",
                 name: "GraphPG",
-                url: "https://mihailtd.github.io/graphpg/",
+                url: "https://graphpg.com",
                 applicationCategory: "DeveloperApplication",
                 description:
                   "Instant GraphQL and REST API Engine for PostgreSQL written in Rust.",
@@ -638,7 +638,7 @@ const featuredProjects = [
     logo: "/images/tech/graphpg.svg",
     logoClass: "group-hover:scale-110",
     tech: "Rust, PostgreSQL 17/18, GraphQL, OpenAPI 3.1, Row-Level Security",
-    links: [{ text: "Read Docs", url: "https://mihailtd.github.io/graphpg/" }],
+    links: [{ text: "Read Docs", url: "https://graphpg.com/" }],
   },
   {
     title: "n8n",

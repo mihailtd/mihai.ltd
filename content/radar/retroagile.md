@@ -43,7 +43,7 @@ Estimating story points for AI coding agents makes little sense when an agent ca
 
 1. **Spec-Readiness Linter**: Evaluates engineering tasks against API contracts, schema boundaries, explicit error states, and automated acceptance criteria before handing tasks to autonomous agents.
 2. **Context Churn & Thrash Auditing**: Continuously monitors raw Git commit streams and PR turnaround latencies to pinpoint agent loops where files are touched 10+ times without merging.
-3. **Low-Latency Data Layer via [GraphPG](https://mihailtd.github.io/graphpg/)**: Uses our open-source [GraphPG](https://mihailtd.github.io/graphpg/) PostgreSQL engine to ingest git telemetry events and serve real-time GraphQL feeds with zero ORM overhead.
+3. **Low-Latency Data Layer via [GraphPG](https://graphpg.com/)**: Uses our open-source [GraphPG](https://graphpg.com/) PostgreSQL engine to ingest git telemetry events and serve real-time GraphQL feeds with zero ORM overhead.
 4. **Agent DORA Telemetry**: Replaces human typing-speed metrics with agent first-pass merge rates, cycle time, context loop depth, and token efficiency.
 
 ---
@@ -51,5 +51,5 @@ Estimating story points for AI coding agents makes little sense when an agent ca
 ## Related Resources
 
 - **Official Platform**: [retroagile.com](https://retroagile.com)
-- **Data Engine**: [GraphPG Documentation](https://mihailtd.github.io/graphpg/)
+- **Data Engine**: [GraphPG Documentation](https://graphpg.com/)
 - **Consultancy Advisory**: [Innovi Pro](https://innovi.pro)

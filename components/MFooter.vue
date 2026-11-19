@@ -53,7 +53,7 @@
           >Innovi Care</a
         >
         <a
-          href="https://mihailtd.github.io/graphpg/"
+          href="https://graphpg.com/"
           target="_blank"
           rel="noopener noreferrer"
           class="underline decoration-white/20 underline-offset-4 transition-colors hover:text-yellow-100"

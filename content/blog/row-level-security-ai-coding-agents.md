@@ -136,7 +136,7 @@ In my experience, models also get a policy right more often than they keep dozen
 
 ## In action: How graphpg implements RLS
 
-We built **[graphpg](https://mihailtd.github.io/graphpg/)** (our in-house open-source API engine, tracked on our [technology radar](/blog/graphpg)) specifically around this architecture.
+We built **[graphpg](https://graphpg.com/)** (our in-house open-source API engine, tracked on our [technology radar](/blog/graphpg)) specifically around this architecture.
 
 graphpg acts as an OAuth 2.0 resource server. It verifies incoming JWT access tokens and compiles both GraphQL and REST requests into single SQL statements executed inside a PostgreSQL transaction.
 
@@ -251,4 +251,4 @@ Row-Level Security adds the policy conditions to every query on the table. If yo
 - **Reviewers check one short policy instead of fifty controllers.** The policy applies to every query, including the ones written next month.
 - **graphpg sets the session from verified JWT claims on every request.** The same policies apply to GraphQL and REST.
 
-To learn more about configuring authentication and session settings in graphpg, explore the [Authentication and RLS Guide](https://mihailtd.github.io/graphpg/docs/authentication) and the [AI Agents Guide](https://mihailtd.github.io/graphpg/docs/ai-agents) on the [graphpg documentation website](https://mihailtd.github.io/graphpg/).
+To learn more about configuring authentication and session settings in graphpg, explore the [Authentication and RLS Guide](https://graphpg.com/docs/authentication) and the [AI Agents Guide](https://graphpg.com/docs/ai-agents) on the [graphpg documentation website](https://graphpg.com/).

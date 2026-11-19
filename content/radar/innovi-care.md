@@ -41,7 +41,7 @@ Designed by **[Innovi Pro](https://innovi.pro)**, it demonstrates how database-e
 ## Architectural Pillars
 
 1. **PostgreSQL Row-Level Security & Conflict-Free Scheduling**: Patient records, consent scopes, and multi-location clinician schedules are enforced directly in PostgreSQL using exclusion constraints and RLS policies.
-2. **Unified API Layer via [GraphPG](https://mihailtd.github.io/graphpg/)**: Exposes typed GraphQL and OpenAPI contracts straight from the database catalog without maintaining hand-written API resolvers.
+2. **Unified API Layer via [GraphPG](https://graphpg.com/)**: Exposes typed GraphQL and OpenAPI contracts straight from the database catalog without maintaining hand-written API resolvers.
 3. **Agentic Verification Loop**: Uses the same schema-first contracts and spec-readiness discipline tracked on **[RetroAgile](https://retroagile.com)** so autonomous coding agents can ship UI and tests inside strict type boundaries.
 
 ---
@@ -51,4 +51,4 @@ Designed by **[Innovi Pro](https://innovi.pro)**, it demonstrates how database-e
 - **Official Platform**: [innovi.care](https://innovi.care)
 - **Healthcare & AI Advisory**: [Innovi Pro](https://innovi.pro)
 - **Agentic Telemetry & Spec-Readiness**: [RetroAgile](https://retroagile.com)
-- **Data Layer Engine**: [GraphPG Documentation](https://mihailtd.github.io/graphpg/)
+- **Data Layer Engine**: [GraphPG Documentation](https://graphpg.com/)

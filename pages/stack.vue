@@ -416,7 +416,7 @@ const tools: ToolItem[] = [
     categoryLabel: "Database & API Engine",
     description:
       "Instant GraphQL and OpenAPI REST server for PostgreSQL written in Rust. Reads database catalogs at startup, enforces Row-Level Security, and compiles requests into single SQL queries with zero resolver boilerplate.",
-    url: "https://mihailtd.github.io/graphpg/",
+    url: "https://graphpg.com/",
     logo: "/images/tech/graphpg.svg",
     cta: "Explore graphpg",
   },

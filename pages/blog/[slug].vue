@@ -266,7 +266,7 @@
               Innovi Care: Clinical Platform
             </a>
             <a
-              href="https://mihailtd.github.io/graphpg/"
+              href="https://graphpg.com/"
               target="_blank"
               rel="noopener noreferrer"
               class="text-blue-300 underline decoration-blue-400/40 underline-offset-4 hover:text-blue-200"

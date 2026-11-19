@@ -11,7 +11,7 @@ cover_image: "/images/covers/building-graphpg-graphql-and-rest-from-postgres.png
 
 _GraphQL or REST is the wrong question for many teams. You often end up running both, and what matters is whether they come from one place or drift apart._
 
-I build a lot of applications on PostgreSQL, and for years I have reached for tools that read the database and serve an API from it, instead of writing a data layer by hand. The largest schema I work with is a FHIR R5 data model (FHIR is the HL7 standard for exchanging healthcare records): 177 tables, composite types, JSON views and recursive functions. That schema is where [graphpg](https://mihailtd.github.io/graphpg/) started.
+I build a lot of applications on PostgreSQL, and for years I have reached for tools that read the database and serve an API from it, instead of writing a data layer by hand. The largest schema I work with is a FHIR R5 data model (FHIR is the HL7 standard for exchanging healthcare records): 177 tables, composite types, JSON views and recursive functions. That schema is where [graphpg](https://graphpg.com/) started.
 
 We built graphpg in-house as an open-source Rust engine (and adopted it on our [technology radar](/blog/graphpg)). It reads a PostgreSQL schema and serves a GraphQL API and a REST API from it, with an OpenAPI 3.1 document describing the REST side. This article covers what I took from the tools that came before it, what I did differently, and why I think GraphQL and REST should be generated from one engine rather than picked between.
 
@@ -37,7 +37,7 @@ None of the ideas below are mine. Each comes from a tool I used and still respec
 
 GraphQL and REST in graphpg are two front ends to the same operation plan. A REST call such as `GET /rest/posts?filter[status][eq]=PUBLISHED&include=tags` and the equivalent GraphQL query become the same plan, so they share filters, ordering, keyset pagination, nested writes, safety limits, authorization and error codes. Add a filter operator and both APIs get it.
 
-The two APIs aren't identical, and shouldn't be: some things only make sense in one of them. The [parity document](https://mihailtd.github.io/graphpg/docs/graphql-openapi-parity) lists where they differ and why. Put two separate tools in front of one database, say PostGraphile for GraphQL and PostgREST for REST, and the differences stop being choices. One supports a filter the other lacks, an error comes back in a different shape, a limit holds on one side only.
+The two APIs aren't identical, and shouldn't be: some things only make sense in one of them. The [parity document](https://graphpg.com/docs/graphql-openapi-parity) lists where they differ and why. Put two separate tools in front of one database, say PostGraphile for GraphQL and PostgREST for REST, and the differences stop being choices. One supports a filter the other lacks, an error comes back in a different shape, a limit holds on one side only.
 
 ### 2. Every request is one SQL statement
 
@@ -51,7 +51,7 @@ Treat that as one data point, not a ranking. Throughput depends far more on your
 
 ### 3. No plugins, no custom resolvers
 
-This is the decision people question most. PostGraphile has a plugin system; Hasura has actions and remote schemas. graphpg has neither, on purpose ([decision record](https://mihailtd.github.io/graphpg/docs/extending)).
+This is the decision people question most. PostGraphile has a plugin system; Hasura has actions and remote schemas. graphpg has neither, on purpose ([decision record](https://graphpg.com/docs/extending)).
 
 A resolver running inside the server sits outside the statement. It adds a round trip per row unless it batches, it runs outside the transaction and outside RLS, and the limits checked on the plan no longer cover the request. A plugin runtime is also a product of its own, with an API to keep stable through every upgrade.
 
@@ -100,7 +100,7 @@ The FHIR schema did the exploratory testing. A crawler and a fuzzer sent request
 
 ## Where graphpg fits, and where it does not
 
-graphpg fits when you want one service you configure rather than program, your authorization already lives in PostgreSQL (roles, grants, RLS), and you want GraphQL and REST to agree because both compile from one plan. It also fits distributed architectures: you can join remote databases and Parquet files through [foreign data wrappers](https://mihailtd.github.io/graphpg/docs/foreign-data), or compose graphpg as a subgraph with other services at the gateway using [Apollo Federation](https://mihailtd.github.io/graphpg/docs/federation-and-rbac).
+graphpg fits when you want one service you configure rather than program, your authorization already lives in PostgreSQL (roles, grants, RLS), and you want GraphQL and REST to agree because both compile from one plan. It also fits distributed architectures: you can join remote databases and Parquet files through [foreign data wrappers](https://graphpg.com/docs/foreign-data), or compose graphpg as a subgraph with other services at the gateway using [Apollo Federation](https://graphpg.com/docs/federation-and-rbac).
 
 Something else fits better when:
 
@@ -108,7 +108,7 @@ Something else fits better when:
 - **You want plugins that change how the schema is generated**: PostGraphile. graphpg moves custom logic into SQL functions, event triggers or separate services, to keep one statement per request.
 - **You need to stream every change as an event**: Hasura streaming subscriptions. graphpg's subscriptions send the latest result when data changes, and its event triggers deliver webhooks.
 
-The [comparison page](https://mihailtd.github.io/graphpg/docs/comparison) on the graphpg documentation website lists each feature in detail, including where the other tools are broader.
+The [comparison page](https://graphpg.com/docs/comparison) on the graphpg documentation website lists each feature in detail, including where the other tools are broader.
 
 ---
 
@@ -119,4 +119,4 @@ The [comparison page](https://mihailtd.github.io/graphpg/docs/comparison) on the
 - **Plugins and custom resolvers break the guarantees that make a generated API safe.** Solution: put behavior in SQL functions, constraints, policies and event triggers, and compose anything else at the gateway.
 - **An API contract that is not checked in CI will drift.** Solution: commit the SDL and OpenAPI document, fail CI on drift, and refuse to start in production on a mismatched schema.
 
-graphpg is open source under MIT or Apache-2.0. Explore the [official documentation website](https://mihailtd.github.io/graphpg/) for guides on [AI agents](https://mihailtd.github.io/graphpg/docs/ai-agents), [type safety](https://mihailtd.github.io/graphpg/docs/type-safety), and a Docker quick start. The source code is available on [GitHub](https://github.com/mihailtd/graphpg).
+graphpg is open source under MIT or Apache-2.0. Explore the [official documentation website](https://graphpg.com/) for guides on [AI agents](https://graphpg.com/docs/ai-agents), [type safety](https://graphpg.com/docs/type-safety), and a Docker quick start. The source code is available on [GitHub](https://github.com/mihailtd/graphpg).
